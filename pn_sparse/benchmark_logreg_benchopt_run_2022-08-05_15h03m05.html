@@ -1,0 +1,3340 @@
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>📈</text></svg>">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="./static/utilities.css">
+        <link rel="stylesheet" href="./static/hover_index.css">
+
+        <title>Result on logreg benchmark</title>
+
+        <style>
+            /*
+! tailwindcss v3.1.2 | MIT License | https://tailwindcss.com
+*/
+
+/*
+1. Prevent padding and border from affecting element width. (https://github.com/mozdevs/cssremedy/issues/4)
+2. Allow adding a border to an element by just adding a border-width. (https://github.com/tailwindcss/tailwindcss/pull/116)
+*/
+
+*,
+::before,
+::after {
+  box-sizing: border-box;
+  /* 1 */
+  border-width: 0;
+  /* 2 */
+  border-style: solid;
+  /* 2 */
+  border-color: #e5e7eb;
+  /* 2 */
+}
+
+::before,
+::after {
+  --tw-content: '';
+}
+
+/*
+1. Use a consistent sensible line-height in all browsers.
+2. Prevent adjustments of font size after orientation changes in iOS.
+3. Use a more readable tab size.
+4. Use the user's configured `sans` font-family by default.
+*/
+
+html {
+  line-height: 1.5;
+  /* 1 */
+  -webkit-text-size-adjust: 100%;
+  /* 2 */
+  -moz-tab-size: 4;
+  /* 3 */
+  -o-tab-size: 4;
+     tab-size: 4;
+  /* 3 */
+  font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+  /* 4 */
+}
+
+/*
+1. Remove the margin in all browsers.
+2. Inherit line-height from `html` so users can set them as a class directly on the `html` element.
+*/
+
+body {
+  margin: 0;
+  /* 1 */
+  line-height: inherit;
+  /* 2 */
+}
+
+/*
+1. Add the correct height in Firefox.
+2. Correct the inheritance of border color in Firefox. (https://bugzilla.mozilla.org/show_bug.cgi?id=190655)
+3. Ensure horizontal rules are visible by default.
+*/
+
+hr {
+  height: 0;
+  /* 1 */
+  color: inherit;
+  /* 2 */
+  border-top-width: 1px;
+  /* 3 */
+}
+
+/*
+Add the correct text decoration in Chrome, Edge, and Safari.
+*/
+
+abbr:where([title]) {
+  -webkit-text-decoration: underline dotted;
+          text-decoration: underline dotted;
+}
+
+/*
+Remove the default font size and weight for headings.
+*/
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-size: inherit;
+  font-weight: inherit;
+}
+
+/*
+Reset links to optimize for opt-in styling instead of opt-out.
+*/
+
+a {
+  color: inherit;
+  text-decoration: inherit;
+}
+
+/*
+Add the correct font weight in Edge and Safari.
+*/
+
+b,
+strong {
+  font-weight: bolder;
+}
+
+/*
+1. Use the user's configured `mono` font family by default.
+2. Correct the odd `em` font sizing in all browsers.
+*/
+
+code,
+kbd,
+samp,
+pre {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+  /* 1 */
+  font-size: 1em;
+  /* 2 */
+}
+
+/*
+Add the correct font size in all browsers.
+*/
+
+small {
+  font-size: 80%;
+}
+
+/*
+Prevent `sub` and `sup` elements from affecting the line height in all browsers.
+*/
+
+sub,
+sup {
+  font-size: 75%;
+  line-height: 0;
+  position: relative;
+  vertical-align: baseline;
+}
+
+sub {
+  bottom: -0.25em;
+}
+
+sup {
+  top: -0.5em;
+}
+
+/*
+1. Remove text indentation from table contents in Chrome and Safari. (https://bugs.chromium.org/p/chromium/issues/detail?id=999088, https://bugs.webkit.org/show_bug.cgi?id=201297)
+2. Correct table border color inheritance in all Chrome and Safari. (https://bugs.chromium.org/p/chromium/issues/detail?id=935729, https://bugs.webkit.org/show_bug.cgi?id=195016)
+3. Remove gaps between table borders by default.
+*/
+
+table {
+  text-indent: 0;
+  /* 1 */
+  border-color: inherit;
+  /* 2 */
+  border-collapse: collapse;
+  /* 3 */
+}
+
+/*
+1. Change the font styles in all browsers.
+2. Remove the margin in Firefox and Safari.
+3. Remove default padding in all browsers.
+*/
+
+button,
+input,
+optgroup,
+select,
+textarea {
+  font-family: inherit;
+  /* 1 */
+  font-size: 100%;
+  /* 1 */
+  font-weight: inherit;
+  /* 1 */
+  line-height: inherit;
+  /* 1 */
+  color: inherit;
+  /* 1 */
+  margin: 0;
+  /* 2 */
+  padding: 0;
+  /* 3 */
+}
+
+/*
+Remove the inheritance of text transform in Edge and Firefox.
+*/
+
+button,
+select {
+  text-transform: none;
+}
+
+/*
+1. Correct the inability to style clickable types in iOS and Safari.
+2. Remove default button styles.
+*/
+
+button,
+[type='button'],
+[type='reset'],
+[type='submit'] {
+  -webkit-appearance: button;
+  /* 1 */
+  background-color: transparent;
+  /* 2 */
+  background-image: none;
+  /* 2 */
+}
+
+/*
+Use the modern Firefox focus style for all focusable elements.
+*/
+
+:-moz-focusring {
+  outline: auto;
+}
+
+/*
+Remove the additional `:invalid` styles in Firefox. (https://github.com/mozilla/gecko-dev/blob/2f9eacd9d3d995c937b4251a5557d95d494c9be1/layout/style/res/forms.css#L728-L737)
+*/
+
+:-moz-ui-invalid {
+  box-shadow: none;
+}
+
+/*
+Add the correct vertical alignment in Chrome and Firefox.
+*/
+
+progress {
+  vertical-align: baseline;
+}
+
+/*
+Correct the cursor style of increment and decrement buttons in Safari.
+*/
+
+::-webkit-inner-spin-button,
+::-webkit-outer-spin-button {
+  height: auto;
+}
+
+/*
+1. Correct the odd appearance in Chrome and Safari.
+2. Correct the outline style in Safari.
+*/
+
+[type='search'] {
+  -webkit-appearance: textfield;
+  /* 1 */
+  outline-offset: -2px;
+  /* 2 */
+}
+
+/*
+Remove the inner padding in Chrome and Safari on macOS.
+*/
+
+::-webkit-search-decoration {
+  -webkit-appearance: none;
+}
+
+/*
+1. Correct the inability to style clickable types in iOS and Safari.
+2. Change font properties to `inherit` in Safari.
+*/
+
+::-webkit-file-upload-button {
+  -webkit-appearance: button;
+  /* 1 */
+  font: inherit;
+  /* 2 */
+}
+
+/*
+Add the correct display in Chrome and Safari.
+*/
+
+summary {
+  display: list-item;
+}
+
+/*
+Removes the default spacing and border for appropriate elements.
+*/
+
+blockquote,
+dl,
+dd,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+hr,
+figure,
+p,
+pre {
+  margin: 0;
+}
+
+fieldset {
+  margin: 0;
+  padding: 0;
+}
+
+legend {
+  padding: 0;
+}
+
+ol,
+ul,
+menu {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+/*
+Prevent resizing textareas horizontally by default.
+*/
+
+textarea {
+  resize: vertical;
+}
+
+/*
+1. Reset the default placeholder opacity in Firefox. (https://github.com/tailwindlabs/tailwindcss/issues/3300)
+2. Set the default placeholder color to the user's configured gray 400 color.
+*/
+
+input::-moz-placeholder, textarea::-moz-placeholder {
+  opacity: 1;
+  /* 1 */
+  color: #9ca3af;
+  /* 2 */
+}
+
+input:-ms-input-placeholder, textarea:-ms-input-placeholder {
+  opacity: 1;
+  /* 1 */
+  color: #9ca3af;
+  /* 2 */
+}
+
+input::placeholder,
+textarea::placeholder {
+  opacity: 1;
+  /* 1 */
+  color: #9ca3af;
+  /* 2 */
+}
+
+/*
+Set the default cursor for buttons.
+*/
+
+button,
+[role="button"] {
+  cursor: pointer;
+}
+
+/*
+Make sure disabled buttons don't get the pointer cursor.
+*/
+
+:disabled {
+  cursor: default;
+}
+
+/*
+1. Make replaced elements `display: block` by default. (https://github.com/mozdevs/cssremedy/issues/14)
+2. Add `vertical-align: middle` to align replaced elements more sensibly by default. (https://github.com/jensimmons/cssremedy/issues/14#issuecomment-634934210)
+   This can trigger a poorly considered lint error in some tools but is included by design.
+*/
+
+img,
+svg,
+video,
+canvas,
+audio,
+iframe,
+embed,
+object {
+  display: block;
+  /* 1 */
+  vertical-align: middle;
+  /* 2 */
+}
+
+/*
+Constrain images and videos to the parent width and preserve their intrinsic aspect ratio. (https://github.com/mozdevs/cssremedy/issues/14)
+*/
+
+img,
+video {
+  max-width: 100%;
+  height: auto;
+}
+
+*, ::before, ::after {
+  --tw-border-spacing-x: 0;
+  --tw-border-spacing-y: 0;
+  --tw-translate-x: 0;
+  --tw-translate-y: 0;
+  --tw-rotate: 0;
+  --tw-skew-x: 0;
+  --tw-skew-y: 0;
+  --tw-scale-x: 1;
+  --tw-scale-y: 1;
+  --tw-pan-x:  ;
+  --tw-pan-y:  ;
+  --tw-pinch-zoom:  ;
+  --tw-scroll-snap-strictness: proximity;
+  --tw-ordinal:  ;
+  --tw-slashed-zero:  ;
+  --tw-numeric-figure:  ;
+  --tw-numeric-spacing:  ;
+  --tw-numeric-fraction:  ;
+  --tw-ring-inset:  ;
+  --tw-ring-offset-width: 0px;
+  --tw-ring-offset-color: #fff;
+  --tw-ring-color: rgb(59 130 246 / 0.5);
+  --tw-ring-offset-shadow: 0 0 #0000;
+  --tw-ring-shadow: 0 0 #0000;
+  --tw-shadow: 0 0 #0000;
+  --tw-shadow-colored: 0 0 #0000;
+  --tw-blur:  ;
+  --tw-brightness:  ;
+  --tw-contrast:  ;
+  --tw-grayscale:  ;
+  --tw-hue-rotate:  ;
+  --tw-invert:  ;
+  --tw-saturate:  ;
+  --tw-sepia:  ;
+  --tw-drop-shadow:  ;
+  --tw-backdrop-blur:  ;
+  --tw-backdrop-brightness:  ;
+  --tw-backdrop-contrast:  ;
+  --tw-backdrop-grayscale:  ;
+  --tw-backdrop-hue-rotate:  ;
+  --tw-backdrop-invert:  ;
+  --tw-backdrop-opacity:  ;
+  --tw-backdrop-saturate:  ;
+  --tw-backdrop-sepia:  ;
+}
+
+::-webkit-backdrop {
+  --tw-border-spacing-x: 0;
+  --tw-border-spacing-y: 0;
+  --tw-translate-x: 0;
+  --tw-translate-y: 0;
+  --tw-rotate: 0;
+  --tw-skew-x: 0;
+  --tw-skew-y: 0;
+  --tw-scale-x: 1;
+  --tw-scale-y: 1;
+  --tw-pan-x:  ;
+  --tw-pan-y:  ;
+  --tw-pinch-zoom:  ;
+  --tw-scroll-snap-strictness: proximity;
+  --tw-ordinal:  ;
+  --tw-slashed-zero:  ;
+  --tw-numeric-figure:  ;
+  --tw-numeric-spacing:  ;
+  --tw-numeric-fraction:  ;
+  --tw-ring-inset:  ;
+  --tw-ring-offset-width: 0px;
+  --tw-ring-offset-color: #fff;
+  --tw-ring-color: rgb(59 130 246 / 0.5);
+  --tw-ring-offset-shadow: 0 0 #0000;
+  --tw-ring-shadow: 0 0 #0000;
+  --tw-shadow: 0 0 #0000;
+  --tw-shadow-colored: 0 0 #0000;
+  --tw-blur:  ;
+  --tw-brightness:  ;
+  --tw-contrast:  ;
+  --tw-grayscale:  ;
+  --tw-hue-rotate:  ;
+  --tw-invert:  ;
+  --tw-saturate:  ;
+  --tw-sepia:  ;
+  --tw-drop-shadow:  ;
+  --tw-backdrop-blur:  ;
+  --tw-backdrop-brightness:  ;
+  --tw-backdrop-contrast:  ;
+  --tw-backdrop-grayscale:  ;
+  --tw-backdrop-hue-rotate:  ;
+  --tw-backdrop-invert:  ;
+  --tw-backdrop-opacity:  ;
+  --tw-backdrop-saturate:  ;
+  --tw-backdrop-sepia:  ;
+}
+
+::backdrop {
+  --tw-border-spacing-x: 0;
+  --tw-border-spacing-y: 0;
+  --tw-translate-x: 0;
+  --tw-translate-y: 0;
+  --tw-rotate: 0;
+  --tw-skew-x: 0;
+  --tw-skew-y: 0;
+  --tw-scale-x: 1;
+  --tw-scale-y: 1;
+  --tw-pan-x:  ;
+  --tw-pan-y:  ;
+  --tw-pinch-zoom:  ;
+  --tw-scroll-snap-strictness: proximity;
+  --tw-ordinal:  ;
+  --tw-slashed-zero:  ;
+  --tw-numeric-figure:  ;
+  --tw-numeric-spacing:  ;
+  --tw-numeric-fraction:  ;
+  --tw-ring-inset:  ;
+  --tw-ring-offset-width: 0px;
+  --tw-ring-offset-color: #fff;
+  --tw-ring-color: rgb(59 130 246 / 0.5);
+  --tw-ring-offset-shadow: 0 0 #0000;
+  --tw-ring-shadow: 0 0 #0000;
+  --tw-shadow: 0 0 #0000;
+  --tw-shadow-colored: 0 0 #0000;
+  --tw-blur:  ;
+  --tw-brightness:  ;
+  --tw-contrast:  ;
+  --tw-grayscale:  ;
+  --tw-hue-rotate:  ;
+  --tw-invert:  ;
+  --tw-saturate:  ;
+  --tw-sepia:  ;
+  --tw-drop-shadow:  ;
+  --tw-backdrop-blur:  ;
+  --tw-backdrop-brightness:  ;
+  --tw-backdrop-contrast:  ;
+  --tw-backdrop-grayscale:  ;
+  --tw-backdrop-hue-rotate:  ;
+  --tw-backdrop-invert:  ;
+  --tw-backdrop-opacity:  ;
+  --tw-backdrop-saturate:  ;
+  --tw-backdrop-sepia:  ;
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border-width: 0;
+}
+
+.fixed {
+  position: fixed;
+}
+
+.absolute {
+  position: absolute;
+}
+
+.relative {
+  position: relative;
+}
+
+.inset-0 {
+  top: 0px;
+  right: 0px;
+  bottom: 0px;
+  left: 0px;
+}
+
+.z-10 {
+  z-index: 10;
+}
+
+.mx-auto {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.mt-10 {
+  margin-top: 2.5rem;
+}
+
+.mt-1 {
+  margin-top: 0.25rem;
+}
+
+.mt-8 {
+  margin-top: 2rem;
+}
+
+.mt-2 {
+  margin-top: 0.5rem;
+}
+
+.mt-5 {
+  margin-top: 1.25rem;
+}
+
+.mt-3 {
+  margin-top: 0.75rem;
+}
+
+.block {
+  display: block;
+}
+
+.inline {
+  display: inline;
+}
+
+.flex {
+  display: flex;
+}
+
+.inline-flex {
+  display: inline-flex;
+}
+
+.table {
+  display: table;
+}
+
+.grid {
+  display: grid;
+}
+
+.hidden {
+  display: none;
+}
+
+.h-screen {
+  height: 100vh;
+}
+
+.h-16 {
+  height: 4rem;
+}
+
+.h-10 {
+  height: 2.5rem;
+}
+
+.h-8 {
+  height: 2rem;
+}
+
+.h-6 {
+  height: 1.5rem;
+}
+
+.h-5 {
+  height: 1.25rem;
+}
+
+.h-4 {
+  height: 1rem;
+}
+
+.h-12 {
+  height: 3rem;
+}
+
+.min-h-full {
+  min-height: 100%;
+}
+
+.w-96 {
+  width: 24rem;
+}
+
+.w-full {
+  width: 100%;
+}
+
+.w-6 {
+  width: 1.5rem;
+}
+
+.w-5 {
+  width: 1.25rem;
+}
+
+.w-4 {
+  width: 1rem;
+}
+
+.w-12 {
+  width: 3rem;
+}
+
+.min-w-0 {
+  min-width: 0px;
+}
+
+.flex-1 {
+  flex: 1 1 0%;
+}
+
+.flex-shrink-0 {
+  flex-shrink: 0;
+}
+
+.transform {
+  transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
+}
+
+.flex-col {
+  flex-direction: column;
+}
+
+.flex-wrap {
+  flex-wrap: wrap;
+}
+
+.items-end {
+  align-items: flex-end;
+}
+
+.items-center {
+  align-items: center;
+}
+
+.justify-center {
+  justify-content: center;
+}
+
+.justify-between {
+  justify-content: space-between;
+}
+
+.space-x-4 > :not([hidden]) ~ :not([hidden]) {
+  --tw-space-x-reverse: 0;
+  margin-right: calc(1rem * var(--tw-space-x-reverse));
+  margin-left: calc(1rem * calc(1 - var(--tw-space-x-reverse)));
+}
+
+.space-y-1 > :not([hidden]) ~ :not([hidden]) {
+  --tw-space-y-reverse: 0;
+  margin-top: calc(0.25rem * calc(1 - var(--tw-space-y-reverse)));
+  margin-bottom: calc(0.25rem * var(--tw-space-y-reverse));
+}
+
+.space-y-4 > :not([hidden]) ~ :not([hidden]) {
+  --tw-space-y-reverse: 0;
+  margin-top: calc(1rem * calc(1 - var(--tw-space-y-reverse)));
+  margin-bottom: calc(1rem * var(--tw-space-y-reverse));
+}
+
+.space-x-2 > :not([hidden]) ~ :not([hidden]) {
+  --tw-space-x-reverse: 0;
+  margin-right: calc(0.5rem * var(--tw-space-x-reverse));
+  margin-left: calc(0.5rem * calc(1 - var(--tw-space-x-reverse)));
+}
+
+.overflow-hidden {
+  overflow: hidden;
+}
+
+.overflow-y-auto {
+  overflow-y: auto;
+}
+
+.rounded-md {
+  border-radius: 0.375rem;
+}
+
+.rounded-lg {
+  border-radius: 0.5rem;
+}
+
+.rounded-full {
+  border-radius: 9999px;
+}
+
+.border {
+  border-width: 1px;
+}
+
+.border-gray-300 {
+  --tw-border-opacity: 1;
+  border-color: rgb(209 213 219 / var(--tw-border-opacity));
+}
+
+.border-gray-800 {
+  --tw-border-opacity: 1;
+  border-color: rgb(31 41 55 / var(--tw-border-opacity));
+}
+
+.border-transparent {
+  border-color: transparent;
+}
+
+.bg-gray-700 {
+  --tw-bg-opacity: 1;
+  background-color: rgb(55 65 81 / var(--tw-bg-opacity));
+}
+
+.bg-gray-800 {
+  --tw-bg-opacity: 1;
+  background-color: rgb(31 41 55 / var(--tw-bg-opacity));
+}
+
+.bg-blue-600 {
+  --tw-bg-opacity: 1;
+  background-color: rgb(37 99 235 / var(--tw-bg-opacity));
+}
+
+.bg-white {
+  --tw-bg-opacity: 1;
+  background-color: rgb(255 255 255 / var(--tw-bg-opacity));
+}
+
+.bg-gray-500 {
+  --tw-bg-opacity: 1;
+  background-color: rgb(107 114 128 / var(--tw-bg-opacity));
+}
+
+.bg-slate-200 {
+  --tw-bg-opacity: 1;
+  background-color: rgb(241 245 249 / var(--tw-bg-opacity));
+}
+
+.bg-blue-100 {
+  --tw-bg-opacity: 1;
+  background-color: rgb(219 234 254 / var(--tw-bg-opacity));
+}
+
+.bg-gray-50 {
+  --tw-bg-opacity: 1;
+  background-color: rgb(249 250 251 / var(--tw-bg-opacity));
+}
+
+.bg-opacity-75 {
+  --tw-bg-opacity: 0.75;
+}
+
+.p-1 {
+  padding: 0.25rem;
+}
+
+.p-2 {
+  padding: 0.5rem;
+}
+
+.p-4 {
+  padding: 1rem;
+}
+
+.px-8 {
+  padding-left: 2rem;
+  padding-right: 2rem;
+}
+
+.px-4 {
+  padding-left: 1rem;
+  padding-right: 1rem;
+}
+
+.px-3 {
+  padding-left: 0.75rem;
+  padding-right: 0.75rem;
+}
+
+.py-2 {
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+}
+
+.px-2 {
+  padding-left: 0.5rem;
+  padding-right: 0.5rem;
+}
+
+.py-4 {
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+}
+
+.py-1 {
+  padding-top: 0.25rem;
+  padding-bottom: 0.25rem;
+}
+
+.py-3 {
+  padding-top: 0.75rem;
+  padding-bottom: 0.75rem;
+}
+
+.pt-2 {
+  padding-top: 0.5rem;
+}
+
+.pt-4 {
+  padding-top: 1rem;
+}
+
+.pb-0 {
+  padding-bottom: 0;
+}
+
+.pb-1 {
+  padding-bottom: 0.25rem;
+}
+
+.pb-3 {
+  padding-bottom: 0.75rem;
+}
+
+.pt-5 {
+  padding-top: 1.25rem;
+}
+
+.pb-4 {
+  padding-bottom: 1rem;
+}
+
+.text-left {
+  text-align: left;
+}
+
+.text-center {
+  text-align: center;
+}
+
+.text-2xl {
+  font-size: 1.5rem;
+  line-height: 2rem;
+}
+
+.text-sm {
+  font-size: 0.875rem;
+  line-height: 1.25rem;
+}
+
+.text-xl {
+  font-size: 1.25rem;
+  line-height: 1.75rem;
+}
+
+.text-base {
+  font-size: 1rem;
+  line-height: 1.5rem;
+}
+
+.text-lg {
+  font-size: 1.125rem;
+  line-height: 1.75rem;
+}
+
+.font-medium {
+  font-weight: 500;
+}
+
+.font-bold {
+  font-weight: 700;
+}
+
+.capitalize {
+  text-transform: capitalize;
+}
+
+.leading-7 {
+  line-height: 1.75rem;
+}
+
+.leading-6 {
+  line-height: 1.5rem;
+}
+
+.text-white {
+  --tw-text-opacity: 1;
+  color: rgb(255 255 255 / var(--tw-text-opacity));
+}
+
+.text-gray-100 {
+  --tw-text-opacity: 1;
+  color: rgb(243 244 246 / var(--tw-text-opacity));
+}
+
+.text-gray-900 {
+  --tw-text-opacity: 1;
+  color: rgb(17 24 39 / var(--tw-text-opacity));
+}
+
+.text-gray-500 {
+  --tw-text-opacity: 1;
+  color: rgb(107 114 128 / var(--tw-text-opacity));
+}
+
+.text-black {
+  --tw-text-opacity: 1;
+  color: rgb(0 0 0 / var(--tw-text-opacity));
+}
+
+.text-blue-600 {
+  --tw-text-opacity: 1;
+  color: rgb(37 99 235 / var(--tw-text-opacity));
+}
+
+.text-gray-700 {
+  --tw-text-opacity: 1;
+  color: rgb(55 65 81 / var(--tw-text-opacity));
+}
+
+.shadow-sm {
+  --tw-shadow: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+  --tw-shadow-colored: 0 1px 2px 0 var(--tw-shadow-color);
+  box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
+}
+
+.shadow-xl {
+  --tw-shadow: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
+  --tw-shadow-colored: 0 20px 25px -5px var(--tw-shadow-color), 0 8px 10px -6px var(--tw-shadow-color);
+  box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
+}
+
+.transition-opacity {
+  transition-property: opacity;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-duration: 150ms;
+}
+
+.transition-all {
+  transition-property: all;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-duration: 150ms;
+}
+
+.hover\:bg-blue-800:hover {
+  --tw-bg-opacity: 1;
+  background-color: rgb(30 64 175 / var(--tw-bg-opacity));
+}
+
+.hover\:bg-gray-100:hover {
+  --tw-bg-opacity: 1;
+  background-color: rgb(243 244 246 / var(--tw-bg-opacity));
+}
+
+.hover\:bg-blue-700:hover {
+  --tw-bg-opacity: 1;
+  background-color: rgb(29 78 216 / var(--tw-bg-opacity));
+}
+
+.hover\:bg-gray-50:hover {
+  --tw-bg-opacity: 1;
+  background-color: rgb(249 250 251 / var(--tw-bg-opacity));
+}
+
+.hover\:text-white:hover {
+  --tw-text-opacity: 1;
+  color: rgb(255 255 255 / var(--tw-text-opacity));
+}
+
+.focus\:border-blue-500:focus {
+  --tw-border-opacity: 1;
+  border-color: rgb(59 130 246 / var(--tw-border-opacity));
+}
+
+.focus\:outline-none:focus {
+  outline: 2px solid transparent;
+  outline-offset: 2px;
+}
+
+.focus\:ring-2:focus {
+  --tw-ring-offset-shadow: var(--tw-ring-inset) 0 0 0 var(--tw-ring-offset-width) var(--tw-ring-offset-color);
+  --tw-ring-shadow: var(--tw-ring-inset) 0 0 0 calc(2px + var(--tw-ring-offset-width)) var(--tw-ring-color);
+  box-shadow: var(--tw-ring-offset-shadow), var(--tw-ring-shadow), var(--tw-shadow, 0 0 #0000);
+}
+
+.focus\:ring-inset:focus {
+  --tw-ring-inset: inset;
+}
+
+.focus\:ring-blue-500:focus {
+  --tw-ring-opacity: 1;
+  --tw-ring-color: rgb(59 130 246 / var(--tw-ring-opacity));
+}
+
+.focus\:ring-white:focus {
+  --tw-ring-opacity: 1;
+  --tw-ring-color: rgb(255 255 255 / var(--tw-ring-opacity));
+}
+
+.focus\:ring-gray-500:focus {
+  --tw-ring-opacity: 1;
+  --tw-ring-color: rgb(107 114 128 / var(--tw-ring-opacity));
+}
+
+.focus\:ring-offset-2:focus {
+  --tw-ring-offset-width: 2px;
+}
+
+@media (min-width: 640px) {
+  .sm\:my-8 {
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+  }
+
+  .sm\:mx-0 {
+    margin-left: 0px;
+    margin-right: 0px;
+  }
+
+  .sm\:mt-0 {
+    margin-top: 0px;
+  }
+
+  .sm\:ml-3 {
+    margin-left: 0.75rem;
+  }
+
+  .sm\:ml-4 {
+    margin-left: 1rem;
+  }
+
+  .sm\:block {
+    display: block;
+  }
+
+  .sm\:flex {
+    display: flex;
+  }
+
+  .sm\:hidden {
+    display: none;
+  }
+
+  .sm\:h-10 {
+    height: 2.5rem;
+  }
+
+  .sm\:w-full {
+    width: 100%;
+  }
+
+  .sm\:w-10 {
+    width: 2.5rem;
+  }
+
+  .sm\:w-auto {
+    width: auto;
+  }
+
+  .sm\:max-w-lg {
+    max-width: 32rem;
+  }
+
+  .sm\:flex-row-reverse {
+    flex-direction: row-reverse;
+  }
+
+  .sm\:items-start {
+    align-items: flex-start;
+  }
+
+  .sm\:items-center {
+    align-items: center;
+  }
+
+  .sm\:items-stretch {
+    align-items: stretch;
+  }
+
+  .sm\:justify-start {
+    justify-content: flex-start;
+  }
+
+  .sm\:space-x-6 > :not([hidden]) ~ :not([hidden]) {
+    --tw-space-x-reverse: 0;
+    margin-right: calc(1.5rem * var(--tw-space-x-reverse));
+    margin-left: calc(1.5rem * calc(1 - var(--tw-space-x-reverse)));
+  }
+
+  .sm\:truncate {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  .sm\:p-0 {
+    padding: 0px;
+  }
+
+  .sm\:p-6 {
+    padding: 1.5rem;
+  }
+
+  .sm\:px-6 {
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+  }
+
+  .sm\:pb-4 {
+    padding-bottom: 1rem;
+  }
+
+  .sm\:text-left {
+    text-align: left;
+  }
+
+  .sm\:text-sm {
+    font-size: 0.875rem;
+    line-height: 1.25rem;
+  }
+
+  .sm\:text-3xl {
+    font-size: 1.875rem;
+    line-height: 2.25rem;
+  }
+
+  .sm\:mr-6 {
+    margin-right: 1.5rem; /* 24px */
+  }
+}
+
+@media (min-width: 768px) {
+  .md\:inline {
+    display: inline;
+  }
+
+  .md\:flex {
+    display: flex;
+  }
+
+  .md\:hidden {
+    display: none;
+  }
+
+  .md\:justify-start {
+    justify-content: flex-start;
+  }
+
+  .md\:text-left {
+    text-align: left;
+  }
+
+  .md\:block {
+    display: block;
+  }
+
+  .md\:inline-block {
+    display: inline-block;
+  }
+}
+
+@media (min-width: 1024px) {
+  .lg\:mt-0 {
+    margin-top: 0px;
+  }
+
+  .lg\:ml-4 {
+    margin-left: 1rem;
+  }
+
+  .lg\:flex {
+    display: flex;
+  }
+
+  .lg\:items-center {
+    align-items: center;
+  }
+
+  .lg\:justify-between {
+    justify-content: space-between;
+  }
+
+  .lg\:inline {
+    display: inline;
+  }
+
+  .lg\:hidden {
+    display: none;
+  }
+
+  .lg\:justify-start {
+    justify-content: flex-start;
+  }
+
+  .lg\:text-left {
+    text-align: left;
+  }
+
+  .lg\:block {
+    display:block;
+  }
+}
+
+.overflow-scroll {
+  overflow: scroll;
+}
+
+.absolute {
+  position: absolute;
+}
+
+.px-10 {
+  padding-left: 2.5rem; /* 40px */
+  padding-right: 2.5rem; /* 40px */
+}
+
+.py-10 {
+  padding-top: 2.5rem; /* 40px */
+  padding-bottom: 2.5rem; /* 40px */
+}
+
+.mb-4 {
+  margin-bottom: 1rem; /* 16px */
+}
+
+.mt-4 {
+  margin-top: 1rem; /* 16px */
+}
+
+.mr-6 {
+  margin-right: 1.5rem; /* 24px */
+}
+
+.mr-4 {
+  margin-right: 1rem; /* 24px */
+}
+
+.rounded {
+  border-radius: 0.25rem; /* 4px */
+}
+
+
+            /*----------------------------------------*/
+/***** Stylesheet for the hover index *****/
+/*----------------------------------------*/
+
+/* Place rectangles in a grid */
+.grid {
+  position: relative; /* each rectangle is dependant of others */
+  margin: 0 auto;
+  padding: 1em 0 4em; /* padding top horizontal bottom */
+  display: grid; /* type of boxes generated */
+  max-width: 1000px;
+  list-style: none; /* no item */
+  text-align: center;
+  column-gap: 2em; /* space between columns */
+}
+
+/* Figure inside grid */
+.grid figure {
+  position: relative;
+  float: left;
+  overflow: hidden; /* overflow not taken into account */
+  margin: 10px 1%;
+  width: 100%; /* 100% of the column */
+  background: #3085a3;
+  text-align: center;
+  cursor: pointer; /* change shape cursor */
+  border-radius: 30px; /* rounded corners */
+}
+
+/* Each figure contains an img */
+.grid figure img {
+  position: relative;
+  display: block;
+  max-height: 100%;
+  max-width: 100%;
+  opacity: 1; /* over a dummy image */
+}
+
+/* Style caption (title of benchmarks) */
+.grid figure figcaption {
+  padding: 0.1em; /* add space */
+  color: #fff; /* writing color */
+  text-transform: uppercase; /* title in uppercase */
+  font-size: 1.25em;
+}
+
+/* Small sized screens */
+@media (min-width: 600px) {
+  .grid {
+    grid-template-columns: repeat(2, 1fr);
+  } /* split in 2 columns */
+}
+
+/* Larger sized screens */
+@media (min-width: 900px) {
+  .grid {
+    grid-template-columns: repeat(3, 1fr);
+  } /* split in 3 columns */
+}
+
+/* Position and style of <a> elements (the View more) */
+.grid figure figcaption,
+.grid figure figcaption > a {
+  position: absolute;
+  top: 0em; /* no space offset top */
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+/* only to figcaption <a> tag */
+.grid figure figcaption > a {
+  z-index: 1000; /* top level */
+  text-indent: 0%;
+  white-space: nowrap;
+  font-size: 0; /* do not display the View more */
+  opacity: 1;
+}
+
+/* h2: Problem name (LASSO, ...) */
+.grid figure h2 {
+  word-spacing: 0em;
+  font-weight: 300;
+}
+
+.grid figure h2 span {
+  font-weight: 800;
+}
+
+.grid figure h2,
+.grid figure p {
+  margin: 0;
+}
+
+/* p: number of files */
+.grid figure p {
+  letter-spacing: 1px;
+  font-size: 70%;
+}
+
+/* Default color */
+figure.effect-ruby {
+  background-color: #2c3e50;
+}
+
+/* Color when hovering */
+figure.effect-ruby:hover {
+  background-color: DodgerBlue;
+}
+
+/* Define transformation */
+figure.effect-ruby img {
+  opacity: 0;
+  transition: opacity 0.35s, transform 0.35s; /* transition time */
+  transform: scale(1.15); /* size transformation -> bigger */
+}
+
+/* transformation with hovering */
+figure.effect-ruby:hover img {
+  opacity: 0;
+  transform: scale(1); /* size -> smaller */
+}
+
+/* Apply effect to problem name */
+figure.effect-ruby h2 {
+  margin-top: 0;
+  transition: transform 0.35s; /* transition time */
+  transform: translate3d(0, calc((150px - 100%)/2), 0);
+  font-size: 1.25em; /* default font */
+}
+
+figure.effect-ruby p {
+  margin: 2em -1em 2em -1em;
+  padding: 1em 0em 1em 0em;
+  border: 1px solid #fff; /* create sort of white frame */
+  opacity: 0;
+  transition: opacity 0.35s, transform 0.35s;
+  transform: translate3d(0, 20px, 0) scale(1.1); /* size transform */
+}
+
+/* Transform title on hover */
+figure.effect-ruby:hover h2 {
+  -webkit-transform: translate3d(0, 0, 0);
+  transform: translate3d(0px, 10px, 0) scale(0.8); /* smaller */
+  margin-top: 0em; /* move up */
+}
+
+figure.effect-ruby:hover p {
+  opacity: 1;
+  transform: translate3d(0, 0, 0) scale(1.2); /* placement in box */
+}
+
+/* Button for inside the table with system informations */
+.buttoncent {
+  border: none;
+  background-color: transparent;
+  outline: none;
+  text-align: center;
+}
+
+/* button for inside text
+ in benchmark page above graph for system informations */
+.buttonleft {
+  border: none;
+  background-color: transparent;
+  outline: none;
+  text-align: center;
+  margin-left: 1px; /* add margin */
+}
+
+
+/* switch slider with an adaptable height.
+Change switch-height and switch-padding, and all the dimensions are adjusted.
+See https://stackoverflow.com/questions/70590125/how-to-change-the-size-of-a-css-toggle-switch */
+* {
+  --switch-height: 20px;
+  --switch-padding: 2px;
+  --switch-width: calc((var(--switch-height) * 2) - var(--switch-padding));
+  --slider-height: calc(var(--switch-height) - var(--switch-padding));
+  --slider-on: calc(var(--switch-height) - var(--switch-padding));
+}
+
+.switch {
+  position: relative;
+  display: inline-block;
+  width: var(--switch-width);
+  height: var(--switch-height);
+}
+
+.switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ccc;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+.slider:before {
+  content: "";
+  position: absolute;
+  height: var(--slider-height);
+  width: var(--slider-height);
+  left: calc(var(--switch-padding) / 2);
+  bottom: calc(var(--switch-padding) / 2);
+  background-color: white;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+input:checked+.slider {
+  background-color: #2196F3;
+}
+
+input:focus+.slider {
+  box-shadow: 0 0 1px #2196F3;
+}
+
+input:checked+.slider:before {
+  -webkit-transform: translateX(var(--slider-on));
+  -ms-transform: translateX(var(--slider-on));
+  transform: translateX(var(--slider-on));
+}
+
+.slider.round {
+  border-radius: var(--slider-height);
+}
+
+.slider.round:before {
+  border-radius: 50%;
+}
+
+/*----------------------------------------*/
+/***** Brand text animated *****/
+/*----------------------------------------*/
+
+
+.ml11 .text-wrapper {
+  position: relative;
+  display: inline-block;
+  padding-top: 0.1em;
+  padding-right: 0.05em;
+  padding-bottom: 0.15em;
+}
+
+.ml11 .line {
+  opacity: 0;
+  position: absolute;
+  left: 0;
+  height: 100%;
+  width: 3px;
+  background-color: #fff;
+  transform-origin: 0 50%;
+}
+
+.ml11 .line1 { 
+  top: 0; 
+  left: 0;
+}
+
+.ml11 .letter {
+  display: inline-block;
+  line-height: 1em;
+  font-family: 'Kanit', sans-serif;
+}
+
+/*----------------------------------------*/
+/***** Plot *****/
+/*----------------------------------------*/
+
+@media (min-width: 768px) {
+  #unique_plot {
+    flex: 1 1 0%;
+  }
+}
+
+@media (max-width: 767px) {
+  #unique_plot {
+    flex: initial;
+    flex-shrink: 0;
+  }
+}
+
+.js-plotly-plot .plotly .modebar {
+  transform: translateX(-30px);
+}
+
+/*----------------------------------------*/
+/***** Custom legend *****/
+/*----------------------------------------*/
+
+#plot_legend {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+
+#legend_title {
+  font-size: 1.2rem;
+  font-weight: bold;
+}
+
+#legend_help {
+  font-size: 0.75rem;
+  color: #475569;
+}
+
+.space-r-2 > * {
+  margin-right: 0.5rem;
+}
+
+        </style>
+    </head>
+    <body>
+        <!-- Two main columns container -->
+        <div class="flex">
+            <!-- Left column on big screen (plot selectors) -->
+            <div class="hidden lg:flex flex-col w-96 bg-gray-700">
+                <div class="h-screen">
+                    <div class="px-8 h-16 flex items-center bg-gray-800">
+                        <h1 class="ml11">
+                            <span class="text-wrapper">
+                                <span class="line line1"></span>
+                                <span id="brand" class="hidden letters text-2xl text-white">Benchopt</span>
+                            </span>
+                        </h1>
+                    </div>
+                    <div class="flex-1 flex flex-col">
+                        <div class="mt-10 px-8">
+                            <label for="dataset_selector" class="block text-sm font-medium text-white">Dataset:</label>
+                            <div class="mt-1 rounded-md shadow-sm">
+                                <select id="dataset_selector" class="focus:ring-blue-500 focus:border-blue-500 block w-full h-8 px-4 sm:text-sm border-gray-300 rounded-md" onchange="setState({dataset: this.value})">
+                                    <option value="libsvm[dataset=news20.binary]">libsvm[dataset=news20.binary]</option>
+                                    <option value="libsvm[dataset=rcv1.binary]">libsvm[dataset=rcv1.binary]</option>
+                                    <option value="simulated[n_features=5000,n_samples=500]">simulated[n_features=5000,n_samples=500]</option>
+                                    <option value="simulated[n_features=5000,n_samples=3000]">simulated[n_features=5000,n_samples=3000]</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="mt-8 px-8">
+                            <label for="objective_selector" class="block text-sm font-medium text-white">Objective:</label>
+                            <div class="mt-1 rounded-md shadow-sm">
+                                <select id="objective_selector" class="focus:ring-blue-500 focus:border-blue-500 block w-full h-8 px-4 sm:text-sm border-gray-300 rounded-md" onchange="setState({objective: this.value})">
+                                    <option value="Sparse Logistic Regression[fit_intercept=False,reg=1.0]">Sparse Logistic Regression[fit_intercept=False,reg=1.0]</option>
+                                    <option value="Sparse Logistic Regression[fit_intercept=False,reg=0.1]">Sparse Logistic Regression[fit_intercept=False,reg=0.1]</option>
+                                    <option value="Sparse Logistic Regression[fit_intercept=False,reg=0.01]">Sparse Logistic Regression[fit_intercept=False,reg=0.01]</option>
+                                    <option value="Sparse Logistic Regression[fit_intercept=False,reg=0.005]">Sparse Logistic Regression[fit_intercept=False,reg=0.005]</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="mt-8 px-8">
+                            <label for="objective_column" class="block text-sm font-medium text-white">Objective column</label>
+                            <div class="mt-1 rounded-md shadow-sm">
+                                <select id="objective_column" class="focus:ring-blue-500 focus:border-blue-500 block w-full h-8 px-4 sm:text-sm border-gray-300 rounded-md" onchange="setState({objective_column: this.value})">
+                                    <option value="objective_value">objective_value</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="mt-8 px-8">
+                            <label for="plot_kind" class="block text-sm font-medium text-white">Chart type</label>
+                            <div class="mt-1 rounded-md shadow-sm">
+                                <select id="plot_kind" class="focus:ring-blue-500 focus:border-blue-500 block w-full h-8 px-4 sm:text-sm border-gray-300 rounded-md" onchange="setState({plot_kind: this.value})">
+                                    <option value="objective_curve">objective_curve</option>
+                                    <option value="suboptimality_curve">suboptimality_curve</option>
+                                    <option value="relative_suboptimality_curve">relative_suboptimality_curve</option>
+                                    <option value="bar_chart">bar_chart</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div id="scale-form-group" class="mt-8 px-8">
+                            <label for="change_scaling" class="block text-sm font-medium text-white">Scale</label>
+                            <div class="mt-1 rounded-md shadow-sm">
+                                <select id="change_scaling" class="focus:ring-blue-500 focus:border-blue-500 block w-full h-8 px-4 sm:text-sm border-gray-300 rounded-md" onchange="setState({scale: this.value})">
+                                    <option value="semilog-y">semilog-y</option>
+                                    <option value="semilog-x">semilog-x</option>
+                                    <option value="loglog">loglog</option>
+                                    <option value="linear">linear</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="flex items-center justify-between mt-8 px-8">
+                            <div class="block text-sm font-medium text-white">Quantiles</div>
+                            <label class="block switch">
+                                <input id="change_shades" type="checkbox" checked onchange="setState({with_quantiles: this.checked})">
+                                <span class="slider round"></span>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Right column on big screen and main column on mobile -->
+            <div class="w-full flex flex-col overflow-scroll">
+                <!-- Main menu -->
+                <nav class="bg-blue-600">
+                    <div class="px-4">
+                        <div class="relative flex items-center justify-between h-16">
+                            <!-- mobile navbar -->
+                            <div class="absolute inset-0 flex items-center justify-between lg:hidden">
+                                <!-- Mobile menu brand text -->
+                                <span class="text-white text-xl">
+                                    Benchopt
+                                </span>
+                                <!-- Mobile menu button-->
+                                <button type="button" id="btn-main-menu" class="inline-flex items-center justify-center p-2 rounded-md text-white focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white" aria-controls="mobile-menu" aria-expanded="false">
+                                    <span class="sr-only">Open main menu</span>
+                                    <svg class="block h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" aria-hidden="true">
+                                        <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16" />
+                                    </svg>
+                                    <svg class="hidden h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" aria-hidden="true">
+                                        <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+                                    </svg>
+                                </button>
+                            </div>
+                            <!-- big screen navbar-->
+                            <div class="flex-1 flex items-center justify-center lg:items-stretch lg:justify-start">
+                                <div class="hidden lg:block">
+                                    <div class="flex space-x-4">
+                                        <a href="benchmark_logreg.html" class="text-gray-100 hover:bg-blue-800 hover:text-white px-3 py-2 rounded-md text-sm font-medium" aria-current="page">Home</a>
+                                        <a href="https://benchopt.github.io" class="text-gray-100 hover:bg-blue-800 hover:text-white px-3 py-2 rounded-md text-sm font-medium" target="_blank">Website</a>
+                                        <a href="https://github.com/benchopt/benchopt" class="text-gray-100 hover:bg-blue-800 hover:text-white px-3 py-2 rounded-md text-sm font-medium" target="_blank">Github</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Mobile menu, show/hide based on menu state. -->
+                    <div class="hidden" id="mobile-menu">
+                        <div class="px-2 pt-2 pb-3 space-y-1">
+                            <a href="benchmark_logreg.html" class="text-white block px-3 py-2 rounded-md text-base font-medium" aria-current="page">Home</a>
+                            <a href="https://benchopt.github.io" class="text-white block px-3 py-2 rounded-md text-base font-medium">Website</a>
+                            <a href="https://github.com/benchopt/benchopt" class="text-white block px-3 py-2 rounded-md text-base font-medium">Github</a>
+                            <a href="benchopt_run_2022-08-05_15h03m05.parquet" class="text-white block px-3 py-2 rounded-md text-base font-medium">Download data</a>
+                        </div>
+                    </div>
+                </nav>
+
+                <!-- Plot menu for mobiles -->
+                <nav class="lg:hidden bg-gray-700">
+                    <div class="px-4" id="btn-plot-config">
+                        <div class="relative flex items-center justify-between h-10">
+                            <div class="absolute inset-0 flex items-center justify-between lg:hidden">
+                                <!-- Mobile menu button-->
+                                <span class="flex items-center space-x-2 text-white">
+                                    <span>Change plot</span>
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                                        <path stroke-linecap="round" stroke-linejoin="round" d="M13 5l7 7-7 7M5 5l7 7-7 7" />
+                                    </svg>
+                                </span>
+                                <button type="button" class="inline-flex items-center justify-center p-2 rounded-md text-white focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white" aria-controls="mobile-menu" aria-expanded="false">
+                                    <span class="sr-only">Open main menu</span>
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                                        <path stroke-linecap="round" stroke-linejoin="round" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z" />
+                                        <path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                                    </svg>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Mobile menu, show/hide based on menu state. -->
+                    <div class="hidden" id="mobile-plot-form">
+                        <div class="px-2 pt-2 pb-3 space-y-4">
+                            <div class="px-8">
+                                <label for="dataset_selector" class="block text-sm font-medium text-white">Dataset:</label>
+                                <div class="mt-1 rounded-md shadow-sm">
+                                    <select id="dataset_selector" class="focus:ring-blue-500 focus:border-blue-500 block w-full h-8 px-4 sm:text-sm border-gray-300 rounded-md" onchange="setState({dataset: this.value})">
+                                        <option value="libsvm[dataset=news20.binary]">libsvm[dataset=news20.binary]</option>
+                                        <option value="libsvm[dataset=rcv1.binary]">libsvm[dataset=rcv1.binary]</option>
+                                        <option value="simulated[n_features=5000,n_samples=500]">simulated[n_features=5000,n_samples=500]</option>
+                                        <option value="simulated[n_features=5000,n_samples=3000]">simulated[n_features=5000,n_samples=3000]</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="px-8">
+                                <label for="objective_selector" class="block text-sm font-medium text-white">Objective:</label>
+                                <div class="mt-1 rounded-md shadow-sm">
+                                    <select id="objective_selector" class="focus:ring-blue-500 focus:border-blue-500 block w-full h-8 px-4 sm:text-sm border-gray-300 rounded-md" onchange="setState({objective: this.value})">
+                                        <option value="Sparse Logistic Regression[fit_intercept=False,reg=1.0]">Sparse Logistic Regression[fit_intercept=False,reg=1.0]</option>
+                                        <option value="Sparse Logistic Regression[fit_intercept=False,reg=0.1]">Sparse Logistic Regression[fit_intercept=False,reg=0.1]</option>
+                                        <option value="Sparse Logistic Regression[fit_intercept=False,reg=0.01]">Sparse Logistic Regression[fit_intercept=False,reg=0.01]</option>
+                                        <option value="Sparse Logistic Regression[fit_intercept=False,reg=0.005]">Sparse Logistic Regression[fit_intercept=False,reg=0.005]</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="px-8">
+                                <label for="objective_column" class="block text-sm font-medium text-white">Objective column</label>
+                                <div class="mt-1 rounded-md shadow-sm">
+                                    <select id="objective_column" class="focus:ring-blue-500 focus:border-blue-500 block w-full h-8 px-4 sm:text-sm border-gray-300 rounded-md" onchange="setState({objective_column: this.value})">
+                                        <option value="objective_value">objective_value</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="px-8">
+                                <label for="plot_kind" class="block text-sm font-medium text-white">Chart type</label>
+                                <div class="mt-1 rounded-md shadow-sm">
+                                    <select id="plot_kind" class="focus:ring-blue-500 focus:border-blue-500 block w-full h-8 px-4 sm:text-sm border-gray-300 rounded-md" onchange="setState({plot_kind: this.value})">
+                                        <option value="objective_curve">objective_curve</option>
+                                        <option value="suboptimality_curve">suboptimality_curve</option>
+                                        <option value="relative_suboptimality_curve">relative_suboptimality_curve</option>
+                                        <option value="bar_chart">bar_chart</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div id="scale-form-group" class="px-8">
+                                <label for="change_scaling" class="block text-sm font-medium text-white">Scale</label>
+                                <div class="mt-1 rounded-md shadow-sm">
+                                    <select id="change_scaling" class="focus:ring-blue-500 focus:border-blue-500 block w-full h-8 px-4 sm:text-sm border-gray-300 rounded-md" onchange="setState({scale: this.value})">
+                                        <option value="semilog-y">semilog-y</option>
+                                        <option value="semilog-x">semilog-x</option>
+                                        <option value="loglog">loglog</option>
+                                        <option value="linear">linear</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="flex items-center justify-between mt-8 px-8">
+                                <div class="block text-sm font-medium text-white">Quantiles</div>
+                                <label class="block switch">
+                                    <input id="change_shades" type="checkbox" checked onchange="setState({with_quantiles: this.checked})">
+                                    <span class="slider round"></span>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                </nav>
+    
+                <!-- Page heading -->
+                <div class="px-4 pt-4 pb-1 md:py-4 lg:flex lg:items-center lg:justify-between">
+                    <div class="flex-1 min-w-0">
+                        <h2 class="w-full text-center lg:text-left text-2xl font-bold leading-7 text-gray-900 sm:text-3xl sm:truncate">Result on logreg benchmark</h2>
+                        <div class="mt-1 flex flex-wrap justify-center lg:justify-start sm:mt-0">
+                            <div class="mt-2 sm:mr-6 hidden md:flex items-center text-sm text-gray-500">
+                                <span class="font-bold"></span>CPU : 4
+                            </div>
+                            <div class="mt-2 sm:mr-6 hidden md:flex items-center text-sm text-gray-500">
+                                <span class="font-bold"></span>RAM (GB) : 8
+                            </div>
+                            <div class="mt-2">
+                                <button class="inline-flex items-center px-2 py-1 space-x-2 border border-gray-500 rounded-md shadow-sm text-sm font-medium text-gray-500 bg-white hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-500" onclick="document.getElementById('system-modal').style.display = 'block'">
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                                        <path stroke-linecap="round" stroke-linejoin="round" d="M12 9v3m0 0v3m0-3h3m-3 0H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z" />
+                                    </svg>
+                                    <span class="hidden md:inline-block text-sm">Show more</span>
+                                    <span class="md:hidden text-sm">Show system information</span>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="hidden lg:flex mt-5 lg:mt-0 lg:ml-4">
+                        <span>
+                            <a href="benchopt_run_2022-08-05_15h03m05.parquet" class="inline-flex items-center px-4 py-2 space-x-2 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
+                                </svg>
+                                <span class="hidden lg:inline">Download data</span>
+                            </a>
+                        </span>
+                    </div>
+                </div>
+    
+                <!-- Plot -->
+                <div id="unique_plot"></div>
+                <div id="legend_container" class="py-10 bg-slate-200">
+                    <div id="legend_title" class="px-10 mb-4">
+                        Solvers <span id="legend_help">(Click on a solver to hide it or double click to hide all the others)</span>
+                    </div>
+                    <div id="plot_legend" class="px-10 space-r-2"></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- System information modal -->
+        <div id="system-modal" class="hidden relative z-10" aria-labelledby="modal-title" role="dialog" aria-modal="true">
+            <div class="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity"></div>
+            <div class="fixed z-10 inset-0 overflow-y-auto">
+                <div class="flex items-end sm:items-center justify-center min-h-full p-4 text-center sm:p-0">
+                    <div class="relative bg-white rounded-lg text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:max-w-lg sm:w-full">
+                        <div class="bg-white px-4 pt-5 pb-4 sm:p-6 sm:pb-4">
+                            <div class="sm:flex sm:items-start">
+                                <div class="mx-auto flex-shrink-0 flex items-center justify-center h-12 w-12 rounded-full bg-blue-100 sm:mx-0 sm:h-10 sm:w-10">
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-blue-600" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                                        <path stroke-linecap="round" stroke-linejoin="round" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                                    </svg>
+                                </div>
+                                <div class="mt-3 text-center sm:mt-0 sm:ml-4 sm:text-left">
+                                    <h3 class="text-lg leading-6 font-medium text-gray-900" id="modal-title">System information</h3>
+                                    <div class="mt-2">
+                                        <ul class="text-sm text-gray-500">
+                                            <li> <b>CPU</b>: 4 </li>
+                                            <li> <b>RAM (GB)</b>: 8 </li>
+                                            <li> <b>platform</b>: Linux5.4.0-1086-azure-x86_64 </li>
+                                            <li> <b>processor</b>: Intel(R) Xeon(R) Platinum 8272CL CPU @ 2.60GHz </li>
+                                            
+                                            <li> <b>numpy</b>: 1.22.4  </li>
+                                            
+                                            <li> <b>scipy</b>: 1.9.0 </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="bg-gray-50 px-4 py-3 sm:px-6 sm:flex sm:flex-row-reverse">
+                            <button type="button" class="mt-3 w-full inline-flex justify-center rounded-md border border-gray-300 shadow-sm px-4 py-2 bg-white text-base font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 sm:mt-0 sm:ml-3 sm:w-auto sm:text-sm" onclick="document.getElementById('system-modal').style.display = 'none'">Close</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <script src="https://cdn.plot.ly/plotly-2.12.1.min.js"></script>
+        <!-- Used for the brand animation -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/2.0.2/anime.min.js"></script>
+        <!-- Define the brand animation -->
+        <script>
+            var textWrapper = document.querySelector('.ml11 .letters');
+            textWrapper.innerHTML = textWrapper.textContent.replace(/([^\x00-\x80]|\w)/g, "<span class='letter'>$&</span>");
+
+            window.addEventListener('load', () => {
+                document.getElementById('brand').style.display = 'inline';
+
+                anime.timeline({loop: false})
+                    .add({
+                        targets: '.ml11 .line',
+                        scaleY: [0,1],
+                        opacity: [0.5,1],
+                        easing: "easeOutExpo",
+                        duration: 700
+                    })
+                    .add({
+                        targets: '.ml11 .line',
+                        translateX: [0, document.querySelector('.ml11 .letters').getBoundingClientRect().width + 10],
+                        easing: "easeOutExpo",
+                        duration: 700,
+                        delay: 100
+                    }).add({
+                        targets: '.ml11 .letter',
+                        opacity: [0,1],
+                        easing: "easeOutExpo",
+                        duration: 600,
+                        offset: '-=775',
+                        delay: (el, i) => 34 * (i+1)
+                    }).add({
+                        targets: '.ml11 .line',
+                        scaleY: [1,0],
+                        opacity: [1,0.5],
+                        easing: "easeOutExpo",
+                        duration: 700,
+                        translateX: [document.querySelector('.ml11 .letters').getBoundingClientRect().width + 10, document.querySelector('.ml11 .letters').getBoundingClientRect().width + 10],
+                    });
+            });
+        </script>
+        <!-- Manage plot -->
+        <script>
+            window.data = {"libsvm[dataset=news20.binary]": {"Sparse Logistic Regression[fit_intercept=False,reg=1.0]": {"objective_value": {"solvers": {"blitz": {"scatter": {"x": [0.01666393099912966, 0.26572078299977875, 0.2261040339999454, 0.22916047599937883], "y": [13860.171022476665, 13860.171022476665, 13860.171022476665, 13860.171022476665], "q1": [0.01666393099912966, 0.26572078299977875, 0.2261040339999454, 0.22916047599937883], "q9": [0.01666393099912966, 0.26572078299977875, 0.2261040339999454, 0.22916047599937883]}, "bar": {"y": 0.01666393099912966, "times": [0.01666393099912966], "text": ""}, "color": "rgba(31.0, 119.0, 180.0, 1.0)", "marker": 1}, "celer": {"scatter": {"x": [1.0885536880014115, 0.9654998820005858, 0.9821743140000763, 0.9228327910004737], "y": [13860.171022476665, 13860.171022476665, 13860.171022476665, 13860.171022476665], "q1": [1.0885536880014115, 0.9654998820005858, 0.9821743140000763, 0.9228327910004737], "q9": [1.0885536880014115, 0.9654998820005858, 0.9821743140000763, 0.9228327910004737]}, "bar": {"y": 1.0885536880014115, "times": [1.0885536880014115], "text": ""}, "color": "rgba(174.0, 199.0, 232.0, 1.0)", "marker": 2}, "skglm-PN[use_acc=True]": {"scatter": {"x": [0.0030782430003455374, 0.12544155199975648, 0.19075436500133947, 0.18521818799854373], "y": [13860.171022476665, 13860.171022476665, 13860.171022476665, 13860.171022476665], "q1": [0.0030782430003455374, 0.12544155199975648, 0.19075436500133947, 0.18521818799854373], "q9": [0.0030782430003455374, 0.12544155199975648, 0.19075436500133947, 0.18521818799854373]}, "bar": {"y": 0.0030782430003455374, "times": [0.0030782430003455374], "text": ""}, "color": "rgba(255.0, 127.0, 14.0, 1.0)", "marker": 3}, "skglm-PN[use_acc=False]": {"scatter": {"x": [0.003294246000223211, 0.11661942899991118, 0.12576045700006944, 0.15882111899918527], "y": [13860.171022476665, 13860.171022476665, 13860.171022476665, 13860.171022476665], "q1": [0.003294246000223211, 0.11661942899991118, 0.12576045700006944, 0.15882111899918527], "q9": [0.003294246000223211, 0.11661942899991118, 0.12576045700006944, 0.15882111899918527]}, "bar": {"y": 0.003294246000223211, "times": [0.003294246000223211], "text": ""}, "color": "rgba(255.0, 187.0, 120.0, 1.0)", "marker": 4}, "sklearn[solver=liblinear]": {"scatter": {"x": [1.0185812330000772, 1.6821484050014988, 2.1823626949990285, 2.7995296209992375], "y": [13860.171022476665, 13860.171022476665, 13860.171022476665, 13860.171022476665], "q1": [1.0185812330000772, 1.6821484050014988, 2.1823626949990285, 2.7995296209992375], "q9": [1.0185812330000772, 1.6821484050014988, 2.1823626949990285, 2.7995296209992375]}, "bar": {"y": 1.0185812330000772, "times": [1.0185812330000772], "text": ""}, "color": "rgba(44.0, 160.0, 44.0, 1.0)", "marker": 5}}, "transformers": {"c_star": 13860.171022476565, "max_f_0": 13860.171022476665}}}, "Sparse Logistic Regression[fit_intercept=False,reg=0.1]": {"objective_value": {"solvers": {"blitz": {"scatter": {"x": [0.00825361599891039, 0.28661422400000447, 0.6841571050008497, 1.0587625640000624, 1.323307777998707, 1.5344912429991382, 1.7820242439993308, 1.851925865999874, 1.835794139000427], "y": [13860.171022476665, 11403.119988961198, 10843.794779257976, 10776.890729974797, 10773.848015597036, 10773.817999302879, 10773.817999038312, 10773.817999038294, 10773.817999038294], "q1": [0.00825361599891039, 0.28661422400000447, 0.6841571050008497, 1.0587625640000624, 1.323307777998707, 1.5344912429991382, 1.7820242439993308, 1.851925865999874, 1.835794139000427], "q9": [0.00825361599891039, 0.28661422400000447, 0.6841571050008497, 1.0587625640000624, 1.323307777998707, 1.5344912429991382, 1.7820242439993308, 1.851925865999874, 1.835794139000427]}, "bar": {"y": 1.5344912429991382, "times": [1.5344912429991382], "text": ""}, "color": "rgba(31.0, 119.0, 180.0, 1.0)", "marker": 1}, "celer": {"scatter": {"x": [1.0005717829990317, 1.0643063810002786, 1.2896309280004061, 3.174725130000297, 3.1405845539993607, 4.25931963199946, 5.947191045999716, 5.735220373999255, 6.247301355000673], "y": [13860.171022476665, 12434.774548583955, 11759.396168629968, 11220.379211479898, 10864.156693951394, 10773.821353548645, 10773.817999039304, 10773.817999039304, 10773.817999039304], "q1": [1.0005717829990317, 1.0643063810002786, 1.2896309280004061, 3.174725130000297, 3.1405845539993607, 4.25931963199946, 5.947191045999716, 5.735220373999255, 6.247301355000673], "q9": [1.0005717829990317, 1.0643063810002786, 1.2896309280004061, 3.174725130000297, 3.1405845539993607, 4.25931963199946, 5.947191045999716, 5.735220373999255, 6.247301355000673]}, "bar": {"y": 5.947191045999716, "times": [5.947191045999716], "text": ""}, "color": "rgba(174.0, 199.0, 232.0, 1.0)", "marker": 2}, "skglm-PN[use_acc=True]": {"scatter": {"x": [0.0031944439997459995, 0.1271311689997674, 0.3104723209999065, 0.5473839189999126, 0.7863444449994859, 1.661773729001652, 2.306595075999212, 3.5347715810003137, 3.4470912640008464, 3.473340005000864], "y": [13860.171022476665, 12242.950205581938, 11687.473352272384, 11275.968977784445, 10944.661813983295, 10773.934303356844, 10773.817999837192, 10773.817999038307, 10773.817999038307, 10773.817999038307], "q1": [0.0031944439997459995, 0.1271311689997674, 0.3104723209999065, 0.5473839189999126, 0.7863444449994859, 1.661773729001652, 2.306595075999212, 3.5347715810003137, 3.4470912640008464, 3.473340005000864], "q9": [0.0031944439997459995, 0.1271311689997674, 0.3104723209999065, 0.5473839189999126, 0.7863444449994859, 1.661773729001652, 2.306595075999212, 3.5347715810003137, 3.4470912640008464, 3.473340005000864]}, "bar": {"y": 2.306595075999212, "times": [2.306595075999212], "text": ""}, "color": "rgba(255.0, 127.0, 14.0, 1.0)", "marker": 3}, "skglm-PN[use_acc=False]": {"scatter": {"x": [0.003422847999900114, 0.13402116399993247, 0.3833929320007883, 0.5638088420000713, 0.7008347470000444, 1.1947291159995075, 2.331735599998865, 3.088437407001038, 3.053811225998288, 2.9087079189994256], "y": [13860.171022476665, 12243.418000040927, 11722.582482056518, 11239.75170459633, 10911.533879590246, 10774.633982979887, 10773.818001248226, 10773.81799903832, 10773.81799903832, 10773.81799903832], "q1": [0.003422847999900114, 0.13402116399993247, 0.3833929320007883, 0.5638088420000713, 0.7008347470000444, 1.1947291159995075, 2.331735599998865, 3.088437407001038, 3.053811225998288, 2.9087079189994256], "q9": [0.003422847999900114, 0.13402116399993247, 0.3833929320007883, 0.5638088420000713, 0.7008347470000444, 1.1947291159995075, 2.331735599998865, 3.088437407001038, 3.053811225998288, 2.9087079189994256]}, "bar": {"y": 3.088437407001038, "times": [3.088437407001038], "text": ""}, "color": "rgba(255.0, 187.0, 120.0, 1.0)", "marker": 4}, "sklearn[solver=liblinear]": {"scatter": {"x": [1.0649592980007583, 1.5503291429995443, 1.9636927869996725, 2.3555432570010453, 2.70924637600001, 3.6411029910013895, 4.590818949000095, 6.003800460999628, 8.930861747001472, 11.726998881998952, 13.72673664300055], "y": [13860.171022476665, 11654.37982820302, 10842.9264130019, 10794.81321193664, 10775.014377077869, 10776.006428904917, 10773.84845635717, 10773.818020004504, 10773.817999146864, 10773.81799903834, 10773.817999038296], "q1": [1.0649592980007583, 1.5503291429995443, 1.9636927869996725, 2.3555432570010453, 2.70924637600001, 3.6411029910013895, 4.590818949000095, 6.003800460999628, 8.930861747001472, 11.726998881998952, 13.72673664300055], "q9": [1.0649592980007583, 1.5503291429995443, 1.9636927869996725, 2.3555432570010453, 2.70924637600001, 3.6411029910013895, 4.590818949000095, 6.003800460999628, 8.930861747001472, 11.726998881998952, 13.72673664300055]}, "bar": {"y": 8.930861747001472, "times": [8.930861747001472], "text": ""}, "color": "rgba(44.0, 160.0, 44.0, 1.0)", "marker": 5}}, "transformers": {"c_star": 10773.817999038194, "max_f_0": 12434.774548583955}}}, "Sparse Logistic Regression[fit_intercept=False,reg=0.01]": {"objective_value": {"solvers": {"blitz": {"scatter": {"x": [0.008180611001080251, 0.6344255940002768, 1.4449213109983248, 1.8968790870003431, 3.6048478770007932, 5.067401450000034, 6.897653366999293, 8.832887913000377, 8.957732789000147, 8.62087817900101], "y": [13860.171022476665, 9869.816997283348, 7514.30274712634, 6299.850478595106, 5671.707904105038, 5448.94246852737, 5447.652783909377, 5447.65277612555, 5447.652776125486, 5447.652776125486], "q1": [0.008180611001080251, 0.6344255940002768, 1.4449213109983248, 1.8968790870003431, 3.6048478770007932, 5.067401450000034, 6.897653366999293, 8.832887913000377, 8.957732789000147, 8.62087817900101], "q9": [0.008180611001080251, 0.6344255940002768, 1.4449213109983248, 1.8968790870003431, 3.6048478770007932, 5.067401450000034, 6.897653366999293, 8.832887913000377, 8.957732789000147, 8.62087817900101]}, "bar": {"y": 8.832887913000377, "times": [8.832887913000377], "text": ""}, "color": "rgba(31.0, 119.0, 180.0, 1.0)", "marker": 1}, "celer": {"scatter": {"x": [0.9321480839989817, 1.0283046130007278, 1.25682167100058, 1.8117205250000552, 2.1510781120014144, 5.039577782999913, 9.190920282999286, 25.344470977001038, 25.08593085800021, 25.060080522000135], "y": [13860.171022476665, 12002.018691899837, 10767.430036037584, 9593.876016082388, 8083.2032472385, 5949.773093512, 5447.653733369311, 5447.652776125482, 5447.652776125482, 5447.652776125482], "q1": [0.9321480839989817, 1.0283046130007278, 1.25682167100058, 1.8117205250000552, 2.1510781120014144, 5.039577782999913, 9.190920282999286, 25.344470977001038, 25.08593085800021, 25.060080522000135], "q9": [0.9321480839989817, 1.0283046130007278, 1.25682167100058, 1.8117205250000552, 2.1510781120014144, 5.039577782999913, 9.190920282999286, 25.344470977001038, 25.08593085800021, 25.060080522000135]}, "bar": {"y": 25.344470977001038, "times": [25.344470977001038], "text": ""}, "color": "rgba(174.0, 199.0, 232.0, 1.0)", "marker": 2}, "skglm-PN[use_acc=True]": {"scatter": {"x": [0.003199344000677229, 0.18489694799973222, 0.3979189839992614, 0.6075770759998704, 0.8580581339992932, 2.2413404090002587, 4.5881335670001135, 7.803996665999875, 8.198499498999809, 8.099502724000558], "y": [13860.171022476665, 11756.520816867027, 10656.248366424159, 9222.240813272536, 6587.984438625136, 5449.606857145072, 5447.652818101351, 5447.652776126802, 5447.652776126802, 5447.652776126802], "q1": [0.003199344000677229, 0.18489694799973222, 0.3979189839992614, 0.6075770759998704, 0.8580581339992932, 2.2413404090002587, 4.5881335670001135, 7.803996665999875, 8.198499498999809, 8.099502724000558], "q9": [0.003199344000677229, 0.18489694799973222, 0.3979189839992614, 0.6075770759998704, 0.8580581339992932, 2.2413404090002587, 4.5881335670001135, 7.803996665999875, 8.198499498999809, 8.099502724000558]}, "bar": {"y": 7.803996665999875, "times": [7.803996665999875], "text": ""}, "color": "rgba(255.0, 127.0, 14.0, 1.0)", "marker": 3}, "skglm-PN[use_acc=False]": {"scatter": {"x": [0.0031263430009857984, 0.18575825900006748, 0.39224780299991835, 0.61808121499962, 0.8517312339990895, 1.7826370589991711, 3.983218687999397, 6.329625754999142, 7.739373829999749, 7.581885584999327], "y": [13860.171022476665, 11753.595308199972, 10797.780622883383, 8491.861590578717, 6728.72023421857, 5474.4184447693915, 5447.653925779414, 5447.652776137335, 5447.652776126398, 5447.652776126398], "q1": [0.0031263430009857984, 0.18575825900006748, 0.39224780299991835, 0.61808121499962, 0.8517312339990895, 1.7826370589991711, 3.983218687999397, 6.329625754999142, 7.739373829999749, 7.581885584999327], "q9": [0.0031263430009857984, 0.18575825900006748, 0.39224780299991835, 0.61808121499962, 0.8517312339990895, 1.7826370589991711, 3.983218687999397, 6.329625754999142, 7.739373829999749, 7.581885584999327]}, "bar": {"y": 6.329625754999142, "times": [6.329625754999142], "text": ""}, "color": "rgba(255.0, 187.0, 120.0, 1.0)", "marker": 4}, "sklearn[solver=liblinear]": {"scatter": {"x": [0.9314071089993377, 1.316532326000015, 1.8920334619997448, 2.221888153000691, 2.530662413000755, 3.3678708749994257, 4.575163901999986, 6.052851593000014, 8.500639760999547, 11.715205353999409, 12.417066210000485], "y": [13860.171022476665, 8542.087456517658, 6160.076430494906, 5595.743108672159, 5487.076132759818, 5449.737346926664, 5447.990931626719, 5447.653420693741, 5447.652776964537, 5447.652776125503, 5447.652776125495], "q1": [0.9314071089993377, 1.316532326000015, 1.8920334619997448, 2.221888153000691, 2.530662413000755, 3.3678708749994257, 4.575163901999986, 6.052851593000014, 8.500639760999547, 11.715205353999409, 12.417066210000485], "q9": [0.9314071089993377, 1.316532326000015, 1.8920334619997448, 2.221888153000691, 2.530662413000755, 3.3678708749994257, 4.575163901999986, 6.052851593000014, 8.500639760999547, 11.715205353999409, 12.417066210000485]}, "bar": {"y": 8.500639760999547, "times": [8.500639760999547], "text": ""}, "color": "rgba(44.0, 160.0, 44.0, 1.0)", "marker": 5}}, "transformers": {"c_star": 5447.652776125382, "max_f_0": 12002.018691899837}}}, "Sparse Logistic Regression[fit_intercept=False,reg=0.005]": {"objective_value": {"solvers": {"blitz": {"scatter": {"x": [0.00829921500007913, 0.8412941060014418, 1.6370196980005858, 2.6057472709999274, 4.245290909000687, 6.28374257699943, 10.061106980998375, 13.989969897000265, 15.37797943499936, 15.298748598001112], "y": [13860.171022476665, 9751.58293742661, 7164.022323506434, 5608.623205682455, 4682.481304156592, 4162.0075909474845, 4138.126092862691, 4138.125941178529, 4138.125941177351, 4138.125941177351], "q1": [0.00829921500007913, 0.8412941060014418, 1.6370196980005858, 2.6057472709999274, 4.245290909000687, 6.28374257699943, 10.061106980998375, 13.989969897000265, 15.37797943499936, 15.298748598001112], "q9": [0.00829921500007913, 0.8412941060014418, 1.6370196980005858, 2.6057472709999274, 4.245290909000687, 6.28374257699943, 10.061106980998375, 13.989969897000265, 15.37797943499936, 15.298748598001112]}, "bar": {"y": 13.989969897000265, "times": [13.989969897000265], "text": ""}, "color": "rgba(31.0, 119.0, 180.0, 1.0)", "marker": 1}, "celer": {"scatter": {"x": [0.7343373570001859, 1.0141842270004418, 1.2792428960001416, 1.7387967360009497, 2.309989018000124, 5.024657831998411, 10.136938958999963, 28.153828598000473, 28.379035842999656, 27.831454806000693], "y": [13860.171022476665, 11975.716692106855, 10702.899294704346, 9485.909771734361, 7932.843261114305, 5195.699190349426, 4141.398655836907, 4138.125941177475, 4138.125941177475, 4138.125941177475], "q1": [0.7343373570001859, 1.0141842270004418, 1.2792428960001416, 1.7387967360009497, 2.309989018000124, 5.024657831998411, 10.136938958999963, 28.153828598000473, 28.379035842999656, 27.831454806000693], "q9": [0.7343373570001859, 1.0141842270004418, 1.2792428960001416, 1.7387967360009497, 2.309989018000124, 5.024657831998411, 10.136938958999963, 28.153828598000473, 28.379035842999656, 27.831454806000693]}, "bar": {"y": 28.153828598000473, "times": [28.153828598000473], "text": ""}, "color": "rgba(174.0, 199.0, 232.0, 1.0)", "marker": 2}, "skglm-PN[use_acc=True]": {"scatter": {"x": [0.0033670459997665603, 0.15372892300001695, 0.32361336900066817, 0.5678628420009773, 0.858982363000905, 1.71193114199923, 4.995891706999828, 16.406654182999773, 22.53717587799838, 22.3004344209985], "y": [13860.171022476665, 11726.635783770678, 10741.24993674286, 8218.725915128625, 5731.972331677514, 4209.0591176819435, 4138.129011162293, 4138.1259413522275, 4138.125941178723, 4138.125941178723], "q1": [0.0033670459997665603, 0.15372892300001695, 0.32361336900066817, 0.5678628420009773, 0.858982363000905, 1.71193114199923, 4.995891706999828, 16.406654182999773, 22.53717587799838, 22.3004344209985], "q9": [0.0033670459997665603, 0.15372892300001695, 0.32361336900066817, 0.5678628420009773, 0.858982363000905, 1.71193114199923, 4.995891706999828, 16.406654182999773, 22.53717587799838, 22.3004344209985]}, "bar": {"y": 16.406654182999773, "times": [16.406654182999773], "text": ""}, "color": "rgba(255.0, 127.0, 14.0, 1.0)", "marker": 3}, "skglm-PN[use_acc=False]": {"scatter": {"x": [0.003358345000378904, 0.14613176400052907, 0.3925371750010527, 0.5350105889992847, 0.7935624630008533, 1.5050859240000136, 3.005639623999741, 7.818813059000604, 10.51913115699972, 10.532158031999643], "y": [13860.171022476665, 11724.310255928904, 10584.717329510924, 8814.217427324986, 6406.779035403284, 4204.805968618755, 4138.128363284704, 4138.125941288748, 4138.125941178278, 4138.125941178278], "q1": [0.003358345000378904, 0.14613176400052907, 0.3925371750010527, 0.5350105889992847, 0.7935624630008533, 1.5050859240000136, 3.005639623999741, 7.818813059000604, 10.51913115699972, 10.532158031999643], "q9": [0.003358345000378904, 0.14613176400052907, 0.3925371750010527, 0.5350105889992847, 0.7935624630008533, 1.5050859240000136, 3.005639623999741, 7.818813059000604, 10.51913115699972, 10.532158031999643]}, "bar": {"y": 7.818813059000604, "times": [7.818813059000604], "text": ""}, "color": "rgba(255.0, 187.0, 120.0, 1.0)", "marker": 4}, "sklearn[solver=liblinear]": {"scatter": {"x": [0.9417269789992133, 1.330655495999963, 1.9355770660004055, 2.2744640820001223, 2.735322360000282, 3.305771449999156, 4.718344601000354, 6.370255513000302, 8.864840832000482, 13.966255748999174, 18.07505273300012], "y": [13860.171022476665, 8165.686834096196, 5221.9496381782665, 4462.429438870596, 4229.76051803695, 4142.388960416116, 4138.640809303532, 4138.129385091625, 4138.126025204669, 4138.1259411790925, 4138.125941177419], "q1": [0.9417269789992133, 1.330655495999963, 1.9355770660004055, 2.2744640820001223, 2.735322360000282, 3.305771449999156, 4.718344601000354, 6.370255513000302, 8.864840832000482, 13.966255748999174, 18.07505273300012], "q9": [0.9417269789992133, 1.330655495999963, 1.9355770660004055, 2.2744640820001223, 2.735322360000282, 3.305771449999156, 4.718344601000354, 6.370255513000302, 8.864840832000482, 13.966255748999174, 18.07505273300012]}, "bar": {"y": 13.966255748999174, "times": [13.966255748999174], "text": ""}, "color": "rgba(44.0, 160.0, 44.0, 1.0)", "marker": 5}}, "transformers": {"c_star": 4138.125941177251, "max_f_0": 11975.716692106855}}}}, "libsvm[dataset=rcv1.binary]": {"Sparse Logistic Regression[fit_intercept=False,reg=1.0]": {"objective_value": {"solvers": {"blitz": {"scatter": {"x": [0.0009702129991637776, 0.016963530999419163, 0.013504385000487673, 0.01453529799982789], "y": [14030.685228894412, 14030.685228894412, 14030.685228894412, 14030.685228894412], "q1": [0.0009702129991637776, 0.016963530999419163, 0.013504385000487673, 0.01453529799982789], "q9": [0.0009702129991637776, 0.016963530999419163, 0.013504385000487673, 0.01453529799982789]}, "bar": {"y": 0.0009702129991637776, "times": [0.0009702129991637776], "text": ""}, "color": "rgba(31.0, 119.0, 180.0, 1.0)", "marker": 1}, "celer": {"scatter": {"x": [0.08850140799950168, 0.08505166099894268, 0.08372864299963112, 0.08454905500002496], "y": [14030.685228894412, 14030.685228894412, 14030.685228894412, 14030.685228894412], "q1": [0.08850140799950168, 0.08505166099894268, 0.08372864299963112, 0.08454905500002496], "q9": [0.08850140799950168, 0.08505166099894268, 0.08372864299963112, 0.08454905500002496]}, "bar": {"y": 0.08850140799950168, "times": [0.08850140799950168], "text": ""}, "color": "rgba(174.0, 199.0, 232.0, 1.0)", "marker": 2}, "skglm-PN[use_acc=True]": {"scatter": {"x": [0.00015930300105537754, 0.014061992000279133, 0.014857502999802819, 0.014299794998805737], "y": [14030.685228894412, 14030.685228894412, 14030.685228894412, 14030.685228894412], "q1": [0.00015930300105537754, 0.014061992000279133, 0.014857502999802819, 0.014299794998805737], "q9": [0.00015930300105537754, 0.014061992000279133, 0.014857502999802819, 0.014299794998805737]}, "bar": {"y": 0.00015930300105537754, "times": [0.00015930300105537754], "text": ""}, "color": "rgba(255.0, 127.0, 14.0, 1.0)", "marker": 3}, "skglm-PN[use_acc=False]": {"scatter": {"x": [0.00019350299953657668, 0.01407479200133821, 0.01527360799991584, 0.014746801000001142], "y": [14030.685228894412, 14030.685228894412, 14030.685228894412, 14030.685228894412], "q1": [0.00019350299953657668, 0.01407479200133821, 0.01527360799991584, 0.014746801000001142], "q9": [0.00019350299953657668, 0.01407479200133821, 0.01527360799991584, 0.014746801000001142]}, "bar": {"y": 0.00019350299953657668, "times": [0.00019350299953657668], "text": ""}, "color": "rgba(255.0, 187.0, 120.0, 1.0)", "marker": 4}, "sklearn[solver=liblinear]": {"scatter": {"x": [0.11769480700058921, 0.11868492000030528, 0.13399562999984482, 0.13555467200058047], "y": [14030.685228894412, 14030.685228894412, 14030.685228894412, 14030.685228894412], "q1": [0.11769480700058921, 0.11868492000030528, 0.13399562999984482, 0.13555467200058047], "q9": [0.11769480700058921, 0.11868492000030528, 0.13399562999984482, 0.13555467200058047]}, "bar": {"y": 0.11769480700058921, "times": [0.11769480700058921], "text": ""}, "color": "rgba(44.0, 160.0, 44.0, 1.0)", "marker": 5}}, "transformers": {"c_star": 14030.685228894312, "max_f_0": 14030.685228894412}}}, "Sparse Logistic Regression[fit_intercept=False,reg=0.1]": {"objective_value": {"solvers": {"blitz": {"scatter": {"x": [0.001193316998978844, 0.023483942000893876, 0.042211414000121295, 0.06956191199969908, 0.07498949100045138, 0.13312383700031205, 0.16920516200116253, 0.2308848599986959], "y": [14030.685228894412, 10853.907989109657, 10443.457543712397, 10419.966535040752, 10419.674513549377, 10419.6745032818, 10419.674503258508, 10419.674503258508], "q1": [0.001193316998978844, 0.023483942000893876, 0.042211414000121295, 0.06956191199969908, 0.07498949100045138, 0.13312383700031205, 0.16920516200116253, 0.2308848599986959], "q9": [0.001193316998978844, 0.023483942000893876, 0.042211414000121295, 0.06956191199969908, 0.07498949100045138, 0.13312383700031205, 0.16920516200116253, 0.2308848599986959]}, "bar": {"y": 0.13312383700031205, "times": [0.13312383700031205], "text": ""}, "color": "rgba(31.0, 119.0, 180.0, 1.0)", "marker": 1}, "celer": {"scatter": {"x": [0.08943470200028969, 0.09800912600076117, 0.19209719599894015, 0.29549430000042776, 0.31545929000094475, 0.5839349979996769, 0.7410034829990764, 0.6095541700015019, 0.6842361569997593], "y": [14030.685228894412, 12489.474037218059, 11398.14014906285, 10589.385841518155, 10419.844428677108, 10419.67450325853, 10419.67450325851, 10419.67450325851, 10419.67450325851], "q1": [0.08943470200028969, 0.09800912600076117, 0.19209719599894015, 0.29549430000042776, 0.31545929000094475, 0.5839349979996769, 0.7410034829990764, 0.6095541700015019, 0.6842361569997593], "q9": [0.08943470200028969, 0.09800912600076117, 0.19209719599894015, 0.29549430000042776, 0.31545929000094475, 0.5839349979996769, 0.7410034829990764, 0.6095541700015019, 0.6842361569997593]}, "bar": {"y": 0.5839349979996769, "times": [0.5839349979996769], "text": ""}, "color": "rgba(174.0, 199.0, 232.0, 1.0)", "marker": 2}, "skglm-PN[use_acc=True]": {"scatter": {"x": [0.000162701999215642, 0.020423197000127402, 0.06664126999930886, 0.12716555000042717, 0.20470757899965975, 0.3278961710002477, 0.5528022439993947, 0.5606246579991421, 0.5426663100006408], "y": [14030.685228894412, 12566.931146828281, 11260.937210712902, 10662.04854995742, 10444.174728077116, 10419.67462702495, 10419.674503260909, 10419.674503258548, 10419.674503258548], "q1": [0.000162701999215642, 0.020423197000127402, 0.06664126999930886, 0.12716555000042717, 0.20470757899965975, 0.3278961710002477, 0.5528022439993947, 0.5606246579991421, 0.5426663100006408], "q9": [0.000162701999215642, 0.020423197000127402, 0.06664126999930886, 0.12716555000042717, 0.20470757899965975, 0.3278961710002477, 0.5528022439993947, 0.5606246579991421, 0.5426663100006408]}, "bar": {"y": 0.5528022439993947, "times": [0.5528022439993947], "text": ""}, "color": "rgba(255.0, 127.0, 14.0, 1.0)", "marker": 3}, "skglm-PN[use_acc=False]": {"scatter": {"x": [0.0001930029993673088, 0.01957080000101996, 0.04874924699834082, 0.0802107290001004, 0.10358178800015594, 0.1930292590004683, 0.30273073999887856, 0.34811243600051966, 0.41936102700128686], "y": [14030.685228894412, 12570.440985142308, 11459.116243686465, 10849.440971115704, 10454.106571706365, 10419.674792193906, 10419.674503258884, 10419.674503258526, 10419.674503258526], "q1": [0.0001930029993673088, 0.01957080000101996, 0.04874924699834082, 0.0802107290001004, 0.10358178800015594, 0.1930292590004683, 0.30273073999887856, 0.34811243600051966, 0.41936102700128686], "q9": [0.0001930029993673088, 0.01957080000101996, 0.04874924699834082, 0.0802107290001004, 0.10358178800015594, 0.1930292590004683, 0.30273073999887856, 0.34811243600051966, 0.41936102700128686]}, "bar": {"y": 0.30273073999887856, "times": [0.30273073999887856], "text": ""}, "color": "rgba(255.0, 187.0, 120.0, 1.0)", "marker": 4}, "sklearn[solver=liblinear]": {"scatter": {"x": [0.0954849629997625, 0.1283802679990913, 0.1494676909987902, 0.18002725900078076, 0.17696331200022541, 0.2029978120008309, 0.23849795599926438, 0.273201087000416, 0.3611452349996398, 0.4688765869996132], "y": [14030.685228894412, 11397.976515064222, 10524.726738932492, 10492.841490627714, 10421.701720924619, 10419.826458631105, 10419.68465527356, 10419.674524917002, 10419.67450326452, 10419.674503258506], "q1": [0.0954849629997625, 0.1283802679990913, 0.1494676909987902, 0.18002725900078076, 0.17696331200022541, 0.2029978120008309, 0.23849795599926438, 0.273201087000416, 0.3611452349996398, 0.4688765869996132], "q9": [0.0954849629997625, 0.1283802679990913, 0.1494676909987902, 0.18002725900078076, 0.17696331200022541, 0.2029978120008309, 0.23849795599926438, 0.273201087000416, 0.3611452349996398, 0.4688765869996132]}, "bar": {"y": 0.3611452349996398, "times": [0.3611452349996398], "text": ""}, "color": "rgba(44.0, 160.0, 44.0, 1.0)", "marker": 5}}, "transformers": {"c_star": 10419.674503258406, "max_f_0": 12570.440985142308}}}, "Sparse Logistic Regression[fit_intercept=False,reg=0.01]": {"objective_value": {"solvers": {"blitz": {"scatter": {"x": [0.0011042170008295216, 0.03072477100067772, 0.07329032400048163, 0.1168379909995565, 0.17560829100148112, 0.31269429299936746, 0.5059963550011162, 0.795660896001209, 0.908235220998904, 0.9327898850006022], "y": [14030.685228894412, 7308.710261713152, 5001.553952928691, 4486.424694303257, 4391.037984106131, 4378.492263933859, 4378.48015274412, 4378.480151776996, 4378.480151776996, 4378.480151776996], "q1": [0.0011042170008295216, 0.03072477100067772, 0.07329032400048163, 0.1168379909995565, 0.17560829100148112, 0.31269429299936746, 0.5059963550011162, 0.795660896001209, 0.908235220998904, 0.9327898850006022], "q9": [0.0011042170008295216, 0.03072477100067772, 0.07329032400048163, 0.1168379909995565, 0.17560829100148112, 0.31269429299936746, 0.5059963550011162, 0.795660896001209, 0.908235220998904, 0.9327898850006022]}, "bar": {"y": 0.5059963550011162, "times": [0.5059963550011162], "text": ""}, "color": "rgba(31.0, 119.0, 180.0, 1.0)", "marker": 1}, "celer": {"scatter": {"x": [0.1068400650001422, 0.12233134699999937, 0.1784327450004639, 0.2966861710010562, 0.45774252400042315, 1.5957223490004253, 2.473062356999435, 3.2999411600012536, 3.4070992529996147, 3.601092922001044], "y": [14030.685228894412, 11812.559046230772, 9544.60510978999, 6568.679005978149, 5216.503538602953, 4424.707922979074, 4378.480162237237, 4378.480151778214, 4378.480151778214, 4378.480151778214], "q1": [0.1068400650001422, 0.12233134699999937, 0.1784327450004639, 0.2966861710010562, 0.45774252400042315, 1.5957223490004253, 2.473062356999435, 3.2999411600012536, 3.4070992529996147, 3.601092922001044], "q9": [0.1068400650001422, 0.12233134699999937, 0.1784327450004639, 0.2966861710010562, 0.45774252400042315, 1.5957223490004253, 2.473062356999435, 3.2999411600012536, 3.4070992529996147, 3.601092922001044]}, "bar": {"y": 3.2999411600012536, "times": [3.2999411600012536], "text": ""}, "color": "rgba(174.0, 199.0, 232.0, 1.0)", "marker": 2}, "skglm-PN[use_acc=True]": {"scatter": {"x": [0.0001910030005092267, 0.019431660000918782, 0.0514324880005006, 0.08851148300163914, 0.13289337599962892, 0.49454021100063983, 1.150631381000494, 1.5481581959993491, 1.6388849080012733, 1.5550377870004013], "y": [14030.685228894412, 12028.957689572308, 9812.090316556576, 7959.807970759378, 5779.685329449016, 4379.1314872942185, 4378.480153256871, 4378.480151777383, 4378.480151777383, 4378.480151777383], "q1": [0.0001910030005092267, 0.019431660000918782, 0.0514324880005006, 0.08851148300163914, 0.13289337599962892, 0.49454021100063983, 1.150631381000494, 1.5481581959993491, 1.6388849080012733, 1.5550377870004013], "q9": [0.0001910030005092267, 0.019431660000918782, 0.0514324880005006, 0.08851148300163914, 0.13289337599962892, 0.49454021100063983, 1.150631381000494, 1.5481581959993491, 1.6388849080012733, 1.5550377870004013]}, "bar": {"y": 1.5481581959993491, "times": [1.5481581959993491], "text": ""}, "color": "rgba(255.0, 127.0, 14.0, 1.0)", "marker": 3}, "skglm-PN[use_acc=False]": {"scatter": {"x": [0.00017230299999937415, 0.0187645509995491, 0.0475607360003778, 0.09728329999961716, 0.11048161200051254, 0.23618534699926386, 0.46005791399875307, 1.1109688140004437, 1.0952815850014304, 0.9350121459992806], "y": [14030.685228894412, 12042.372439250894, 9846.44719124382, 8008.936949357952, 6152.964716207531, 4415.897066634406, 4378.482792165214, 4378.4801517851265, 4378.4801517851265, 4378.4801517851265], "q1": [0.00017230299999937415, 0.0187645509995491, 0.0475607360003778, 0.09728329999961716, 0.11048161200051254, 0.23618534699926386, 0.46005791399875307, 1.1109688140004437, 1.0952815850014304, 0.9350121459992806], "q9": [0.00017230299999937415, 0.0187645509995491, 0.0475607360003778, 0.09728329999961716, 0.11048161200051254, 0.23618534699926386, 0.46005791399875307, 1.1109688140004437, 1.0952815850014304, 0.9350121459992806]}, "bar": {"y": 1.1109688140004437, "times": [1.1109688140004437], "text": ""}, "color": "rgba(255.0, 187.0, 120.0, 1.0)", "marker": 4}, "sklearn[solver=liblinear]": {"scatter": {"x": [0.09436007699878246, 0.11887583499992616, 0.12959689200033608, 0.14929197899982682, 0.17121579899867356, 0.20664721600041958, 0.2500862489996507, 0.29730263899909914, 0.35168213300130446, 0.5073379040004511, 0.552164984999763], "y": [14030.685228894412, 7603.406172907092, 5397.22818443037, 4722.590666554673, 4498.9594246344295, 4382.917140704969, 4378.507047669524, 4378.480375559724, 4378.480154268247, 4378.48015177704, 4378.480151777014], "q1": [0.09436007699878246, 0.11887583499992616, 0.12959689200033608, 0.14929197899982682, 0.17121579899867356, 0.20664721600041958, 0.2500862489996507, 0.29730263899909914, 0.35168213300130446, 0.5073379040004511, 0.552164984999763], "q9": [0.09436007699878246, 0.11887583499992616, 0.12959689200033608, 0.14929197899982682, 0.17121579899867356, 0.20664721600041958, 0.2500862489996507, 0.29730263899909914, 0.35168213300130446, 0.5073379040004511, 0.552164984999763]}, "bar": {"y": 0.5073379040004511, "times": [0.5073379040004511], "text": ""}, "color": "rgba(44.0, 160.0, 44.0, 1.0)", "marker": 5}}, "transformers": {"c_star": 4378.480151776896, "max_f_0": 12042.372439250894}}}, "Sparse Logistic Regression[fit_intercept=False,reg=0.005]": {"objective_value": {"solvers": {"blitz": {"scatter": {"x": [0.000980313001491595, 0.04476981799962232, 0.12118927499977872, 0.13593377899996995, 0.22597302299982402, 0.4236350580013095, 0.6732997189992602, 1.2350942949997261, 1.2152886210005818, 1.4486989519991766], "y": [14030.685228894412, 6899.33183320349, 4221.134132380516, 3550.061642077569, 3319.0678386513255, 3268.662917995608, 3268.49693356652, 3268.4969284473154, 3268.4969284473136, 3268.4969284473136], "q1": [0.000980313001491595, 0.04476981799962232, 0.12118927499977872, 0.13593377899996995, 0.22597302299982402, 0.4236350580013095, 0.6732997189992602, 1.2350942949997261, 1.2152886210005818, 1.4486989519991766], "q9": [0.000980313001491595, 0.04476981799962232, 0.12118927499977872, 0.13593377899996995, 0.22597302299982402, 0.4236350580013095, 0.6732997189992602, 1.2350942949997261, 1.2152886210005818, 1.4486989519991766]}, "bar": {"y": 1.2350942949997261, "times": [1.2350942949997261], "text": ""}, "color": "rgba(31.0, 119.0, 180.0, 1.0)", "marker": 1}, "celer": {"scatter": {"x": [0.09909707200131379, 0.11488688999997976, 0.2115527280002425, 0.2801633769995533, 0.4093830660003732, 1.5679083020004327, 2.129348342999947, 6.124259942000208, 5.800022974999592, 5.981303719001517], "y": [14030.685228894412, 11761.222993143618, 9397.366186568108, 6075.057249108335, 4577.147174847883, 3418.8343340312567, 3268.498223916574, 3268.496928447317, 3268.496928447317, 3268.496928447317], "q1": [0.09909707200131379, 0.11488688999997976, 0.2115527280002425, 0.2801633769995533, 0.4093830660003732, 1.5679083020004327, 2.129348342999947, 6.124259942000208, 5.800022974999592, 5.981303719001517], "q9": [0.09909707200131379, 0.11488688999997976, 0.2115527280002425, 0.2801633769995533, 0.4093830660003732, 1.5679083020004327, 2.129348342999947, 6.124259942000208, 5.800022974999592, 5.981303719001517]}, "bar": {"y": 6.124259942000208, "times": [6.124259942000208], "text": ""}, "color": "rgba(174.0, 199.0, 232.0, 1.0)", "marker": 2}, "skglm-PN[use_acc=True]": {"scatter": {"x": [0.00016690300071786623, 0.017514634999315604, 0.05313661299987871, 0.138649661999807, 0.18894293700031994, 0.36325067800135, 1.279771184999845, 1.765275207000741, 1.5989125670002977, 1.7076627679998637], "y": [14030.685228894412, 12036.114237028345, 9454.348608868324, 7036.052089092707, 5506.742348249077, 3297.770150095699, 3268.496930428009, 3268.496928449801, 3268.496928449801, 3268.496928449801], "q1": [0.00016690300071786623, 0.017514634999315604, 0.05313661299987871, 0.138649661999807, 0.18894293700031994, 0.36325067800135, 1.279771184999845, 1.765275207000741, 1.5989125670002977, 1.7076627679998637], "q9": [0.00016690300071786623, 0.017514634999315604, 0.05313661299987871, 0.138649661999807, 0.18894293700031994, 0.36325067800135, 1.279771184999845, 1.765275207000741, 1.5989125670002977, 1.7076627679998637]}, "bar": {"y": 1.765275207000741, "times": [1.765275207000741], "text": ""}, "color": "rgba(255.0, 127.0, 14.0, 1.0)", "marker": 3}, "skglm-PN[use_acc=False]": {"scatter": {"x": [0.00019520199930411763, 0.017564642999786884, 0.0499375899998995, 0.11696231400128454, 0.1391652210004395, 0.2975327059994015, 0.7036467109992373, 1.5453222280011687, 1.5031857440008025, 1.4907046409989562], "y": [14030.685228894412, 12011.213085447811, 9739.384585446418, 7758.862342178604, 5613.981395502336, 3307.258993430414, 3268.4985067961525, 3268.4969284502304, 3268.4969284502304, 3268.4969284502304], "q1": [0.00019520199930411763, 0.017564642999786884, 0.0499375899998995, 0.11696231400128454, 0.1391652210004395, 0.2975327059994015, 0.7036467109992373, 1.5453222280011687, 1.5031857440008025, 1.4907046409989562], "q9": [0.00019520199930411763, 0.017564642999786884, 0.0499375899998995, 0.11696231400128454, 0.1391652210004395, 0.2975327059994015, 0.7036467109992373, 1.5453222280011687, 1.5031857440008025, 1.4907046409989562]}, "bar": {"y": 1.5453222280011687, "times": [1.5453222280011687], "text": ""}, "color": "rgba(255.0, 187.0, 120.0, 1.0)", "marker": 4}, "sklearn[solver=liblinear]": {"scatter": {"x": [0.10550515399881988, 0.1312048079998931, 0.1365530819984997, 0.16110762000062095, 0.18536805400071898, 0.23434342899963667, 0.2559381270002632, 0.29291963600007875, 0.4329733660015336, 0.6820906989996729, 0.6798743679992185], "y": [14030.685228894412, 6833.479255415636, 4593.968351367801, 3705.0591294346577, 3362.2426642744313, 3289.2610365174955, 3268.5553786381934, 3268.497738336866, 3268.4969285421685, 3268.496928447341, 3268.4969284473163], "q1": [0.10550515399881988, 0.1312048079998931, 0.1365530819984997, 0.16110762000062095, 0.18536805400071898, 0.23434342899963667, 0.2559381270002632, 0.29291963600007875, 0.4329733660015336, 0.6820906989996729, 0.6798743679992185], "q9": [0.10550515399881988, 0.1312048079998931, 0.1365530819984997, 0.16110762000062095, 0.18536805400071898, 0.23434342899963667, 0.2559381270002632, 0.29291963600007875, 0.4329733660015336, 0.6820906989996729, 0.6798743679992185]}, "bar": {"y": 0.4329733660015336, "times": [0.4329733660015336], "text": ""}, "color": "rgba(44.0, 160.0, 44.0, 1.0)", "marker": 5}}, "transformers": {"c_star": 3268.4969284472136, "max_f_0": 12036.114237028345}}}}, "simulated[n_features=5000,n_samples=500]": {"Sparse Logistic Regression[fit_intercept=False,reg=1.0]": {"objective_value": {"solvers": {"blitz": {"scatter": {"x": [0.00024830300026223995, 0.013759789000687306, 0.005899981999391457, 0.006022283001584583], "y": [346.5735902799727, 346.5735902799727, 346.5735902799727, 346.5735902799727], "q1": [0.00024830300026223995, 0.013759789000687306, 0.005899981999391457, 0.006022283001584583], "q9": [0.00024830300026223995, 0.013759789000687306, 0.005899981999391457, 0.006022283001584583]}, "bar": {"y": 0.00024830300026223995, "times": [0.00024830300026223995], "text": ""}, "color": "rgba(31.0, 119.0, 180.0, 1.0)", "marker": 1}, "celer": {"scatter": {"x": [0.08547027700114995, 0.08471246699991752, 0.0773625660003745, 0.06366957699901832], "y": [346.5735902799727, 346.5735902799727, 346.5735902799727, 346.5735902799727], "q1": [0.08547027700114995, 0.08471246699991752, 0.0773625660003745, 0.06366957699901832], "q9": [0.08547027700114995, 0.08471246699991752, 0.0773625660003745, 0.06366957699901832]}, "bar": {"y": 0.08547027700114995, "times": [0.08547027700114995], "text": ""}, "color": "rgba(174.0, 199.0, 232.0, 1.0)", "marker": 2}, "skglm-PN[use_acc=True]": {"scatter": {"x": [5.3001000196672976e-05, 0.05230762000064715, 0.05207321799935016, 0.06391198100027395], "y": [346.5735902799727, 346.5735902799727, 346.5735902799727, 346.5735902799727], "q1": [5.3001000196672976e-05, 0.05230762000064715, 0.05207321799935016, 0.06391198100027395], "q9": [5.3001000196672976e-05, 0.05230762000064715, 0.05207321799935016, 0.06391198100027395]}, "bar": {"y": 5.3001000196672976e-05, "times": [5.3001000196672976e-05], "text": ""}, "color": "rgba(255.0, 127.0, 14.0, 1.0)", "marker": 3}, "skglm-PN[use_acc=False]": {"scatter": {"x": [7.36010006221477e-05, 0.07438652500059106, 0.06157834799887496, 0.07027206800012209], "y": [346.5735902799727, 346.5735902799727, 346.5735902799727, 346.5735902799727], "q1": [7.36010006221477e-05, 0.07438652500059106, 0.06157834799887496, 0.07027206800012209], "q9": [7.36010006221477e-05, 0.07438652500059106, 0.06157834799887496, 0.07027206800012209]}, "bar": {"y": 7.36010006221477e-05, "times": [7.36010006221477e-05], "text": ""}, "color": "rgba(255.0, 187.0, 120.0, 1.0)", "marker": 4}, "sklearn[solver=liblinear]": {"scatter": {"x": [0.14739739799915696, 0.15088571300111653, 0.14590154700090352, 0.16014453599927947], "y": [346.5735902799727, 346.5735902799727, 346.5735902799727, 346.5735902799727], "q1": [0.14739739799915696, 0.15088571300111653, 0.14590154700090352, 0.16014453599927947], "q9": [0.14739739799915696, 0.15088571300111653, 0.14590154700090352, 0.16014453599927947]}, "bar": {"y": 0.14739739799915696, "times": [0.14739739799915696], "text": ""}, "color": "rgba(44.0, 160.0, 44.0, 1.0)", "marker": 5}}, "transformers": {"c_star": 346.5735902798727, "max_f_0": 346.5735902799727}}}, "Sparse Logistic Regression[fit_intercept=False,reg=0.1]": {"objective_value": {"solvers": {"blitz": {"scatter": {"x": [0.0002762040003290167, 0.01370978300110437, 0.02253039999959583, 0.04288047199952416, 0.0721167619994958, 0.11068777699983912, 0.19234396499996365, 0.22018903699972725, 0.20498533499994664, 0.19065334299921233], "y": [346.5735902799727, 193.35685763757525, 152.69446160947433, 145.8482714525718, 145.31788291107176, 145.27035824094958, 145.27035110157982, 145.27035110156766, 145.27035110156766, 145.27035110156766], "q1": [0.0002762040003290167, 0.01370978300110437, 0.02253039999959583, 0.04288047199952416, 0.0721167619994958, 0.11068777699983912, 0.19234396499996365, 0.22018903699972725, 0.20498533499994664, 0.19065334299921233], "q9": [0.0002762040003290167, 0.01370978300110437, 0.02253039999959583, 0.04288047199952416, 0.0721167619994958, 0.11068777699983912, 0.19234396499996365, 0.22018903699972725, 0.20498533499994664, 0.19065334299921233]}, "bar": {"y": 0.19234396499996365, "times": [0.19234396499996365], "text": ""}, "color": "rgba(31.0, 119.0, 180.0, 1.0)", "marker": 1}, "celer": {"scatter": {"x": [0.0561398489990097, 0.07415348900030949, 0.09054840799944941, 0.07846764699934283, 0.09462176300075953, 0.3963960870005394, 0.5889326550004625, 1.2098862390012073, 1.156035719999636, 1.2453610119991936], "y": [346.5735902799727, 311.48884489904236, 255.96405471927577, 194.83867894097293, 160.65083738491805, 146.61367406367705, 145.2703511355742, 145.27035110156763, 145.27035110156763, 145.27035110156763], "q1": [0.0561398489990097, 0.07415348900030949, 0.09054840799944941, 0.07846764699934283, 0.09462176300075953, 0.3963960870005394, 0.5889326550004625, 1.2098862390012073, 1.156035719999636, 1.2453610119991936], "q9": [0.0561398489990097, 0.07415348900030949, 0.09054840799944941, 0.07846764699934283, 0.09462176300075953, 0.3963960870005394, 0.5889326550004625, 1.2098862390012073, 1.156035719999636, 1.2453610119991936]}, "bar": {"y": 0.5889326550004625, "times": [0.5889326550004625], "text": ""}, "color": "rgba(174.0, 199.0, 232.0, 1.0)", "marker": 2}, "skglm-PN[use_acc=True]": {"scatter": {"x": [6.780100011383183e-05, 0.056486887000573915, 0.10130841099999088, 0.14991469000051438, 0.18986834600036673, 0.3250524300001416, 0.5893299130002561, 0.8440494629994646, 0.8331589110002824, 0.916702375998284], "y": [346.5735902799727, 312.01055872854636, 258.63330543108805, 188.36900949046824, 152.4594720787901, 145.47691528667616, 145.2703512116691, 145.27035110156766, 145.27035110156766, 145.27035110156766], "q1": [6.780100011383183e-05, 0.056486887000573915, 0.10130841099999088, 0.14991469000051438, 0.18986834600036673, 0.3250524300001416, 0.5893299130002561, 0.8440494629994646, 0.8331589110002824, 0.916702375998284], "q9": [6.780100011383183e-05, 0.056486887000573915, 0.10130841099999088, 0.14991469000051438, 0.18986834600036673, 0.3250524300001416, 0.5893299130002561, 0.8440494629994646, 0.8331589110002824, 0.916702375998284]}, "bar": {"y": 0.5893299130002561, "times": [0.5893299130002561], "text": ""}, "color": "rgba(255.0, 127.0, 14.0, 1.0)", "marker": 3}, "skglm-PN[use_acc=False]": {"scatter": {"x": [5.210000017541461e-05, 0.08980413000062981, 0.11501513499933935, 0.14389897000000929, 0.19215246200110414, 0.3475599260000308, 0.4454221220003092, 1.001352841998596, 0.8685281620000751, 0.8302789520002989], "y": [346.5735902799727, 312.0041308895119, 258.6420798078146, 188.42168183550788, 155.29589791227974, 145.32390741239794, 145.2703516800247, 145.27035110156825, 145.27035110156825, 145.27035110156825], "q1": [5.210000017541461e-05, 0.08980413000062981, 0.11501513499933935, 0.14389897000000929, 0.19215246200110414, 0.3475599260000308, 0.4454221220003092, 1.001352841998596, 0.8685281620000751, 0.8302789520002989], "q9": [5.210000017541461e-05, 0.08980413000062981, 0.11501513499933935, 0.14389897000000929, 0.19215246200110414, 0.3475599260000308, 0.4454221220003092, 1.001352841998596, 0.8685281620000751, 0.8302789520002989]}, "bar": {"y": 0.4454221220003092, "times": [0.4454221220003092], "text": ""}, "color": "rgba(255.0, 187.0, 120.0, 1.0)", "marker": 4}, "sklearn[solver=liblinear]": {"scatter": {"x": [0.14425628800017876, 0.17766174099961063, 0.17873165600030916, 0.20476871299979393, 0.2235731719993055, 0.208408063999741, 0.26845178899930033, 0.2716960329998983, 0.3850255899997137, 0.46463088300151867, 0.49679342600029486, 0.5334248199997091], "y": [346.5735902799727, 206.59440811328957, 166.65351683294358, 154.95097839375563, 146.88565527306136, 145.7307237304441, 145.2841880410447, 145.2704283075195, 145.27035113181688, 145.27035110156802, 145.27035110156766, 145.27035110156766], "q1": [0.14425628800017876, 0.17766174099961063, 0.17873165600030916, 0.20476871299979393, 0.2235731719993055, 0.208408063999741, 0.26845178899930033, 0.2716960329998983, 0.3850255899997137, 0.46463088300151867, 0.49679342600029486, 0.5334248199997091], "q9": [0.14425628800017876, 0.17766174099961063, 0.17873165600030916, 0.20476871299979393, 0.2235731719993055, 0.208408063999741, 0.26845178899930033, 0.2716960329998983, 0.3850255899997137, 0.46463088300151867, 0.49679342600029486, 0.5334248199997091]}, "bar": {"y": 0.3850255899997137, "times": [0.3850255899997137], "text": ""}, "color": "rgba(44.0, 160.0, 44.0, 1.0)", "marker": 5}}, "transformers": {"c_star": 145.27035110146764, "max_f_0": 312.01055872854636}}}, "Sparse Logistic Regression[fit_intercept=False,reg=0.01]": {"objective_value": {"solvers": {"blitz": {"scatter": {"x": [0.00030140400122036226, 0.03357635999964259, 0.03879873200094153, 0.07148737900024571, 0.10571984899979725, 0.1523364879994915, 0.3184566640011326, 0.4930164559991681, 0.6497790050016192, 0.6010161360009079], "y": [346.5735902799727, 110.69952988500033, 31.366717865393255, 26.28261835162035, 25.451399607717605, 25.36713549598735, 25.36532761673383, 25.36532753689827, 25.36532753689104, 25.36532753689104], "q1": [0.00030140400122036226, 0.03357635999964259, 0.03879873200094153, 0.07148737900024571, 0.10571984899979725, 0.1523364879994915, 0.3184566640011326, 0.4930164559991681, 0.6497790050016192, 0.6010161360009079], "q9": [0.00030140400122036226, 0.03357635999964259, 0.03879873200094153, 0.07148737900024571, 0.10571984899979725, 0.1523364879994915, 0.3184566640011326, 0.4930164559991681, 0.6497790050016192, 0.6010161360009079]}, "bar": {"y": 0.3184566640011326, "times": [0.3184566640011326], "text": ""}, "color": "rgba(31.0, 119.0, 180.0, 1.0)", "marker": 1}, "celer": {"scatter": {"x": [0.06011452399980044, 0.07856237600026361, 0.07475762399917585, 0.08606397999938054, 0.12113335999856645, 0.3539359499991406, 1.1668917900005908, 2.904733707999185, 2.714993734000018, 2.835902991000694, 2.7858924619995378], "y": [346.5735902799727, 302.34632377955313, 225.7281557370143, 124.57904478200223, 43.62810535401762, 27.886288819449433, 25.369041033390523, 25.365327536910158, 25.365327536910158, 25.365327536910158, 25.365327536910158], "q1": [0.06011452399980044, 0.07856237600026361, 0.07475762399917585, 0.08606397999938054, 0.12113335999856645, 0.3539359499991406, 1.1668917900005908, 2.904733707999185, 2.714993734000018, 2.835902991000694, 2.7858924619995378], "q9": [0.06011452399980044, 0.07856237600026361, 0.07475762399917585, 0.08606397999938054, 0.12113335999856645, 0.3539359499991406, 1.1668917900005908, 2.904733707999185, 2.714993734000018, 2.835902991000694, 2.7858924619995378]}, "bar": {"y": 2.904733707999185, "times": [2.904733707999185], "text": ""}, "color": "rgba(174.0, 199.0, 232.0, 1.0)", "marker": 2}, "skglm-PN[use_acc=True]": {"scatter": {"x": [5.670099926646799e-05, 0.07852063400059706, 0.09371887300039816, 0.16824284399990574, 0.18188745800034667, 0.43095917100072256, 0.6952516239998658, 1.2104846189995442, 1.2891760560014518, 1.3248217170003045, 1.3313590449997719], "y": [346.5735902799727, 303.3324281431725, 232.7601190640679, 134.46943178001945, 51.56855245890565, 25.546141397656918, 25.365345523346384, 25.365327536908634, 25.365327536892174, 25.365327536892174, 25.365327536892174], "q1": [5.670099926646799e-05, 0.07852063400059706, 0.09371887300039816, 0.16824284399990574, 0.18188745800034667, 0.43095917100072256, 0.6952516239998658, 1.2104846189995442, 1.2891760560014518, 1.3248217170003045, 1.3313590449997719], "q9": [5.670099926646799e-05, 0.07852063400059706, 0.09371887300039816, 0.16824284399990574, 0.18188745800034667, 0.43095917100072256, 0.6952516239998658, 1.2104846189995442, 1.2891760560014518, 1.3248217170003045, 1.3313590449997719]}, "bar": {"y": 1.2104846189995442, "times": [1.2104846189995442], "text": ""}, "color": "rgba(255.0, 127.0, 14.0, 1.0)", "marker": 3}, "skglm-PN[use_acc=False]": {"scatter": {"x": [4.850100049225148e-05, 0.06368094999925233, 0.11732844900143391, 0.15703654199933226, 0.1950911090007139, 0.2796349710006325, 0.5154168869994464, 0.9655002999988938, 1.3461063770009787, 1.3971943390006345, 1.383471932998873, 1.5824112459995376], "y": [346.5735902799727, 303.322948317918, 232.7830036815234, 134.5317535001443, 64.84797349178301, 26.21275108279277, 25.366421892994126, 25.365328430823972, 25.36532753691526, 25.36532753691526, 25.36532753691526, 25.36532753691526], "q1": [4.850100049225148e-05, 0.06368094999925233, 0.11732844900143391, 0.15703654199933226, 0.1950911090007139, 0.2796349710006325, 0.5154168869994464, 0.9655002999988938, 1.3461063770009787, 1.3971943390006345, 1.383471932998873, 1.5824112459995376], "q9": [4.850100049225148e-05, 0.06368094999925233, 0.11732844900143391, 0.15703654199933226, 0.1950911090007139, 0.2796349710006325, 0.5154168869994464, 0.9655002999988938, 1.3461063770009787, 1.3971943390006345, 1.383471932998873, 1.5824112459995376]}, "bar": {"y": 0.9655002999988938, "times": [0.9655002999988938], "text": ""}, "color": "rgba(255.0, 187.0, 120.0, 1.0)", "marker": 4}, "sklearn[solver=liblinear]": {"scatter": {"x": [0.14475540700004785, 0.18565348700030881, 0.20108284299931256, 0.20255906799866352, 0.24636769599965191, 0.30164591500033566, 0.2888569019996794, 0.32632472600016627, 0.4001222520000738, 0.6774323629997525, 0.9102950350006722, 0.8642546130013216, 0.7861498029997165], "y": [346.5735902799727, 90.16162954422543, 53.44953223162201, 39.82232671703962, 32.94680633887144, 26.644230205883595, 25.51943816689043, 25.36851037691258, 25.365371898095315, 25.36532753739826, 25.365327536892707, 25.36532753689294, 25.36532753689295], "q1": [0.14475540700004785, 0.18565348700030881, 0.20108284299931256, 0.20255906799866352, 0.24636769599965191, 0.30164591500033566, 0.2888569019996794, 0.32632472600016627, 0.4001222520000738, 0.6774323629997525, 0.9102950350006722, 0.8642546130013216, 0.7861498029997165], "q9": [0.14475540700004785, 0.18565348700030881, 0.20108284299931256, 0.20255906799866352, 0.24636769599965191, 0.30164591500033566, 0.2888569019996794, 0.32632472600016627, 0.4001222520000738, 0.6774323629997525, 0.9102950350006722, 0.8642546130013216, 0.7861498029997165]}, "bar": {"y": 0.6774323629997525, "times": [0.6774323629997525], "text": ""}, "color": "rgba(44.0, 160.0, 44.0, 1.0)", "marker": 5}}, "transformers": {"c_star": 25.365327536791042, "max_f_0": 303.3324281431725}}}, "Sparse Logistic Regression[fit_intercept=False,reg=0.005]": {"objective_value": {"solvers": {"blitz": {"scatter": {"x": [0.0002404039987595752, 0.017341746999591123, 0.042192400998828816, 0.07171162100166839, 0.1272719139997207, 0.16231621299994003, 0.33914843300044595, 0.5441032110011292, 0.6221230370010744, 0.6109436790011387], "y": [346.5735902799727, 102.4488185420954, 18.084395032304247, 14.866507730166415, 14.341743827965656, 14.294981549636738, 14.293670502090542, 14.293670412756605, 14.29367041275542, 14.29367041275542], "q1": [0.0002404039987595752, 0.017341746999591123, 0.042192400998828816, 0.07171162100166839, 0.1272719139997207, 0.16231621299994003, 0.33914843300044595, 0.5441032110011292, 0.6221230370010744, 0.6109436790011387], "q9": [0.0002404039987595752, 0.017341746999591123, 0.042192400998828816, 0.07171162100166839, 0.1272719139997207, 0.16231621299994003, 0.33914843300044595, 0.5441032110011292, 0.6221230370010744, 0.6109436790011387]}, "bar": {"y": 0.33914843300044595, "times": [0.33914843300044595], "text": ""}, "color": "rgba(31.0, 119.0, 180.0, 1.0)", "marker": 1}, "celer": {"scatter": {"x": [0.05530987299971457, 0.09070926700042037, 0.06919396599914762, 0.08844413500082737, 0.10959753099996306, 0.40159240899993165, 1.1442494819984859, 3.947668438000619, 3.9121061480000208, 3.9204338600011397, 3.8871112180004275], "y": [346.5735902799727, 301.79871032268903, 223.84061759937498, 119.64456538710952, 32.21207035641373, 16.00212885440029, 14.294188593740667, 14.293670412755523, 14.293670412755523, 14.293670412755523, 14.293670412755523], "q1": [0.05530987299971457, 0.09070926700042037, 0.06919396599914762, 0.08844413500082737, 0.10959753099996306, 0.40159240899993165, 1.1442494819984859, 3.947668438000619, 3.9121061480000208, 3.9204338600011397, 3.8871112180004275], "q9": [0.05530987299971457, 0.09070926700042037, 0.06919396599914762, 0.08844413500082737, 0.10959753099996306, 0.40159240899993165, 1.1442494819984859, 3.947668438000619, 3.9121061480000208, 3.9204338600011397, 3.8871112180004275]}, "bar": {"y": 3.947668438000619, "times": [3.947668438000619], "text": ""}, "color": "rgba(174.0, 199.0, 232.0, 1.0)", "marker": 2}, "skglm-PN[use_acc=True]": {"scatter": {"x": [5.11010002810508e-05, 0.05721879299926513, 0.12602964700090524, 0.13105371699930402, 0.20498924200001056, 0.4173051849993499, 0.7909771650010953, 1.1888241799988464, 1.612247634000596, 1.4562594470007753, 1.374408116000268], "y": [346.5735902799727, 302.8183988419291, 231.14361776933072, 130.6861551141106, 44.028495556875036, 14.561620414735382, 14.293685588469703, 14.293670412953293, 14.293670412756235, 14.293670412756235, 14.293670412756235], "q1": [5.11010002810508e-05, 0.05721879299926513, 0.12602964700090524, 0.13105371699930402, 0.20498924200001056, 0.4173051849993499, 0.7909771650010953, 1.1888241799988464, 1.612247634000596, 1.4562594470007753, 1.374408116000268], "q9": [5.11010002810508e-05, 0.05721879299926513, 0.12602964700090524, 0.13105371699930402, 0.20498924200001056, 0.4173051849993499, 0.7909771650010953, 1.1888241799988464, 1.612247634000596, 1.4562594470007753, 1.374408116000268]}, "bar": {"y": 1.1888241799988464, "times": [1.1888241799988464], "text": ""}, "color": "rgba(255.0, 127.0, 14.0, 1.0)", "marker": 3}, "skglm-PN[use_acc=False]": {"scatter": {"x": [7.070100036798976e-05, 0.06641151900112163, 0.09028854899952421, 0.20239750099972298, 0.18102120399998967, 0.3003986559997429, 0.5176145610003005, 0.9806579679989227, 1.341545960998701, 1.3345095370004856, 1.374985939999533], "y": [346.5735902799727, 302.80872510695497, 231.17465295629037, 129.12144886754115, 44.25682386822578, 15.19915843437862, 14.295446865110227, 14.293670461171978, 14.293670412766472, 14.293670412766472, 14.293670412766472], "q1": [7.070100036798976e-05, 0.06641151900112163, 0.09028854899952421, 0.20239750099972298, 0.18102120399998967, 0.3003986559997429, 0.5176145610003005, 0.9806579679989227, 1.341545960998701, 1.3345095370004856, 1.374985939999533], "q9": [7.070100036798976e-05, 0.06641151900112163, 0.09028854899952421, 0.20239750099972298, 0.18102120399998967, 0.3003986559997429, 0.5176145610003005, 0.9806579679989227, 1.341545960998701, 1.3345095370004856, 1.374985939999533]}, "bar": {"y": 0.9806579679989227, "times": [0.9806579679989227], "text": ""}, "color": "rgba(255.0, 187.0, 120.0, 1.0)", "marker": 4}, "sklearn[solver=liblinear]": {"scatter": {"x": [0.18311667499983741, 0.16064435900079843, 0.18893485799890186, 0.1898994710008992, 0.23725473700142174, 0.27119441399918287, 0.30795823200060113, 0.3696085989995481, 0.4246551729993371, 0.6778106340007071, 0.8774465419992339, 0.7577625579997402, 0.770585004998793], "y": [346.5735902799727, 77.40740076315548, 39.60317590458233, 26.926436368957983, 20.787509807238635, 15.515176056055832, 14.47171406926375, 14.298213695178983, 14.293722156389261, 14.293670413678132, 14.293670412759191, 14.293670412759147, 14.2936704127588], "q1": [0.18311667499983741, 0.16064435900079843, 0.18893485799890186, 0.1898994710008992, 0.23725473700142174, 0.27119441399918287, 0.30795823200060113, 0.3696085989995481, 0.4246551729993371, 0.6778106340007071, 0.8774465419992339, 0.7577625579997402, 0.770585004998793], "q9": [0.18311667499983741, 0.16064435900079843, 0.18893485799890186, 0.1898994710008992, 0.23725473700142174, 0.27119441399918287, 0.30795823200060113, 0.3696085989995481, 0.4246551729993371, 0.6778106340007071, 0.8774465419992339, 0.7577625579997402, 0.770585004998793]}, "bar": {"y": 0.6778106340007071, "times": [0.6778106340007071], "text": ""}, "color": "rgba(44.0, 160.0, 44.0, 1.0)", "marker": 5}}, "transformers": {"c_star": 14.29367041265542, "max_f_0": 302.8183988419291}}}}, "simulated[n_features=5000,n_samples=3000]": {"Sparse Logistic Regression[fit_intercept=False,reg=1.0]": {"objective_value": {"solvers": {"blitz": {"scatter": {"x": [0.00038100600067991763, 0.09988472999975784, 0.05315601499933109, 0.05496994200075278], "y": [2079.441541679836, 2079.441541679836, 2079.441541679836, 2079.441541679836], "q1": [0.00038100600067991763, 0.09988472999975784, 0.05315601499933109, 0.05496994200075278], "q9": [0.00038100600067991763, 0.09988472999975784, 0.05315601499933109, 0.05496994200075278]}, "bar": {"y": 0.00038100600067991763, "times": [0.00038100600067991763], "text": ""}, "color": "rgba(31.0, 119.0, 180.0, 1.0)", "marker": 1}, "celer": {"scatter": {"x": [0.35040736900009506, 0.3763851669991709, 0.34794553099891345, 0.3376027720005368], "y": [2079.441541679836, 2079.441541679836, 2079.441541679836, 2079.441541679836], "q1": [0.35040736900009506, 0.3763851669991709, 0.34794553099891345, 0.3376027720005368], "q9": [0.35040736900009506, 0.3763851669991709, 0.34794553099891345, 0.3376027720005368]}, "bar": {"y": 0.35040736900009506, "times": [0.35040736900009506], "text": ""}, "color": "rgba(174.0, 199.0, 232.0, 1.0)", "marker": 2}, "skglm-PN[use_acc=True]": {"scatter": {"x": [6.470100015576463e-05, 0.21961486500003957, 0.1996081580000464, 0.194808185000511], "y": [2079.441541679836, 2079.441541679836, 2079.441541679836, 2079.441541679836], "q1": [6.470100015576463e-05, 0.21961486500003957, 0.1996081580000464, 0.194808185000511], "q9": [6.470100015576463e-05, 0.21961486500003957, 0.1996081580000464, 0.194808185000511]}, "bar": {"y": 6.470100015576463e-05, "times": [6.470100015576463e-05], "text": ""}, "color": "rgba(255.0, 127.0, 14.0, 1.0)", "marker": 3}, "skglm-PN[use_acc=False]": {"scatter": {"x": [5.180100015422795e-05, 0.22438283799965575, 0.21395997800027544, 0.21601821000149357], "y": [2079.441541679836, 2079.441541679836, 2079.441541679836, 2079.441541679836], "q1": [5.180100015422795e-05, 0.22438283799965575, 0.21395997800027544, 0.21601821000149357], "q9": [5.180100015422795e-05, 0.22438283799965575, 0.21395997800027544, 0.21601821000149357]}, "bar": {"y": 5.180100015422795e-05, "times": [5.180100015422795e-05], "text": ""}, "color": "rgba(255.0, 187.0, 120.0, 1.0)", "marker": 4}, "sklearn[solver=liblinear]": {"scatter": {"x": [1.0262112220007111, 1.1710197419997712, 1.2177246619994548, 1.2805695259994536], "y": [2079.441541679836, 2079.441541679836, 2079.441541679836, 2079.441541679836], "q1": [1.0262112220007111, 1.1710197419997712, 1.2177246619994548, 1.2805695259994536], "q9": [1.0262112220007111, 1.1710197419997712, 1.2177246619994548, 1.2805695259994536]}, "bar": {"y": 1.0262112220007111, "times": [1.0262112220007111], "text": ""}, "color": "rgba(44.0, 160.0, 44.0, 1.0)", "marker": 5}}, "transformers": {"c_star": 2079.441541679736, "max_f_0": 2079.441541679836}}}, "Sparse Logistic Regression[fit_intercept=False,reg=0.1]": {"objective_value": {"solvers": {"blitz": {"scatter": {"x": [0.0004260060013621114, 0.06921354800033441, 0.1134595530002116, 0.1386909979992197, 0.20624362300077337, 0.4369183790004172, 1.428819355000087, 1.5602577539993945, 1.5348394079992431, 1.5773326529997576], "y": [2079.441541679836, 1711.5874620677237, 1555.6126538198014, 1417.2024169776805, 1350.837969059893, 1337.354987780109, 1337.3066194860198, 1337.3066194860198, 1337.3066194860198, 1337.3066194860198], "q1": [0.0004260060013621114, 0.06921354800033441, 0.1134595530002116, 0.1386909979992197, 0.20624362300077337, 0.4369183790004172, 1.428819355000087, 1.5602577539993945, 1.5348394079992431, 1.5773326529997576], "q9": [0.0004260060013621114, 0.06921354800033441, 0.1134595530002116, 0.1386909979992197, 0.20624362300077337, 0.4369183790004172, 1.428819355000087, 1.5602577539993945, 1.5348394079992431, 1.5773326529997576]}, "bar": {"y": 1.428819355000087, "times": [1.428819355000087], "text": ""}, "color": "rgba(31.0, 119.0, 180.0, 1.0)", "marker": 1}, "celer": {"scatter": {"x": [0.37259771499884664, 0.39637234099973284, 0.41246276200035936, 0.49512459699872124, 0.565564763999646, 0.8231517000003805, 2.388720392000323, 3.720232274999944, 3.9155411470001127, 3.6940018019995478], "y": [2079.441541679836, 1979.064576120346, 1872.965688857288, 1740.9939707555272, 1587.633654052427, 1369.8802837217431, 1337.3066261369756, 1337.3066194860203, 1337.3066194860203, 1337.3066194860203], "q1": [0.37259771499884664, 0.39637234099973284, 0.41246276200035936, 0.49512459699872124, 0.565564763999646, 0.8231517000003805, 2.388720392000323, 3.720232274999944, 3.9155411470001127, 3.6940018019995478], "q9": [0.37259771499884664, 0.39637234099973284, 0.41246276200035936, 0.49512459699872124, 0.565564763999646, 0.8231517000003805, 2.388720392000323, 3.720232274999944, 3.9155411470001127, 3.6940018019995478]}, "bar": {"y": 3.720232274999944, "times": [3.720232274999944], "text": ""}, "color": "rgba(174.0, 199.0, 232.0, 1.0)", "marker": 2}, "skglm-PN[use_acc=True]": {"scatter": {"x": [5.6601000324008055e-05, 0.21004349000031652, 0.4590291149997938, 0.6736473670007399, 0.843834508999862, 2.2239322700006596, 4.100950314999864, 6.828204643999925, 7.361044489000051, 7.336995188999936], "y": [2079.441541679836, 1979.483700040446, 1875.1401505024678, 1706.907549349612, 1500.3883162079273, 1337.5216724928782, 1337.3066199258287, 1337.3066194860257, 1337.3066194860203, 1337.3066194860203], "q1": [5.6601000324008055e-05, 0.21004349000031652, 0.4590291149997938, 0.6736473670007399, 0.843834508999862, 2.2239322700006596, 4.100950314999864, 6.828204643999925, 7.361044489000051, 7.336995188999936], "q9": [5.6601000324008055e-05, 0.21004349000031652, 0.4590291149997938, 0.6736473670007399, 0.843834508999862, 2.2239322700006596, 4.100950314999864, 6.828204643999925, 7.361044489000051, 7.336995188999936]}, "bar": {"y": 4.100950314999864, "times": [4.100950314999864], "text": ""}, "color": "rgba(255.0, 127.0, 14.0, 1.0)", "marker": 3}, "skglm-PN[use_acc=False]": {"scatter": {"x": [7.380100032605696e-05, 0.23236660200018378, 0.40141863099961483, 0.6860917530011648, 0.7480726070007222, 1.6168123759998707, 2.8045765469996695, 4.1374051659986435, 4.159054687999742, 4.230582857000627], "y": [2079.441541679836, 1979.4853359730264, 1875.1496902910762, 1706.8950861150292, 1503.8995561320085, 1338.223726263297, 1337.3066195003767, 1337.30661948602, 1337.30661948602, 1337.30661948602], "q1": [7.380100032605696e-05, 0.23236660200018378, 0.40141863099961483, 0.6860917530011648, 0.7480726070007222, 1.6168123759998707, 2.8045765469996695, 4.1374051659986435, 4.159054687999742, 4.230582857000627], "q9": [7.380100032605696e-05, 0.23236660200018378, 0.40141863099961483, 0.6860917530011648, 0.7480726070007222, 1.6168123759998707, 2.8045765469996695, 4.1374051659986435, 4.159054687999742, 4.230582857000627]}, "bar": {"y": 2.8045765469996695, "times": [2.8045765469996695], "text": ""}, "color": "rgba(255.0, 187.0, 120.0, 1.0)", "marker": 4}, "sklearn[solver=liblinear]": {"scatter": {"x": [1.0284059459991113, 1.173562354000751, 1.1788266269995802, 1.315182903999812, 1.3212569879997318, 1.517651490001299, 1.728569367000091, 2.247527606001313, 2.7429687849999027, 3.7118861910003034, 5.631860588000563], "y": [2079.441541679836, 1531.526462609403, 1393.6117681684734, 1342.3462213738903, 1340.6432280497597, 1337.434884799885, 1337.3138416332013, 1337.3066624177432, 1337.3066195032634, 1337.3066194860203, 1337.3066194860203], "q1": [1.0284059459991113, 1.173562354000751, 1.1788266269995802, 1.315182903999812, 1.3212569879997318, 1.517651490001299, 1.728569367000091, 2.247527606001313, 2.7429687849999027, 3.7118861910003034, 5.631860588000563], "q9": [1.0284059459991113, 1.173562354000751, 1.1788266269995802, 1.315182903999812, 1.3212569879997318, 1.517651490001299, 1.728569367000091, 2.247527606001313, 2.7429687849999027, 3.7118861910003034, 5.631860588000563]}, "bar": {"y": 2.7429687849999027, "times": [2.7429687849999027], "text": ""}, "color": "rgba(44.0, 160.0, 44.0, 1.0)", "marker": 5}}, "transformers": {"c_star": 1337.3066194859198, "max_f_0": 1979.4853359730264}}}, "Sparse Logistic Regression[fit_intercept=False,reg=0.01]": {"objective_value": {"solvers": {"blitz": {"scatter": {"x": [0.0003695049999805633, 0.08135553799911577, 0.09870708100061165, 0.17080639000050724, 0.44027384299988626, 1.5051613859995996, 3.2311132049999287, 6.989365571000235, 9.774576477000664, 9.75765749600032, 9.723386198998924], "y": [2079.441541679836, 1538.5357892292814, 1215.3307989525142, 802.6707981317994, 425.11250688349173, 306.46816770461135, 305.4463349597594, 305.44588754363485, 305.4458875419272, 305.4458875419272, 305.4458875419272], "q1": [0.0003695049999805633, 0.08135553799911577, 0.09870708100061165, 0.17080639000050724, 0.44027384299988626, 1.5051613859995996, 3.2311132049999287, 6.989365571000235, 9.774576477000664, 9.75765749600032, 9.723386198998924], "q9": [0.0003695049999805633, 0.08135553799911577, 0.09870708100061165, 0.17080639000050724, 0.44027384299988626, 1.5051613859995996, 3.2311132049999287, 6.989365571000235, 9.774576477000664, 9.75765749600032, 9.723386198998924]}, "bar": {"y": 6.989365571000235, "times": [6.989365571000235], "text": ""}, "color": "rgba(31.0, 119.0, 180.0, 1.0)", "marker": 1}, "celer": {"scatter": {"x": [0.31849213100031193, 0.4534072220012604, 0.4715073629995459, 0.49032761299895355, 0.5602351420002378, 0.8522816210006567, 7.007059016999847, 20.52205884199975, 21.280598242999986, 21.240903125999466, 21.03917563899995], "y": [2079.441541679836, 1950.7308904666304, 1797.6564334836303, 1599.9601335173984, 1316.705876493593, 600.0436836952948, 305.70701736715426, 305.44588754192705, 305.445887541927, 305.445887541927, 305.445887541927], "q1": [0.31849213100031193, 0.4534072220012604, 0.4715073629995459, 0.49032761299895355, 0.5602351420002378, 0.8522816210006567, 7.007059016999847, 20.52205884199975, 21.280598242999986, 21.240903125999466, 21.03917563899995], "q9": [0.31849213100031193, 0.4534072220012604, 0.4715073629995459, 0.49032761299895355, 0.5602351420002378, 0.8522816210006567, 7.007059016999847, 20.52205884199975, 21.280598242999986, 21.240903125999466, 21.03917563899995]}, "bar": {"y": 20.52205884199975, "times": [20.52205884199975], "text": ""}, "color": "rgba(174.0, 199.0, 232.0, 1.0)", "marker": 2}, "skglm-PN[use_acc=True]": {"scatter": {"x": [7.410100079141557e-05, 0.2305079570014641, 0.44498779400055355, 0.6133721009991859, 0.7426890719998482, 1.99441911500071, 6.998240805998648, 13.271210696000708, 15.111005135000596, 15.049797342000602, 15.176689968999199], "y": [2079.441541679836, 1951.5812554325173, 1801.4966220026954, 1530.355828079146, 1132.4539142783087, 390.3927853628331, 305.44615492555, 305.44588754201936, 305.4458875419322, 305.4458875419322, 305.4458875419322], "q1": [7.410100079141557e-05, 0.2305079570014641, 0.44498779400055355, 0.6133721009991859, 0.7426890719998482, 1.99441911500071, 6.998240805998648, 13.271210696000708, 15.111005135000596, 15.049797342000602, 15.176689968999199], "q9": [7.410100079141557e-05, 0.2305079570014641, 0.44498779400055355, 0.6133721009991859, 0.7426890719998482, 1.99441911500071, 6.998240805998648, 13.271210696000708, 15.111005135000596, 15.049797342000602, 15.176689968999199]}, "bar": {"y": 13.271210696000708, "times": [13.271210696000708], "text": ""}, "color": "rgba(255.0, 127.0, 14.0, 1.0)", "marker": 3}, "skglm-PN[use_acc=False]": {"scatter": {"x": [5.400100053520873e-05, 0.20086057200023788, 0.38915938300124253, 0.5659311469989916, 0.8139229220014386, 1.554212799999732, 3.935925653000595, 7.592218285999479, 13.429072521999842, 13.809743578000052, 14.195669250999345], "y": [2079.441541679836, 1951.5842532022289, 1801.5055770599547, 1530.2157349229174, 1131.1111859001107, 442.5783876673528, 305.66499646961006, 305.44590003886753, 305.445887541942, 305.445887541942, 305.445887541942], "q1": [5.400100053520873e-05, 0.20086057200023788, 0.38915938300124253, 0.5659311469989916, 0.8139229220014386, 1.554212799999732, 3.935925653000595, 7.592218285999479, 13.429072521999842, 13.809743578000052, 14.195669250999345], "q9": [5.400100053520873e-05, 0.20086057200023788, 0.38915938300124253, 0.5659311469989916, 0.8139229220014386, 1.554212799999732, 3.935925653000595, 7.592218285999479, 13.429072521999842, 13.809743578000052, 14.195669250999345]}, "bar": {"y": 13.429072521999842, "times": [13.429072521999842], "text": ""}, "color": "rgba(255.0, 187.0, 120.0, 1.0)", "marker": 4}, "sklearn[solver=liblinear]": {"scatter": {"x": [1.0214320640006918, 1.1820089590000862, 1.271792687000925, 1.5231241219989897, 1.6014587930003472, 1.9201829860012367, 2.469706513998972, 3.2239782409997133, 5.590203381001629, 10.928533216998403, 13.500046197999836, 13.680968479999137], "y": [2079.441541679836, 807.2203222973892, 502.6802442937018, 371.7766942433202, 346.9576625359803, 317.5133117986709, 306.0943026206476, 305.51054057133854, 305.44591584722536, 305.4458875419646, 305.44588754192705, 305.44588754192705], "q1": [1.0214320640006918, 1.1820089590000862, 1.271792687000925, 1.5231241219989897, 1.6014587930003472, 1.9201829860012367, 2.469706513998972, 3.2239782409997133, 5.590203381001629, 10.928533216998403, 13.500046197999836, 13.680968479999137], "q9": [1.0214320640006918, 1.1820089590000862, 1.271792687000925, 1.5231241219989897, 1.6014587930003472, 1.9201829860012367, 2.469706513998972, 3.2239782409997133, 5.590203381001629, 10.928533216998403, 13.500046197999836, 13.680968479999137]}, "bar": {"y": 10.928533216998403, "times": [10.928533216998403], "text": ""}, "color": "rgba(44.0, 160.0, 44.0, 1.0)", "marker": 5}}, "transformers": {"c_star": 305.445887541827, "max_f_0": 1951.5842532022289}}}, "Sparse Logistic Regression[fit_intercept=False,reg=0.005]": {"objective_value": {"solvers": {"blitz": {"scatter": {"x": [0.0003291039993200684, 0.09127214699947217, 0.1196164350003528, 0.19271403399943665, 0.5991093880002154, 1.9752887960003136, 4.352802313000211, 9.0896716870011, 13.763053233000392, 13.839816482999595, 13.807113730999845], "y": [2079.441541679836, 1527.1211879698546, 1190.0417240766606, 742.9941626231761, 282.6044765166653, 179.7212037858166, 178.65665554208587, 178.65605357530083, 178.656053566756, 178.656053566756, 178.656053566756], "q1": [0.0003291039993200684, 0.09127214699947217, 0.1196164350003528, 0.19271403399943665, 0.5991093880002154, 1.9752887960003136, 4.352802313000211, 9.0896716870011, 13.763053233000392, 13.839816482999595, 13.807113730999845], "q9": [0.0003291039993200684, 0.09127214699947217, 0.1196164350003528, 0.19271403399943665, 0.5991093880002154, 1.9752887960003136, 4.352802313000211, 9.0896716870011, 13.763053233000392, 13.839816482999595, 13.807113730999845]}, "bar": {"y": 9.0896716870011, "times": [9.0896716870011], "text": ""}, "color": "rgba(31.0, 119.0, 180.0, 1.0)", "marker": 1}, "celer": {"scatter": {"x": [0.33819963799942343, 0.4175435249999282, 0.4517461949999415, 0.5024718900003791, 0.5781690280000475, 0.9125680909983203, 7.441799317999539, 26.666810188000454, 26.9266078870005, 26.898105365000447, 27.161782647999644], "y": [2079.441541679836, 1949.038003744736, 1793.120570828896, 1590.6419217862242, 1297.6516198070753, 512.9636668929701, 179.74123834681492, 178.65605356675587, 178.6560535667558, 178.6560535667558, 178.6560535667558], "q1": [0.33819963799942343, 0.4175435249999282, 0.4517461949999415, 0.5024718900003791, 0.5781690280000475, 0.9125680909983203, 7.441799317999539, 26.666810188000454, 26.9266078870005, 26.898105365000447, 27.161782647999644], "q9": [0.33819963799942343, 0.4175435249999282, 0.4517461949999415, 0.5024718900003791, 0.5781690280000475, 0.9125680909983203, 7.441799317999539, 26.666810188000454, 26.9266078870005, 26.898105365000447, 27.161782647999644]}, "bar": {"y": 26.666810188000454, "times": [26.666810188000454], "text": ""}, "color": "rgba(174.0, 199.0, 232.0, 1.0)", "marker": 2}, "skglm-PN[use_acc=True]": {"scatter": {"x": [6.780100011383183e-05, 0.23827909999999974, 0.4207302039994829, 0.6180126199997176, 0.8288463290009531, 1.8365703639992716, 8.449692038000649, 15.931556795001597, 15.973792865999712, 16.184557541000686, 16.53048575200046], "y": [2079.441541679836, 1949.9203591568305, 1797.1082840350603, 1519.4929044957591, 1106.2137160378454, 286.48768312903405, 178.65609933096079, 178.6560535667715, 178.6560535667715, 178.6560535667715, 178.6560535667715], "q1": [6.780100011383183e-05, 0.23827909999999974, 0.4207302039994829, 0.6180126199997176, 0.8288463290009531, 1.8365703639992716, 8.449692038000649, 15.931556795001597, 15.973792865999712, 16.184557541000686, 16.53048575200046], "q9": [6.780100011383183e-05, 0.23827909999999974, 0.4207302039994829, 0.6180126199997176, 0.8288463290009531, 1.8365703639992716, 8.449692038000649, 15.931556795001597, 15.973792865999712, 16.184557541000686, 16.53048575200046]}, "bar": {"y": 15.931556795001597, "times": [15.931556795001597], "text": ""}, "color": "rgba(255.0, 127.0, 14.0, 1.0)", "marker": 3}, "skglm-PN[use_acc=False]": {"scatter": {"x": [7.690100028412417e-05, 0.28744943700075964, 0.432724127000256, 0.6197377190001134, 0.8089293430002726, 1.717242933000307, 4.668369533999794, 10.159481212000173, 17.54201395400014, 17.391846466998686, 17.23725345299863], "y": [2079.441541679836, 1949.9234497821153, 1797.1380792980583, 1519.539015838196, 1109.2122401345082, 285.5183675960938, 178.73217635220857, 178.65605515050828, 178.65605356681124, 178.65605356681124, 178.65605356681124], "q1": [7.690100028412417e-05, 0.28744943700075964, 0.432724127000256, 0.6197377190001134, 0.8089293430002726, 1.717242933000307, 4.668369533999794, 10.159481212000173, 17.54201395400014, 17.391846466998686, 17.23725345299863], "q9": [7.690100028412417e-05, 0.28744943700075964, 0.432724127000256, 0.6197377190001134, 0.8089293430002726, 1.717242933000307, 4.668369533999794, 10.159481212000173, 17.54201395400014, 17.391846466998686, 17.23725345299863]}, "bar": {"y": 17.54201395400014, "times": [17.54201395400014], "text": ""}, "color": "rgba(255.0, 187.0, 120.0, 1.0)", "marker": 4}, "sklearn[solver=liblinear]": {"scatter": {"x": [1.0587370180001017, 1.2235786940000253, 1.2820220000012341, 1.535950478999439, 1.6628308360013762, 2.049095940999905, 2.6398478539995267, 3.468054077000488, 6.46369556100035, 12.78762632500002, 17.91861205999885, 16.69640691099994, 16.486456287000692], "y": [2079.441541679836, 723.0352207717093, 392.1004253622512, 253.11492288825463, 221.279374463309, 186.43302241926062, 179.80646739946127, 178.8006862380026, 178.6561276501153, 178.6560535684382, 178.6560535667561, 178.6560535667561, 178.6560535667561], "q1": [1.0587370180001017, 1.2235786940000253, 1.2820220000012341, 1.535950478999439, 1.6628308360013762, 2.049095940999905, 2.6398478539995267, 3.468054077000488, 6.46369556100035, 12.78762632500002, 17.91861205999885, 16.69640691099994, 16.486456287000692], "q9": [1.0587370180001017, 1.2235786940000253, 1.2820220000012341, 1.535950478999439, 1.6628308360013762, 2.049095940999905, 2.6398478539995267, 3.468054077000488, 6.46369556100035, 12.78762632500002, 17.91861205999885, 16.69640691099994, 16.486456287000692]}, "bar": {"y": 12.78762632500002, "times": [12.78762632500002], "text": ""}, "color": "rgba(44.0, 160.0, 44.0, 1.0)", "marker": 5}}, "transformers": {"c_star": 178.6560535666558, "max_f_0": 1949.9234497821153}}}}};
+
+            window.addEventListener("load", () => {
+                // Initialize plot state
+                setState({
+                    'dataset': document.getElementById('dataset_selector').value,
+                    'objective': document.getElementById('objective_selector').value,
+                    'objective_column': document.getElementById('objective_column').value,
+                    'plot_kind': document.getElementById('plot_kind').value,
+                    'scale': document.getElementById('change_scaling').value,
+                    'with_quantiles': document.getElementById('change_shades').checked,
+                    'hidden_solvers': []
+                });
+            });
+        </script>
+        <script type="text/javascript">
+            /**
+ * Round with precision control
+ * https://github.com/plotly/d3/blob/6bb40cd42f6479be84efda3e50c8444b50d5905d/d3.js#L2189
+ */
+const d3round = (x, n) => {
+    return n ? Math.round(x * (n = Math.pow(10, n))) / n : Math.round(x);
+};
+
+/**
+ * Container of function that create path for SVG plot marker
+ * https://github.com/plotly/plotly.js/blob/b2df3710d7877ff5b4f85256015a88c8ea8fbe1d/src/components/drawing/symbol_defs.js#L13
+ */
+const SYMBOLDEFS = {
+    circle: {
+        n: 0,
+        f: r => {
+            var rs = d3round(r, 2);
+            return 'M' + rs + ',0A' + rs + ',' + rs + ' 0 1,1 0,-' + rs +
+                'A' + rs + ',' + rs + ' 0 0,1 ' + rs + ',0Z';
+        }
+    },
+    square: {
+        n: 1,
+        f: r => {
+            var rs = d3round(r, 2);
+            return 'M' + rs + ',' + rs + 'H-' + rs + 'V-' + rs + 'H' + rs + 'Z';
+        }
+    },
+    diamond: {
+        n: 2,
+        f: r => {
+            var rd = d3round(r * 1.3, 2);
+            return 'M' + rd + ',0L0,' + rd + 'L-' + rd + ',0L0,-' + rd + 'Z';
+        }
+    },
+    cross: {
+        n: 3,
+        f: r => {
+            var rc = d3round(r * 0.4, 2);
+            var rc2 = d3round(r * 1.2, 2);
+            return 'M' + rc2 + ',' + rc + 'H' + rc + 'V' + rc2 + 'H-' + rc +
+                'V' + rc + 'H-' + rc2 + 'V-' + rc + 'H-' + rc + 'V-' + rc2 +
+                'H' + rc + 'V-' + rc + 'H' + rc2 + 'Z';
+        }
+    },
+    x: {
+        n: 4,
+        f: r => {
+            var rx = d3round(r * 0.8 / Math.sqrt(2), 2);
+            var ne = 'l' + rx + ',' + rx;
+            var se = 'l' + rx + ',-' + rx;
+            var sw = 'l-' + rx + ',-' + rx;
+            var nw = 'l-' + rx + ',' + rx;
+            return 'M0,' + rx + ne + se + sw + se + sw + nw + sw + nw + ne + nw + ne + 'Z';
+        }
+    },
+    'triangle-up': {
+        n: 5,
+        f: r => {
+            var rt = d3round(r * 2 / Math.sqrt(3), 2);
+            var r2 = d3round(r / 2, 2);
+            var rs = d3round(r, 2);
+            return 'M-' + rt + ',' + r2 + 'H' + rt + 'L0,-' + rs + 'Z';
+        }
+    },
+    'triangle-down': {
+        n: 6,
+        f: r => {
+            var rt = d3round(r * 2 / Math.sqrt(3), 2);
+            var r2 = d3round(r / 2, 2);
+            var rs = d3round(r, 2);
+            return 'M-' + rt + ',-' + r2 + 'H' + rt + 'L0,' + rs + 'Z';
+        }
+    },
+    'triangle-left': {
+        n: 7,
+        f: r => {
+            var rt = d3round(r * 2 / Math.sqrt(3), 2);
+            var r2 = d3round(r / 2, 2);
+            var rs = d3round(r, 2);
+            return 'M' + r2 + ',-' + rt + 'V' + rt + 'L-' + rs + ',0Z';
+        }
+    },
+    'triangle-right': {
+        n: 8,
+        f: r => {
+            var rt = d3round(r * 2 / Math.sqrt(3), 2);
+            var r2 = d3round(r / 2, 2);
+            var rs = d3round(r, 2);
+            return 'M-' + r2 + ',-' + rt + 'V' + rt + 'L' + rs + ',0Z';
+        }
+    },
+    'triangle-ne': {
+        n: 9,
+        f: r => {
+            var r1 = d3round(r * 0.6, 2);
+            var r2 = d3round(r * 1.2, 2);
+            return 'M-' + r2 + ',-' + r1 + 'H' + r1 + 'V' + r2 + 'Z';
+        }
+    },
+    'triangle-se': {
+        n: 10,
+        f: r => {
+            var r1 = d3round(r * 0.6, 2);
+            var r2 = d3round(r * 1.2, 2);
+            return 'M' + r1 + ',-' + r2 + 'V' + r1 + 'H-' + r2 + 'Z';
+        }
+    },
+    'triangle-sw': {
+        n: 11,
+        f: r => {
+            var r1 = d3round(r * 0.6, 2);
+            var r2 = d3round(r * 1.2, 2);
+            return 'M' + r2 + ',' + r1 + 'H-' + r1 + 'V-' + r2 + 'Z';
+        }
+    },
+    'triangle-nw': {
+        n: 12,
+        f: r => {
+            var r1 = d3round(r * 0.6, 2);
+            var r2 = d3round(r * 1.2, 2);
+            return 'M-' + r1 + ',' + r2 + 'V-' + r1 + 'H' + r2 + 'Z';
+        }
+    },
+    pentagon: {
+        n: 13,
+        f: r => {
+            var x1 = d3round(r * 0.951, 2);
+            var x2 = d3round(r * 0.588, 2);
+            var y0 = d3round(-r, 2);
+            var y1 = d3round(r * -0.309, 2);
+            var y2 = d3round(r * 0.809, 2);
+            return 'M' + x1 + ',' + y1 + 'L' + x2 + ',' + y2 + 'H-' + x2 +
+                'L-' + x1 + ',' + y1 + 'L0,' + y0 + 'Z';
+        }
+    },
+    hexagon: {
+        n: 14,
+        f: r => {
+            var y0 = d3round(r, 2);
+            var y1 = d3round(r / 2, 2);
+            var x = d3round(r * Math.sqrt(3) / 2, 2);
+            return 'M' + x + ',-' + y1 + 'V' + y1 + 'L0,' + y0 +
+                'L-' + x + ',' + y1 + 'V-' + y1 + 'L0,-' + y0 + 'Z';
+        }
+    },
+    hexagon2: {
+        n: 15,
+        f: r => {
+            var x0 = d3round(r, 2);
+            var x1 = d3round(r / 2, 2);
+            var y = d3round(r * Math.sqrt(3) / 2, 2);
+            return 'M-' + x1 + ',' + y + 'H' + x1 + 'L' + x0 +
+                ',0L' + x1 + ',-' + y + 'H-' + x1 + 'L-' + x0 + ',0Z';
+        }
+    },
+    octagon: {
+        n: 16,
+        f: r => {
+            var a = d3round(r * 0.924, 2);
+            var b = d3round(r * 0.383, 2);
+            return 'M-' + b + ',-' + a + 'H' + b + 'L' + a + ',-' + b + 'V' + b +
+                'L' + b + ',' + a + 'H-' + b + 'L-' + a + ',' + b + 'V-' + b + 'Z';
+        }
+    },
+    star: {
+        n: 17,
+        f: r => {
+            var rs = r * 1.4;
+            var x1 = d3round(rs * 0.225, 2);
+            var x2 = d3round(rs * 0.951, 2);
+            var x3 = d3round(rs * 0.363, 2);
+            var x4 = d3round(rs * 0.588, 2);
+            var y0 = d3round(-rs, 2);
+            var y1 = d3round(rs * -0.309, 2);
+            var y3 = d3round(rs * 0.118, 2);
+            var y4 = d3round(rs * 0.809, 2);
+            var y5 = d3round(rs * 0.382, 2);
+            return 'M' + x1 + ',' + y1 + 'H' + x2 + 'L' + x3 + ',' + y3 +
+                'L' + x4 + ',' + y4 + 'L0,' + y5 + 'L-' + x4 + ',' + y4 +
+                'L-' + x3 + ',' + y3 + 'L-' + x2 + ',' + y1 + 'H-' + x1 +
+                'L0,' + y0 + 'Z';
+        }
+    },
+    hexagram: {
+        n: 18,
+        f: r => {
+            var y = d3round(r * 0.66, 2);
+            var x1 = d3round(r * 0.38, 2);
+            var x2 = d3round(r * 0.76, 2);
+            return 'M-' + x2 + ',0l-' + x1 + ',-' + y + 'h' + x2 +
+                'l' + x1 + ',-' + y + 'l' + x1 + ',' + y + 'h' + x2 +
+                'l-' + x1 + ',' + y + 'l' + x1 + ',' + y + 'h-' + x2 +
+                'l-' + x1 + ',' + y + 'l-' + x1 + ',-' + y + 'h-' + x2 + 'Z';
+        }
+    },
+    'star-triangle-up': {
+        n: 19,
+        f: r => {
+            var x = d3round(r * Math.sqrt(3) * 0.8, 2);
+            var y1 = d3round(r * 0.8, 2);
+            var y2 = d3round(r * 1.6, 2);
+            var rc = d3round(r * 4, 2);
+            var aPart = 'A ' + rc + ',' + rc + ' 0 0 1 ';
+            return 'M-' + x + ',' + y1 + aPart + x + ',' + y1 +
+                aPart + '0,-' + y2 + aPart + '-' + x + ',' + y1 + 'Z';
+        }
+    },
+    'star-triangle-down': {
+        n: 20,
+        f: r => {
+            var x = d3round(r * Math.sqrt(3) * 0.8, 2);
+            var y1 = d3round(r * 0.8, 2);
+            var y2 = d3round(r * 1.6, 2);
+            var rc = d3round(r * 4, 2);
+            var aPart = 'A ' + rc + ',' + rc + ' 0 0 1 ';
+            return 'M' + x + ',-' + y1 + aPart + '-' + x + ',-' + y1 +
+                aPart + '0,' + y2 + aPart + x + ',-' + y1 + 'Z';
+        }
+    },
+    'star-square': {
+        n: 21,
+        f: r => {
+            var rp = d3round(r * 1.1, 2);
+            var rc = d3round(r * 2, 2);
+            var aPart = 'A ' + rc + ',' + rc + ' 0 0 1 ';
+            return 'M-' + rp + ',-' + rp + aPart + '-' + rp + ',' + rp +
+                aPart + rp + ',' + rp + aPart + rp + ',-' + rp +
+                aPart + '-' + rp + ',-' + rp + 'Z';
+        }
+    },
+    'star-diamond': {
+        n: 22,
+        f: r => {
+            var rp = d3round(r * 1.4, 2);
+            var rc = d3round(r * 1.9, 2);
+            var aPart = 'A ' + rc + ',' + rc + ' 0 0 1 ';
+            return 'M-' + rp + ',0' + aPart + '0,' + rp +
+                aPart + rp + ',0' + aPart + '0,-' + rp +
+                aPart + '-' + rp + ',0' + 'Z';
+        }
+    },
+    'diamond-tall': {
+        n: 23,
+        f: r => {
+            var x = d3round(r * 0.7, 2);
+            var y = d3round(r * 1.4, 2);
+            return 'M0,' + y + 'L' + x + ',0L0,-' + y + 'L-' + x + ',0Z';
+        }
+    },
+    'diamond-wide': {
+        n: 24,
+        f: r => {
+            var x = d3round(r * 1.4, 2);
+            var y = d3round(r * 0.7, 2);
+            return 'M0,' + y + 'L' + x + ',0L0,-' + y + 'L-' + x + ',0Z';
+        }
+    },
+    hourglass: {
+        n: 25,
+        f: r => {
+            var rs = d3round(r, 2);
+            return 'M' + rs + ',' + rs + 'H-' + rs + 'L' + rs + ',-' + rs + 'H-' + rs + 'Z';
+        },
+        noDot: true
+    },
+    bowtie: {
+        n: 26,
+        f: r => {
+            var rs = d3round(r, 2);
+            return 'M' + rs + ',' + rs + 'V-' + rs + 'L-' + rs + ',' + rs + 'V-' + rs + 'Z';
+        },
+        noDot: true
+    },
+    'circle-cross': {
+        n: 27,
+        f: r => {
+            var rs = d3round(r, 2);
+            return 'M0,' + rs + 'V-' + rs + 'M' + rs + ',0H-' + rs +
+                'M' + rs + ',0A' + rs + ',' + rs + ' 0 1,1 0,-' + rs +
+                'A' + rs + ',' + rs + ' 0 0,1 ' + rs + ',0Z';
+        },
+        needLine: true,
+        noDot: true
+    },
+    'circle-x': {
+        n: 28,
+        f: r => {
+            var rs = d3round(r, 2);
+            var rc = d3round(r / Math.sqrt(2), 2);
+            return 'M' + rc + ',' + rc + 'L-' + rc + ',-' + rc +
+                'M' + rc + ',-' + rc + 'L-' + rc + ',' + rc +
+                'M' + rs + ',0A' + rs + ',' + rs + ' 0 1,1 0,-' + rs +
+                'A' + rs + ',' + rs + ' 0 0,1 ' + rs + ',0Z';
+        },
+        needLine: true,
+        noDot: true
+    },
+    'square-cross': {
+        n: 29,
+        f: r => {
+            var rs = d3round(r, 2);
+            return 'M0,' + rs + 'V-' + rs + 'M' + rs + ',0H-' + rs +
+                'M' + rs + ',' + rs + 'H-' + rs + 'V-' + rs + 'H' + rs + 'Z';
+        },
+        needLine: true,
+        noDot: true
+    },
+    'square-x': {
+        n: 30,
+        f: r => {
+            var rs = d3round(r, 2);
+            return 'M' + rs + ',' + rs + 'L-' + rs + ',-' + rs +
+                'M' + rs + ',-' + rs + 'L-' + rs + ',' + rs +
+                'M' + rs + ',' + rs + 'H-' + rs + 'V-' + rs + 'H' + rs + 'Z';
+        },
+        needLine: true,
+        noDot: true
+    },
+    'diamond-cross': {
+        n: 31,
+        f: r => {
+            var rd = d3round(r * 1.3, 2);
+            return 'M' + rd + ',0L0,' + rd + 'L-' + rd + ',0L0,-' + rd + 'Z' +
+                'M0,-' + rd + 'V' + rd + 'M-' + rd + ',0H' + rd;
+        },
+        needLine: true,
+        noDot: true
+    },
+    'diamond-x': {
+        n: 32,
+        f: r => {
+            var rd = d3round(r * 1.3, 2);
+            var r2 = d3round(r * 0.65, 2);
+            return 'M' + rd + ',0L0,' + rd + 'L-' + rd + ',0L0,-' + rd + 'Z' +
+                'M-' + r2 + ',-' + r2 + 'L' + r2 + ',' + r2 +
+                'M-' + r2 + ',' + r2 + 'L' + r2 + ',-' + r2;
+        },
+        needLine: true,
+        noDot: true
+    },
+    'cross-thin': {
+        n: 33,
+        f: r => {
+            var rc = d3round(r * 1.4, 2);
+            return 'M0,' + rc + 'V-' + rc + 'M' + rc + ',0H-' + rc;
+        },
+        needLine: true,
+        noDot: true,
+        noFill: true
+    },
+    'x-thin': {
+        n: 34,
+        f: r => {
+            var rx = d3round(r, 2);
+            return 'M' + rx + ',' + rx + 'L-' + rx + ',-' + rx +
+                'M' + rx + ',-' + rx + 'L-' + rx + ',' + rx;
+        },
+        needLine: true,
+        noDot: true,
+        noFill: true
+    },
+    asterisk: {
+        n: 35,
+        f: r => {
+            var rc = d3round(r * 1.2, 2);
+            var rs = d3round(r * 0.85, 2);
+            return 'M0,' + rc + 'V-' + rc + 'M' + rc + ',0H-' + rc +
+                'M' + rs + ',' + rs + 'L-' + rs + ',-' + rs +
+                'M' + rs + ',-' + rs + 'L-' + rs + ',' + rs;
+        },
+        needLine: true,
+        noDot: true,
+        noFill: true
+    },
+    hash: {
+        n: 36,
+        f: r => {
+            var r1 = d3round(r / 2, 2);
+            var r2 = d3round(r, 2);
+            return 'M' + r1 + ',' + r2 + 'V-' + r2 +
+                'm-' + r2 + ',0V' + r2 +
+                'M' + r2 + ',' + r1 + 'H-' + r2 +
+                'm0,-' + r2 + 'H' + r2;
+        },
+        needLine: true,
+        noFill: true
+    },
+    'y-up': {
+        n: 37,
+        f: r => {
+            var x = d3round(r * 1.2, 2);
+            var y0 = d3round(r * 1.6, 2);
+            var y1 = d3round(r * 0.8, 2);
+            return 'M-' + x + ',' + y1 + 'L0,0M' + x + ',' + y1 + 'L0,0M0,-' + y0 + 'L0,0';
+        },
+        needLine: true,
+        noDot: true,
+        noFill: true
+    },
+    'y-down': {
+        n: 38,
+        f: r => {
+            var x = d3round(r * 1.2, 2);
+            var y0 = d3round(r * 1.6, 2);
+            var y1 = d3round(r * 0.8, 2);
+            return 'M-' + x + ',-' + y1 + 'L0,0M' + x + ',-' + y1 + 'L0,0M0,' + y0 + 'L0,0';
+        },
+        needLine: true,
+        noDot: true,
+        noFill: true
+    },
+    'y-left': {
+        n: 39,
+        f: r => {
+            var y = d3round(r * 1.2, 2);
+            var x0 = d3round(r * 1.6, 2);
+            var x1 = d3round(r * 0.8, 2);
+            return 'M' + x1 + ',' + y + 'L0,0M' + x1 + ',-' + y + 'L0,0M-' + x0 + ',0L0,0';
+        },
+        needLine: true,
+        noDot: true,
+        noFill: true
+    },
+    'y-right': {
+        n: 40,
+        f: r => {
+            var y = d3round(r * 1.2, 2);
+            var x0 = d3round(r * 1.6, 2);
+            var x1 = d3round(r * 0.8, 2);
+            return 'M-' + x1 + ',' + y + 'L0,0M-' + x1 + ',-' + y + 'L0,0M' + x0 + ',0L0,0';
+        },
+        needLine: true,
+        noDot: true,
+        noFill: true
+    },
+    'line-ew': {
+        n: 41,
+        f: r => {
+            var rc = d3round(r * 1.4, 2);
+            return 'M' + rc + ',0H-' + rc;
+        },
+        needLine: true,
+        noDot: true,
+        noFill: true
+    },
+    'line-ns': {
+        n: 42,
+        f: r => {
+            var rc = d3round(r * 1.4, 2);
+            return 'M0,' + rc + 'V-' + rc;
+        },
+        needLine: true,
+        noDot: true,
+        noFill: true
+    },
+    'line-ne': {
+        n: 43,
+        f: r => {
+            var rx = d3round(r, 2);
+            return 'M' + rx + ',-' + rx + 'L-' + rx + ',' + rx;
+        },
+        needLine: true,
+        noDot: true,
+        noFill: true
+    },
+    'line-nw': {
+        n: 44,
+        f: r => {
+            var rx = d3round(r, 2);
+            return 'M' + rx + ',' + rx + 'L-' + rx + ',-' + rx;
+        },
+        needLine: true,
+        noDot: true,
+        noFill: true
+    },
+    'arrow-up': {
+        n: 45,
+        f: r => {
+            var rx = d3round(r, 2);
+            var ry = d3round(r * 2, 2);
+            return 'M0,0L-' + rx + ',' + ry + 'H' + rx + 'Z';
+        },
+        noDot: true
+    },
+    'arrow-down': {
+        n: 46,
+        f: r => {
+            var rx = d3round(r, 2);
+            var ry = d3round(r * 2, 2);
+            return 'M0,0L-' + rx + ',-' + ry + 'H' + rx + 'Z';
+        },
+        noDot: true
+    },
+    'arrow-left': {
+        n: 47,
+        f: r => {
+            var rx = d3round(r * 2, 2);
+            var ry = d3round(r, 2);
+            return 'M0,0L' + rx + ',-' + ry + 'V' + ry + 'Z';
+        },
+        noDot: true
+    },
+    'arrow-right': {
+        n: 48,
+        f: r => {
+            var rx = d3round(r * 2, 2);
+            var ry = d3round(r, 2);
+            return 'M0,0L-' + rx + ',-' + ry + 'V' + ry + 'Z';
+        },
+        noDot: true
+    },
+    'arrow-bar-up': {
+        n: 49,
+        f: r => {
+            var rx = d3round(r, 2);
+            var ry = d3round(r * 2, 2);
+            return 'M-' + rx + ',0H' + rx + 'M0,0L-' + rx + ',' + ry + 'H' + rx + 'Z';
+        },
+        needLine: true,
+        noDot: true
+    },
+    'arrow-bar-down': {
+        n: 50,
+        f: r => {
+            var rx = d3round(r, 2);
+            var ry = d3round(r * 2, 2);
+            return 'M-' + rx + ',0H' + rx + 'M0,0L-' + rx + ',-' + ry + 'H' + rx + 'Z';
+        },
+        needLine: true,
+        noDot: true
+    },
+    'arrow-bar-left': {
+        n: 51,
+        f: r => {
+            var rx = d3round(r * 2, 2);
+            var ry = d3round(r, 2);
+            return 'M0,-' + ry + 'V' + ry + 'M0,0L' + rx + ',-' + ry + 'V' + ry + 'Z';
+        },
+        needLine: true,
+        noDot: true
+    },
+    'arrow-bar-right': {
+        n: 52,
+        f: r => {
+            var rx = d3round(r * 2, 2);
+            var ry = d3round(r, 2);
+            return 'M0,-' + ry + 'V' + ry + 'M0,0L-' + rx + ',-' + ry + 'V' + ry + 'Z';
+        },
+        needLine: true,
+        noDot: true
+    }
+};
+
+const DOTPATH = 'M0,0.5L0.5,0L0,-0.5L-0.5,0Z';
+
+const drawing = {
+    symbolFuncs: [],
+};
+
+/**
+ * Create arrays of symbol functions.
+ * https://plotly.com/javascript/reference/scatter/#scatter-marker-symbol
+ */
+Object.keys(SYMBOLDEFS).forEach(function(k) {
+    var symDef = SYMBOLDEFS[k];
+    var n = symDef.n;
+    drawing.symbolFuncs[n] = symDef.f;
+});
+
+/**
+ * Returns a <path></path> element that have to be placed in a <svg></svg> element.
+ * 
+ * @param {int} symbolNumber
+ * @param {String} color
+ * @return {Element}
+ */
+const createPathElement = (symbolNumber, color) => {
+    const path = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+    // d is the shape of the symbol.
+    path.setAttribute('d', createPathString(symbolNumber, 5));
+    // Translation must be the half of the svg size to have the symbol centered.
+    path.setAttribute('transform', 'translate(15, 15)');
+
+    // If svg is type "open" or "open-dot" : https://plotly.com/javascript/reference/scatter/#scatter-marker-symbol
+    if ((100 <= symbolNumber && symbolNumber < 200) || 300 <= symbolNumber) {
+        path.setAttribute('stroke', color);
+        path.setAttribute('stroke-width', 0.5);
+        path.setAttribute('stroke-opacity', 1);
+        path.setAttribute('fill', 'white');
+    }
+
+    // If svg is type "normal" or "dot" : https://plotly.com/javascript/reference/scatter/#scatter-marker-symbol
+    if (symbolNumber < 100 || (200 <= symbolNumber && symbolNumber < 300)) {
+        path.setAttribute('fill-opacity', 1);
+        path.setAttribute('fill', color);
+    }
+
+    // If svg is type "dot" : https://plotly.com/javascript/reference/scatter/#scatter-marker-symbol
+    if (200 <= symbolNumber && symbolNumber < 300) {
+        path.setAttribute('stroke', 'black');
+        path.setAttribute('stroke-width', 0.5);
+        path.setAttribute('stroke-opacity', 1);
+    }
+    
+    return path;
+}
+
+/**
+ * Returns the string corresponding of the symbol shape requested by symbolNumber.
+ * 
+ * @param {int} symbolNumber
+ * @param {int} r size of the symbol (currently, we request a 5)
+ * @returns {String} this string must be placed in the "d" attribute of <path></path> SVG element.
+ */
+function createPathString(symbolNumber, r) {
+    var base = symbolNumber % 100;
+    return drawing.symbolFuncs[base](r) + (symbolNumber >= 200 ? DOTPATH : '');
+}
+
+            const NON_CONVERGENT_COLOR = 'rgba(0.8627, 0.8627, 0.8627)'
+
+/*
+ * ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+ * STATE MANAGEMENT
+ * 
+ * The state represent the plot state. It's an object
+ * that is stored into the window.state variable.
+ * 
+ * Do not manually update window.state,
+ * instead, foreach state modification,
+ * you shoud call the setState() function
+ * to keep the plot in sync with its state.
+ * 
+ * The state contains the following keys :
+ *   - dataset (string),
+ *   - objective (string),
+ *   - objective_column (string),
+ *   - plot_kind (string),
+ *   - scale (string)
+ *   - with_quantiles (boolean)
+ *   - hidden_solvers (array)
+ * ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+ */
+
+/**
+ * Update the state and create/update the plot
+ * using the new state.
+ * 
+ * @param {Object} partialState 
+ */
+const setState = (partialState) => {
+  window.state = {...state(), ...partialState};
+  displayScatterElements(!isBarChart());
+  makePlot();
+  makeLegend();
+}
+
+/**
+ * Retrieve the state object from window.state
+ * 
+ * @returns Object
+ */
+const state = () => window.state;
+
+/*
+ * ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+ * PLOT MANAGEMENT
+ * 
+ * Retrieve formatted data for PlotlyJS using state
+ * and create/update the plot.
+ * ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+ */
+
+/**
+ * Create/Update the plot.
+ */
+const makePlot = () => {
+  const div = document.getElementById('unique_plot');
+  const data = isBarChart() ? getBarData() : getScatterCurves();
+  const layout = isBarChart() ? getBarChartLayout() : getScatterChartLayout();
+
+  Plotly.react(div, data, layout);
+};
+
+/**
+ * Gives the data formatted for plotlyJS bar chart.
+ * 
+ * @returns {array}
+ */
+const getBarData = () => {
+  if (!isAvailable()) return [{type:'bar'}];
+
+  const {x, y, colors, texts} = barDataToArrays()
+
+  // Add bars
+  const barData = [{
+    type: 'bar',
+    x: x,
+    y: y,
+    marker: {
+      color: colors,
+    },
+    text: texts,
+    textposition: 'inside',
+    insidetextanchor: 'middle',
+    textangle: '-90',
+  }];
+
+  x.forEach(solver => {
+    // Add times for each convergent solver
+    // Check if text is not 'Did not converge'
+    if (data(solver).bar.text === '') {
+      let nbTimes = data(solver).bar.times.length
+
+      barData.push({
+        type: 'scatter',
+        x: new Array(nbTimes).fill(solver),
+        y: data(solver).bar.times,
+        marker: {
+          color: 'black',
+          symbol: 'line-ew-open'
+        },
+        line: {
+          width: 0
+        },
+      });
+    }
+  });
+
+  return barData;
+};
+
+/**
+ * Gives the data formatted for plotlyJS scatter chart.
+ * 
+ * @returns {array}
+ */
+const getScatterCurves = () => {
+  // create a list of object to plot in plotly
+  const curves = [];
+
+  // For each solver, add the median curve with proper style and visibility.
+  getSolvers().forEach(solver => {
+    curves.push({
+      type: 'scatter',
+      name: solver,
+      mode: 'lines+markers',
+      line: {
+        color: data(solver).color,
+      },
+      marker: {
+        symbol: data(solver).marker,
+        size: 10,
+      },
+      legendgroup: solver,
+      hovertemplate: solver + ' <br> (%{x:.1e},%{y:.1e}) <extra></extra>',
+      visible: isVisible(solver) ? true : 'legendonly',
+      x: data(solver).scatter.x,
+      y: useTransformer(data(solver).scatter.y, 'y', data().transformers),
+    });
+
+    if (state().with_quantiles) {
+      // Add shaded area for each solver, with proper style and visibility.
+      curves.push({
+        type: 'scatter',
+        mode: 'lines',
+        showlegend: false,
+        line: {
+          width: 0,
+          color: data(solver).color,
+        },
+        legendgroup: solver,
+        hovertemplate: '(%{x:.1e},%{y:.1e}) <extra></extra>',
+        visible: isVisible(solver) ? true : 'legendonly',
+        x: data(solver).scatter.q1,
+        y: data(solver).scatter.y,
+      }, {
+        type: 'scatter',
+        mode: 'lines',
+        showlegend: false,
+        fill: 'tonextx',
+        line: {
+          width: 0,
+          color: data(solver).color,
+        },
+        legendgroup: solver,
+        hovertemplate: '(%{x:.1e},%{y:.1e}) <extra></extra>',
+        visible: isVisible(solver) ? true : 'legendonly',
+        x: data(solver).scatter.q9,
+        y: data(solver).scatter.y,
+      });
+    }
+  });
+
+  return curves;
+};
+
+/*
+ * ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+ * DATA TRANSFORMERS
+ * 
+ * Transformers are used to modify data
+ * on the fly.
+ * 
+ * WARNING : If you add a new transformer function,
+ * don't forget to register it in the object : window.tranformers,
+ * at the end of this section.
+ * ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+ */
+
+/**
+ * Select the right transformer according to the state.
+ * If the requested transformer does not exists,
+ * it returns raw data.
+ * 
+ * @param {Object} data 
+ * @param {String} solver 
+ * @param {String} axis it could be x, y, q1, q9
+ * @returns {array}
+ */
+const useTransformer = (data, axis, options) => {
+  try {
+    let transformer = 'transformer_' + axis + '_' + state().plot_kind;
+    return window.transformers[transformer](data, options);
+  } catch(error) {
+    return data;
+  }
+};
+
+/**
+ * Transform data on the y axis for subotimality curve.
+ * 
+ * @param {Object} data 
+ * @param {String} solver 
+ * @returns {array}
+ */
+const transformer_y_suboptimality_curve = (y, options) => {
+  // Retrieve c_star value
+  const c_star = options.c_star;
+  
+  // Compute suboptimality for each data
+  return y.map(value => value - c_star);
+};
+
+/**
+ * Transform data ont the y axis for relative suboptimality curve.
+ * 
+ * @param {Object} data 
+ * @param {String} solver 
+ * @returns {array}
+ */
+const transformer_y_relative_suboptimality_curve = (y, options) => {
+  // Retrieve transformer values
+  const c_star = options.c_star;
+  const max_f_0 = options.max_f_0;
+
+  // Compute relative suboptimality for each data
+  return y.map(value => (value - c_star) / (max_f_0 - c_star));
+};
+
+/**
+ * Store all the transformer functions to be callable
+ * by the useTransformer function.
+ */
+window.transformers = {
+  transformer_y_suboptimality_curve,
+  transformer_y_relative_suboptimality_curve,
+};
+
+/*
+ * ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+ * TOOLS
+ * 
+ * Various functions to simplify life.
+ * ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+ */
+
+const data = (solver = null) => {
+  return solver ?
+    window.data[state().dataset][state().objective][state().objective_column].solvers[solver]:
+    window.data[state().dataset][state().objective][state().objective_column]
+}
+
+const getSolvers = () => Object.keys(data().solvers);
+
+const isBarChart = () => state().plot_kind === 'bar_chart';
+
+const isVisible = solver => !state().hidden_solvers.includes(solver);
+
+const isSolverAvailable = solver => data(solver).scatter.y.filter(value => !isNaN(value)).length > 0;
+
+const isSmallScreen = () => window.screen.availHeight < 900;
+
+/**
+ * Check for each solver
+ * if data is available
+ * 
+ * @returns {Boolean}
+ */
+const isAvailable = () => {
+  let isNotAvailable = true;
+
+  getSolvers().forEach(solver => {
+    if (isSolverAvailable(solver)) {
+      isNotAvailable = false;
+    }
+  });
+
+  return !isNotAvailable;
+}
+
+const displayScatterElements = shouldBeVisible => {
+  if (shouldBeVisible) {
+    document.getElementById('change_scaling').style.display = 'inline-block';
+    document.getElementById('legend_container').style.display = 'block';
+    document.getElementById('plot_legend').style.display = 'flex';
+  } else {
+    document.getElementById('change_scaling').style.display = 'none';
+    document.getElementById('legend_container').style.display = 'none';
+    document.getElementById('plot_legend').style.display = 'none';
+  }
+};
+
+const barDataToArrays = () => {
+  const colors = [], texts = [], x = [], y = [];
+
+  getSolvers().forEach(solver => {
+    x.push(solver);
+    y.push(data(solver).bar.y);
+    colors.push(data(solver).bar.text === '' ? data(solver).color : NON_CONVERGENT_COLOR);
+    texts.push(data(solver).bar.text);
+  });
+
+  return {x, y, colors, texts}
+}
+
+const getScale = () => {
+  switch (state().scale) {
+    case 'loglog':
+      return {
+        xaxis: 'log',
+        yaxis: 'log',
+      };
+    case "semilog-y":
+      return {
+        xaxis: 'linear',
+        yaxis: 'log',
+      };
+    case "semilog-x":
+      return {
+        xaxis: 'log',
+        yaxis: 'linear',
+      };
+    case "linear":
+      return {
+        xaxis: 'linear',
+        yaxis: 'linear',
+      };
+    default:
+      console.error('Unknown scale value : ' + state().scale);
+  }
+}
+
+const getScatterChartLayout = () => {
+  const layout = {
+    autosize: !isSmallScreen(),
+    modebar: {
+      orientation: 'v',
+    },
+    height: 700,
+    showlegend: false,
+    legend: {
+      title: {
+        text: 'Solvers',
+      },
+      orientation: 'h',
+      xanchor: 'center',
+      yanchor: 'top',
+      y: -.2,
+      x: .5
+    },
+    xaxis: {
+      type: getScale().xaxis,
+      title: 'Time [sec]',
+      tickformat: '.1e',
+      tickangle: -45,
+      gridcolor: '#ffffff',
+      zeroline : false,
+    },
+    yaxis: {
+      type: getScale().yaxis,
+      title: getYLabel(),
+      tickformat: '.1e',
+      gridcolor: '#ffffff',
+      zeroline : false,
+    },
+    title: `${state().objective}<br />Data: ${state().dataset}`,
+    plot_bgcolor: '#e5ecf6',
+  };
+
+  if (isSmallScreen()) {
+    layout.width = 900;
+    layout.height = window.screen.availHeight - 200;
+    layout.dragmode = false;
+  }
+
+  if (!isAvailable()) {
+    layout.annotations = [{
+      xref: 'paper',
+      yref: 'paper',
+      x: 0.5,
+      y: 0.5,
+      text: 'Not available',
+      showarrow: false,
+      font: {
+        color: 'black',
+        size: 32,
+      }
+    }];
+  };
+
+  return layout;
+};
+
+const getBarChartLayout = () => {
+
+  const layout = {
+    autosize: !isSmallScreen(),
+    modebar: {
+      orientation: 'v',
+    },
+    yaxis: {
+      type: 'log',
+      title: 'Time [sec]',
+      tickformat: '.1e',
+      gridcolor: '#ffffff',
+    },
+    xaxis: {
+      tickangle: -60,
+      ticktext: getSolvers(),
+    },
+    showlegend: false,
+    title: `${state().objective}<br />Data: ${state().dataset}`,
+    plot_bgcolor: '#e5ecf6',
+  };
+
+  if (isSmallScreen()) {
+    layout.width = 900;
+    layout.height = window.screen.availHeight - 200;
+    layout.dragmode = false;
+  }
+
+  if (!isAvailable()) {
+    layout.annotations = [{
+      xref: 'paper',
+      yref: 'paper',
+      x: 0.5,
+      y: 0.5,
+      text: 'Not available',
+      showarrow: false,
+      font: {
+        color: 'black',
+        size: 32,
+      }
+    }];
+  };
+
+  return layout;
+};
+
+const getYLabel = () => {
+  switch(state().plot_kind) {
+    case 'objective_curve':
+      return 'F(x)';
+    case 'suboptimality_curve':
+      return 'F(x) - F(x*)';
+    case 'relative_suboptimality_curve':
+      return 'F(x) - F(x*) / F(x0) - F(x*)'
+    case 'bar_chart':
+      return 'Time [sec]';
+    default:
+      return 'unknown';
+  };
+};
+
+/*
+ * ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+ * MANAGE HIDDEN SOLVERS
+ * 
+ * Functions to hide/display and memorize solvers which were clicked
+ * by user on the legend of the plot.
+ * ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+ */
+const getSolverFromEvent = event => {
+  const target = event.currentTarget;
+
+  for (let i = 0; i < target.children.length; i++) {
+    if (target.children[i].className == 'solver') {
+      return target.children[i].firstChild.nodeValue;
+    }
+  }
+
+  return null;
+};
+
+const purgeHiddenSolvers = () => setState({hidden_solvers: []});
+
+const hideAllSolversExcept = solver => {setState({hidden_solvers: getSolvers().filter(elmt => elmt !== solver)})};
+
+const hideSolver = solver => isVisible(solver) ? setState({hidden_solvers: [...state().hidden_solvers, solver]}) : null;
+
+const showSolver = solver => setState({hidden_solvers: state().hidden_solvers.filter(hidden => hidden !== solver)});
+
+/**
+ * Add or remove solver name from the list of hidden solvers.
+ * 
+ * @param {String} solver
+ * @returns {void}
+ */
+const handleSolverClick = solver => {
+  if (!isVisible(solver)) {
+    showSolver(solver);
+
+    return;
+  }
+
+  hideSolver(solver);
+};
+
+const handleSolverDoubleClick = solver => {
+  // If all solvers except one are hidden, so double click should show all solvers
+  if (state().hidden_solvers.length === getSolvers().length - 1) {
+    purgeHiddenSolvers();
+
+    return;
+  }
+
+  hideAllSolversExcept(solver);
+};
+
+/**
+ * ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+ * MANAGE PLOT LEGEND
+ * 
+ * We don't use the plotly legend to keep control
+ * on the size of the plot.
+ * ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+ */
+
+/**
+ * Creates the legend at the bottom of the plot.
+ */
+const makeLegend = () => {
+  const legend = document.getElementById('plot_legend');
+
+  legend.innerHTML = '';
+
+  Object.keys(data().solvers).forEach(solver => {
+    const color = data().solvers[solver].color;
+    const symbolNumber = data().solvers[solver].marker;
+
+    legend.appendChild(createLegendItem(solver, color, symbolNumber));
+  });
+}
+
+/**
+ * Creates a legend item which contains the solver name,
+ * the solver marker as an SVG and an horizontal bar with
+ * the solver color.
+ * 
+ * @param {String} solver
+ * @param {String} color
+ * @param {int} symbolNumber
+ * @retuns {HTMLElement}
+ */
+const createLegendItem = (solver, color, symbolNumber) => {
+  // Create item container
+  const item = document.createElement('div');
+  item.style.display = 'flex';
+  item.style.flexDirection = 'row';
+  item.style.alignItems = 'center';
+  item.style.position = 'relative';
+  item.style.cursor = 'pointer';
+  item.className = 'bg-white py-1 px-4 shadow-sm mt-2 rounded'
+
+  if (!isVisible(solver)) {
+    item.style.opacity = 0.5;
+  }
+
+  // Click on a solver in the legend
+  item.addEventListener('click', event => {
+    solver = getSolverFromEvent(event);
+
+    if (!getSolvers().includes(solver)) {
+      console.error('An invalid solver has been handled during the click event.');
+
+      return;
+    }
+
+    // In javascript we must simulate double click.
+    // So first click is handled and kept in memory (window.clickedSolver)
+    // during 500ms, if nothing else happen timeout will execute
+    // single click function. However, if an other click happen during this
+    // 500ms, it clears the timeout and execute the double click function.
+    if (!window.clickedSolver) {
+      window.clickedSolver = solver;
+
+      // Timeout will execute single click function after 500ms
+      window.clickedTimeout = setTimeout(() => {
+        window.clickedSolver = null;
+        
+        handleSolverClick(solver);
+      }, 500);
+    } else if (window.clickedSolver === solver) {
+      clearTimeout(window.clickedTimeout);
+      window.clickedSolver = null;
+      handleSolverDoubleClick(solver);
+    }
+  });
+
+  // Create the HTML text node for the solver name in the legend
+  const textContainer = document.createElement('div');
+  textContainer.style.marginLeft = '0.5rem';
+  textContainer.className = 'solver';
+  textContainer.appendChild(document.createTextNode(solver));
+
+  // Create the horizontal bar in the legend to represent the curve
+  const hBar = document.createElement('div');
+  hBar.style.height = '2px';
+  hBar.style.width = '30px';
+  hBar.style.backgroundColor = color;
+  hBar.style.position = 'absolute';
+  hBar.style.left = '1em';
+  hBar.style.zIndex = 10;
+
+  // Append elements to the legend item
+  item.appendChild(createSymbol(symbolNumber, color));
+  item.appendChild(hBar);
+  item.appendChild(textContainer);
+
+  return item;
+}
+
+/**
+ * Create the same svg symbol as plotly.
+ * Returns an <svg> HTML Element
+ * 
+ * @param {int} symbolNumber 
+ * @param {String} color 
+ * @returns {HTMLElement}
+ */
+const createSymbol = (symbolNumber, color) => {
+  const svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+
+  svg.setAttribute('width', 30);
+  svg.setAttribute('height', 30);
+  svg.style.zIndex = 20;
+
+  // createPathElement() come from the local file symbols.js
+  svg.appendChild(createPathElement(symbolNumber, color));
+
+  return svg;
+}
+
+/**
+ * ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+ * EVENT REGISTRATIONS
+ * 
+ * Some events are also registered in result.html.
+ * ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+ */
+
+document.getElementById('btn-plot-config').addEventListener('click', () => {
+  const elmt = document.getElementById('mobile-plot-form');
+
+  if (elmt.style.display === 'block') {
+      elmt.style.display = 'none';
+
+      return;
+  }
+
+  elmt.style.display = 'block';
+});
+
+document.getElementById('btn-main-menu').addEventListener('click', () => {
+  const elmt = document.getElementById('mobile-menu');
+
+  if (elmt.style.display === 'block') {
+      elmt.style.display = 'none';
+
+      return;
+  }
+
+  elmt.style.display = 'block';
+});
+
+        </script>
+    </body>
+</html>
