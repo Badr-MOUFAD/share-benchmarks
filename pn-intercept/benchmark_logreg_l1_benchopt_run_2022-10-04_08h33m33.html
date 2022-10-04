@@ -1,0 +1,3356 @@
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>📈</text></svg>">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="./static/utilities.css">
+        <link rel="stylesheet" href="./static/hover_index.css">
+
+        <title>Result on logreg l1 benchmark</title>
+
+        <style>
+            /*
+! tailwindcss v3.1.2 | MIT License | https://tailwindcss.com
+*/
+
+/*
+1. Prevent padding and border from affecting element width. (https://github.com/mozdevs/cssremedy/issues/4)
+2. Allow adding a border to an element by just adding a border-width. (https://github.com/tailwindcss/tailwindcss/pull/116)
+*/
+
+*,
+::before,
+::after {
+  box-sizing: border-box;
+  /* 1 */
+  border-width: 0;
+  /* 2 */
+  border-style: solid;
+  /* 2 */
+  border-color: #e5e7eb;
+  /* 2 */
+}
+
+::before,
+::after {
+  --tw-content: '';
+}
+
+/*
+1. Use a consistent sensible line-height in all browsers.
+2. Prevent adjustments of font size after orientation changes in iOS.
+3. Use a more readable tab size.
+4. Use the user's configured `sans` font-family by default.
+*/
+
+html {
+  line-height: 1.5;
+  /* 1 */
+  -webkit-text-size-adjust: 100%;
+  /* 2 */
+  -moz-tab-size: 4;
+  /* 3 */
+  -o-tab-size: 4;
+     tab-size: 4;
+  /* 3 */
+  font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+  /* 4 */
+}
+
+/*
+1. Remove the margin in all browsers.
+2. Inherit line-height from `html` so users can set them as a class directly on the `html` element.
+*/
+
+body {
+  margin: 0;
+  /* 1 */
+  line-height: inherit;
+  /* 2 */
+}
+
+/*
+1. Add the correct height in Firefox.
+2. Correct the inheritance of border color in Firefox. (https://bugzilla.mozilla.org/show_bug.cgi?id=190655)
+3. Ensure horizontal rules are visible by default.
+*/
+
+hr {
+  height: 0;
+  /* 1 */
+  color: inherit;
+  /* 2 */
+  border-top-width: 1px;
+  /* 3 */
+}
+
+/*
+Add the correct text decoration in Chrome, Edge, and Safari.
+*/
+
+abbr:where([title]) {
+  -webkit-text-decoration: underline dotted;
+          text-decoration: underline dotted;
+}
+
+/*
+Remove the default font size and weight for headings.
+*/
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-size: inherit;
+  font-weight: inherit;
+}
+
+/*
+Reset links to optimize for opt-in styling instead of opt-out.
+*/
+
+a {
+  color: inherit;
+  text-decoration: inherit;
+}
+
+/*
+Add the correct font weight in Edge and Safari.
+*/
+
+b,
+strong {
+  font-weight: bolder;
+}
+
+/*
+1. Use the user's configured `mono` font family by default.
+2. Correct the odd `em` font sizing in all browsers.
+*/
+
+code,
+kbd,
+samp,
+pre {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+  /* 1 */
+  font-size: 1em;
+  /* 2 */
+}
+
+/*
+Add the correct font size in all browsers.
+*/
+
+small {
+  font-size: 80%;
+}
+
+/*
+Prevent `sub` and `sup` elements from affecting the line height in all browsers.
+*/
+
+sub,
+sup {
+  font-size: 75%;
+  line-height: 0;
+  position: relative;
+  vertical-align: baseline;
+}
+
+sub {
+  bottom: -0.25em;
+}
+
+sup {
+  top: -0.5em;
+}
+
+/*
+1. Remove text indentation from table contents in Chrome and Safari. (https://bugs.chromium.org/p/chromium/issues/detail?id=999088, https://bugs.webkit.org/show_bug.cgi?id=201297)
+2. Correct table border color inheritance in all Chrome and Safari. (https://bugs.chromium.org/p/chromium/issues/detail?id=935729, https://bugs.webkit.org/show_bug.cgi?id=195016)
+3. Remove gaps between table borders by default.
+*/
+
+table {
+  text-indent: 0;
+  /* 1 */
+  border-color: inherit;
+  /* 2 */
+  border-collapse: collapse;
+  /* 3 */
+}
+
+/*
+1. Change the font styles in all browsers.
+2. Remove the margin in Firefox and Safari.
+3. Remove default padding in all browsers.
+*/
+
+button,
+input,
+optgroup,
+select,
+textarea {
+  font-family: inherit;
+  /* 1 */
+  font-size: 100%;
+  /* 1 */
+  font-weight: inherit;
+  /* 1 */
+  line-height: inherit;
+  /* 1 */
+  color: inherit;
+  /* 1 */
+  margin: 0;
+  /* 2 */
+  padding: 0;
+  /* 3 */
+}
+
+/*
+Remove the inheritance of text transform in Edge and Firefox.
+*/
+
+button,
+select {
+  text-transform: none;
+}
+
+/*
+1. Correct the inability to style clickable types in iOS and Safari.
+2. Remove default button styles.
+*/
+
+button,
+[type='button'],
+[type='reset'],
+[type='submit'] {
+  -webkit-appearance: button;
+  /* 1 */
+  background-color: transparent;
+  /* 2 */
+  background-image: none;
+  /* 2 */
+}
+
+/*
+Use the modern Firefox focus style for all focusable elements.
+*/
+
+:-moz-focusring {
+  outline: auto;
+}
+
+/*
+Remove the additional `:invalid` styles in Firefox. (https://github.com/mozilla/gecko-dev/blob/2f9eacd9d3d995c937b4251a5557d95d494c9be1/layout/style/res/forms.css#L728-L737)
+*/
+
+:-moz-ui-invalid {
+  box-shadow: none;
+}
+
+/*
+Add the correct vertical alignment in Chrome and Firefox.
+*/
+
+progress {
+  vertical-align: baseline;
+}
+
+/*
+Correct the cursor style of increment and decrement buttons in Safari.
+*/
+
+::-webkit-inner-spin-button,
+::-webkit-outer-spin-button {
+  height: auto;
+}
+
+/*
+1. Correct the odd appearance in Chrome and Safari.
+2. Correct the outline style in Safari.
+*/
+
+[type='search'] {
+  -webkit-appearance: textfield;
+  /* 1 */
+  outline-offset: -2px;
+  /* 2 */
+}
+
+/*
+Remove the inner padding in Chrome and Safari on macOS.
+*/
+
+::-webkit-search-decoration {
+  -webkit-appearance: none;
+}
+
+/*
+1. Correct the inability to style clickable types in iOS and Safari.
+2. Change font properties to `inherit` in Safari.
+*/
+
+::-webkit-file-upload-button {
+  -webkit-appearance: button;
+  /* 1 */
+  font: inherit;
+  /* 2 */
+}
+
+/*
+Add the correct display in Chrome and Safari.
+*/
+
+summary {
+  display: list-item;
+}
+
+/*
+Removes the default spacing and border for appropriate elements.
+*/
+
+blockquote,
+dl,
+dd,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+hr,
+figure,
+p,
+pre {
+  margin: 0;
+}
+
+fieldset {
+  margin: 0;
+  padding: 0;
+}
+
+legend {
+  padding: 0;
+}
+
+ol,
+ul,
+menu {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+/*
+Prevent resizing textareas horizontally by default.
+*/
+
+textarea {
+  resize: vertical;
+}
+
+/*
+1. Reset the default placeholder opacity in Firefox. (https://github.com/tailwindlabs/tailwindcss/issues/3300)
+2. Set the default placeholder color to the user's configured gray 400 color.
+*/
+
+input::-moz-placeholder, textarea::-moz-placeholder {
+  opacity: 1;
+  /* 1 */
+  color: #9ca3af;
+  /* 2 */
+}
+
+input:-ms-input-placeholder, textarea:-ms-input-placeholder {
+  opacity: 1;
+  /* 1 */
+  color: #9ca3af;
+  /* 2 */
+}
+
+input::placeholder,
+textarea::placeholder {
+  opacity: 1;
+  /* 1 */
+  color: #9ca3af;
+  /* 2 */
+}
+
+/*
+Set the default cursor for buttons.
+*/
+
+button,
+[role="button"] {
+  cursor: pointer;
+}
+
+/*
+Make sure disabled buttons don't get the pointer cursor.
+*/
+
+:disabled {
+  cursor: default;
+}
+
+/*
+1. Make replaced elements `display: block` by default. (https://github.com/mozdevs/cssremedy/issues/14)
+2. Add `vertical-align: middle` to align replaced elements more sensibly by default. (https://github.com/jensimmons/cssremedy/issues/14#issuecomment-634934210)
+   This can trigger a poorly considered lint error in some tools but is included by design.
+*/
+
+img,
+svg,
+video,
+canvas,
+audio,
+iframe,
+embed,
+object {
+  display: block;
+  /* 1 */
+  vertical-align: middle;
+  /* 2 */
+}
+
+/*
+Constrain images and videos to the parent width and preserve their intrinsic aspect ratio. (https://github.com/mozdevs/cssremedy/issues/14)
+*/
+
+img,
+video {
+  max-width: 100%;
+  height: auto;
+}
+
+*, ::before, ::after {
+  --tw-border-spacing-x: 0;
+  --tw-border-spacing-y: 0;
+  --tw-translate-x: 0;
+  --tw-translate-y: 0;
+  --tw-rotate: 0;
+  --tw-skew-x: 0;
+  --tw-skew-y: 0;
+  --tw-scale-x: 1;
+  --tw-scale-y: 1;
+  --tw-pan-x:  ;
+  --tw-pan-y:  ;
+  --tw-pinch-zoom:  ;
+  --tw-scroll-snap-strictness: proximity;
+  --tw-ordinal:  ;
+  --tw-slashed-zero:  ;
+  --tw-numeric-figure:  ;
+  --tw-numeric-spacing:  ;
+  --tw-numeric-fraction:  ;
+  --tw-ring-inset:  ;
+  --tw-ring-offset-width: 0px;
+  --tw-ring-offset-color: #fff;
+  --tw-ring-color: rgb(59 130 246 / 0.5);
+  --tw-ring-offset-shadow: 0 0 #0000;
+  --tw-ring-shadow: 0 0 #0000;
+  --tw-shadow: 0 0 #0000;
+  --tw-shadow-colored: 0 0 #0000;
+  --tw-blur:  ;
+  --tw-brightness:  ;
+  --tw-contrast:  ;
+  --tw-grayscale:  ;
+  --tw-hue-rotate:  ;
+  --tw-invert:  ;
+  --tw-saturate:  ;
+  --tw-sepia:  ;
+  --tw-drop-shadow:  ;
+  --tw-backdrop-blur:  ;
+  --tw-backdrop-brightness:  ;
+  --tw-backdrop-contrast:  ;
+  --tw-backdrop-grayscale:  ;
+  --tw-backdrop-hue-rotate:  ;
+  --tw-backdrop-invert:  ;
+  --tw-backdrop-opacity:  ;
+  --tw-backdrop-saturate:  ;
+  --tw-backdrop-sepia:  ;
+}
+
+::-webkit-backdrop {
+  --tw-border-spacing-x: 0;
+  --tw-border-spacing-y: 0;
+  --tw-translate-x: 0;
+  --tw-translate-y: 0;
+  --tw-rotate: 0;
+  --tw-skew-x: 0;
+  --tw-skew-y: 0;
+  --tw-scale-x: 1;
+  --tw-scale-y: 1;
+  --tw-pan-x:  ;
+  --tw-pan-y:  ;
+  --tw-pinch-zoom:  ;
+  --tw-scroll-snap-strictness: proximity;
+  --tw-ordinal:  ;
+  --tw-slashed-zero:  ;
+  --tw-numeric-figure:  ;
+  --tw-numeric-spacing:  ;
+  --tw-numeric-fraction:  ;
+  --tw-ring-inset:  ;
+  --tw-ring-offset-width: 0px;
+  --tw-ring-offset-color: #fff;
+  --tw-ring-color: rgb(59 130 246 / 0.5);
+  --tw-ring-offset-shadow: 0 0 #0000;
+  --tw-ring-shadow: 0 0 #0000;
+  --tw-shadow: 0 0 #0000;
+  --tw-shadow-colored: 0 0 #0000;
+  --tw-blur:  ;
+  --tw-brightness:  ;
+  --tw-contrast:  ;
+  --tw-grayscale:  ;
+  --tw-hue-rotate:  ;
+  --tw-invert:  ;
+  --tw-saturate:  ;
+  --tw-sepia:  ;
+  --tw-drop-shadow:  ;
+  --tw-backdrop-blur:  ;
+  --tw-backdrop-brightness:  ;
+  --tw-backdrop-contrast:  ;
+  --tw-backdrop-grayscale:  ;
+  --tw-backdrop-hue-rotate:  ;
+  --tw-backdrop-invert:  ;
+  --tw-backdrop-opacity:  ;
+  --tw-backdrop-saturate:  ;
+  --tw-backdrop-sepia:  ;
+}
+
+::backdrop {
+  --tw-border-spacing-x: 0;
+  --tw-border-spacing-y: 0;
+  --tw-translate-x: 0;
+  --tw-translate-y: 0;
+  --tw-rotate: 0;
+  --tw-skew-x: 0;
+  --tw-skew-y: 0;
+  --tw-scale-x: 1;
+  --tw-scale-y: 1;
+  --tw-pan-x:  ;
+  --tw-pan-y:  ;
+  --tw-pinch-zoom:  ;
+  --tw-scroll-snap-strictness: proximity;
+  --tw-ordinal:  ;
+  --tw-slashed-zero:  ;
+  --tw-numeric-figure:  ;
+  --tw-numeric-spacing:  ;
+  --tw-numeric-fraction:  ;
+  --tw-ring-inset:  ;
+  --tw-ring-offset-width: 0px;
+  --tw-ring-offset-color: #fff;
+  --tw-ring-color: rgb(59 130 246 / 0.5);
+  --tw-ring-offset-shadow: 0 0 #0000;
+  --tw-ring-shadow: 0 0 #0000;
+  --tw-shadow: 0 0 #0000;
+  --tw-shadow-colored: 0 0 #0000;
+  --tw-blur:  ;
+  --tw-brightness:  ;
+  --tw-contrast:  ;
+  --tw-grayscale:  ;
+  --tw-hue-rotate:  ;
+  --tw-invert:  ;
+  --tw-saturate:  ;
+  --tw-sepia:  ;
+  --tw-drop-shadow:  ;
+  --tw-backdrop-blur:  ;
+  --tw-backdrop-brightness:  ;
+  --tw-backdrop-contrast:  ;
+  --tw-backdrop-grayscale:  ;
+  --tw-backdrop-hue-rotate:  ;
+  --tw-backdrop-invert:  ;
+  --tw-backdrop-opacity:  ;
+  --tw-backdrop-saturate:  ;
+  --tw-backdrop-sepia:  ;
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border-width: 0;
+}
+
+.fixed {
+  position: fixed;
+}
+
+.absolute {
+  position: absolute;
+}
+
+.relative {
+  position: relative;
+}
+
+.inset-0 {
+  top: 0px;
+  right: 0px;
+  bottom: 0px;
+  left: 0px;
+}
+
+.z-10 {
+  z-index: 10;
+}
+
+.mx-auto {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.mt-10 {
+  margin-top: 2.5rem;
+}
+
+.mt-1 {
+  margin-top: 0.25rem;
+}
+
+.mt-8 {
+  margin-top: 2rem;
+}
+
+.mt-2 {
+  margin-top: 0.5rem;
+}
+
+.mt-5 {
+  margin-top: 1.25rem;
+}
+
+.mt-3 {
+  margin-top: 0.75rem;
+}
+
+.block {
+  display: block;
+}
+
+.inline {
+  display: inline;
+}
+
+.flex {
+  display: flex;
+}
+
+.inline-flex {
+  display: inline-flex;
+}
+
+.table {
+  display: table;
+}
+
+.grid {
+  display: grid;
+}
+
+.hidden {
+  display: none;
+}
+
+.h-screen {
+  height: 100vh;
+}
+
+.h-16 {
+  height: 4rem;
+}
+
+.h-10 {
+  height: 2.5rem;
+}
+
+.h-8 {
+  height: 2rem;
+}
+
+.h-6 {
+  height: 1.5rem;
+}
+
+.h-5 {
+  height: 1.25rem;
+}
+
+.h-4 {
+  height: 1rem;
+}
+
+.h-12 {
+  height: 3rem;
+}
+
+.min-h-full {
+  min-height: 100%;
+}
+
+.w-96 {
+  width: 24rem;
+}
+
+.w-full {
+  width: 100%;
+}
+
+.w-6 {
+  width: 1.5rem;
+}
+
+.w-5 {
+  width: 1.25rem;
+}
+
+.w-4 {
+  width: 1rem;
+}
+
+.w-12 {
+  width: 3rem;
+}
+
+.min-w-0 {
+  min-width: 0px;
+}
+
+.flex-1 {
+  flex: 1 1 0%;
+}
+
+.flex-shrink-0 {
+  flex-shrink: 0;
+}
+
+.transform {
+  transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
+}
+
+.flex-col {
+  flex-direction: column;
+}
+
+.flex-wrap {
+  flex-wrap: wrap;
+}
+
+.items-end {
+  align-items: flex-end;
+}
+
+.items-center {
+  align-items: center;
+}
+
+.justify-center {
+  justify-content: center;
+}
+
+.justify-between {
+  justify-content: space-between;
+}
+
+.space-x-4 > :not([hidden]) ~ :not([hidden]) {
+  --tw-space-x-reverse: 0;
+  margin-right: calc(1rem * var(--tw-space-x-reverse));
+  margin-left: calc(1rem * calc(1 - var(--tw-space-x-reverse)));
+}
+
+.space-y-1 > :not([hidden]) ~ :not([hidden]) {
+  --tw-space-y-reverse: 0;
+  margin-top: calc(0.25rem * calc(1 - var(--tw-space-y-reverse)));
+  margin-bottom: calc(0.25rem * var(--tw-space-y-reverse));
+}
+
+.space-y-4 > :not([hidden]) ~ :not([hidden]) {
+  --tw-space-y-reverse: 0;
+  margin-top: calc(1rem * calc(1 - var(--tw-space-y-reverse)));
+  margin-bottom: calc(1rem * var(--tw-space-y-reverse));
+}
+
+.space-x-2 > :not([hidden]) ~ :not([hidden]) {
+  --tw-space-x-reverse: 0;
+  margin-right: calc(0.5rem * var(--tw-space-x-reverse));
+  margin-left: calc(0.5rem * calc(1 - var(--tw-space-x-reverse)));
+}
+
+.overflow-hidden {
+  overflow: hidden;
+}
+
+.overflow-y-auto {
+  overflow-y: auto;
+}
+
+.rounded-md {
+  border-radius: 0.375rem;
+}
+
+.rounded-lg {
+  border-radius: 0.5rem;
+}
+
+.rounded-full {
+  border-radius: 9999px;
+}
+
+.border {
+  border-width: 1px;
+}
+
+.border-gray-300 {
+  --tw-border-opacity: 1;
+  border-color: rgb(209 213 219 / var(--tw-border-opacity));
+}
+
+.border-gray-800 {
+  --tw-border-opacity: 1;
+  border-color: rgb(31 41 55 / var(--tw-border-opacity));
+}
+
+.border-transparent {
+  border-color: transparent;
+}
+
+.bg-gray-700 {
+  --tw-bg-opacity: 1;
+  background-color: rgb(55 65 81 / var(--tw-bg-opacity));
+}
+
+.bg-gray-800 {
+  --tw-bg-opacity: 1;
+  background-color: rgb(31 41 55 / var(--tw-bg-opacity));
+}
+
+.bg-blue-600 {
+  --tw-bg-opacity: 1;
+  background-color: rgb(37 99 235 / var(--tw-bg-opacity));
+}
+
+.bg-white {
+  --tw-bg-opacity: 1;
+  background-color: rgb(255 255 255 / var(--tw-bg-opacity));
+}
+
+.bg-gray-500 {
+  --tw-bg-opacity: 1;
+  background-color: rgb(107 114 128 / var(--tw-bg-opacity));
+}
+
+.bg-slate-200 {
+  --tw-bg-opacity: 1;
+  background-color: rgb(241 245 249 / var(--tw-bg-opacity));
+}
+
+.bg-blue-100 {
+  --tw-bg-opacity: 1;
+  background-color: rgb(219 234 254 / var(--tw-bg-opacity));
+}
+
+.bg-gray-50 {
+  --tw-bg-opacity: 1;
+  background-color: rgb(249 250 251 / var(--tw-bg-opacity));
+}
+
+.bg-opacity-75 {
+  --tw-bg-opacity: 0.75;
+}
+
+.p-1 {
+  padding: 0.25rem;
+}
+
+.p-2 {
+  padding: 0.5rem;
+}
+
+.p-4 {
+  padding: 1rem;
+}
+
+.px-8 {
+  padding-left: 2rem;
+  padding-right: 2rem;
+}
+
+.px-4 {
+  padding-left: 1rem;
+  padding-right: 1rem;
+}
+
+.px-3 {
+  padding-left: 0.75rem;
+  padding-right: 0.75rem;
+}
+
+.py-2 {
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+}
+
+.px-2 {
+  padding-left: 0.5rem;
+  padding-right: 0.5rem;
+}
+
+.py-4 {
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+}
+
+.py-1 {
+  padding-top: 0.25rem;
+  padding-bottom: 0.25rem;
+}
+
+.py-3 {
+  padding-top: 0.75rem;
+  padding-bottom: 0.75rem;
+}
+
+.pt-2 {
+  padding-top: 0.5rem;
+}
+
+.pt-4 {
+  padding-top: 1rem;
+}
+
+.pb-0 {
+  padding-bottom: 0;
+}
+
+.pb-1 {
+  padding-bottom: 0.25rem;
+}
+
+.pb-3 {
+  padding-bottom: 0.75rem;
+}
+
+.pt-5 {
+  padding-top: 1.25rem;
+}
+
+.pb-4 {
+  padding-bottom: 1rem;
+}
+
+.text-left {
+  text-align: left;
+}
+
+.text-center {
+  text-align: center;
+}
+
+.text-2xl {
+  font-size: 1.5rem;
+  line-height: 2rem;
+}
+
+.text-sm {
+  font-size: 0.875rem;
+  line-height: 1.25rem;
+}
+
+.text-xl {
+  font-size: 1.25rem;
+  line-height: 1.75rem;
+}
+
+.text-base {
+  font-size: 1rem;
+  line-height: 1.5rem;
+}
+
+.text-lg {
+  font-size: 1.125rem;
+  line-height: 1.75rem;
+}
+
+.font-medium {
+  font-weight: 500;
+}
+
+.font-bold {
+  font-weight: 700;
+}
+
+.capitalize {
+  text-transform: capitalize;
+}
+
+.leading-7 {
+  line-height: 1.75rem;
+}
+
+.leading-6 {
+  line-height: 1.5rem;
+}
+
+.text-white {
+  --tw-text-opacity: 1;
+  color: rgb(255 255 255 / var(--tw-text-opacity));
+}
+
+.text-gray-100 {
+  --tw-text-opacity: 1;
+  color: rgb(243 244 246 / var(--tw-text-opacity));
+}
+
+.text-gray-900 {
+  --tw-text-opacity: 1;
+  color: rgb(17 24 39 / var(--tw-text-opacity));
+}
+
+.text-gray-500 {
+  --tw-text-opacity: 1;
+  color: rgb(107 114 128 / var(--tw-text-opacity));
+}
+
+.text-black {
+  --tw-text-opacity: 1;
+  color: rgb(0 0 0 / var(--tw-text-opacity));
+}
+
+.text-blue-600 {
+  --tw-text-opacity: 1;
+  color: rgb(37 99 235 / var(--tw-text-opacity));
+}
+
+.text-gray-700 {
+  --tw-text-opacity: 1;
+  color: rgb(55 65 81 / var(--tw-text-opacity));
+}
+
+.shadow-sm {
+  --tw-shadow: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+  --tw-shadow-colored: 0 1px 2px 0 var(--tw-shadow-color);
+  box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
+}
+
+.shadow-xl {
+  --tw-shadow: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
+  --tw-shadow-colored: 0 20px 25px -5px var(--tw-shadow-color), 0 8px 10px -6px var(--tw-shadow-color);
+  box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
+}
+
+.transition-opacity {
+  transition-property: opacity;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-duration: 150ms;
+}
+
+.transition-all {
+  transition-property: all;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-duration: 150ms;
+}
+
+.hover\:bg-blue-800:hover {
+  --tw-bg-opacity: 1;
+  background-color: rgb(30 64 175 / var(--tw-bg-opacity));
+}
+
+.hover\:bg-gray-100:hover {
+  --tw-bg-opacity: 1;
+  background-color: rgb(243 244 246 / var(--tw-bg-opacity));
+}
+
+.hover\:bg-blue-700:hover {
+  --tw-bg-opacity: 1;
+  background-color: rgb(29 78 216 / var(--tw-bg-opacity));
+}
+
+.hover\:bg-gray-50:hover {
+  --tw-bg-opacity: 1;
+  background-color: rgb(249 250 251 / var(--tw-bg-opacity));
+}
+
+.hover\:text-white:hover {
+  --tw-text-opacity: 1;
+  color: rgb(255 255 255 / var(--tw-text-opacity));
+}
+
+.focus\:border-blue-500:focus {
+  --tw-border-opacity: 1;
+  border-color: rgb(59 130 246 / var(--tw-border-opacity));
+}
+
+.focus\:outline-none:focus {
+  outline: 2px solid transparent;
+  outline-offset: 2px;
+}
+
+.focus\:ring-2:focus {
+  --tw-ring-offset-shadow: var(--tw-ring-inset) 0 0 0 var(--tw-ring-offset-width) var(--tw-ring-offset-color);
+  --tw-ring-shadow: var(--tw-ring-inset) 0 0 0 calc(2px + var(--tw-ring-offset-width)) var(--tw-ring-color);
+  box-shadow: var(--tw-ring-offset-shadow), var(--tw-ring-shadow), var(--tw-shadow, 0 0 #0000);
+}
+
+.focus\:ring-inset:focus {
+  --tw-ring-inset: inset;
+}
+
+.focus\:ring-blue-500:focus {
+  --tw-ring-opacity: 1;
+  --tw-ring-color: rgb(59 130 246 / var(--tw-ring-opacity));
+}
+
+.focus\:ring-white:focus {
+  --tw-ring-opacity: 1;
+  --tw-ring-color: rgb(255 255 255 / var(--tw-ring-opacity));
+}
+
+.focus\:ring-gray-500:focus {
+  --tw-ring-opacity: 1;
+  --tw-ring-color: rgb(107 114 128 / var(--tw-ring-opacity));
+}
+
+.focus\:ring-offset-2:focus {
+  --tw-ring-offset-width: 2px;
+}
+
+@media (min-width: 640px) {
+  .sm\:my-8 {
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+  }
+
+  .sm\:mx-0 {
+    margin-left: 0px;
+    margin-right: 0px;
+  }
+
+  .sm\:mt-0 {
+    margin-top: 0px;
+  }
+
+  .sm\:ml-3 {
+    margin-left: 0.75rem;
+  }
+
+  .sm\:ml-4 {
+    margin-left: 1rem;
+  }
+
+  .sm\:block {
+    display: block;
+  }
+
+  .sm\:flex {
+    display: flex;
+  }
+
+  .sm\:hidden {
+    display: none;
+  }
+
+  .sm\:h-10 {
+    height: 2.5rem;
+  }
+
+  .sm\:w-full {
+    width: 100%;
+  }
+
+  .sm\:w-10 {
+    width: 2.5rem;
+  }
+
+  .sm\:w-auto {
+    width: auto;
+  }
+
+  .sm\:max-w-lg {
+    max-width: 32rem;
+  }
+
+  .sm\:flex-row-reverse {
+    flex-direction: row-reverse;
+  }
+
+  .sm\:items-start {
+    align-items: flex-start;
+  }
+
+  .sm\:items-center {
+    align-items: center;
+  }
+
+  .sm\:items-stretch {
+    align-items: stretch;
+  }
+
+  .sm\:justify-start {
+    justify-content: flex-start;
+  }
+
+  .sm\:space-x-6 > :not([hidden]) ~ :not([hidden]) {
+    --tw-space-x-reverse: 0;
+    margin-right: calc(1.5rem * var(--tw-space-x-reverse));
+    margin-left: calc(1.5rem * calc(1 - var(--tw-space-x-reverse)));
+  }
+
+  .sm\:truncate {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  .sm\:p-0 {
+    padding: 0px;
+  }
+
+  .sm\:p-6 {
+    padding: 1.5rem;
+  }
+
+  .sm\:px-6 {
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+  }
+
+  .sm\:pb-4 {
+    padding-bottom: 1rem;
+  }
+
+  .sm\:text-left {
+    text-align: left;
+  }
+
+  .sm\:text-sm {
+    font-size: 0.875rem;
+    line-height: 1.25rem;
+  }
+
+  .sm\:text-3xl {
+    font-size: 1.875rem;
+    line-height: 2.25rem;
+  }
+
+  .sm\:mr-6 {
+    margin-right: 1.5rem; /* 24px */
+  }
+}
+
+@media (min-width: 768px) {
+  .md\:inline {
+    display: inline;
+  }
+
+  .md\:flex {
+    display: flex;
+  }
+
+  .md\:hidden {
+    display: none;
+  }
+
+  .md\:justify-start {
+    justify-content: flex-start;
+  }
+
+  .md\:text-left {
+    text-align: left;
+  }
+
+  .md\:block {
+    display: block;
+  }
+
+  .md\:inline-block {
+    display: inline-block;
+  }
+}
+
+@media (min-width: 1024px) {
+  .lg\:mt-0 {
+    margin-top: 0px;
+  }
+
+  .lg\:ml-4 {
+    margin-left: 1rem;
+  }
+
+  .lg\:flex {
+    display: flex;
+  }
+
+  .lg\:items-center {
+    align-items: center;
+  }
+
+  .lg\:justify-between {
+    justify-content: space-between;
+  }
+
+  .lg\:inline {
+    display: inline;
+  }
+
+  .lg\:hidden {
+    display: none;
+  }
+
+  .lg\:justify-start {
+    justify-content: flex-start;
+  }
+
+  .lg\:text-left {
+    text-align: left;
+  }
+
+  .lg\:block {
+    display:block;
+  }
+}
+
+.overflow-scroll {
+  overflow: scroll;
+}
+
+.absolute {
+  position: absolute;
+}
+
+.px-10 {
+  padding-left: 2.5rem; /* 40px */
+  padding-right: 2.5rem; /* 40px */
+}
+
+.py-10 {
+  padding-top: 2.5rem; /* 40px */
+  padding-bottom: 2.5rem; /* 40px */
+}
+
+.mb-4 {
+  margin-bottom: 1rem; /* 16px */
+}
+
+.mt-4 {
+  margin-top: 1rem; /* 16px */
+}
+
+.mr-6 {
+  margin-right: 1.5rem; /* 24px */
+}
+
+.mr-4 {
+  margin-right: 1rem; /* 24px */
+}
+
+.rounded {
+  border-radius: 0.25rem; /* 4px */
+}
+
+
+            /*----------------------------------------*/
+/***** Stylesheet for the hover index *****/
+/*----------------------------------------*/
+
+/* Place rectangles in a grid */
+.grid {
+  position: relative; /* each rectangle is dependant of others */
+  margin: 0 auto;
+  padding: 1em 0 4em; /* padding top horizontal bottom */
+  display: grid; /* type of boxes generated */
+  max-width: 1000px;
+  list-style: none; /* no item */
+  text-align: center;
+  column-gap: 2em; /* space between columns */
+}
+
+/* Figure inside grid */
+.grid figure {
+  position: relative;
+  float: left;
+  overflow: hidden; /* overflow not taken into account */
+  margin: 10px 1%;
+  width: 100%; /* 100% of the column */
+  background: #3085a3;
+  text-align: center;
+  cursor: pointer; /* change shape cursor */
+  border-radius: 30px; /* rounded corners */
+}
+
+/* Each figure contains an img */
+.grid figure img {
+  position: relative;
+  display: block;
+  max-height: 100%;
+  max-width: 100%;
+  opacity: 1; /* over a dummy image */
+}
+
+/* Style caption (title of benchmarks) */
+.grid figure figcaption {
+  padding: 0.1em; /* add space */
+  color: #fff; /* writing color */
+  text-transform: uppercase; /* title in uppercase */
+  font-size: 1.25em;
+}
+
+/* Small sized screens */
+@media (min-width: 600px) {
+  .grid {
+    grid-template-columns: repeat(2, 1fr);
+  } /* split in 2 columns */
+}
+
+/* Larger sized screens */
+@media (min-width: 900px) {
+  .grid {
+    grid-template-columns: repeat(3, 1fr);
+  } /* split in 3 columns */
+}
+
+/* Position and style of <a> elements (the View more) */
+.grid figure figcaption,
+.grid figure figcaption > a {
+  position: absolute;
+  top: 0em; /* no space offset top */
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+/* only to figcaption <a> tag */
+.grid figure figcaption > a {
+  z-index: 1000; /* top level */
+  text-indent: 0%;
+  white-space: nowrap;
+  font-size: 0; /* do not display the View more */
+  opacity: 1;
+}
+
+/* h2: Problem name (LASSO, ...) */
+.grid figure h2 {
+  word-spacing: 0em;
+  font-weight: 300;
+}
+
+.grid figure h2 span {
+  font-weight: 800;
+}
+
+.grid figure h2,
+.grid figure p {
+  margin: 0;
+}
+
+/* p: number of files */
+.grid figure p {
+  letter-spacing: 1px;
+  font-size: 70%;
+}
+
+/* Default color */
+figure.effect-ruby {
+  background-color: #2c3e50;
+}
+
+/* Color when hovering */
+figure.effect-ruby:hover {
+  background-color: DodgerBlue;
+}
+
+/* Define transformation */
+figure.effect-ruby img {
+  opacity: 0;
+  transition: opacity 0.35s, transform 0.35s; /* transition time */
+  transform: scale(1.15); /* size transformation -> bigger */
+}
+
+/* transformation with hovering */
+figure.effect-ruby:hover img {
+  opacity: 0;
+  transform: scale(1); /* size -> smaller */
+}
+
+/* Apply effect to problem name */
+figure.effect-ruby h2 {
+  margin-top: 0;
+  transition: transform 0.35s; /* transition time */
+  transform: translate3d(0, calc((150px - 100%)/2), 0);
+  font-size: 1.25em; /* default font */
+}
+
+figure.effect-ruby p {
+  margin: 2em -1em 2em -1em;
+  padding: 1em 0em 1em 0em;
+  border: 1px solid #fff; /* create sort of white frame */
+  opacity: 0;
+  transition: opacity 0.35s, transform 0.35s;
+  transform: translate3d(0, 20px, 0) scale(1.1); /* size transform */
+}
+
+/* Transform title on hover */
+figure.effect-ruby:hover h2 {
+  -webkit-transform: translate3d(0, 0, 0);
+  transform: translate3d(0px, 10px, 0) scale(0.8); /* smaller */
+  margin-top: 0em; /* move up */
+}
+
+figure.effect-ruby:hover p {
+  opacity: 1;
+  transform: translate3d(0, 0, 0) scale(1.2); /* placement in box */
+}
+
+/* Button for inside the table with system informations */
+.buttoncent {
+  border: none;
+  background-color: transparent;
+  outline: none;
+  text-align: center;
+}
+
+/* button for inside text
+ in benchmark page above graph for system informations */
+.buttonleft {
+  border: none;
+  background-color: transparent;
+  outline: none;
+  text-align: center;
+  margin-left: 1px; /* add margin */
+}
+
+
+/* switch slider with an adaptable height.
+Change switch-height and switch-padding, and all the dimensions are adjusted.
+See https://stackoverflow.com/questions/70590125/how-to-change-the-size-of-a-css-toggle-switch */
+* {
+  --switch-height: 20px;
+  --switch-padding: 2px;
+  --switch-width: calc((var(--switch-height) * 2) - var(--switch-padding));
+  --slider-height: calc(var(--switch-height) - var(--switch-padding));
+  --slider-on: calc(var(--switch-height) - var(--switch-padding));
+}
+
+.switch {
+  position: relative;
+  display: inline-block;
+  width: var(--switch-width);
+  height: var(--switch-height);
+}
+
+.switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ccc;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+.slider:before {
+  content: "";
+  position: absolute;
+  height: var(--slider-height);
+  width: var(--slider-height);
+  left: calc(var(--switch-padding) / 2);
+  bottom: calc(var(--switch-padding) / 2);
+  background-color: white;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+input:checked+.slider {
+  background-color: #2196F3;
+}
+
+input:focus+.slider {
+  box-shadow: 0 0 1px #2196F3;
+}
+
+input:checked+.slider:before {
+  -webkit-transform: translateX(var(--slider-on));
+  -ms-transform: translateX(var(--slider-on));
+  transform: translateX(var(--slider-on));
+}
+
+.slider.round {
+  border-radius: var(--slider-height);
+}
+
+.slider.round:before {
+  border-radius: 50%;
+}
+
+/*----------------------------------------*/
+/***** Brand text animated *****/
+/*----------------------------------------*/
+
+
+.ml11 .text-wrapper {
+  position: relative;
+  display: inline-block;
+  padding-top: 0.1em;
+  padding-right: 0.05em;
+  padding-bottom: 0.15em;
+}
+
+.ml11 .line {
+  opacity: 0;
+  position: absolute;
+  left: 0;
+  height: 100%;
+  width: 3px;
+  background-color: #fff;
+  transform-origin: 0 50%;
+}
+
+.ml11 .line1 { 
+  top: 0; 
+  left: 0;
+}
+
+.ml11 .letter {
+  display: inline-block;
+  line-height: 1em;
+  font-family: 'Kanit', sans-serif;
+}
+
+/*----------------------------------------*/
+/***** Plot *****/
+/*----------------------------------------*/
+
+@media (min-width: 768px) {
+  #unique_plot {
+    flex: 1 1 0%;
+  }
+}
+
+@media (max-width: 767px) {
+  #unique_plot {
+    flex: initial;
+    flex-shrink: 0;
+  }
+}
+
+.js-plotly-plot .plotly .modebar {
+  transform: translateX(-30px);
+}
+
+/*----------------------------------------*/
+/***** Custom legend *****/
+/*----------------------------------------*/
+
+#plot_legend {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+
+#legend_title {
+  font-size: 1.2rem;
+  font-weight: bold;
+}
+
+#legend_help {
+  font-size: 0.75rem;
+  color: #475569;
+}
+
+.space-r-2 > * {
+  margin-right: 0.5rem;
+}
+
+        </style>
+    </head>
+    <body>
+        <!-- Two main columns container -->
+        <div class="flex">
+            <!-- Left column on big screen (plot selectors) -->
+            <div class="hidden lg:flex flex-col w-96 bg-gray-700">
+                <div class="h-screen">
+                    <div class="px-8 h-16 flex items-center bg-gray-800">
+                        <h1 class="ml11">
+                            <span class="text-wrapper">
+                                <span class="line line1"></span>
+                                <span id="brand" class="hidden letters text-2xl text-white">Benchopt</span>
+                            </span>
+                        </h1>
+                    </div>
+                    <div class="flex-1 flex flex-col">
+                        <div class="mt-10 px-8">
+                            <label for="dataset_selector" class="block text-sm font-medium text-white">Dataset:</label>
+                            <div class="mt-1 rounded-md shadow-sm">
+                                <select id="dataset_selector" class="focus:ring-blue-500 focus:border-blue-500 block w-full h-8 px-4 sm:text-sm border-gray-300 rounded-md" onchange="setState({dataset: this.value})">
+                                    <option value="leukemia">leukemia</option>
+                                    <option value="libsvm[dataset=news20.binary]">libsvm[dataset=news20.binary]</option>
+                                    <option value="libsvm[dataset=rcv1.binary]">libsvm[dataset=rcv1.binary]</option>
+                                    <option value="simulated[X_density=1.0,n_features=5000,n_samples=500]">simulated[X_density=1.0,n_features=5000,n_samples=500]</option>
+                                    <option value="simulated[X_density=0.5,n_features=5000,n_samples=500]">simulated[X_density=0.5,n_features=5000,n_samples=500]</option>
+                                    <option value="simulated[X_density=0.2,n_features=5000,n_samples=500]">simulated[X_density=0.2,n_features=5000,n_samples=500]</option>
+                                    <option value="simulated[X_density=1.0,n_features=2000,n_samples=500]">simulated[X_density=1.0,n_features=2000,n_samples=500]</option>
+                                    <option value="simulated[X_density=0.5,n_features=2000,n_samples=500]">simulated[X_density=0.5,n_features=2000,n_samples=500]</option>
+                                    <option value="simulated[X_density=0.2,n_features=2000,n_samples=500]">simulated[X_density=0.2,n_features=2000,n_samples=500]</option>
+                                    <option value="simulated[X_density=1.0,n_features=5000,n_samples=3000]">simulated[X_density=1.0,n_features=5000,n_samples=3000]</option>
+                                    <option value="simulated[X_density=0.5,n_features=5000,n_samples=3000]">simulated[X_density=0.5,n_features=5000,n_samples=3000]</option>
+                                    <option value="simulated[X_density=0.2,n_features=5000,n_samples=3000]">simulated[X_density=0.2,n_features=5000,n_samples=3000]</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="mt-8 px-8">
+                            <label for="objective_selector" class="block text-sm font-medium text-white">Objective:</label>
+                            <div class="mt-1 rounded-md shadow-sm">
+                                <select id="objective_selector" class="focus:ring-blue-500 focus:border-blue-500 block w-full h-8 px-4 sm:text-sm border-gray-300 rounded-md" onchange="setState({objective: this.value})">
+                                    <option value="Sparse Logistic Regression[reg=1]">Sparse Logistic Regression[reg=1]</option>
+                                    <option value="Sparse Logistic Regression[reg=0.1]">Sparse Logistic Regression[reg=0.1]</option>
+                                    <option value="Sparse Logistic Regression[reg=0.01]">Sparse Logistic Regression[reg=0.01]</option>
+                                    <option value="Sparse Logistic Regression[reg=0.005]">Sparse Logistic Regression[reg=0.005]</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="mt-8 px-8">
+                            <label for="objective_column" class="block text-sm font-medium text-white">Objective column</label>
+                            <div class="mt-1 rounded-md shadow-sm">
+                                <select id="objective_column" class="focus:ring-blue-500 focus:border-blue-500 block w-full h-8 px-4 sm:text-sm border-gray-300 rounded-md" onchange="setState({objective_column: this.value})">
+                                    <option value="objective_value">objective_value</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="mt-8 px-8">
+                            <label for="plot_kind" class="block text-sm font-medium text-white">Chart type</label>
+                            <div class="mt-1 rounded-md shadow-sm">
+                                <select id="plot_kind" class="focus:ring-blue-500 focus:border-blue-500 block w-full h-8 px-4 sm:text-sm border-gray-300 rounded-md" onchange="setState({plot_kind: this.value})">
+                                    <option value="objective_curve">objective_curve</option>
+                                    <option value="suboptimality_curve">suboptimality_curve</option>
+                                    <option value="relative_suboptimality_curve">relative_suboptimality_curve</option>
+                                    <option value="bar_chart">bar_chart</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div id="scale-form-group" class="mt-8 px-8">
+                            <label for="change_scaling" class="block text-sm font-medium text-white">Scale</label>
+                            <div class="mt-1 rounded-md shadow-sm">
+                                <select id="change_scaling" class="focus:ring-blue-500 focus:border-blue-500 block w-full h-8 px-4 sm:text-sm border-gray-300 rounded-md" onchange="setState({scale: this.value})">
+                                    <option value="semilog-y">semilog-y</option>
+                                    <option value="semilog-x">semilog-x</option>
+                                    <option value="loglog">loglog</option>
+                                    <option value="linear">linear</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="flex items-center justify-between mt-8 px-8">
+                            <div class="block text-sm font-medium text-white">Quantiles</div>
+                            <label class="block switch">
+                                <input id="change_shades" type="checkbox" checked onchange="setState({with_quantiles: this.checked})">
+                                <span class="slider round"></span>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Right column on big screen and main column on mobile -->
+            <div class="w-full flex flex-col overflow-scroll">
+                <!-- Main menu -->
+                <nav class="bg-blue-600">
+                    <div class="px-4">
+                        <div class="relative flex items-center justify-between h-16">
+                            <!-- mobile navbar -->
+                            <div class="absolute inset-0 flex items-center justify-between lg:hidden">
+                                <!-- Mobile menu brand text -->
+                                <span class="text-white text-xl">
+                                    Benchopt
+                                </span>
+                                <!-- Mobile menu button-->
+                                <button type="button" id="btn-main-menu" class="inline-flex items-center justify-center p-2 rounded-md text-white focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white" aria-controls="mobile-menu" aria-expanded="false">
+                                    <span class="sr-only">Open main menu</span>
+                                    <svg class="block h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" aria-hidden="true">
+                                        <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16" />
+                                    </svg>
+                                    <svg class="hidden h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" aria-hidden="true">
+                                        <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+                                    </svg>
+                                </button>
+                            </div>
+                            <!-- big screen navbar-->
+                            <div class="flex-1 flex items-center justify-center lg:items-stretch lg:justify-start">
+                                <div class="hidden lg:block">
+                                    <div class="flex space-x-4">
+                                        <a href="benchmark_logreg_l1.html" class="text-gray-100 hover:bg-blue-800 hover:text-white px-3 py-2 rounded-md text-sm font-medium" aria-current="page">Home</a>
+                                        <a href="https://benchopt.github.io" class="text-gray-100 hover:bg-blue-800 hover:text-white px-3 py-2 rounded-md text-sm font-medium" target="_blank">Website</a>
+                                        <a href="https://github.com/benchopt/benchopt" class="text-gray-100 hover:bg-blue-800 hover:text-white px-3 py-2 rounded-md text-sm font-medium" target="_blank">Github</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Mobile menu, show/hide based on menu state. -->
+                    <div class="hidden" id="mobile-menu">
+                        <div class="px-2 pt-2 pb-3 space-y-1">
+                            <a href="benchmark_logreg_l1.html" class="text-white block px-3 py-2 rounded-md text-base font-medium" aria-current="page">Home</a>
+                            <a href="https://benchopt.github.io" class="text-white block px-3 py-2 rounded-md text-base font-medium">Website</a>
+                            <a href="https://github.com/benchopt/benchopt" class="text-white block px-3 py-2 rounded-md text-base font-medium">Github</a>
+                            <a href="benchopt_run_2022-10-04_08h33m33.parquet" class="text-white block px-3 py-2 rounded-md text-base font-medium">Download data</a>
+                        </div>
+                    </div>
+                </nav>
+
+                <!-- Plot menu for mobiles -->
+                <nav class="lg:hidden bg-gray-700">
+                    <div class="px-4" id="btn-plot-config">
+                        <div class="relative flex items-center justify-between h-10">
+                            <div class="absolute inset-0 flex items-center justify-between lg:hidden">
+                                <!-- Mobile menu button-->
+                                <span class="flex items-center space-x-2 text-white">
+                                    <span>Change plot</span>
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                                        <path stroke-linecap="round" stroke-linejoin="round" d="M13 5l7 7-7 7M5 5l7 7-7 7" />
+                                    </svg>
+                                </span>
+                                <button type="button" class="inline-flex items-center justify-center p-2 rounded-md text-white focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white" aria-controls="mobile-menu" aria-expanded="false">
+                                    <span class="sr-only">Open main menu</span>
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                                        <path stroke-linecap="round" stroke-linejoin="round" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z" />
+                                        <path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                                    </svg>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Mobile menu, show/hide based on menu state. -->
+                    <div class="hidden" id="mobile-plot-form">
+                        <div class="px-2 pt-2 pb-3 space-y-4">
+                            <div class="px-8">
+                                <label for="dataset_selector" class="block text-sm font-medium text-white">Dataset:</label>
+                                <div class="mt-1 rounded-md shadow-sm">
+                                    <select id="dataset_selector" class="focus:ring-blue-500 focus:border-blue-500 block w-full h-8 px-4 sm:text-sm border-gray-300 rounded-md" onchange="setState({dataset: this.value})">
+                                        <option value="leukemia">leukemia</option>
+                                        <option value="libsvm[dataset=news20.binary]">libsvm[dataset=news20.binary]</option>
+                                        <option value="libsvm[dataset=rcv1.binary]">libsvm[dataset=rcv1.binary]</option>
+                                        <option value="simulated[X_density=1.0,n_features=5000,n_samples=500]">simulated[X_density=1.0,n_features=5000,n_samples=500]</option>
+                                        <option value="simulated[X_density=0.5,n_features=5000,n_samples=500]">simulated[X_density=0.5,n_features=5000,n_samples=500]</option>
+                                        <option value="simulated[X_density=0.2,n_features=5000,n_samples=500]">simulated[X_density=0.2,n_features=5000,n_samples=500]</option>
+                                        <option value="simulated[X_density=1.0,n_features=2000,n_samples=500]">simulated[X_density=1.0,n_features=2000,n_samples=500]</option>
+                                        <option value="simulated[X_density=0.5,n_features=2000,n_samples=500]">simulated[X_density=0.5,n_features=2000,n_samples=500]</option>
+                                        <option value="simulated[X_density=0.2,n_features=2000,n_samples=500]">simulated[X_density=0.2,n_features=2000,n_samples=500]</option>
+                                        <option value="simulated[X_density=1.0,n_features=5000,n_samples=3000]">simulated[X_density=1.0,n_features=5000,n_samples=3000]</option>
+                                        <option value="simulated[X_density=0.5,n_features=5000,n_samples=3000]">simulated[X_density=0.5,n_features=5000,n_samples=3000]</option>
+                                        <option value="simulated[X_density=0.2,n_features=5000,n_samples=3000]">simulated[X_density=0.2,n_features=5000,n_samples=3000]</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="px-8">
+                                <label for="objective_selector" class="block text-sm font-medium text-white">Objective:</label>
+                                <div class="mt-1 rounded-md shadow-sm">
+                                    <select id="objective_selector" class="focus:ring-blue-500 focus:border-blue-500 block w-full h-8 px-4 sm:text-sm border-gray-300 rounded-md" onchange="setState({objective: this.value})">
+                                        <option value="Sparse Logistic Regression[reg=1]">Sparse Logistic Regression[reg=1]</option>
+                                        <option value="Sparse Logistic Regression[reg=0.1]">Sparse Logistic Regression[reg=0.1]</option>
+                                        <option value="Sparse Logistic Regression[reg=0.01]">Sparse Logistic Regression[reg=0.01]</option>
+                                        <option value="Sparse Logistic Regression[reg=0.005]">Sparse Logistic Regression[reg=0.005]</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="px-8">
+                                <label for="objective_column" class="block text-sm font-medium text-white">Objective column</label>
+                                <div class="mt-1 rounded-md shadow-sm">
+                                    <select id="objective_column" class="focus:ring-blue-500 focus:border-blue-500 block w-full h-8 px-4 sm:text-sm border-gray-300 rounded-md" onchange="setState({objective_column: this.value})">
+                                        <option value="objective_value">objective_value</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="px-8">
+                                <label for="plot_kind" class="block text-sm font-medium text-white">Chart type</label>
+                                <div class="mt-1 rounded-md shadow-sm">
+                                    <select id="plot_kind" class="focus:ring-blue-500 focus:border-blue-500 block w-full h-8 px-4 sm:text-sm border-gray-300 rounded-md" onchange="setState({plot_kind: this.value})">
+                                        <option value="objective_curve">objective_curve</option>
+                                        <option value="suboptimality_curve">suboptimality_curve</option>
+                                        <option value="relative_suboptimality_curve">relative_suboptimality_curve</option>
+                                        <option value="bar_chart">bar_chart</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div id="scale-form-group" class="px-8">
+                                <label for="change_scaling" class="block text-sm font-medium text-white">Scale</label>
+                                <div class="mt-1 rounded-md shadow-sm">
+                                    <select id="change_scaling" class="focus:ring-blue-500 focus:border-blue-500 block w-full h-8 px-4 sm:text-sm border-gray-300 rounded-md" onchange="setState({scale: this.value})">
+                                        <option value="semilog-y">semilog-y</option>
+                                        <option value="semilog-x">semilog-x</option>
+                                        <option value="loglog">loglog</option>
+                                        <option value="linear">linear</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="flex items-center justify-between mt-8 px-8">
+                                <div class="block text-sm font-medium text-white">Quantiles</div>
+                                <label class="block switch">
+                                    <input id="change_shades" type="checkbox" checked onchange="setState({with_quantiles: this.checked})">
+                                    <span class="slider round"></span>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                </nav>
+    
+                <!-- Page heading -->
+                <div class="px-4 pt-4 pb-1 md:py-4 lg:flex lg:items-center lg:justify-between">
+                    <div class="flex-1 min-w-0">
+                        <h2 class="w-full text-center lg:text-left text-2xl font-bold leading-7 text-gray-900 sm:text-3xl sm:truncate">Result on logreg l1 benchmark</h2>
+                        <div class="mt-1 flex flex-wrap justify-center lg:justify-start sm:mt-0">
+                            <div class="mt-2 sm:mr-6 hidden md:flex items-center text-sm text-gray-500">
+                                <span class="font-bold"></span>CPU : 4
+                            </div>
+                            <div class="mt-2 sm:mr-6 hidden md:flex items-center text-sm text-gray-500">
+                                <span class="font-bold"></span>RAM (GB) : 8
+                            </div>
+                            <div class="mt-2">
+                                <button class="inline-flex items-center px-2 py-1 space-x-2 border border-gray-500 rounded-md shadow-sm text-sm font-medium text-gray-500 bg-white hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-500" onclick="document.getElementById('system-modal').style.display = 'block'">
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                                        <path stroke-linecap="round" stroke-linejoin="round" d="M12 9v3m0 0v3m0-3h3m-3 0H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z" />
+                                    </svg>
+                                    <span class="hidden md:inline-block text-sm">Show more</span>
+                                    <span class="md:hidden text-sm">Show system information</span>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="hidden lg:flex mt-5 lg:mt-0 lg:ml-4">
+                        <span>
+                            <a href="benchopt_run_2022-10-04_08h33m33.parquet" class="inline-flex items-center px-4 py-2 space-x-2 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
+                                </svg>
+                                <span class="hidden lg:inline">Download data</span>
+                            </a>
+                        </span>
+                    </div>
+                </div>
+    
+                <!-- Plot -->
+                <div id="unique_plot"></div>
+                <div id="legend_container" class="py-10 bg-slate-200">
+                    <div id="legend_title" class="px-10 mb-4">
+                        Solvers <span id="legend_help">(Click on a solver to hide it or double click to hide all the others)</span>
+                    </div>
+                    <div id="plot_legend" class="px-10 space-r-2"></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- System information modal -->
+        <div id="system-modal" class="hidden relative z-10" aria-labelledby="modal-title" role="dialog" aria-modal="true">
+            <div class="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity"></div>
+            <div class="fixed z-10 inset-0 overflow-y-auto">
+                <div class="flex items-end sm:items-center justify-center min-h-full p-4 text-center sm:p-0">
+                    <div class="relative bg-white rounded-lg text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:max-w-lg sm:w-full">
+                        <div class="bg-white px-4 pt-5 pb-4 sm:p-6 sm:pb-4">
+                            <div class="sm:flex sm:items-start">
+                                <div class="mx-auto flex-shrink-0 flex items-center justify-center h-12 w-12 rounded-full bg-blue-100 sm:mx-0 sm:h-10 sm:w-10">
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-blue-600" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                                        <path stroke-linecap="round" stroke-linejoin="round" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                                    </svg>
+                                </div>
+                                <div class="mt-3 text-center sm:mt-0 sm:ml-4 sm:text-left">
+                                    <h3 class="text-lg leading-6 font-medium text-gray-900" id="modal-title">System information</h3>
+                                    <div class="mt-2">
+                                        <ul class="text-sm text-gray-500">
+                                            <li> <b>CPU</b>: 4 </li>
+                                            <li> <b>RAM (GB)</b>: 8 </li>
+                                            <li> <b>platform</b>: Linux5.4.0-1090-azure-x86_64 </li>
+                                            <li> <b>processor</b>: Intel(R) Xeon(R) Platinum 8272CL CPU @ 2.60GHz </li>
+                                            
+                                            <li> <b>numpy</b>: 1.23.3  </li>
+                                            
+                                            <li> <b>scipy</b>: 1.9.1 </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="bg-gray-50 px-4 py-3 sm:px-6 sm:flex sm:flex-row-reverse">
+                            <button type="button" class="mt-3 w-full inline-flex justify-center rounded-md border border-gray-300 shadow-sm px-4 py-2 bg-white text-base font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 sm:mt-0 sm:ml-3 sm:w-auto sm:text-sm" onclick="document.getElementById('system-modal').style.display = 'none'">Close</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <script src="https://cdn.plot.ly/plotly-2.12.1.min.js"></script>
+        <!-- Used for the brand animation -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/2.0.2/anime.min.js"></script>
+        <!-- Define the brand animation -->
+        <script>
+            var textWrapper = document.querySelector('.ml11 .letters');
+            textWrapper.innerHTML = textWrapper.textContent.replace(/([^\x00-\x80]|\w)/g, "<span class='letter'>$&</span>");
+
+            window.addEventListener('load', () => {
+                document.getElementById('brand').style.display = 'inline';
+
+                anime.timeline({loop: false})
+                    .add({
+                        targets: '.ml11 .line',
+                        scaleY: [0,1],
+                        opacity: [0.5,1],
+                        easing: "easeOutExpo",
+                        duration: 700
+                    })
+                    .add({
+                        targets: '.ml11 .line',
+                        translateX: [0, document.querySelector('.ml11 .letters').getBoundingClientRect().width + 10],
+                        easing: "easeOutExpo",
+                        duration: 700,
+                        delay: 100
+                    }).add({
+                        targets: '.ml11 .letter',
+                        opacity: [0,1],
+                        easing: "easeOutExpo",
+                        duration: 600,
+                        offset: '-=775',
+                        delay: (el, i) => 34 * (i+1)
+                    }).add({
+                        targets: '.ml11 .line',
+                        scaleY: [1,0],
+                        opacity: [1,0.5],
+                        easing: "easeOutExpo",
+                        duration: 700,
+                        translateX: [document.querySelector('.ml11 .letters').getBoundingClientRect().width + 10, document.querySelector('.ml11 .letters').getBoundingClientRect().width + 10],
+                    });
+            });
+        </script>
+        <!-- Manage plot -->
+        <script>
+            window.data = {"leukemia": {"Sparse Logistic Regression[reg=1]": {"objective_value": {"solvers": {"blitz": {"scatter": {"x": [0.00018770299993775552, 0.003752041000097961, 0.0019848210004056455, 0.0021136229997864575], "y": [46.49112766707822, 46.49112766707822, 46.49112766707822, 46.49112766707822], "q1": [0.00018770299993775552, 0.003752041000097961, 0.0019848210004056455, 0.0021136229997864575], "q9": [0.00018770299993775552, 0.003752041000097961, 0.0019848210004056455, 0.0021136229997864575]}, "bar": {"y": 0.00018770299993775552, "times": [0.00018770299993775552], "text": ""}, "color": "rgba(31.0, 119.0, 180.0, 1.0)", "marker": 1}, "PN-skglm": {"scatter": {"x": [4.060100036440417e-05, 0.0013461149997056054, 0.002363125999636395, 0.0028393309999046323, 0.004291547999855538, 0.004594551000081992], "y": [49.90659700031606, 46.494450975619515, 46.49112769717576, 46.4911276670782, 46.4911276670782, 46.4911276670782], "q1": [4.060100036440417e-05, 0.0013461149997056054, 0.002363125999636395, 0.0028393309999046323, 0.004291547999855538, 0.004594551000081992], "q9": [4.060100036440417e-05, 0.0013461149997056054, 0.002363125999636395, 0.0028393309999046323, 0.004291547999855538, 0.004594551000081992]}, "bar": {"y": 0.002363125999636395, "times": [0.002363125999636395], "text": ""}, "color": "rgba(174.0, 199.0, 232.0, 1.0)", "marker": 2}}, "transformers": {"c_star": 46.4911276669782, "max_f_0": 46.494450975619515}}}, "Sparse Logistic Regression[reg=0.1]": {"objective_value": {"solvers": {"blitz": {"scatter": {"x": [0.00020050300008733757, 0.004170745999999781, 0.004576849999921251, 0.006726974000230257, 0.006934877000276174, 0.007840387000214832, 0.012582739000208676, 0.009049900000263733, 0.010608716999740864], "y": [46.49112766707822, 27.836757204698564, 27.601078805753957, 27.5962339017358, 27.596121186373423, 27.596106460561284, 27.596106448525873, 27.59610644852436, 27.59610644852436], "q1": [0.00020050300008733757, 0.004170745999999781, 0.004576849999921251, 0.006726974000230257, 0.006934877000276174, 0.007840387000214832, 0.012582739000208676, 0.009049900000263733, 0.010608716999740864], "q9": [0.00020050300008733757, 0.004170745999999781, 0.004576849999921251, 0.006726974000230257, 0.006934877000276174, 0.007840387000214832, 0.012582739000208676, 0.009049900000263733, 0.010608716999740864]}, "bar": {"y": 0.007840387000214832, "times": [0.007840387000214832], "text": ""}, "color": "rgba(31.0, 119.0, 180.0, 1.0)", "marker": 1}, "PN-skglm": {"scatter": {"x": [5.6800000038492726e-05, 0.0035137390000272717, 0.003045134000331018, 0.004173146000084671, 0.0053847590002078505, 0.007247879999795259, 0.015349969999988389, 0.040231543999652786, 0.04693561799967938, 0.039086531000066316], "y": [49.90659700031606, 46.459423147211645, 29.050882724702028, 27.640623547177086, 27.597322472590566, 27.596107246580694, 27.59610644854549, 27.59610644852436, 27.59610644852436, 27.59610644852436], "q1": [5.6800000038492726e-05, 0.0035137390000272717, 0.003045134000331018, 0.004173146000084671, 0.0053847590002078505, 0.007247879999795259, 0.015349969999988389, 0.040231543999652786, 0.04693561799967938, 0.039086531000066316], "q9": [5.6800000038492726e-05, 0.0035137390000272717, 0.003045134000331018, 0.004173146000084671, 0.0053847590002078505, 0.007247879999795259, 0.015349969999988389, 0.040231543999652786, 0.04693561799967938, 0.039086531000066316]}, "bar": {"y": 0.007247879999795259, "times": [0.007247879999795259], "text": ""}, "color": "rgba(174.0, 199.0, 232.0, 1.0)", "marker": 2}}, "transformers": {"c_star": 27.59610644842436, "max_f_0": 46.459423147211645}}}, "Sparse Logistic Regression[reg=0.01]": {"objective_value": {"solvers": {"blitz": {"scatter": {"x": [0.00019770199969570967, 0.005167756999981066, 0.026427391999732208, 0.023208256000089023, 0.054905705000237504, 0.06897336100018947, 0.05510010699981649, 0.09384733500019138, 0.07894237100026658, 0.08616885099991123], "y": [46.49112766707822, 6.690421552038927, 6.3825038600825055, 6.379513884198318, 6.379273774621922, 6.37925208294702, 6.379251973179568, 6.379251973113191, 6.379251973113161, 6.379251973113164], "q1": [0.00019770199969570967, 0.005167756999981066, 0.026427391999732208, 0.023208256000089023, 0.054905705000237504, 0.06897336100018947, 0.05510010699981649, 0.09384733500019138, 0.07894237100026658, 0.08616885099991123], "q9": [0.00019770199969570967, 0.005167756999981066, 0.026427391999732208, 0.023208256000089023, 0.054905705000237504, 0.06897336100018947, 0.05510010699981649, 0.09384733500019138, 0.07894237100026658, 0.08616885099991123]}, "bar": {"y": 0.06897336100018947, "times": [0.06897336100018947], "text": ""}, "color": "rgba(31.0, 119.0, 180.0, 1.0)", "marker": 1}, "PN-skglm": {"scatter": {"x": [6.35010001133196e-05, 0.001390515999901254, 0.0031795349996173172, 0.00398434399994585, 0.006002665999858436, 0.009403303999988566, 0.0365863030001492, 0.08193580400029532, 0.20238813300011316, 0.2719028999999864, 0.23656152700004895], "y": [49.90659700031606, 42.59985040903658, 14.994079624748665, 13.728403847503358, 8.441685711550114, 6.476460305478945, 6.379318168824645, 6.379251974109712, 6.379251973113158, 6.379251973113156, 6.379251973113156], "q1": [6.35010001133196e-05, 0.001390515999901254, 0.0031795349996173172, 0.00398434399994585, 0.006002665999858436, 0.009403303999988566, 0.0365863030001492, 0.08193580400029532, 0.20238813300011316, 0.2719028999999864, 0.23656152700004895], "q9": [6.35010001133196e-05, 0.001390515999901254, 0.0031795349996173172, 0.00398434399994585, 0.006002665999858436, 0.009403303999988566, 0.0365863030001492, 0.08193580400029532, 0.20238813300011316, 0.2719028999999864, 0.23656152700004895]}, "bar": {"y": 0.08193580400029532, "times": [0.08193580400029532], "text": ""}, "color": "rgba(174.0, 199.0, 232.0, 1.0)", "marker": 2}}, "transformers": {"c_star": 6.379251973013156, "max_f_0": 42.59985040903658}}}, "Sparse Logistic Regression[reg=0.005]": {"objective_value": {"solvers": {"blitz": {"scatter": {"x": [0.00020660200016209274, 0.005108156999995117, 0.03824632500027292, 0.05922315799989519, 0.08211921399970379, 0.07653555099977893, 0.07739196100010304, 0.10079232199996113, 0.09991471200009983, 0.09945500599997104], "y": [46.49112766707822, 3.9851192047084547, 3.7369126714595584, 3.73475676852024, 3.734568398852332, 3.7345584323830376, 3.7345583926538994, 3.7345583926187644, 3.734558392618764, 3.734558392618764], "q1": [0.00020660200016209274, 0.005108156999995117, 0.03824632500027292, 0.05922315799989519, 0.08211921399970379, 0.07653555099977893, 0.07739196100010304, 0.10079232199996113, 0.09991471200009983, 0.09945500599997104], "q9": [0.00020660200016209274, 0.005108156999995117, 0.03824632500027292, 0.05922315799989519, 0.08211921399970379, 0.07653555099977893, 0.07739196100010304, 0.10079232199996113, 0.09991471200009983, 0.09945500599997104]}, "bar": {"y": 0.07653555099977893, "times": [0.07653555099977893], "text": ""}, "color": "rgba(31.0, 119.0, 180.0, 1.0)", "marker": 1}, "PN-skglm": {"scatter": {"x": [5.030000011174707e-05, 0.0012216139998599829, 0.0024801269996714836, 0.004380747999675805, 0.00585316500018962, 0.009590406999905099, 0.07119599199995719, 0.07237750499962203, 0.07967308700017384, 0.1849600579998878, 0.19233163999979297], "y": [49.90659700031606, 42.44792513581167, 14.002261721790608, 9.973479095030303, 5.437855224492592, 3.7995543283429893, 3.7345723649812754, 3.7345583927701216, 3.7345583926187595, 3.7345583926187604, 3.7345583926187604], "q1": [5.030000011174707e-05, 0.0012216139998599829, 0.0024801269996714836, 0.004380747999675805, 0.00585316500018962, 0.009590406999905099, 0.07119599199995719, 0.07237750499962203, 0.07967308700017384, 0.1849600579998878, 0.19233163999979297], "q9": [5.030000011174707e-05, 0.0012216139998599829, 0.0024801269996714836, 0.004380747999675805, 0.00585316500018962, 0.009590406999905099, 0.07119599199995719, 0.07237750499962203, 0.07967308700017384, 0.1849600579998878, 0.19233163999979297]}, "bar": {"y": 0.07237750499962203, "times": [0.07237750499962203], "text": ""}, "color": "rgba(174.0, 199.0, 232.0, 1.0)", "marker": 2}}, "transformers": {"c_star": 3.7345583925187595, "max_f_0": 42.44792513581167}}}}, "libsvm[dataset=news20.binary]": {"Sparse Logistic Regression[reg=1]": {"objective_value": {"solvers": {"blitz": {"scatter": {"x": [0.016090273999907367, 0.25552895999999237, 0.2389427819998673, 0.2583424909998939], "y": [13860.170922456664, 13860.170922456662, 13860.170922456662, 13860.170922456662], "q1": [0.016090273999907367, 0.25552895999999237, 0.2389427819998673, 0.2583424909998939], "q9": [0.016090273999907367, 0.25552895999999237, 0.2389427819998673, 0.2583424909998939]}, "bar": {"y": 0.016090273999907367, "times": [0.016090273999907367], "text": ""}, "color": "rgba(31.0, 119.0, 180.0, 1.0)", "marker": 1}, "PN-skglm": {"scatter": {"x": [0.0036578389999704086, 0.08008186500001102, 0.1260360619999119, 0.15471177100016575], "y": [13860.171022476665, 13860.170922456664, 13860.170922456664, 13860.170922456664], "q1": [0.0036578389999704086, 0.08008186500001102, 0.1260360619999119, 0.15471177100016575], "q9": [0.0036578389999704086, 0.08008186500001102, 0.1260360619999119, 0.15471177100016575]}, "bar": {"y": 0.08008186500001102, "times": [0.08008186500001102], "text": ""}, "color": "rgba(174.0, 199.0, 232.0, 1.0)", "marker": 2}}, "transformers": {"c_star": 13860.170922456562, "max_f_0": 13860.170922456664}}}, "Sparse Logistic Regression[reg=0.1]": {"objective_value": {"solvers": {"blitz": {"scatter": {"x": [0.011143620999973791, 0.2780855050000355, 0.6649068840001746, 0.9528337880001345, 1.3082514389998323, 1.4218398009998054, 1.5960692369999379, 1.9995454219997555, 1.9464706500002649], "y": [13860.170922456664, 11376.148531096273, 10862.556841595446, 10775.807296282735, 10773.29299248102, 10773.276211674693, 10773.276209760781, 10773.276209757489, 10773.276209757492], "q1": [0.011143620999973791, 0.2780855050000355, 0.6649068840001746, 0.9528337880001345, 1.3082514389998323, 1.4218398009998054, 1.5960692369999379, 1.9995454219997555, 1.9464706500002649], "q9": [0.011143620999973791, 0.2780855050000355, 0.6649068840001746, 0.9528337880001345, 1.3082514389998323, 1.4218398009998054, 1.5960692369999379, 1.9995454219997555, 1.9464706500002649]}, "bar": {"y": 1.5960692369999379, "times": [1.5960692369999379], "text": ""}, "color": "rgba(31.0, 119.0, 180.0, 1.0)", "marker": 1}, "PN-skglm": {"scatter": {"x": [0.007105979999778356, 0.19040125900028215, 0.2626667790000283, 0.35842116399999213, 0.7707963409998229, 0.763825861999976, 1.624117017000117, 2.3048449959997015, 3.056800485000167, 3.351258431000133], "y": [13860.171022476665, 12170.005340620923, 11209.98929589833, 10800.870339910758, 10780.027781958164, 10773.291355923116, 10773.276306935773, 10773.276209944184, 10773.276209757507, 10773.276209757507], "q1": [0.007105979999778356, 0.19040125900028215, 0.2626667790000283, 0.35842116399999213, 0.7707963409998229, 0.763825861999976, 1.624117017000117, 2.3048449959997015, 3.056800485000167, 3.351258431000133], "q9": [0.007105979999778356, 0.19040125900028215, 0.2626667790000283, 0.35842116399999213, 0.7707963409998229, 0.763825861999976, 1.624117017000117, 2.3048449959997015, 3.056800485000167, 3.351258431000133]}, "bar": {"y": 2.3048449959997015, "times": [2.3048449959997015], "text": ""}, "color": "rgba(174.0, 199.0, 232.0, 1.0)", "marker": 2}}, "transformers": {"c_star": 10773.276209757389, "max_f_0": 12170.005340620923}}}, "Sparse Logistic Regression[reg=0.01]": {"objective_value": {"solvers": {"blitz": {"scatter": {"x": [0.011069026999848575, 0.3612779420000152, 1.0250090519998594, 1.6228722070000003, 2.2958819240002413, 4.160591707000094, 6.000832079000247, 6.9617924009999115, 7.333140349000132, 6.9340189360000295], "y": [13860.170922456664, 9856.554503791238, 7473.328834631524, 6274.11417924883, 5663.637598742644, 5448.629106014773, 5447.381918358687, 5447.381914633535, 5447.381914633519, 5447.38191463353], "q1": [0.011069026999848575, 0.3612779420000152, 1.0250090519998594, 1.6228722070000003, 2.2958819240002413, 4.160591707000094, 6.000832079000247, 6.9617924009999115, 7.333140349000132, 6.9340189360000295], "q9": [0.011069026999848575, 0.3612779420000152, 1.0250090519998594, 1.6228722070000003, 2.2958819240002413, 4.160591707000094, 6.000832079000247, 6.9617924009999115, 7.333140349000132, 6.9340189360000295]}, "bar": {"y": 6.9617924009999115, "times": [6.9617924009999115], "text": ""}, "color": "rgba(31.0, 119.0, 180.0, 1.0)", "marker": 1}, "PN-skglm": {"scatter": {"x": [0.012217435999900772, 0.11649310099983268, 0.3172785449996809, 0.36968583099996977, 0.672440521000226, 1.518694812999911, 3.057305647999783, 7.716142927999954, 7.571673254999951, 7.969074436000028], "y": [13860.171022476665, 11663.083385941682, 9710.88535224945, 7664.646055133481, 6195.156816272511, 5454.607129631931, 5447.382310262591, 5447.381914633719, 5447.381914633719, 5447.381914633719], "q1": [0.012217435999900772, 0.11649310099983268, 0.3172785449996809, 0.36968583099996977, 0.672440521000226, 1.518694812999911, 3.057305647999783, 7.716142927999954, 7.571673254999951, 7.969074436000028], "q9": [0.012217435999900772, 0.11649310099983268, 0.3172785449996809, 0.36968583099996977, 0.672440521000226, 1.518694812999911, 3.057305647999783, 7.716142927999954, 7.571673254999951, 7.969074436000028]}, "bar": {"y": 7.716142927999954, "times": [7.716142927999954], "text": ""}, "color": "rgba(174.0, 199.0, 232.0, 1.0)", "marker": 2}}, "transformers": {"c_star": 5447.381914633419, "max_f_0": 11663.083385941682}}}, "Sparse Logistic Regression[reg=0.005]": {"objective_value": {"solvers": {"blitz": {"scatter": {"x": [0.010849920999589813, 0.44649627699982375, 1.1388102920000165, 1.9159750449998683, 2.758227179000187, 4.570414135999727, 7.310286022999662, 9.523018011000204, 10.869244642000012, 11.289683331000106], "y": [13860.170922456664, 9737.72997947319, 7077.988800718229, 5593.503612429581, 4662.355719486038, 4159.587609032163, 4135.98659934358, 4135.986500400832, 4135.986500398876, 4135.986500398877], "q1": [0.010849920999589813, 0.44649627699982375, 1.1388102920000165, 1.9159750449998683, 2.758227179000187, 4.570414135999727, 7.310286022999662, 9.523018011000204, 10.869244642000012, 11.289683331000106], "q9": [0.010849920999589813, 0.44649627699982375, 1.1388102920000165, 1.9159750449998683, 2.758227179000187, 4.570414135999727, 7.310286022999662, 9.523018011000204, 10.869244642000012, 11.289683331000106]}, "bar": {"y": 9.523018011000204, "times": [9.523018011000204], "text": ""}, "color": "rgba(31.0, 119.0, 180.0, 1.0)", "marker": 1}, "PN-skglm": {"scatter": {"x": [0.017487593999703677, 0.11578088199985359, 0.29380455199998323, 0.3611159970000699, 0.6676997919998939, 1.208649381000214, 3.5264617410002757, 9.503969576000145, 10.023610544000348, 9.943776393999997], "y": [13860.171022476665, 11633.344403433899, 9604.817320649154, 7389.076825774557, 5629.858994566221, 4212.738288832067, 4135.988905989995, 4135.986500399617, 4135.986500399617, 4135.986500399617], "q1": [0.017487593999703677, 0.11578088199985359, 0.29380455199998323, 0.3611159970000699, 0.6676997919998939, 1.208649381000214, 3.5264617410002757, 9.503969576000145, 10.023610544000348, 9.943776393999997], "q9": [0.017487593999703677, 0.11578088199985359, 0.29380455199998323, 0.3611159970000699, 0.6676997919998939, 1.208649381000214, 3.5264617410002757, 9.503969576000145, 10.023610544000348, 9.943776393999997]}, "bar": {"y": 9.503969576000145, "times": [9.503969576000145], "text": ""}, "color": "rgba(174.0, 199.0, 232.0, 1.0)", "marker": 2}}, "transformers": {"c_star": 4135.986500398776, "max_f_0": 11633.344403433899}}}}, "libsvm[dataset=rcv1.binary]": {"Sparse Logistic Regression[reg=1]": {"objective_value": {"solvers": {"blitz": {"scatter": {"x": [0.004306147000079363, 0.022892352999861032, 0.017750997000348434, 0.019088411999746313], "y": [14017.155882987889, 14017.155882987889, 14017.155882987889, 14017.155882987889], "q1": [0.004306147000079363, 0.022892352999861032, 0.017750997000348434, 0.019088411999746313], "q9": [0.004306147000079363, 0.022892352999861032, 0.017750997000348434, 0.019088411999746313]}, "bar": {"y": 0.004306147000079363, "times": [0.004306147000079363], "text": ""}, "color": "rgba(31.0, 119.0, 180.0, 1.0)", "marker": 1}, "PN-skglm": {"scatter": {"x": [0.00010860099973797332, 0.008591594999870722, 0.020865632000095502, 0.024938775999999052, 0.023067255999649205], "y": [14030.685228894412, 14017.155885673032, 14017.155882987885, 14017.155882987885, 14017.155882987885], "q1": [0.00010860099973797332, 0.008591594999870722, 0.020865632000095502, 0.024938775999999052, 0.023067255999649205], "q9": [0.00010860099973797332, 0.008591594999870722, 0.020865632000095502, 0.024938775999999052, 0.023067255999649205]}, "bar": {"y": 0.020865632000095502, "times": [0.020865632000095502], "text": ""}, "color": "rgba(174.0, 199.0, 232.0, 1.0)", "marker": 2}}, "transformers": {"c_star": 14017.155882987785, "max_f_0": 14017.155885673032}}}, "Sparse Logistic Regression[reg=0.1]": {"objective_value": {"solvers": {"blitz": {"scatter": {"x": [0.006674574000044231, 0.03963563900015288, 0.0427013739999893, 0.055687718000172026, 0.09122901099999581, 0.1363688659998843, 0.17942979999997988, 0.15263681599981282], "y": [14017.155882987889, 10593.653569091344, 10389.003802202467, 10374.795051252497, 10369.717758104183, 10369.71775419581, 10369.71775419581, 10369.71775419581], "q1": [0.006674574000044231, 0.03963563900015288, 0.0427013739999893, 0.055687718000172026, 0.09122901099999581, 0.1363688659998843, 0.17942979999997988, 0.15263681599981282], "q9": [0.006674574000044231, 0.03963563900015288, 0.0427013739999893, 0.055687718000172026, 0.09122901099999581, 0.1363688659998843, 0.17942979999997988, 0.15263681599981282]}, "bar": {"y": 0.1363688659998843, "times": [0.1363688659998843], "text": ""}, "color": "rgba(31.0, 119.0, 180.0, 1.0)", "marker": 1}, "PN-skglm": {"scatter": {"x": [0.00016460100005133427, 0.01159422299997459, 0.025104966000071727, 0.06330557100000078, 0.0965818230001787, 0.12556652900002518, 0.20250374499983081, 0.17719457599969246, 0.1625330209999447], "y": [14030.685228894412, 11978.045037819174, 10879.668775347622, 10412.752970806261, 10369.872890997833, 10369.717754200696, 10369.717754195812, 10369.717754195812, 10369.717754195812], "q1": [0.00016460100005133427, 0.01159422299997459, 0.025104966000071727, 0.06330557100000078, 0.0965818230001787, 0.12556652900002518, 0.20250374499983081, 0.17719457599969246, 0.1625330209999447], "q9": [0.00016460100005133427, 0.01159422299997459, 0.025104966000071727, 0.06330557100000078, 0.0965818230001787, 0.12556652900002518, 0.20250374499983081, 0.17719457599969246, 0.1625330209999447]}, "bar": {"y": 0.12556652900002518, "times": [0.12556652900002518], "text": ""}, "color": "rgba(174.0, 199.0, 232.0, 1.0)", "marker": 2}}, "transformers": {"c_star": 10369.71775419571, "max_f_0": 11978.045037819174}}}, "Sparse Logistic Regression[reg=0.01]": {"objective_value": {"solvers": {"blitz": {"scatter": {"x": [0.007086875000368309, 0.06965833699996438, 0.07914753800014296, 0.10012965999976586, 0.1572536650000984, 0.2842279100000269, 0.48820936999982223, 0.586727713000073, 0.6704663999998957], "y": [14017.155882987889, 6767.481509889849, 4831.81359475008, 4465.193871398675, 4385.214484278341, 4378.269533856695, 4378.264458952608, 4378.264458934152, 4378.264458934148], "q1": [0.007086875000368309, 0.06965833699996438, 0.07914753800014296, 0.10012965999976586, 0.1572536650000984, 0.2842279100000269, 0.48820936999982223, 0.586727713000073, 0.6704663999998957], "q9": [0.007086875000368309, 0.06965833699996438, 0.07914753800014296, 0.10012965999976586, 0.1572536650000984, 0.2842279100000269, 0.48820936999982223, 0.586727713000073, 0.6704663999998957]}, "bar": {"y": 0.48820936999982223, "times": [0.48820936999982223], "text": ""}, "color": "rgba(31.0, 119.0, 180.0, 1.0)", "marker": 1}, "PN-skglm": {"scatter": {"x": [0.00020030199993925635, 0.011760524999772315, 0.02450635900004272, 0.0874499259998629, 0.22605619299974933, 0.2897863690000122, 0.6194204590001391, 1.3283656660000815, 1.3592372319999413, 1.2161891529999593], "y": [14030.685228894412, 11130.228336808617, 8682.944561598051, 6167.70387596925, 5105.481389376771, 4383.536351926798, 4378.2672588617825, 4378.264458934289, 4378.264458934289, 4378.264458934289], "q1": [0.00020030199993925635, 0.011760524999772315, 0.02450635900004272, 0.0874499259998629, 0.22605619299974933, 0.2897863690000122, 0.6194204590001391, 1.3283656660000815, 1.3592372319999413, 1.2161891529999593], "q9": [0.00020030199993925635, 0.011760524999772315, 0.02450635900004272, 0.0874499259998629, 0.22605619299974933, 0.2897863690000122, 0.6194204590001391, 1.3283656660000815, 1.3592372319999413, 1.2161891529999593]}, "bar": {"y": 1.3283656660000815, "times": [1.3283656660000815], "text": ""}, "color": "rgba(174.0, 199.0, 232.0, 1.0)", "marker": 2}}, "transformers": {"c_star": 4378.264458934048, "max_f_0": 11130.228336808617}}}, "Sparse Logistic Regression[reg=0.005]": {"objective_value": {"solvers": {"blitz": {"scatter": {"x": [0.004209747000004427, 0.07418161999976292, 0.09254242400038493, 0.13716311700000006, 0.3595793770000455, 0.39876391100006003, 0.6486936760002209, 0.9481585870003073, 0.9697183260000202, 0.9353180460002477], "y": [14017.155882987889, 6348.855809032172, 4075.7087190789957, 3505.79840993235, 3311.876509687863, 3266.5911283435344, 3266.472399124188, 3266.472392285618, 3266.4723922856065, 3266.472392285609], "q1": [0.004209747000004427, 0.07418161999976292, 0.09254242400038493, 0.13716311700000006, 0.3595793770000455, 0.39876391100006003, 0.6486936760002209, 0.9481585870003073, 0.9697183260000202, 0.9353180460002477], "q9": [0.004209747000004427, 0.07418161999976292, 0.09254242400038493, 0.13716311700000006, 0.3595793770000455, 0.39876391100006003, 0.6486936760002209, 0.9481585870003073, 0.9697183260000202, 0.9353180460002477]}, "bar": {"y": 0.9481585870003073, "times": [0.9481585870003073], "text": ""}, "color": "rgba(31.0, 119.0, 180.0, 1.0)", "marker": 1}, "PN-skglm": {"scatter": {"x": [0.00017240200031665154, 0.017436792999887984, 0.044205488999978115, 0.13286207000010108, 0.24451190399986444, 0.306187995000073, 0.7191510730003756, 1.323266169999897, 1.4182561220000025, 1.0882165640000494], "y": [14030.685228894412, 11075.451725691182, 8529.908294687282, 5774.50368392459, 4481.007992108763, 3297.4822649408006, 3266.473677057079, 3266.4723970580726, 3266.4723922856333, 3266.4723922856333], "q1": [0.00017240200031665154, 0.017436792999887984, 0.044205488999978115, 0.13286207000010108, 0.24451190399986444, 0.306187995000073, 0.7191510730003756, 1.323266169999897, 1.4182561220000025, 1.0882165640000494], "q9": [0.00017240200031665154, 0.017436792999887984, 0.044205488999978115, 0.13286207000010108, 0.24451190399986444, 0.306187995000073, 0.7191510730003756, 1.323266169999897, 1.4182561220000025, 1.0882165640000494]}, "bar": {"y": 1.4182561220000025, "times": [1.4182561220000025], "text": ""}, "color": "rgba(174.0, 199.0, 232.0, 1.0)", "marker": 2}}, "transformers": {"c_star": 3266.4723922855064, "max_f_0": 11075.451725691182}}}}, "simulated[X_density=1.0,n_features=5000,n_samples=500]": {"Sparse Logistic Regression[reg=1]": {"objective_value": {"solvers": {"blitz": {"scatter": {"x": [0.0002516029999242164, 0.02148773800035997, 0.007224980000046344, 0.006269469000017125], "y": [346.3175465714005, 346.3175465714005, 346.3175465714005, 346.3175465714005], "q1": [0.0002516029999242164, 0.02148773800035997, 0.007224980000046344, 0.006269469000017125], "q9": [0.0002516029999242164, 0.02148773800035997, 0.007224980000046344, 0.006269469000017125]}, "bar": {"y": 0.0002516029999242164, "times": [0.0002516029999242164], "text": ""}, "color": "rgba(31.0, 119.0, 180.0, 1.0)", "marker": 1}, "PN-skglm": {"scatter": {"x": [4.800099986823625e-05, 0.0027969309999207326, 0.005769663999672048, 0.00864819600019473, 0.007964188000187278], "y": [346.5735902799727, 346.3175466012327, 346.3175465714004, 346.3175465714004, 346.3175465714004], "q1": [4.800099986823625e-05, 0.0027969309999207326, 0.005769663999672048, 0.00864819600019473, 0.007964188000187278], "q9": [4.800099986823625e-05, 0.0027969309999207326, 0.005769663999672048, 0.00864819600019473, 0.007964188000187278]}, "bar": {"y": 0.0027969309999207326, "times": [0.0027969309999207326], "text": ""}, "color": "rgba(174.0, 199.0, 232.0, 1.0)", "marker": 2}}, "transformers": {"c_star": 346.3175465713004, "max_f_0": 346.3175466012327}}}, "Sparse Logistic Regression[reg=0.1]": {"objective_value": {"solvers": {"blitz": {"scatter": {"x": [0.00023680300000705756, 0.016433081999821297, 0.018454803999702563, 0.02839151500029402, 0.0441082889997233, 0.10170642600041901, 0.16515602699973897, 0.21903742399990733, 0.19990291200019783, 0.1899618030001875], "y": [346.3175465714005, 192.54759256884716, 152.77952464146927, 145.73000532289356, 145.2619062198263, 145.19782008277124, 145.19779888523766, 145.19779888519884, 145.19779888519878, 145.19779888519875], "q1": [0.00023680300000705756, 0.016433081999821297, 0.018454803999702563, 0.02839151500029402, 0.0441082889997233, 0.10170642600041901, 0.16515602699973897, 0.21903742399990733, 0.19990291200019783, 0.1899618030001875], "q9": [0.00023680300000705756, 0.016433081999821297, 0.018454803999702563, 0.02839151500029402, 0.0441082889997233, 0.10170642600041901, 0.16515602699973897, 0.21903742399990733, 0.19990291200019783, 0.1899618030001875]}, "bar": {"y": 0.16515602699973897, "times": [0.16515602699973897], "text": ""}, "color": "rgba(31.0, 119.0, 180.0, 1.0)", "marker": 1}, "PN-skglm": {"scatter": {"x": [5.230099986874848e-05, 0.002811531000133982, 0.005145956999967893, 0.007612983999933931, 0.012007033000372758, 0.03784501900008763, 0.11272934799990253, 0.10287063800024043, 0.12011812900027508, 0.134185885000079], "y": [346.5735902799727, 311.53710021869387, 256.31414303310777, 187.8265662966356, 153.89741189564893, 145.24113242567356, 145.19779931352736, 145.1977988852029, 145.197798885199, 145.197798885199], "q1": [5.230099986874848e-05, 0.002811531000133982, 0.005145956999967893, 0.007612983999933931, 0.012007033000372758, 0.03784501900008763, 0.11272934799990253, 0.10287063800024043, 0.12011812900027508, 0.134185885000079], "q9": [5.230099986874848e-05, 0.002811531000133982, 0.005145956999967893, 0.007612983999933931, 0.012007033000372758, 0.03784501900008763, 0.11272934799990253, 0.10287063800024043, 0.12011812900027508, 0.134185885000079]}, "bar": {"y": 0.11272934799990253, "times": [0.11272934799990253], "text": ""}, "color": "rgba(174.0, 199.0, 232.0, 1.0)", "marker": 2}}, "transformers": {"c_star": 145.19779888509876, "max_f_0": 311.53710021869387}}}, "Sparse Logistic Regression[reg=0.01]": {"objective_value": {"solvers": {"blitz": {"scatter": {"x": [0.0002760030001809355, 0.027071999999861873, 0.035932297999806906, 0.04649471499988067, 0.08128080000005866, 0.1670878489999268, 0.3427850929997476, 0.6522626179998952, 0.6269866389998242, 0.6732041500004016], "y": [346.3175465714005, 111.14633993323572, 31.82404137047312, 26.14127474767594, 25.40949880234991, 25.352978046412755, 25.352437795983157, 25.352437441254665, 25.352437441254196, 25.35243744125416], "q1": [0.0002760030001809355, 0.027071999999861873, 0.035932297999806906, 0.04649471499988067, 0.08128080000005866, 0.1670878489999268, 0.3427850929997476, 0.6522626179998952, 0.6269866389998242, 0.6732041500004016], "q9": [0.0002760030001809355, 0.027071999999861873, 0.035932297999806906, 0.04649471499988067, 0.08128080000005866, 0.1670878489999268, 0.3427850929997476, 0.6522626179998952, 0.6269866389998242, 0.6732041500004016]}, "bar": {"y": 0.3427850929997476, "times": [0.3427850929997476], "text": ""}, "color": "rgba(31.0, 119.0, 180.0, 1.0)", "marker": 1}, "PN-skglm": {"scatter": {"x": [5.940099981671665e-05, 0.003673739999612735, 0.007002578000083304, 0.009048599999914586, 0.022884154000166745, 0.07010777499999676, 0.12975303600023835, 0.18099950299983902, 0.3060265869999057, 0.3396980649999932, 0.3057987909996882], "y": [346.5735902799727, 302.83188427865616, 228.09246256476573, 127.40127582734345, 48.554582898472106, 26.07487175384651, 25.352813796451777, 25.35243754785151, 25.35243744125588, 25.35243744125588, 25.35243744125588], "q1": [5.940099981671665e-05, 0.003673739999612735, 0.007002578000083304, 0.009048599999914586, 0.022884154000166745, 0.07010777499999676, 0.12975303600023835, 0.18099950299983902, 0.3060265869999057, 0.3396980649999932, 0.3057987909996882], "q9": [5.940099981671665e-05, 0.003673739999612735, 0.007002578000083304, 0.009048599999914586, 0.022884154000166745, 0.07010777499999676, 0.12975303600023835, 0.18099950299983902, 0.3060265869999057, 0.3396980649999932, 0.3057987909996882]}, "bar": {"y": 0.18099950299983902, "times": [0.18099950299983902], "text": ""}, "color": "rgba(174.0, 199.0, 232.0, 1.0)", "marker": 2}}, "transformers": {"c_star": 25.352437441154162, "max_f_0": 302.83188427865616}}}, "Sparse Logistic Regression[reg=0.005]": {"objective_value": {"solvers": {"blitz": {"scatter": {"x": [0.00025410300031580846, 0.031503950000114855, 0.039044632999775786, 0.058876552999663545, 0.08639945799995985, 0.22076754800036724, 0.3848835680000775, 0.6836511800001972, 0.873607286999686, 0.8289020910001454], "y": [346.3175465714005, 103.42821678844835, 18.497792871051868, 14.956863329773125, 14.34133829315981, 14.287096025800324, 14.286649719165936, 14.286649673756248, 14.286649673755441, 14.286649673755448], "q1": [0.00025410300031580846, 0.031503950000114855, 0.039044632999775786, 0.058876552999663545, 0.08639945799995985, 0.22076754800036724, 0.3848835680000775, 0.6836511800001972, 0.873607286999686, 0.8289020910001454], "q9": [0.00025410300031580846, 0.031503950000114855, 0.039044632999775786, 0.058876552999663545, 0.08639945799995985, 0.22076754800036724, 0.3848835680000775, 0.6836511800001972, 0.873607286999686, 0.8289020910001454]}, "bar": {"y": 0.3848835680000775, "times": [0.3848835680000775], "text": ""}, "color": "rgba(31.0, 119.0, 180.0, 1.0)", "marker": 1}, "PN-skglm": {"scatter": {"x": [5.7900999763660366e-05, 0.0033146360001410358, 0.015097867000349652, 0.008705396000095789, 0.012622040000223933, 0.03511518999994223, 0.09833799099988028, 0.348011759000201, 0.3061213940000016, 0.3181628269999237, 0.34604283699991356], "y": [346.5735902799727, 302.31633822989994, 226.4019623963402, 123.58853021386122, 40.718439311652695, 15.067101845470017, 14.2877676587896, 14.28664994124394, 14.28664967378541, 14.28664967378541, 14.28664967378541], "q1": [5.7900999763660366e-05, 0.0033146360001410358, 0.015097867000349652, 0.008705396000095789, 0.012622040000223933, 0.03511518999994223, 0.09833799099988028, 0.348011759000201, 0.3061213940000016, 0.3181628269999237, 0.34604283699991356], "q9": [5.7900999763660366e-05, 0.0033146360001410358, 0.015097867000349652, 0.008705396000095789, 0.012622040000223933, 0.03511518999994223, 0.09833799099988028, 0.348011759000201, 0.3061213940000016, 0.3181628269999237, 0.34604283699991356]}, "bar": {"y": 0.348011759000201, "times": [0.348011759000201], "text": ""}, "color": "rgba(174.0, 199.0, 232.0, 1.0)", "marker": 2}}, "transformers": {"c_star": 14.286649673655441, "max_f_0": 302.31633822989994}}}}, "simulated[X_density=0.5,n_features=5000,n_samples=500]": {"Sparse Logistic Regression[reg=1]": {"objective_value": {"solvers": {"blitz": {"scatter": {"x": [0.0002407030001450039, 0.005618862999654084, 0.0027291299998069007, 0.0026300290001017856], "y": [346.53758941592287, 346.53758941592287, 346.53758941592287, 346.53758941592287], "q1": [0.0002407030001450039, 0.005618862999654084, 0.0027291299998069007, 0.0026300290001017856], "q9": [0.0002407030001450039, 0.005618862999654084, 0.0027291299998069007, 0.0026300290001017856]}, "bar": {"y": 0.0002407030001450039, "times": [0.0002407030001450039], "text": ""}, "color": "rgba(31.0, 119.0, 180.0, 1.0)", "marker": 1}, "PN-skglm": {"scatter": {"x": [5.490100011229515e-05, 0.0029642330000569928, 0.005977666000035242, 0.007147778999751608, 0.006462071999976615], "y": [346.5735902799727, 346.53758941600586, 346.53758941592287, 346.53758941592287, 346.53758941592287], "q1": [5.490100011229515e-05, 0.0029642330000569928, 0.005977666000035242, 0.007147778999751608, 0.006462071999976615], "q9": [5.490100011229515e-05, 0.0029642330000569928, 0.005977666000035242, 0.007147778999751608, 0.006462071999976615]}, "bar": {"y": 0.0029642330000569928, "times": [0.0029642330000569928], "text": ""}, "color": "rgba(174.0, 199.0, 232.0, 1.0)", "marker": 2}}, "transformers": {"c_star": 346.5375894158229, "max_f_0": 346.53758941600586}}}, "Sparse Logistic Regression[reg=0.1]": {"objective_value": {"solvers": {"blitz": {"scatter": {"x": [0.00022590200023842044, 0.008253090999915003, 0.011169423999945138, 0.018147001000215823, 0.028963921000013215, 0.05969606200005728, 0.10743989200000215, 0.12482428500015885, 0.1192837230000805, 0.12858882699993046], "y": [346.53758941592287, 192.7562479174687, 157.9408787965586, 151.82474194789972, 151.42964683436975, 151.41288007327466, 151.41285594465413, 151.41285594379767, 151.41285594379775, 151.41285594379792], "q1": [0.00022590200023842044, 0.008253090999915003, 0.011169423999945138, 0.018147001000215823, 0.028963921000013215, 0.05969606200005728, 0.10743989200000215, 0.12482428500015885, 0.1192837230000805, 0.12858882699993046], "q9": [0.00022590200023842044, 0.008253090999915003, 0.011169423999945138, 0.018147001000215823, 0.028963921000013215, 0.05969606200005728, 0.10743989200000215, 0.12482428500015885, 0.1192837230000805, 0.12858882699993046]}, "bar": {"y": 0.10743989200000215, "times": [0.10743989200000215], "text": ""}, "color": "rgba(31.0, 119.0, 180.0, 1.0)", "marker": 1}, "PN-skglm": {"scatter": {"x": [5.1700999847525964e-05, 0.0030384339997908683, 0.005342358999769203, 0.007686384999942675, 0.01328174799982662, 0.024429471000075864, 0.07132699200019488, 0.2114265449999948, 0.11876721699991322, 0.14903475300025093], "y": [346.5735902799727, 304.4915696100038, 252.43125594619454, 187.27448132792432, 158.22948821697867, 151.49503236048878, 151.4128601133571, 151.412855943818, 151.41285594379866, 151.41285594379866], "q1": [5.1700999847525964e-05, 0.0030384339997908683, 0.005342358999769203, 0.007686384999942675, 0.01328174799982662, 0.024429471000075864, 0.07132699200019488, 0.2114265449999948, 0.11876721699991322, 0.14903475300025093], "q9": [5.1700999847525964e-05, 0.0030384339997908683, 0.005342358999769203, 0.007686384999942675, 0.01328174799982662, 0.024429471000075864, 0.07132699200019488, 0.2114265449999948, 0.11876721699991322, 0.14903475300025093]}, "bar": {"y": 0.2114265449999948, "times": [0.2114265449999948], "text": ""}, "color": "rgba(174.0, 199.0, 232.0, 1.0)", "marker": 2}}, "transformers": {"c_star": 151.41285594369768, "max_f_0": 304.4915696100038}}}, "Sparse Logistic Regression[reg=0.01]": {"objective_value": {"solvers": {"blitz": {"scatter": {"x": [0.0002573020001364057, 0.008224291999795241, 0.013099445000079868, 0.023446359999979904, 0.03576969599998847, 0.06788835299994389, 0.15876906099992993, 0.3794714090004163, 0.4170469260002392, 0.435593831999995], "y": [346.53758941592287, 98.52991843154382, 31.812595683352004, 27.36918695298614, 26.690239376687394, 26.619009160123735, 26.617394768273208, 26.617394550354682, 26.61739455035288, 26.61739455035294], "q1": [0.0002573020001364057, 0.008224291999795241, 0.013099445000079868, 0.023446359999979904, 0.03576969599998847, 0.06788835299994389, 0.15876906099992993, 0.3794714090004163, 0.4170469260002392, 0.435593831999995], "q9": [0.0002573020001364057, 0.008224291999795241, 0.013099445000079868, 0.023446359999979904, 0.03576969599998847, 0.06788835299994389, 0.15876906099992993, 0.3794714090004163, 0.4170469260002392, 0.435593831999995]}, "bar": {"y": 0.15876906099992993, "times": [0.15876906099992993], "text": ""}, "color": "rgba(31.0, 119.0, 180.0, 1.0)", "marker": 1}, "PN-skglm": {"scatter": {"x": [5.6801000027917325e-05, 0.0030595339999308635, 0.005441661000077147, 0.009665306999977474, 0.013841054000295117, 0.03930543599972225, 0.09393894199956776, 0.22978984899964416, 0.2796773029999713, 0.27906689600013124, 0.4030117710003651], "y": [346.5735902799727, 293.7364591062361, 219.03611503235777, 125.09263162205255, 60.803817514935055, 27.146763256683734, 26.61751997714738, 26.61739456276367, 26.617394550376144, 26.617394550376144, 26.617394550376144], "q1": [5.6801000027917325e-05, 0.0030595339999308635, 0.005441661000077147, 0.009665306999977474, 0.013841054000295117, 0.03930543599972225, 0.09393894199956776, 0.22978984899964416, 0.2796773029999713, 0.27906689600013124, 0.4030117710003651], "q9": [5.6801000027917325e-05, 0.0030595339999308635, 0.005441661000077147, 0.009665306999977474, 0.013841054000295117, 0.03930543599972225, 0.09393894199956776, 0.22978984899964416, 0.2796773029999713, 0.27906689600013124, 0.4030117710003651]}, "bar": {"y": 0.22978984899964416, "times": [0.22978984899964416], "text": ""}, "color": "rgba(174.0, 199.0, 232.0, 1.0)", "marker": 2}}, "transformers": {"c_star": 26.617394550252882, "max_f_0": 293.7364591062361}}}, "Sparse Logistic Regression[reg=0.005]": {"objective_value": {"solvers": {"blitz": {"scatter": {"x": [0.0003035029999409744, 0.010835320000296633, 0.017219791000115947, 0.024985276999814232, 0.03440708200014342, 0.08034739100003208, 0.1825548249998974, 0.5161513259999992, 0.5660331779999979, 0.6293646799999806, 0.6060072219997892], "y": [346.53758941592287, 88.49962085575054, 18.517852326852342, 15.645374475454869, 15.081822444904539, 15.012757150646863, 15.011833586556895, 15.011832832707055, 15.011832832699637, 15.011832832699637, 15.011832832699637], "q1": [0.0003035029999409744, 0.010835320000296633, 0.017219791000115947, 0.024985276999814232, 0.03440708200014342, 0.08034739100003208, 0.1825548249998974, 0.5161513259999992, 0.5660331779999979, 0.6293646799999806, 0.6060072219997892], "q9": [0.0003035029999409744, 0.010835320000296633, 0.017219791000115947, 0.024985276999814232, 0.03440708200014342, 0.08034739100003208, 0.1825548249998974, 0.5161513259999992, 0.5660331779999979, 0.6293646799999806, 0.6060072219997892]}, "bar": {"y": 0.1825548249998974, "times": [0.1825548249998974], "text": ""}, "color": "rgba(31.0, 119.0, 180.0, 1.0)", "marker": 1}, "PN-skglm": {"scatter": {"x": [6.260000009206124e-05, 0.0030385330001081456, 0.006730374999733613, 0.01106272299966804, 0.02179754100006903, 0.052213979000043764, 0.12887372899967886, 0.23459180200006813, 0.3112221519995728, 0.3003682319999825, 0.30874852399983865], "y": [346.5735902799727, 293.09816214282563, 217.10430158320696, 120.83985195041231, 54.03737283710315, 15.720207503879303, 15.012513699934, 15.011832880210173, 15.01183283279303, 15.01183283279303, 15.01183283279303], "q1": [6.260000009206124e-05, 0.0030385330001081456, 0.006730374999733613, 0.01106272299966804, 0.02179754100006903, 0.052213979000043764, 0.12887372899967886, 0.23459180200006813, 0.3112221519995728, 0.3003682319999825, 0.30874852399983865], "q9": [6.260000009206124e-05, 0.0030385330001081456, 0.006730374999733613, 0.01106272299966804, 0.02179754100006903, 0.052213979000043764, 0.12887372899967886, 0.23459180200006813, 0.3112221519995728, 0.3003682319999825, 0.30874852399983865]}, "bar": {"y": 0.23459180200006813, "times": [0.23459180200006813], "text": ""}, "color": "rgba(174.0, 199.0, 232.0, 1.0)", "marker": 2}}, "transformers": {"c_star": 15.011832832599637, "max_f_0": 293.09816214282563}}}}, "simulated[X_density=0.2,n_features=5000,n_samples=500]": {"Sparse Logistic Regression[reg=1]": {"objective_value": {"solvers": {"blitz": {"scatter": {"x": [0.00015030099984869594, 0.003020734000074299, 0.001839120999648003, 0.0018632209998941107], "y": [345.9973688918775, 345.9973688918775, 345.9973688918775, 345.9973688918775], "q1": [0.00015030099984869594, 0.003020734000074299, 0.001839120999648003, 0.0018632209998941107], "q9": [0.00015030099984869594, 0.003020734000074299, 0.001839120999648003, 0.0018632209998941107]}, "bar": {"y": 0.00015030099984869594, "times": [0.00015030099984869594], "text": ""}, "color": "rgba(31.0, 119.0, 180.0, 1.0)", "marker": 1}, "PN-skglm": {"scatter": {"x": [4.4500999592855806e-05, 0.0015399169997181161, 0.0026708290001806745, 0.004000144000201544, 0.0049271550001321884], "y": [346.5735902799727, 345.9973692317732, 345.99736889187756, 345.99736889187756, 345.99736889187756], "q1": [4.4500999592855806e-05, 0.0015399169997181161, 0.0026708290001806745, 0.004000144000201544, 0.0049271550001321884], "q9": [4.4500999592855806e-05, 0.0015399169997181161, 0.0026708290001806745, 0.004000144000201544, 0.0049271550001321884]}, "bar": {"y": 0.0015399169997181161, "times": [0.0015399169997181161], "text": ""}, "color": "rgba(174.0, 199.0, 232.0, 1.0)", "marker": 2}}, "transformers": {"c_star": 345.9973688917775, "max_f_0": 345.9973692317732}}}, "Sparse Logistic Regression[reg=0.1]": {"objective_value": {"solvers": {"blitz": {"scatter": {"x": [0.00021640300019498682, 0.003793641999891406, 0.007120878999558045, 0.009046199999829696, 0.009878710000066349, 0.0212393360002352, 0.04023854599972765, 0.06004146600025706, 0.052239479000036226], "y": [345.9973688918775, 201.41902147907234, 167.5434481096495, 162.06795099319123, 161.69070472236095, 161.66452947521424, 161.66452699227494, 161.66452699222734, 161.66452699222737], "q1": [0.00021640300019498682, 0.003793641999891406, 0.007120878999558045, 0.009046199999829696, 0.009878710000066349, 0.0212393360002352, 0.04023854599972765, 0.06004146600025706, 0.052239479000036226], "q9": [0.00021640300019498682, 0.003793641999891406, 0.007120878999558045, 0.009046199999829696, 0.009878710000066349, 0.0212393360002352, 0.04023854599972765, 0.06004146600025706, 0.052239479000036226]}, "bar": {"y": 0.04023854599972765, "times": [0.04023854599972765], "text": ""}, "color": "rgba(31.0, 119.0, 180.0, 1.0)", "marker": 1}, "PN-skglm": {"scatter": {"x": [4.6799999836366624e-05, 0.0014873159998387564, 0.0025924289998329186, 0.004594151000219426, 0.00549245999991399, 0.012983044000066002, 0.023140557000260742, 0.06524292399990372, 0.05292858699976932, 0.04433609099987734], "y": [346.5735902799727, 306.03504480246414, 256.2023337472774, 199.7342202950056, 168.8434467630721, 161.72818085549162, 161.6645292251731, 161.6645269922276, 161.6645269922276, 161.6645269922276], "q1": [4.6799999836366624e-05, 0.0014873159998387564, 0.0025924289998329186, 0.004594151000219426, 0.00549245999991399, 0.012983044000066002, 0.023140557000260742, 0.06524292399990372, 0.05292858699976932, 0.04433609099987734], "q9": [4.6799999836366624e-05, 0.0014873159998387564, 0.0025924289998329186, 0.004594151000219426, 0.00549245999991399, 0.012983044000066002, 0.023140557000260742, 0.06524292399990372, 0.05292858699976932, 0.04433609099987734]}, "bar": {"y": 0.06524292399990372, "times": [0.06524292399990372], "text": ""}, "color": "rgba(174.0, 199.0, 232.0, 1.0)", "marker": 2}}, "transformers": {"c_star": 161.66452699212735, "max_f_0": 306.03504480246414}}}, "Sparse Logistic Regression[reg=0.01]": {"objective_value": {"solvers": {"blitz": {"scatter": {"x": [0.00021060299968667096, 0.0043794480002361524, 0.006930576999820914, 0.010123212000053172, 0.014580162000129349, 0.036113801000283274, 0.08500554300007934, 0.15739954600030615, 0.24486321499989572, 0.174323134000133], "y": [345.9973688918775, 97.08494031842254, 34.441049017154256, 29.802418583241348, 28.91965370962763, 28.812330736270862, 28.811419310964798, 28.811419201742567, 28.81141920173729, 28.81141920173757], "q1": [0.00021060299968667096, 0.0043794480002361524, 0.006930576999820914, 0.010123212000053172, 0.014580162000129349, 0.036113801000283274, 0.08500554300007934, 0.15739954600030615, 0.24486321499989572, 0.174323134000133], "q9": [0.00021060299968667096, 0.0043794480002361524, 0.006930576999820914, 0.010123212000053172, 0.014580162000129349, 0.036113801000283274, 0.08500554300007934, 0.15739954600030615, 0.24486321499989572, 0.174323134000133]}, "bar": {"y": 0.08500554300007934, "times": [0.08500554300007934], "text": ""}, "color": "rgba(31.0, 119.0, 180.0, 1.0)", "marker": 1}, "PN-skglm": {"scatter": {"x": [3.369999967617332e-05, 0.00127431400005662, 0.0022239250001803157, 0.00395944399997461, 0.005034755999986373, 0.012714340999991691, 0.03561339499992755, 0.12135374599984061, 0.14318548800019926, 0.12992394100001547, 0.1513160780000362], "y": [346.5735902799727, 294.46851662747616, 223.25092372240624, 129.94439438680348, 64.31593687107743, 29.40985835389591, 28.81178960028749, 28.81141922049366, 28.811419201802597, 28.811419201802597, 28.811419201802597], "q1": [3.369999967617332e-05, 0.00127431400005662, 0.0022239250001803157, 0.00395944399997461, 0.005034755999986373, 0.012714340999991691, 0.03561339499992755, 0.12135374599984061, 0.14318548800019926, 0.12992394100001547, 0.1513160780000362], "q9": [3.369999967617332e-05, 0.00127431400005662, 0.0022239250001803157, 0.00395944399997461, 0.005034755999986373, 0.012714340999991691, 0.03561339499992755, 0.12135374599984061, 0.14318548800019926, 0.12992394100001547, 0.1513160780000362]}, "bar": {"y": 0.12135374599984061, "times": [0.12135374599984061], "text": ""}, "color": "rgba(174.0, 199.0, 232.0, 1.0)", "marker": 2}}, "transformers": {"c_star": 28.811419201637293, "max_f_0": 294.46851662747616}}}, "Sparse Logistic Regression[reg=0.005]": {"objective_value": {"solvers": {"blitz": {"scatter": {"x": [0.0001792019997992611, 0.0054953610001575726, 0.012020433000088815, 0.014299257999937254, 0.02371116299991627, 0.051565271000072244, 0.11497877500005416, 0.2012236320001648, 0.24168388099997173, 0.2812250189999759], "y": [345.9973688918775, 83.97930431057765, 20.193198989896253, 17.08232408480527, 16.37160548716304, 16.28278360335726, 16.281643216659738, 16.28164301535402, 16.281643015348763, 16.28164301534879], "q1": [0.0001792019997992611, 0.0054953610001575726, 0.012020433000088815, 0.014299257999937254, 0.02371116299991627, 0.051565271000072244, 0.11497877500005416, 0.2012236320001648, 0.24168388099997173, 0.2812250189999759], "q9": [0.0001792019997992611, 0.0054953610001575726, 0.012020433000088815, 0.014299257999937254, 0.02371116299991627, 0.051565271000072244, 0.11497877500005416, 0.2012236320001648, 0.24168388099997173, 0.2812250189999759]}, "bar": {"y": 0.11497877500005416, "times": [0.11497877500005416], "text": ""}, "color": "rgba(31.0, 119.0, 180.0, 1.0)", "marker": 1}, "PN-skglm": {"scatter": {"x": [5.580100014412892e-05, 0.0016028169998207886, 0.003122234999864304, 0.00650677200019345, 0.005699363000076119, 0.0206237290003628, 0.04350478300011673, 0.0997721060002732, 0.15931666700043934, 0.2358424159997412, 0.22575300400012566], "y": [346.5735902799727, 293.7766129913672, 221.22797645310288, 125.3941680462764, 56.86067592887278, 16.955454852469604, 16.28226541129184, 16.281643171692423, 16.281643015370115, 16.281643015370115, 16.281643015370115], "q1": [5.580100014412892e-05, 0.0016028169998207886, 0.003122234999864304, 0.00650677200019345, 0.005699363000076119, 0.0206237290003628, 0.04350478300011673, 0.0997721060002732, 0.15931666700043934, 0.2358424159997412, 0.22575300400012566], "q9": [5.580100014412892e-05, 0.0016028169998207886, 0.003122234999864304, 0.00650677200019345, 0.005699363000076119, 0.0206237290003628, 0.04350478300011673, 0.0997721060002732, 0.15931666700043934, 0.2358424159997412, 0.22575300400012566]}, "bar": {"y": 0.0997721060002732, "times": [0.0997721060002732], "text": ""}, "color": "rgba(174.0, 199.0, 232.0, 1.0)", "marker": 2}}, "transformers": {"c_star": 16.281643015248765, "max_f_0": 293.7766129913672}}}}, "simulated[X_density=1.0,n_features=2000,n_samples=500]": {"Sparse Logistic Regression[reg=1]": {"objective_value": {"solvers": {"blitz": {"scatter": {"x": [0.0002923029996964033, 0.005426360000001296, 0.002262826000333007, 0.0026208290000795387, 0.0028635319999921194], "y": [344.807509938776, 344.80545928725644, 344.805459287256, 344.805459287256, 344.805459287256], "q1": [0.0002923029996964033, 0.005426360000001296, 0.002262826000333007, 0.0026208290000795387, 0.0028635319999921194], "q9": [0.0002923029996964033, 0.005426360000001296, 0.002262826000333007, 0.0026208290000795387, 0.0028635319999921194]}, "bar": {"y": 0.005426360000001296, "times": [0.005426360000001296], "text": ""}, "color": "rgba(31.0, 119.0, 180.0, 1.0)", "marker": 1}, "PN-skglm": {"scatter": {"x": [5.0800999815692194e-05, 0.0017831199997999647, 0.002795931000036944, 0.0037992420002410654, 0.004780553000273358, 0.012662439999985509], "y": [346.5735902799727, 344.8075197109423, 344.8054592873813, 344.8054592872873, 344.805459287256, 344.805459287256], "q1": [5.0800999815692194e-05, 0.0017831199997999647, 0.002795931000036944, 0.0037992420002410654, 0.004780553000273358, 0.012662439999985509], "q9": [5.0800999815692194e-05, 0.0017831199997999647, 0.002795931000036944, 0.0037992420002410654, 0.004780553000273358, 0.012662439999985509]}, "bar": {"y": 0.002795931000036944, "times": [0.002795931000036944], "text": ""}, "color": "rgba(174.0, 199.0, 232.0, 1.0)", "marker": 2}}, "transformers": {"c_star": 344.805459287156, "max_f_0": 344.8075197109423}}}, "Sparse Logistic Regression[reg=0.1]": {"objective_value": {"solvers": {"blitz": {"scatter": {"x": [0.00030970300031185616, 0.011279225000180304, 0.008796497999810526, 0.019468915999823366, 0.04143435999958456, 0.07424412399996072, 0.11424346700005117, 0.13626721199989333, 0.14732133400002567, 0.14736943400021119], "y": [344.807509938776, 215.8120276234729, 184.2257714870662, 177.85811567445955, 177.3287752026266, 177.30297225181747, 177.30294993457198, 177.30294993325708, 177.30294993325705, 177.30294993325717], "q1": [0.00030970300031185616, 0.011279225000180304, 0.008796497999810526, 0.019468915999823366, 0.04143435999958456, 0.07424412399996072, 0.11424346700005117, 0.13626721199989333, 0.14732133400002567, 0.14736943400021119], "q9": [0.00030970300031185616, 0.011279225000180304, 0.008796497999810526, 0.019468915999823366, 0.04143435999958456, 0.07424412399996072, 0.11424346700005117, 0.13626721199989333, 0.14732133400002567, 0.14736943400021119]}, "bar": {"y": 0.11424346700005117, "times": [0.11424346700005117], "text": ""}, "color": "rgba(31.0, 119.0, 180.0, 1.0)", "marker": 1}, "PN-skglm": {"scatter": {"x": [4.290100014259224e-05, 0.0012569139998959145, 0.002550528000028862, 0.003979043999606802, 0.0058638649998101755, 0.02019642400000521, 0.06587223099995754, 0.12453768100021989, 0.0860940549996485, 0.09218142300005638], "y": [346.5735902799727, 294.4070717994865, 253.8069555743279, 205.4528369441169, 184.39517016000752, 177.31926144715217, 177.30295005050135, 177.30294993325708, 177.30294993325708, 177.30294993325708], "q1": [4.290100014259224e-05, 0.0012569139998959145, 0.002550528000028862, 0.003979043999606802, 0.0058638649998101755, 0.02019642400000521, 0.06587223099995754, 0.12453768100021989, 0.0860940549996485, 0.09218142300005638], "q9": [4.290100014259224e-05, 0.0012569139998959145, 0.002550528000028862, 0.003979043999606802, 0.0058638649998101755, 0.02019642400000521, 0.06587223099995754, 0.12453768100021989, 0.0860940549996485, 0.09218142300005638]}, "bar": {"y": 0.06587223099995754, "times": [0.06587223099995754], "text": ""}, "color": "rgba(174.0, 199.0, 232.0, 1.0)", "marker": 2}}, "transformers": {"c_star": 177.30294993315707, "max_f_0": 294.4070717994865}}}, "Sparse Logistic Regression[reg=0.01]": {"objective_value": {"solvers": {"blitz": {"scatter": {"x": [0.0003803039999183966, 0.00964560700003858, 0.01718169100013256, 0.031055144000220025, 0.05203487700009646, 0.12546419199998127, 0.2824620319997848, 0.6518006280002737, 0.8915576879999207, 0.671982351999759], "y": [344.807509938776, 135.07899280479407, 45.7923302649866, 36.13130306021293, 34.22145046798297, 34.09895315164847, 34.097906547643824, 34.09790573102018, 34.09790573101566, 34.09790573101567], "q1": [0.0003803039999183966, 0.00964560700003858, 0.01718169100013256, 0.031055144000220025, 0.05203487700009646, 0.12546419199998127, 0.2824620319997848, 0.6518006280002737, 0.8915576879999207, 0.671982351999759], "q9": [0.0003803039999183966, 0.00964560700003858, 0.01718169100013256, 0.031055144000220025, 0.05203487700009646, 0.12546419199998127, 0.2824620319997848, 0.6518006280002737, 0.8915576879999207, 0.671982351999759]}, "bar": {"y": 0.2824620319997848, "times": [0.2824620319997848], "text": ""}, "color": "rgba(31.0, 119.0, 180.0, 1.0)", "marker": 1}, "PN-skglm": {"scatter": {"x": [5.089999967822223e-05, 0.0015896179997980653, 0.0033621370002947515, 0.004399948999889602, 0.016955288000190194, 0.0647373179999704, 0.08040149199996449, 0.19114841999999044, 0.2786851910000223, 0.25344761099995594, 0.2863087750001796], "y": [346.5735902799727, 281.4912037323564, 222.2635328601441, 137.34720693416642, 68.6968435181819, 34.592395205800685, 34.09925789315746, 34.097905764454474, 34.09790573103885, 34.09790573103885, 34.09790573103885], "q1": [5.089999967822223e-05, 0.0015896179997980653, 0.0033621370002947515, 0.004399948999889602, 0.016955288000190194, 0.0647373179999704, 0.08040149199996449, 0.19114841999999044, 0.2786851910000223, 0.25344761099995594, 0.2863087750001796], "q9": [5.089999967822223e-05, 0.0015896179997980653, 0.0033621370002947515, 0.004399948999889602, 0.016955288000190194, 0.0647373179999704, 0.08040149199996449, 0.19114841999999044, 0.2786851910000223, 0.25344761099995594, 0.2863087750001796]}, "bar": {"y": 0.19114841999999044, "times": [0.19114841999999044], "text": ""}, "color": "rgba(174.0, 199.0, 232.0, 1.0)", "marker": 2}}, "transformers": {"c_star": 34.097905730915656, "max_f_0": 281.4912037323564}}}, "Sparse Logistic Regression[reg=0.005]": {"objective_value": {"solvers": {"blitz": {"scatter": {"x": [0.0002678030000424769, 0.01218183599985423, 0.020892331000140985, 0.036349702999814326, 0.06823765699982687, 0.1153762789999746, 0.35168339899973944, 0.753901458999735, 0.7028999939998357, 0.8663700060001247], "y": [344.807509938776, 127.01813623476416, 27.456905846184785, 20.863387046317477, 19.580343966926392, 19.4739993653418, 19.473136398081145, 19.47313618095557, 19.47313618095262, 19.473136180952316], "q1": [0.0002678030000424769, 0.01218183599985423, 0.020892331000140985, 0.036349702999814326, 0.06823765699982687, 0.1153762789999746, 0.35168339899973944, 0.753901458999735, 0.7028999939998357, 0.8663700060001247], "q9": [0.0002678030000424769, 0.01218183599985423, 0.020892331000140985, 0.036349702999814326, 0.06823765699982687, 0.1153762789999746, 0.35168339899973944, 0.753901458999735, 0.7028999939998357, 0.8663700060001247]}, "bar": {"y": 0.35168339899973944, "times": [0.35168339899973944], "text": ""}, "color": "rgba(31.0, 119.0, 180.0, 1.0)", "marker": 1}, "PN-skglm": {"scatter": {"x": [4.260099967723363e-05, 0.001365814999644499, 0.0026633299999048177, 0.003987544000210619, 0.008052188999954524, 0.038423125999997865, 0.12575689400000556, 0.1786485810002887, 0.3427137999997285, 0.31512179400033347, 0.3005338319999282, 0.3090100260001236], "y": [346.5735902799727, 280.7243731917233, 220.3072188085397, 132.73348278253997, 58.75911665634396, 20.281879543178455, 19.47420763659149, 19.473137215084996, 19.473136180991567, 19.473136180991567, 19.473136180991567, 19.473136180991567], "q1": [4.260099967723363e-05, 0.001365814999644499, 0.0026633299999048177, 0.003987544000210619, 0.008052188999954524, 0.038423125999997865, 0.12575689400000556, 0.1786485810002887, 0.3427137999997285, 0.31512179400033347, 0.3005338319999282, 0.3090100260001236], "q9": [4.260099967723363e-05, 0.001365814999644499, 0.0026633299999048177, 0.003987544000210619, 0.008052188999954524, 0.038423125999997865, 0.12575689400000556, 0.1786485810002887, 0.3427137999997285, 0.31512179400033347, 0.3005338319999282, 0.3090100260001236]}, "bar": {"y": 0.3427137999997285, "times": [0.3427137999997285], "text": ""}, "color": "rgba(174.0, 199.0, 232.0, 1.0)", "marker": 2}}, "transformers": {"c_star": 19.47313618085232, "max_f_0": 280.7243731917233}}}}, "simulated[X_density=0.5,n_features=2000,n_samples=500]": {"Sparse Logistic Regression[reg=1]": {"objective_value": {"solvers": {"blitz": {"scatter": {"x": [0.00020220199985487852, 0.002827130999776273, 0.0014949159999559924, 0.0015793180000400753], "y": [346.0894339882418, 346.0894339882418, 346.0894339882418, 346.0894339882418], "q1": [0.00020220199985487852, 0.002827130999776273, 0.0014949159999559924, 0.0015793180000400753], "q9": [0.00020220199985487852, 0.002827130999776273, 0.0014949159999559924, 0.0015793180000400753]}, "bar": {"y": 0.00020220199985487852, "times": [0.00020220199985487852], "text": ""}, "color": "rgba(31.0, 119.0, 180.0, 1.0)", "marker": 1}, "PN-skglm": {"scatter": {"x": [3.4301000141567783e-05, 0.001175113000044803, 0.002726430999700824, 0.0032837369999469956, 0.003374936999989586], "y": [346.5735902799727, 346.0894341898843, 346.08943398824186, 346.08943398824186, 346.08943398824186], "q1": [3.4301000141567783e-05, 0.001175113000044803, 0.002726430999700824, 0.0032837369999469956, 0.003374936999989586], "q9": [3.4301000141567783e-05, 0.001175113000044803, 0.002726430999700824, 0.0032837369999469956, 0.003374936999989586]}, "bar": {"y": 0.001175113000044803, "times": [0.001175113000044803], "text": ""}, "color": "rgba(174.0, 199.0, 232.0, 1.0)", "marker": 2}}, "transformers": {"c_star": 346.0894339881418, "max_f_0": 346.0894341898843}}}, "Sparse Logistic Regression[reg=0.1]": {"objective_value": {"solvers": {"blitz": {"scatter": {"x": [0.0001948019998962991, 0.0034523389999776555, 0.00467365200029235, 0.00875089700002718, 0.015449271000306908, 0.031311647000165976, 0.1848163489999024, 0.08514794399980019, 0.08309802100029628], "y": [346.0894339882418, 203.11558310699374, 167.46940294176665, 163.31850477519623, 163.1574353418062, 163.15641708303517, 163.1564165378594, 163.1564165378538, 163.1564165378538], "q1": [0.0001948019998962991, 0.0034523389999776555, 0.00467365200029235, 0.00875089700002718, 0.015449271000306908, 0.031311647000165976, 0.1848163489999024, 0.08514794399980019, 0.08309802100029628], "q9": [0.0001948019998962991, 0.0034523389999776555, 0.00467365200029235, 0.00875089700002718, 0.015449271000306908, 0.031311647000165976, 0.1848163489999024, 0.08514794399980019, 0.08309802100029628]}, "bar": {"y": 0.031311647000165976, "times": [0.031311647000165976], "text": ""}, "color": "rgba(31.0, 119.0, 180.0, 1.0)", "marker": 1}, "PN-skglm": {"scatter": {"x": [4.1900000269379234e-05, 0.0016518180000275606, 0.0027696300003299257, 0.003467837999778567, 0.005824263999784307, 0.014898264999828825, 0.038971932000094966, 0.06912776700028189, 0.06825125699970158, 0.06682744099998672], "y": [346.5735902799727, 308.99448485470884, 255.89912265270155, 200.33631381290311, 170.24089048294252, 163.1762577890954, 163.15641659641693, 163.15641653785406, 163.15641653785406, 163.15641653785406], "q1": [4.1900000269379234e-05, 0.0016518180000275606, 0.0027696300003299257, 0.003467837999778567, 0.005824263999784307, 0.014898264999828825, 0.038971932000094966, 0.06912776700028189, 0.06825125699970158, 0.06682744099998672], "q9": [4.1900000269379234e-05, 0.0016518180000275606, 0.0027696300003299257, 0.003467837999778567, 0.005824263999784307, 0.014898264999828825, 0.038971932000094966, 0.06912776700028189, 0.06825125699970158, 0.06682744099998672]}, "bar": {"y": 0.038971932000094966, "times": [0.038971932000094966], "text": ""}, "color": "rgba(174.0, 199.0, 232.0, 1.0)", "marker": 2}}, "transformers": {"c_star": 163.1564165377538, "max_f_0": 308.99448485470884}}}, "Sparse Logistic Regression[reg=0.01]": {"objective_value": {"solvers": {"blitz": {"scatter": {"x": [0.00020690299970738124, 0.004462848999992275, 0.008250791999671492, 0.01477916300018478, 0.025639885000146023, 0.0474425259999407, 0.12480468300009306, 0.2638408249999884, 0.3507187889999841, 0.285204062000048], "y": [346.0894339882418, 108.70671538542712, 34.980111101232126, 30.278595709710444, 29.83831305464352, 29.79720126810962, 29.796486885260023, 29.796486847034117, 29.796486847034046, 29.796486847033936], "q1": [0.00020690299970738124, 0.004462848999992275, 0.008250791999671492, 0.01477916300018478, 0.025639885000146023, 0.0474425259999407, 0.12480468300009306, 0.2638408249999884, 0.3507187889999841, 0.285204062000048], "q9": [0.00020690299970738124, 0.004462848999992275, 0.008250791999671492, 0.01477916300018478, 0.025639885000146023, 0.0474425259999407, 0.12480468300009306, 0.2638408249999884, 0.3507187889999841, 0.285204062000048]}, "bar": {"y": 0.12480468300009306, "times": [0.12480468300009306], "text": ""}, "color": "rgba(31.0, 119.0, 180.0, 1.0)", "marker": 1}, "PN-skglm": {"scatter": {"x": [0.00012930100001540268, 0.001255914000012126, 0.002310325000053126, 0.004628152000350383, 0.036793607999698, 0.055949721000160935, 0.13019384400013223, 0.17118489899985434, 0.189266299999872, 0.20437136700002156, 0.1939472509998268], "y": [346.5735902799727, 299.22484904455223, 227.7211379994067, 140.6229478621327, 53.847221702793185, 30.326678657320414, 29.796957740300908, 29.796486851014556, 29.796486847061043, 29.796486847061043, 29.796486847061043], "q1": [0.00012930100001540268, 0.001255914000012126, 0.002310325000053126, 0.004628152000350383, 0.036793607999698, 0.055949721000160935, 0.13019384400013223, 0.17118489899985434, 0.189266299999872, 0.20437136700002156, 0.1939472509998268], "q9": [0.00012930100001540268, 0.001255914000012126, 0.002310325000053126, 0.004628152000350383, 0.036793607999698, 0.055949721000160935, 0.13019384400013223, 0.17118489899985434, 0.189266299999872, 0.20437136700002156, 0.1939472509998268]}, "bar": {"y": 0.17118489899985434, "times": [0.17118489899985434], "text": ""}, "color": "rgba(174.0, 199.0, 232.0, 1.0)", "marker": 2}}, "transformers": {"c_star": 29.796486846933938, "max_f_0": 299.22484904455223}}}, "Sparse Logistic Regression[reg=0.005]": {"objective_value": {"solvers": {"blitz": {"scatter": {"x": [0.00019830200017167954, 0.006419571000151336, 0.011838531000194052, 0.024050167000041256, 0.04254977199980203, 0.07447952699976668, 0.13790382999968642, 0.26203070700012177, 0.32766553600004045, 0.3067282039996826], "y": [346.0894339882418, 98.43386987981569, 20.911342647815026, 17.285920399499126, 16.922432565561472, 16.90691092825755, 16.906749906246667, 16.90674987282924, 16.906749872828776, 16.906749872828772], "q1": [0.00019830200017167954, 0.006419571000151336, 0.011838531000194052, 0.024050167000041256, 0.04254977199980203, 0.07447952699976668, 0.13790382999968642, 0.26203070700012177, 0.32766553600004045, 0.3067282039996826], "q9": [0.00019830200017167954, 0.006419571000151336, 0.011838531000194052, 0.024050167000041256, 0.04254977199980203, 0.07447952699976668, 0.13790382999968642, 0.26203070700012177, 0.32766553600004045, 0.3067282039996826]}, "bar": {"y": 0.13790382999968642, "times": [0.13790382999968642], "text": ""}, "color": "rgba(31.0, 119.0, 180.0, 1.0)", "marker": 1}, "PN-skglm": {"scatter": {"x": [3.8700999994034646e-05, 0.00154791800014209, 0.0026836299998649338, 0.003858243000195216, 0.0073679819997778395, 0.036803107999730855, 0.07864647199994579, 0.1611161880000509, 0.2235336799999459, 0.2755934570000136, 0.23365709200015772], "y": [346.5735902799727, 298.64438874700636, 225.90333243603072, 136.57066951195267, 44.58478605110538, 17.131817349086564, 16.907370672621273, 16.906749875876656, 16.906749872836617, 16.906749872836617, 16.906749872836617], "q1": [3.8700999994034646e-05, 0.00154791800014209, 0.0026836299998649338, 0.003858243000195216, 0.0073679819997778395, 0.036803107999730855, 0.07864647199994579, 0.1611161880000509, 0.2235336799999459, 0.2755934570000136, 0.23365709200015772], "q9": [3.8700999994034646e-05, 0.00154791800014209, 0.0026836299998649338, 0.003858243000195216, 0.0073679819997778395, 0.036803107999730855, 0.07864647199994579, 0.1611161880000509, 0.2235336799999459, 0.2755934570000136, 0.23365709200015772]}, "bar": {"y": 0.1611161880000509, "times": [0.1611161880000509], "text": ""}, "color": "rgba(174.0, 199.0, 232.0, 1.0)", "marker": 2}}, "transformers": {"c_star": 16.906749872728774, "max_f_0": 298.64438874700636}}}}, "simulated[X_density=0.2,n_features=2000,n_samples=500]": {"Sparse Logistic Regression[reg=1]": {"objective_value": {"solvers": {"blitz": {"scatter": {"x": [0.0002629030000207422, 0.0013873160000912321, 0.001069711999662104, 0.0010758120001810312], "y": [345.78917999442444, 345.78917999442444, 345.78917999442444, 345.78917999442444], "q1": [0.0002629030000207422, 0.0013873160000912321, 0.001069711999662104, 0.0010758120001810312], "q9": [0.0002629030000207422, 0.0013873160000912321, 0.001069711999662104, 0.0010758120001810312]}, "bar": {"y": 0.0002629030000207422, "times": [0.0002629030000207422], "text": ""}, "color": "rgba(31.0, 119.0, 180.0, 1.0)", "marker": 1}, "PN-skglm": {"scatter": {"x": [3.460100015217904e-05, 0.0008355089998985932, 0.0016868190000423056, 0.0019849219997922773, 0.0019210209998163918], "y": [346.5735902799727, 345.7891808516576, 345.78917999442444, 345.78917999442444, 345.78917999442444], "q1": [3.460100015217904e-05, 0.0008355089998985932, 0.0016868190000423056, 0.0019849219997922773, 0.0019210209998163918], "q9": [3.460100015217904e-05, 0.0008355089998985932, 0.0016868190000423056, 0.0019849219997922773, 0.0019210209998163918]}, "bar": {"y": 0.0008355089998985932, "times": [0.0008355089998985932], "text": ""}, "color": "rgba(174.0, 199.0, 232.0, 1.0)", "marker": 2}}, "transformers": {"c_star": 345.78917999432446, "max_f_0": 345.7891808516576}}}, "Sparse Logistic Regression[reg=0.1]": {"objective_value": {"solvers": {"blitz": {"scatter": {"x": [0.00026170299997829716, 0.0014473159999397467, 0.0023406259997500456, 0.0038564429996768013, 0.006055667000055109, 0.014559160999851883, 0.03308656700028223, 0.03959883900006389, 0.04266997300010189], "y": [345.78917999442444, 209.93366046097572, 172.77521511013396, 165.77868939381585, 165.42507233960583, 165.41488153415065, 165.4148806456437, 165.4148806456421, 165.4148806456421], "q1": [0.00026170299997829716, 0.0014473159999397467, 0.0023406259997500456, 0.0038564429996768013, 0.006055667000055109, 0.014559160999851883, 0.03308656700028223, 0.03959883900006389, 0.04266997300010189], "q9": [0.00026170299997829716, 0.0014473159999397467, 0.0023406259997500456, 0.0038564429996768013, 0.006055667000055109, 0.014559160999851883, 0.03308656700028223, 0.03959883900006389, 0.04266997300010189]}, "bar": {"y": 0.014559160999851883, "times": [0.014559160999851883], "text": ""}, "color": "rgba(31.0, 119.0, 180.0, 1.0)", "marker": 1}, "PN-skglm": {"scatter": {"x": [5.5900999996083556e-05, 0.0010783119996631285, 0.0018284200000380224, 0.003128033999928448, 0.004264447000423388, 0.01603047799972046, 0.025107778999881702, 0.044325391999791464, 0.032423560000097496, 0.03362047300015547], "y": [346.5735902799727, 307.1293233954733, 260.67452229347197, 203.77859337545712, 171.67554700713418, 165.42803580405172, 165.41488087605657, 165.41488064564285, 165.41488064564285, 165.41488064564285], "q1": [5.5900999996083556e-05, 0.0010783119996631285, 0.0018284200000380224, 0.003128033999928448, 0.004264447000423388, 0.01603047799972046, 0.025107778999881702, 0.044325391999791464, 0.032423560000097496, 0.03362047300015547], "q9": [5.5900999996083556e-05, 0.0010783119996631285, 0.0018284200000380224, 0.003128033999928448, 0.004264447000423388, 0.01603047799972046, 0.025107778999881702, 0.044325391999791464, 0.032423560000097496, 0.03362047300015547]}, "bar": {"y": 0.025107778999881702, "times": [0.025107778999881702], "text": ""}, "color": "rgba(174.0, 199.0, 232.0, 1.0)", "marker": 2}}, "transformers": {"c_star": 165.41488064554213, "max_f_0": 307.1293233954733}}}, "Sparse Logistic Regression[reg=0.01]": {"objective_value": {"solvers": {"blitz": {"scatter": {"x": [0.00027420300011726795, 0.0027069299999311625, 0.004162845999871934, 0.008178190999842627, 0.01494056499996077, 0.02824271300005421, 0.08923129000004337, 0.1351256990001275, 0.15259109299995544, 0.17408613099996728], "y": [345.78917999442444, 119.54498046815333, 37.849365378393074, 31.22458872233398, 30.43562569545581, 30.325183237658297, 30.323510352437097, 30.323510281885383, 30.32351028188482, 30.323510281884875], "q1": [0.00027420300011726795, 0.0027069299999311625, 0.004162845999871934, 0.008178190999842627, 0.01494056499996077, 0.02824271300005421, 0.08923129000004337, 0.1351256990001275, 0.15259109299995544, 0.17408613099996728], "q9": [0.00027420300011726795, 0.0027069299999311625, 0.004162845999871934, 0.008178190999842627, 0.01494056499996077, 0.02824271300005421, 0.08923129000004337, 0.1351256990001275, 0.15259109299995544, 0.17408613099996728]}, "bar": {"y": 0.08923129000004337, "times": [0.08923129000004337], "text": ""}, "color": "rgba(31.0, 119.0, 180.0, 1.0)", "marker": 1}, "PN-skglm": {"scatter": {"x": [3.6300000374467345e-05, 0.0008823099997243844, 0.0011859129999720608, 0.002515828000014153, 0.005241859000307159, 0.01159152800028096, 0.03105144500023016, 0.06916296800000055, 0.10566487200003394, 0.08726656799990451, 0.09431644599999345], "y": [346.5735902799727, 296.826077773165, 233.82479517060028, 142.04169882353884, 56.82116651775228, 30.76191905031061, 30.323722744927206, 30.323510290498294, 30.3235102819011, 30.3235102819011, 30.3235102819011], "q1": [3.6300000374467345e-05, 0.0008823099997243844, 0.0011859129999720608, 0.002515828000014153, 0.005241859000307159, 0.01159152800028096, 0.03105144500023016, 0.06916296800000055, 0.10566487200003394, 0.08726656799990451, 0.09431644599999345], "q9": [3.6300000374467345e-05, 0.0008823099997243844, 0.0011859129999720608, 0.002515828000014153, 0.005241859000307159, 0.01159152800028096, 0.03105144500023016, 0.06916296800000055, 0.10566487200003394, 0.08726656799990451, 0.09431644599999345]}, "bar": {"y": 0.06916296800000055, "times": [0.06916296800000055], "text": ""}, "color": "rgba(174.0, 199.0, 232.0, 1.0)", "marker": 2}}, "transformers": {"c_star": 30.32351028178482, "max_f_0": 296.826077773165}}}, "Sparse Logistic Regression[reg=0.005]": {"objective_value": {"solvers": {"blitz": {"scatter": {"x": [0.000253501999850414, 0.0026053289998344553, 0.006592373000330554, 0.012467338000078598, 0.02068492900025376, 0.043051178000041546, 0.07783676300005027, 0.15477361700004622, 0.2041874659998939, 0.225988507999773], "y": [345.78917999442444, 111.04105869944804, 22.316988199707307, 17.880042800767566, 17.289933240362107, 17.206873332708387, 17.206610113691525, 17.206609989310547, 17.206609989307466, 17.2066099893074], "q1": [0.000253501999850414, 0.0026053289998344553, 0.006592373000330554, 0.012467338000078598, 0.02068492900025376, 0.043051178000041546, 0.07783676300005027, 0.15477361700004622, 0.2041874659998939, 0.225988507999773], "q9": [0.000253501999850414, 0.0026053289998344553, 0.006592373000330554, 0.012467338000078598, 0.02068492900025376, 0.043051178000041546, 0.07783676300005027, 0.15477361700004622, 0.2041874659998939, 0.225988507999773]}, "bar": {"y": 0.07783676300005027, "times": [0.07783676300005027], "text": ""}, "color": "rgba(31.0, 119.0, 180.0, 1.0)", "marker": 1}, "PN-skglm": {"scatter": {"x": [3.8500000300700776e-05, 0.0008633090001239907, 0.0016882189997886599, 0.0027591299999585317, 0.0048677539998607244, 0.016202480000174546, 0.0350421890002508, 0.09998520899989671, 0.11545658099976208, 0.14977626100017005, 0.13340438000022914], "y": [346.5735902799727, 296.21311502910464, 232.0976941817488, 137.98066714443533, 48.3158442012442, 17.353585420898177, 17.20668707870621, 17.206609989613554, 17.2066099893247, 17.2066099893247, 17.2066099893247], "q1": [3.8500000300700776e-05, 0.0008633090001239907, 0.0016882189997886599, 0.0027591299999585317, 0.0048677539998607244, 0.016202480000174546, 0.0350421890002508, 0.09998520899989671, 0.11545658099976208, 0.14977626100017005, 0.13340438000022914], "q9": [3.8500000300700776e-05, 0.0008633090001239907, 0.0016882189997886599, 0.0027591299999585317, 0.0048677539998607244, 0.016202480000174546, 0.0350421890002508, 0.09998520899989671, 0.11545658099976208, 0.14977626100017005, 0.13340438000022914]}, "bar": {"y": 0.09998520899989671, "times": [0.09998520899989671], "text": ""}, "color": "rgba(174.0, 199.0, 232.0, 1.0)", "marker": 2}}, "transformers": {"c_star": 17.2066099892074, "max_f_0": 296.21311502910464}}}}, "simulated[X_density=1.0,n_features=5000,n_samples=3000]": {"Sparse Logistic Regression[reg=1]": {"objective_value": {"solvers": {"blitz": {"scatter": {"x": [0.000431505000051402, 0.09896249299981719, 0.05550631300002351, 0.049706648999745084], "y": [2079.43887501238, 2079.43887501238, 2079.43887501238, 2079.43887501238], "q1": [0.000431505000051402, 0.09896249299981719, 0.05550631300002351, 0.049706648999745084], "q9": [0.000431505000051402, 0.09896249299981719, 0.05550631300002351, 0.049706648999745084]}, "bar": {"y": 0.000431505000051402, "times": [0.000431505000051402], "text": ""}, "color": "rgba(31.0, 119.0, 180.0, 1.0)", "marker": 1}, "PN-skglm": {"scatter": {"x": [8.050100041145924e-05, 0.026188588999957574, 0.03517568899997059, 0.02900971999997637, 0.02827681200005827], "y": [2079.441541679836, 2079.438875012378, 2079.438875012378, 2079.438875012378, 2079.438875012378], "q1": [8.050100041145924e-05, 0.026188588999957574, 0.03517568899997059, 0.02900971999997637, 0.02827681200005827], "q9": [8.050100041145924e-05, 0.026188588999957574, 0.03517568899997059, 0.02900971999997637, 0.02827681200005827]}, "bar": {"y": 0.026188588999957574, "times": [0.026188588999957574], "text": ""}, "color": "rgba(174.0, 199.0, 232.0, 1.0)", "marker": 2}}, "transformers": {"c_star": 2079.438875012278, "max_f_0": 2079.43887501238}}}, "Sparse Logistic Regression[reg=0.1]": {"objective_value": {"solvers": {"blitz": {"scatter": {"x": [0.0005047049999120645, 0.08188270399978137, 0.10765239000011206, 0.1672911480000039, 0.25002056199991785, 0.6144258879999143, 1.4984906549998414, 1.7434181609996813, 1.8422756539998772], "y": [2079.43887501238, 1711.93722951472, 1554.7007667922715, 1414.2542876614248, 1349.4189962340738, 1337.2814862306977, 1337.2812475277456, 1337.2812475277453, 1337.2812475277453], "q1": [0.0005047049999120645, 0.08188270399978137, 0.10765239000011206, 0.1672911480000039, 0.25002056199991785, 0.6144258879999143, 1.4984906549998414, 1.7434181609996813, 1.8422756539998772], "q9": [0.0005047049999120645, 0.08188270399978137, 0.10765239000011206, 0.1672911480000039, 0.25002056199991785, 0.6144258879999143, 1.4984906549998414, 1.7434181609996813, 1.8422756539998772]}, "bar": {"y": 1.4984906549998414, "times": [1.4984906549998414], "text": ""}, "color": "rgba(31.0, 119.0, 180.0, 1.0)", "marker": 1}, "PN-skglm": {"scatter": {"x": [6.560099973285105e-05, 0.022395346999928734, 0.05451540300009583, 0.06967917000019952, 0.09520655200003603, 0.23165816099981384, 0.6115247610000552, 0.9065179209997041, 0.9164779310003723, 0.9374819640001988], "y": [2079.441541679836, 1979.474567102448, 1864.7642742991175, 1687.9969942108828, 1483.075927017011, 1337.901700573777, 1337.2812475344708, 1337.2812475277453, 1337.2812475277453, 1337.2812475277453], "q1": [6.560099973285105e-05, 0.022395346999928734, 0.05451540300009583, 0.06967917000019952, 0.09520655200003603, 0.23165816099981384, 0.6115247610000552, 0.9065179209997041, 0.9164779310003723, 0.9374819640001988], "q9": [6.560099973285105e-05, 0.022395346999928734, 0.05451540300009583, 0.06967917000019952, 0.09520655200003603, 0.23165816099981384, 0.6115247610000552, 0.9065179209997041, 0.9164779310003723, 0.9374819640001988]}, "bar": {"y": 0.6115247610000552, "times": [0.6115247610000552], "text": ""}, "color": "rgba(174.0, 199.0, 232.0, 1.0)", "marker": 2}}, "transformers": {"c_star": 1337.2812475276453, "max_f_0": 1979.474567102448}}}, "Sparse Logistic Regression[reg=0.01]": {"objective_value": {"solvers": {"blitz": {"scatter": {"x": [0.00047150499995041173, 0.11310805099992649, 0.12866672200016183, 0.18061909700008982, 0.4146090839999488, 1.4610920530003568, 3.9936319799999183, 8.461654489000011, 11.589824991000114, 15.400152522000099, 12.655770458000006], "y": [2079.43887501238, 1538.4913109513047, 1213.8001407648776, 803.5858294358688, 432.1742458698948, 306.3049349098798, 305.3916346800935, 305.39151556433103, 305.39151556234947, 347.63147151043324, 305.3915155623489], "q1": [0.00047150499995041173, 0.11310805099992649, 0.12866672200016183, 0.18061909700008982, 0.4146090839999488, 1.4610920530003568, 3.9936319799999183, 8.461654489000011, 11.589824991000114, 15.400152522000099, 12.655770458000006], "q9": [0.00047150499995041173, 0.11310805099992649, 0.12866672200016183, 0.18061909700008982, 0.4146090839999488, 1.4610920530003568, 3.9936319799999183, 8.461654489000011, 11.589824991000114, 15.400152522000099, 12.655770458000006]}, "bar": {"y": 8.461654489000011, "times": [8.461654489000011], "text": ""}, "color": "rgba(31.0, 119.0, 180.0, 1.0)", "marker": 1}, "PN-skglm": {"scatter": {"x": [7.370100001935498e-05, 0.015387551999992866, 0.02755847199978234, 0.06002669400004379, 0.06763186800026233, 0.2423916959996859, 1.2147074049998992, 2.929246603000138, 5.237059938999664, 5.159038007999698, 5.3217348160001166], "y": [2079.441541679836, 1951.5680093274448, 1787.5374226647245, 1510.9958190291013, 1121.4405084288308, 394.6893135519213, 305.51321346380576, 305.391527580215, 305.3915155624377, 305.3915155624377, 305.3915155624377], "q1": [7.370100001935498e-05, 0.015387551999992866, 0.02755847199978234, 0.06002669400004379, 0.06763186800026233, 0.2423916959996859, 1.2147074049998992, 2.929246603000138, 5.237059938999664, 5.159038007999698, 5.3217348160001166], "q9": [7.370100001935498e-05, 0.015387551999992866, 0.02755847199978234, 0.06002669400004379, 0.06763186800026233, 0.2423916959996859, 1.2147074049998992, 2.929246603000138, 5.237059938999664, 5.159038007999698, 5.3217348160001166]}, "bar": {"y": 5.237059938999664, "times": [5.237059938999664], "text": ""}, "color": "rgba(174.0, 199.0, 232.0, 1.0)", "marker": 2}}, "transformers": {"c_star": 305.3915155622489, "max_f_0": 1951.5680093274448}}}, "Sparse Logistic Regression[reg=0.005]": {"objective_value": {"solvers": {"blitz": {"scatter": {"x": [0.00047040499975992134, 0.09479984499967031, 0.10843479400000433, 0.20263392900005783, 0.5967302559997734, 2.134229199999936, 5.128695287000028, 10.926289472999997, 16.47889231099998, 17.342203977999816, 18.321372608000274], "y": [2079.43887501238, 1527.0950578770385, 1189.5443077268085, 743.000717410777, 281.9116815144553, 179.53283020685626, 178.62426090820588, 178.62401822945606, 178.62401822724598, 178.62401822724567, 178.62401822724547], "q1": [0.00047040499975992134, 0.09479984499967031, 0.10843479400000433, 0.20263392900005783, 0.5967302559997734, 2.134229199999936, 5.128695287000028, 10.926289472999997, 16.47889231099998, 17.342203977999816, 18.321372608000274], "q9": [0.00047040499975992134, 0.09479984499967031, 0.10843479400000433, 0.20263392900005783, 0.5967302559997734, 2.134229199999936, 5.128695287000028, 10.926289472999997, 16.47889231099998, 17.342203977999816, 18.321372608000274]}, "bar": {"y": 10.926289472999997, "times": [10.926289472999997], "text": ""}, "color": "rgba(31.0, 119.0, 180.0, 1.0)", "marker": 1}, "PN-skglm": {"scatter": {"x": [4.3000000005122274e-05, 0.014280459000019619, 0.03203583200001958, 0.05539142899988292, 0.06445176599982005, 0.2600987730002089, 1.6069871040003818, 4.02167428499979, 6.895590089000052, 6.611392985999828, 6.812614199000109], "y": [2079.441541679836, 1949.9068646948401, 1782.90036933239, 1499.5832098261133, 1094.260481191857, 284.8403627224866, 178.7118416318012, 178.6240211105472, 178.62401822749047, 178.62401822749047, 178.62401822749047], "q1": [4.3000000005122274e-05, 0.014280459000019619, 0.03203583200001958, 0.05539142899988292, 0.06445176599982005, 0.2600987730002089, 1.6069871040003818, 4.02167428499979, 6.895590089000052, 6.611392985999828, 6.812614199000109], "q9": [4.3000000005122274e-05, 0.014280459000019619, 0.03203583200001958, 0.05539142899988292, 0.06445176599982005, 0.2600987730002089, 1.6069871040003818, 4.02167428499979, 6.895590089000052, 6.611392985999828, 6.812614199000109]}, "bar": {"y": 6.895590089000052, "times": [6.895590089000052], "text": ""}, "color": "rgba(174.0, 199.0, 232.0, 1.0)", "marker": 2}}, "transformers": {"c_star": 178.62401822714548, "max_f_0": 1949.9068646948401}}}}, "simulated[X_density=0.5,n_features=5000,n_samples=3000]": {"Sparse Logistic Regression[reg=1]": {"objective_value": {"solvers": {"blitz": {"scatter": {"x": [0.0011662090000754688, 0.0391000869999516, 0.017863731000034022, 0.018323634999887872], "y": [2079.0248557209015, 2079.0247735083117, 2079.0247735083117, 2079.0247735083117], "q1": [0.0011662090000754688, 0.0391000869999516, 0.017863731000034022, 0.018323634999887872], "q9": [0.0011662090000754688, 0.0391000869999516, 0.017863731000034022, 0.018323634999887872]}, "bar": {"y": 0.0391000869999516, "times": [0.0391000869999516], "text": ""}, "color": "rgba(31.0, 119.0, 180.0, 1.0)", "marker": 1}, "PN-skglm": {"scatter": {"x": [6.129999974291422e-05, 0.016576122000060423, 0.027584402000229602, 0.041294802999800595, 0.04305531599993628], "y": [2079.441541679836, 2079.024773511895, 2079.0247735083117, 2079.0247735083117, 2079.0247735083117], "q1": [6.129999974291422e-05, 0.016576122000060423, 0.027584402000229602, 0.041294802999800595, 0.04305531599993628], "q9": [6.129999974291422e-05, 0.016576122000060423, 0.027584402000229602, 0.041294802999800595, 0.04305531599993628]}, "bar": {"y": 0.016576122000060423, "times": [0.016576122000060423], "text": ""}, "color": "rgba(174.0, 199.0, 232.0, 1.0)", "marker": 2}}, "transformers": {"c_star": 2079.0247735082116, "max_f_0": 2079.024773511895}}}, "Sparse Logistic Regression[reg=0.1]": {"objective_value": {"solvers": {"blitz": {"scatter": {"x": [0.0009548070001983433, 0.045964337999976124, 0.04591873700019278, 0.07061881900017397, 0.10569367600010082, 0.3356774660001065, 1.009909819999848, 1.1229051499999514, 1.2208918559999802, 1.0353401920001488], "y": [2079.0248557209015, 1680.3270530824755, 1470.5906939909607, 1305.8460426276079, 1211.9406716135143, 1189.4836622696407, 1189.482468565897, 1189.4824685658973, 1189.4824685658973, 1189.4824685658973], "q1": [0.0009548070001983433, 0.045964337999976124, 0.04591873700019278, 0.07061881900017397, 0.10569367600010082, 0.3356774660001065, 1.009909819999848, 1.1229051499999514, 1.2208918559999802, 1.0353401920001488], "q9": [0.0009548070001983433, 0.045964337999976124, 0.04591873700019278, 0.07061881900017397, 0.10569367600010082, 0.3356774660001065, 1.009909819999848, 1.1229051499999514, 1.2208918559999802, 1.0353401920001488]}, "bar": {"y": 1.009909819999848, "times": [1.009909819999848], "text": ""}, "color": "rgba(31.0, 119.0, 180.0, 1.0)", "marker": 1}, "PN-skglm": {"scatter": {"x": [5.0100999942515045e-05, 0.01466129699974772, 0.029806598000050144, 0.05099684000015259, 0.0713439749997633, 0.1771745800001554, 0.5618898399998216, 0.8691218849999132, 0.9367834360000415, 0.9057026289997339], "y": [2079.441541679836, 1993.322367405513, 1863.41411906019, 1657.862183633462, 1407.3386920792518, 1191.7653441035031, 1189.4824720327194, 1189.482468565901, 1189.482468565901, 1189.482468565901], "q1": [5.0100999942515045e-05, 0.01466129699974772, 0.029806598000050144, 0.05099684000015259, 0.0713439749997633, 0.1771745800001554, 0.5618898399998216, 0.8691218849999132, 0.9367834360000415, 0.9057026289997339], "q9": [5.0100999942515045e-05, 0.01466129699974772, 0.029806598000050144, 0.05099684000015259, 0.0713439749997633, 0.1771745800001554, 0.5618898399998216, 0.8691218849999132, 0.9367834360000415, 0.9057026289997339]}, "bar": {"y": 0.8691218849999132, "times": [0.8691218849999132], "text": ""}, "color": "rgba(174.0, 199.0, 232.0, 1.0)", "marker": 2}}, "transformers": {"c_star": 1189.482468565797, "max_f_0": 1993.322367405513}}}, "Sparse Logistic Regression[reg=0.01]": {"objective_value": {"solvers": {"blitz": {"scatter": {"x": [0.0009875069999907282, 0.04570080399980725, 0.06445822900013809, 0.10368048999998791, 0.22167607500023223, 0.7650727929999448, 2.1969941699999254, 4.478931254999679, 6.703179892999742, 5.710509532000287], "y": [2079.0248557209015, 1525.3634675024114, 1141.8077211117554, 724.6041399727756, 337.56656409967275, 246.96684851567434, 246.546837924273, 246.5467993441281, 246.54679934366453, 246.54679934366493], "q1": [0.0009875069999907282, 0.04570080399980725, 0.06445822900013809, 0.10368048999998791, 0.22167607500023223, 0.7650727929999448, 2.1969941699999254, 4.478931254999679, 6.703179892999742, 5.710509532000287], "q9": [0.0009875069999907282, 0.04570080399980725, 0.06445822900013809, 0.10368048999998791, 0.22167607500023223, 0.7650727929999448, 2.1969941699999254, 4.478931254999679, 6.703179892999742, 5.710509532000287]}, "bar": {"y": 4.478931254999679, "times": [4.478931254999679], "text": ""}, "color": "rgba(31.0, 119.0, 180.0, 1.0)", "marker": 1}, "PN-skglm": {"scatter": {"x": [4.760000001624576e-05, 0.01382329199986998, 0.027579982000133896, 0.04313078499990297, 0.06345221999981732, 0.25064565799993943, 1.095309945000281, 3.160702006000065, 4.621850002999963, 4.556665952999992, 4.415031761000137], "y": [2079.441541679836, 1972.686851420468, 1801.1809832208842, 1498.6367042937918, 1073.026218835542, 295.4831287135551, 246.59992475370217, 246.54679943010146, 246.54679934369992, 246.54679934369992, 246.54679934369992], "q1": [4.760000001624576e-05, 0.01382329199986998, 0.027579982000133896, 0.04313078499990297, 0.06345221999981732, 0.25064565799993943, 1.095309945000281, 3.160702006000065, 4.621850002999963, 4.556665952999992, 4.415031761000137], "q9": [4.760000001624576e-05, 0.01382329199986998, 0.027579982000133896, 0.04313078499990297, 0.06345221999981732, 0.25064565799993943, 1.095309945000281, 3.160702006000065, 4.621850002999963, 4.556665952999992, 4.415031761000137]}, "bar": {"y": 3.160702006000065, "times": [3.160702006000065], "text": ""}, "color": "rgba(174.0, 199.0, 232.0, 1.0)", "marker": 2}}, "transformers": {"c_star": 246.54679934356454, "max_f_0": 1972.686851420468}}}, "Sparse Logistic Regression[reg=0.005]": {"objective_value": {"solvers": {"blitz": {"scatter": {"x": [0.000603004000367946, 0.04200037100008558, 0.0475477069999215, 0.10418057400011094, 0.292080690000148, 1.0799112859999696, 2.536763073000202, 5.669906792999882, 7.543024545000208, 7.526518666999891, 7.617906716000107], "y": [2079.0248557209015, 1515.475965601801, 1118.6130564432472, 674.743424657013, 216.406779919318, 142.6514413618111, 142.33796136101478, 142.33787030279436, 142.33787030246717, 142.33787030246722, 142.33787030246714], "q1": [0.000603004000367946, 0.04200037100008558, 0.0475477069999215, 0.10418057400011094, 0.292080690000148, 1.0799112859999696, 2.536763073000202, 5.669906792999882, 7.543024545000208, 7.526518666999891, 7.617906716000107], "q9": [0.000603004000367946, 0.04200037100008558, 0.0475477069999215, 0.10418057400011094, 0.292080690000148, 1.0799112859999696, 2.536763073000202, 5.669906792999882, 7.543024545000208, 7.526518666999891, 7.617906716000107]}, "bar": {"y": 5.669906792999882, "times": [5.669906792999882], "text": ""}, "color": "rgba(31.0, 119.0, 180.0, 1.0)", "marker": 1}, "PN-skglm": {"scatter": {"x": [5.310100004862761e-05, 0.014215589999821532, 0.027717474999917613, 0.04417737899984786, 0.06370170299987876, 0.27164431599976524, 1.5016507929999534, 3.6624130029999833, 4.804181320000225, 4.951733299999887, 4.8582722619999], "y": [2079.441541679836, 1971.4701959077559, 1797.4521187508644, 1488.8647533941464, 1051.232169669377, 207.37746963438207, 142.35991402166715, 142.3378705507935, 142.33787030294715, 142.33787030294715, 142.33787030294715], "q1": [5.310100004862761e-05, 0.014215589999821532, 0.027717474999917613, 0.04417737899984786, 0.06370170299987876, 0.27164431599976524, 1.5016507929999534, 3.6624130029999833, 4.804181320000225, 4.951733299999887, 4.8582722619999], "q9": [5.310100004862761e-05, 0.014215589999821532, 0.027717474999917613, 0.04417737899984786, 0.06370170299987876, 0.27164431599976524, 1.5016507929999534, 3.6624130029999833, 4.804181320000225, 4.951733299999887, 4.8582722619999]}, "bar": {"y": 3.6624130029999833, "times": [3.6624130029999833], "text": ""}, "color": "rgba(174.0, 199.0, 232.0, 1.0)", "marker": 2}}, "transformers": {"c_star": 142.33787030236715, "max_f_0": 1971.4701959077559}}}}, "simulated[X_density=0.2,n_features=5000,n_samples=3000]": {"Sparse Logistic Regression[reg=1]": {"objective_value": {"solvers": {"blitz": {"scatter": {"x": [0.0012661079999816138, 0.01671500600014042, 0.00816935199964064, 0.007552048000434297], "y": [2076.7947632064133, 2076.7947632064133, 2076.7947632064133, 2076.7947632064133], "q1": [0.0012661079999816138, 0.01671500600014042, 0.00816935199964064, 0.007552048000434297], "q9": [0.0012661079999816138, 0.01671500600014042, 0.00816935199964064, 0.007552048000434297]}, "bar": {"y": 0.0012661079999816138, "times": [0.0012661079999816138], "text": ""}, "color": "rgba(31.0, 119.0, 180.0, 1.0)", "marker": 1}, "PN-skglm": {"scatter": {"x": [4.200000012133387e-05, 0.005863937999947666, 0.0123890790000587, 0.016849808000188204, 0.018032715000117605], "y": [2079.441541679836, 2076.794764121575, 2076.7947632064133, 2076.7947632064133, 2076.7947632064133], "q1": [4.200000012133387e-05, 0.005863937999947666, 0.0123890790000587, 0.016849808000188204, 0.018032715000117605], "q9": [4.200000012133387e-05, 0.005863937999947666, 0.0123890790000587, 0.016849808000188204, 0.018032715000117605]}, "bar": {"y": 0.005863937999947666, "times": [0.005863937999947666], "text": ""}, "color": "rgba(174.0, 199.0, 232.0, 1.0)", "marker": 2}}, "transformers": {"c_star": 2076.7947632063133, "max_f_0": 2076.794764121575}}}, "Sparse Logistic Regression[reg=0.1]": {"objective_value": {"solvers": {"blitz": {"scatter": {"x": [0.0009601060000932193, 0.01748211199992511, 0.01908322200006296, 0.029600989000300615, 0.04665599800000564, 0.1294953270003134, 0.3413866809996762, 0.32303096400028153, 0.3849721589999717, 0.38197004099993137], "y": [2076.7947632064133, 1696.3992574836223, 1503.2467589362393, 1362.3325425644714, 1291.7510338024867, 1275.3939723606454, 1275.39367883785, 1275.39367883785, 1275.3936788378503, 1275.3936788378498], "q1": [0.0009601060000932193, 0.01748211199992511, 0.01908322200006296, 0.029600989000300615, 0.04665599800000564, 0.1294953270003134, 0.3413866809996762, 0.32303096400028153, 0.3849721589999717, 0.38197004099993137], "q9": [0.0009601060000932193, 0.01748211199992511, 0.01908322200006296, 0.029600989000300615, 0.04665599800000564, 0.1294953270003134, 0.3413866809996762, 0.32303096400028153, 0.3849721589999717, 0.38197004099993137]}, "bar": {"y": 0.3413866809996762, "times": [0.3413866809996762], "text": ""}, "color": "rgba(31.0, 119.0, 180.0, 1.0)", "marker": 1}, "PN-skglm": {"scatter": {"x": [5.850000025020563e-05, 0.006006538999827171, 0.012320778999765025, 0.018168116000197188, 0.02771377700037192, 0.06952374399998007, 0.21365556499995364, 0.2677780110002459, 0.2958612899997206, 0.2905598560000726], "y": [2079.441541679836, 1987.6089876539527, 1877.4734689706515, 1685.9287357219237, 1452.6045795435534, 1276.2410914239217, 1275.3936788429492, 1275.39367883786, 1275.39367883786, 1275.39367883786], "q1": [5.850000025020563e-05, 0.006006538999827171, 0.012320778999765025, 0.018168116000197188, 0.02771377700037192, 0.06952374399998007, 0.21365556499995364, 0.2677780110002459, 0.2958612899997206, 0.2905598560000726], "q9": [5.850000025020563e-05, 0.006006538999827171, 0.012320778999765025, 0.018168116000197188, 0.02771377700037192, 0.06952374399998007, 0.21365556499995364, 0.2677780110002459, 0.2958612899997206, 0.2905598560000726]}, "bar": {"y": 0.21365556499995364, "times": [0.21365556499995364], "text": ""}, "color": "rgba(174.0, 199.0, 232.0, 1.0)", "marker": 2}}, "transformers": {"c_star": 1275.3936788377498, "max_f_0": 1987.6089876539527}}}, "Sparse Logistic Regression[reg=0.01]": {"objective_value": {"solvers": {"blitz": {"scatter": {"x": [0.000725604999843199, 0.01938892400039549, 0.031041197999911674, 0.05959958099992946, 0.11338542500016047, 0.33583064499998727, 1.0588856650001617, 2.0524066129996754, 2.532572281999819, 2.9578258129999995], "y": [2076.7947632064133, 1520.9670217601422, 1133.1862890023162, 714.880161982409, 356.9894651450998, 273.146643901001, 272.7451085507106, 272.7450883675476, 272.7450883672959, 272.74508836729353], "q1": [0.000725604999843199, 0.01938892400039549, 0.031041197999911674, 0.05959958099992946, 0.11338542500016047, 0.33583064499998727, 1.0588856650001617, 2.0524066129996754, 2.532572281999819, 2.9578258129999995], "q9": [0.000725604999843199, 0.01938892400039549, 0.031041197999911674, 0.05959958099992946, 0.11338542500016047, 0.33583064499998727, 1.0588856650001617, 2.0524066129996754, 2.532572281999819, 2.9578258129999995]}, "bar": {"y": 2.0524066129996754, "times": [2.0524066129996754], "text": ""}, "color": "rgba(31.0, 119.0, 180.0, 1.0)", "marker": 1}, "PN-skglm": {"scatter": {"x": [4.460099989955779e-05, 0.006888143000196578, 0.011564074000034452, 0.02210633999993661, 0.032983608999984426, 0.09902862800026924, 0.5861248160003925, 1.8449310980004157, 1.850963935999971, 1.9641807849998258, 1.8487909660002515], "y": [2079.441541679836, 1963.5852813504773, 1806.7531708049275, 1516.7155970853128, 1077.5966814261155, 373.3057688717555, 272.7522507950109, 272.7450883791675, 272.74508836753034, 272.74508836753034, 272.74508836753034], "q1": [4.460099989955779e-05, 0.006888143000196578, 0.011564074000034452, 0.02210633999993661, 0.032983608999984426, 0.09902862800026924, 0.5861248160003925, 1.8449310980004157, 1.850963935999971, 1.9641807849998258, 1.8487909660002515], "q9": [4.460099989955779e-05, 0.006888143000196578, 0.011564074000034452, 0.02210633999993661, 0.032983608999984426, 0.09902862800026924, 0.5861248160003925, 1.8449310980004157, 1.850963935999971, 1.9641807849998258, 1.8487909660002515]}, "bar": {"y": 1.8449310980004157, "times": [1.8449310980004157], "text": ""}, "color": "rgba(174.0, 199.0, 232.0, 1.0)", "marker": 2}}, "transformers": {"c_star": 272.74508836719355, "max_f_0": 1963.5852813504773}}}, "Sparse Logistic Regression[reg=0.005]": {"objective_value": {"solvers": {"blitz": {"scatter": {"x": [0.0009396059999744466, 0.016979209000055562, 0.021398338000381045, 0.04742060399985348, 0.12856362499996976, 0.38570927600039795, 1.31063461299982, 2.551657877999787, 3.941251043000193, 3.3923987100001796], "y": [2076.7947632064133, 1509.5953008642375, 1104.0807224612736, 650.8717171532901, 227.58390872877573, 158.49027173695706, 158.0201627581098, 158.02013753573004, 158.02013753544549, 158.02013753544657], "q1": [0.0009396059999744466, 0.016979209000055562, 0.021398338000381045, 0.04742060399985348, 0.12856362499996976, 0.38570927600039795, 1.31063461299982, 2.551657877999787, 3.941251043000193, 3.3923987100001796], "q9": [0.0009396059999744466, 0.016979209000055562, 0.021398338000381045, 0.04742060399985348, 0.12856362499996976, 0.38570927600039795, 1.31063461299982, 2.551657877999787, 3.941251043000193, 3.3923987100001796]}, "bar": {"y": 2.551657877999787, "times": [2.551657877999787], "text": ""}, "color": "rgba(31.0, 119.0, 180.0, 1.0)", "marker": 1}, "PN-skglm": {"scatter": {"x": [5.6800000038492726e-05, 0.005869337000149244, 0.014207391000127245, 0.022304842999801622, 0.0323044070000833, 0.09383680000019012, 0.5772327940003379, 1.5342616349998934, 2.3257077350003783, 2.5007276050000655, 2.369352631000311], "y": [2079.441541679836, 1962.1584051840316, 1802.6322341697116, 1506.06440833682, 1052.7747352490296, 289.4672916447274, 158.07630167190578, 158.02013868489888, 158.02013753565933, 158.02013753565933, 158.02013753565933], "q1": [5.6800000038492726e-05, 0.005869337000149244, 0.014207391000127245, 0.022304842999801622, 0.0323044070000833, 0.09383680000019012, 0.5772327940003379, 1.5342616349998934, 2.3257077350003783, 2.5007276050000655, 2.369352631000311], "q9": [5.6800000038492726e-05, 0.005869337000149244, 0.014207391000127245, 0.022304842999801622, 0.0323044070000833, 0.09383680000019012, 0.5772327940003379, 1.5342616349998934, 2.3257077350003783, 2.5007276050000655, 2.369352631000311]}, "bar": {"y": 2.3257077350003783, "times": [2.3257077350003783], "text": ""}, "color": "rgba(174.0, 199.0, 232.0, 1.0)", "marker": 2}}, "transformers": {"c_star": 158.0201375353455, "max_f_0": 1962.1584051840316}}}}};
+
+            window.addEventListener("load", () => {
+                // Initialize plot state
+                setState({
+                    'dataset': document.getElementById('dataset_selector').value,
+                    'objective': document.getElementById('objective_selector').value,
+                    'objective_column': document.getElementById('objective_column').value,
+                    'plot_kind': document.getElementById('plot_kind').value,
+                    'scale': document.getElementById('change_scaling').value,
+                    'with_quantiles': document.getElementById('change_shades').checked,
+                    'hidden_solvers': []
+                });
+            });
+        </script>
+        <script type="text/javascript">
+            /**
+ * Round with precision control
+ * https://github.com/plotly/d3/blob/6bb40cd42f6479be84efda3e50c8444b50d5905d/d3.js#L2189
+ */
+const d3round = (x, n) => {
+    return n ? Math.round(x * (n = Math.pow(10, n))) / n : Math.round(x);
+};
+
+/**
+ * Container of function that create path for SVG plot marker
+ * https://github.com/plotly/plotly.js/blob/b2df3710d7877ff5b4f85256015a88c8ea8fbe1d/src/components/drawing/symbol_defs.js#L13
+ */
+const SYMBOLDEFS = {
+    circle: {
+        n: 0,
+        f: r => {
+            var rs = d3round(r, 2);
+            return 'M' + rs + ',0A' + rs + ',' + rs + ' 0 1,1 0,-' + rs +
+                'A' + rs + ',' + rs + ' 0 0,1 ' + rs + ',0Z';
+        }
+    },
+    square: {
+        n: 1,
+        f: r => {
+            var rs = d3round(r, 2);
+            return 'M' + rs + ',' + rs + 'H-' + rs + 'V-' + rs + 'H' + rs + 'Z';
+        }
+    },
+    diamond: {
+        n: 2,
+        f: r => {
+            var rd = d3round(r * 1.3, 2);
+            return 'M' + rd + ',0L0,' + rd + 'L-' + rd + ',0L0,-' + rd + 'Z';
+        }
+    },
+    cross: {
+        n: 3,
+        f: r => {
+            var rc = d3round(r * 0.4, 2);
+            var rc2 = d3round(r * 1.2, 2);
+            return 'M' + rc2 + ',' + rc + 'H' + rc + 'V' + rc2 + 'H-' + rc +
+                'V' + rc + 'H-' + rc2 + 'V-' + rc + 'H-' + rc + 'V-' + rc2 +
+                'H' + rc + 'V-' + rc + 'H' + rc2 + 'Z';
+        }
+    },
+    x: {
+        n: 4,
+        f: r => {
+            var rx = d3round(r * 0.8 / Math.sqrt(2), 2);
+            var ne = 'l' + rx + ',' + rx;
+            var se = 'l' + rx + ',-' + rx;
+            var sw = 'l-' + rx + ',-' + rx;
+            var nw = 'l-' + rx + ',' + rx;
+            return 'M0,' + rx + ne + se + sw + se + sw + nw + sw + nw + ne + nw + ne + 'Z';
+        }
+    },
+    'triangle-up': {
+        n: 5,
+        f: r => {
+            var rt = d3round(r * 2 / Math.sqrt(3), 2);
+            var r2 = d3round(r / 2, 2);
+            var rs = d3round(r, 2);
+            return 'M-' + rt + ',' + r2 + 'H' + rt + 'L0,-' + rs + 'Z';
+        }
+    },
+    'triangle-down': {
+        n: 6,
+        f: r => {
+            var rt = d3round(r * 2 / Math.sqrt(3), 2);
+            var r2 = d3round(r / 2, 2);
+            var rs = d3round(r, 2);
+            return 'M-' + rt + ',-' + r2 + 'H' + rt + 'L0,' + rs + 'Z';
+        }
+    },
+    'triangle-left': {
+        n: 7,
+        f: r => {
+            var rt = d3round(r * 2 / Math.sqrt(3), 2);
+            var r2 = d3round(r / 2, 2);
+            var rs = d3round(r, 2);
+            return 'M' + r2 + ',-' + rt + 'V' + rt + 'L-' + rs + ',0Z';
+        }
+    },
+    'triangle-right': {
+        n: 8,
+        f: r => {
+            var rt = d3round(r * 2 / Math.sqrt(3), 2);
+            var r2 = d3round(r / 2, 2);
+            var rs = d3round(r, 2);
+            return 'M-' + r2 + ',-' + rt + 'V' + rt + 'L' + rs + ',0Z';
+        }
+    },
+    'triangle-ne': {
+        n: 9,
+        f: r => {
+            var r1 = d3round(r * 0.6, 2);
+            var r2 = d3round(r * 1.2, 2);
+            return 'M-' + r2 + ',-' + r1 + 'H' + r1 + 'V' + r2 + 'Z';
+        }
+    },
+    'triangle-se': {
+        n: 10,
+        f: r => {
+            var r1 = d3round(r * 0.6, 2);
+            var r2 = d3round(r * 1.2, 2);
+            return 'M' + r1 + ',-' + r2 + 'V' + r1 + 'H-' + r2 + 'Z';
+        }
+    },
+    'triangle-sw': {
+        n: 11,
+        f: r => {
+            var r1 = d3round(r * 0.6, 2);
+            var r2 = d3round(r * 1.2, 2);
+            return 'M' + r2 + ',' + r1 + 'H-' + r1 + 'V-' + r2 + 'Z';
+        }
+    },
+    'triangle-nw': {
+        n: 12,
+        f: r => {
+            var r1 = d3round(r * 0.6, 2);
+            var r2 = d3round(r * 1.2, 2);
+            return 'M-' + r1 + ',' + r2 + 'V-' + r1 + 'H' + r2 + 'Z';
+        }
+    },
+    pentagon: {
+        n: 13,
+        f: r => {
+            var x1 = d3round(r * 0.951, 2);
+            var x2 = d3round(r * 0.588, 2);
+            var y0 = d3round(-r, 2);
+            var y1 = d3round(r * -0.309, 2);
+            var y2 = d3round(r * 0.809, 2);
+            return 'M' + x1 + ',' + y1 + 'L' + x2 + ',' + y2 + 'H-' + x2 +
+                'L-' + x1 + ',' + y1 + 'L0,' + y0 + 'Z';
+        }
+    },
+    hexagon: {
+        n: 14,
+        f: r => {
+            var y0 = d3round(r, 2);
+            var y1 = d3round(r / 2, 2);
+            var x = d3round(r * Math.sqrt(3) / 2, 2);
+            return 'M' + x + ',-' + y1 + 'V' + y1 + 'L0,' + y0 +
+                'L-' + x + ',' + y1 + 'V-' + y1 + 'L0,-' + y0 + 'Z';
+        }
+    },
+    hexagon2: {
+        n: 15,
+        f: r => {
+            var x0 = d3round(r, 2);
+            var x1 = d3round(r / 2, 2);
+            var y = d3round(r * Math.sqrt(3) / 2, 2);
+            return 'M-' + x1 + ',' + y + 'H' + x1 + 'L' + x0 +
+                ',0L' + x1 + ',-' + y + 'H-' + x1 + 'L-' + x0 + ',0Z';
+        }
+    },
+    octagon: {
+        n: 16,
+        f: r => {
+            var a = d3round(r * 0.924, 2);
+            var b = d3round(r * 0.383, 2);
+            return 'M-' + b + ',-' + a + 'H' + b + 'L' + a + ',-' + b + 'V' + b +
+                'L' + b + ',' + a + 'H-' + b + 'L-' + a + ',' + b + 'V-' + b + 'Z';
+        }
+    },
+    star: {
+        n: 17,
+        f: r => {
+            var rs = r * 1.4;
+            var x1 = d3round(rs * 0.225, 2);
+            var x2 = d3round(rs * 0.951, 2);
+            var x3 = d3round(rs * 0.363, 2);
+            var x4 = d3round(rs * 0.588, 2);
+            var y0 = d3round(-rs, 2);
+            var y1 = d3round(rs * -0.309, 2);
+            var y3 = d3round(rs * 0.118, 2);
+            var y4 = d3round(rs * 0.809, 2);
+            var y5 = d3round(rs * 0.382, 2);
+            return 'M' + x1 + ',' + y1 + 'H' + x2 + 'L' + x3 + ',' + y3 +
+                'L' + x4 + ',' + y4 + 'L0,' + y5 + 'L-' + x4 + ',' + y4 +
+                'L-' + x3 + ',' + y3 + 'L-' + x2 + ',' + y1 + 'H-' + x1 +
+                'L0,' + y0 + 'Z';
+        }
+    },
+    hexagram: {
+        n: 18,
+        f: r => {
+            var y = d3round(r * 0.66, 2);
+            var x1 = d3round(r * 0.38, 2);
+            var x2 = d3round(r * 0.76, 2);
+            return 'M-' + x2 + ',0l-' + x1 + ',-' + y + 'h' + x2 +
+                'l' + x1 + ',-' + y + 'l' + x1 + ',' + y + 'h' + x2 +
+                'l-' + x1 + ',' + y + 'l' + x1 + ',' + y + 'h-' + x2 +
+                'l-' + x1 + ',' + y + 'l-' + x1 + ',-' + y + 'h-' + x2 + 'Z';
+        }
+    },
+    'star-triangle-up': {
+        n: 19,
+        f: r => {
+            var x = d3round(r * Math.sqrt(3) * 0.8, 2);
+            var y1 = d3round(r * 0.8, 2);
+            var y2 = d3round(r * 1.6, 2);
+            var rc = d3round(r * 4, 2);
+            var aPart = 'A ' + rc + ',' + rc + ' 0 0 1 ';
+            return 'M-' + x + ',' + y1 + aPart + x + ',' + y1 +
+                aPart + '0,-' + y2 + aPart + '-' + x + ',' + y1 + 'Z';
+        }
+    },
+    'star-triangle-down': {
+        n: 20,
+        f: r => {
+            var x = d3round(r * Math.sqrt(3) * 0.8, 2);
+            var y1 = d3round(r * 0.8, 2);
+            var y2 = d3round(r * 1.6, 2);
+            var rc = d3round(r * 4, 2);
+            var aPart = 'A ' + rc + ',' + rc + ' 0 0 1 ';
+            return 'M' + x + ',-' + y1 + aPart + '-' + x + ',-' + y1 +
+                aPart + '0,' + y2 + aPart + x + ',-' + y1 + 'Z';
+        }
+    },
+    'star-square': {
+        n: 21,
+        f: r => {
+            var rp = d3round(r * 1.1, 2);
+            var rc = d3round(r * 2, 2);
+            var aPart = 'A ' + rc + ',' + rc + ' 0 0 1 ';
+            return 'M-' + rp + ',-' + rp + aPart + '-' + rp + ',' + rp +
+                aPart + rp + ',' + rp + aPart + rp + ',-' + rp +
+                aPart + '-' + rp + ',-' + rp + 'Z';
+        }
+    },
+    'star-diamond': {
+        n: 22,
+        f: r => {
+            var rp = d3round(r * 1.4, 2);
+            var rc = d3round(r * 1.9, 2);
+            var aPart = 'A ' + rc + ',' + rc + ' 0 0 1 ';
+            return 'M-' + rp + ',0' + aPart + '0,' + rp +
+                aPart + rp + ',0' + aPart + '0,-' + rp +
+                aPart + '-' + rp + ',0' + 'Z';
+        }
+    },
+    'diamond-tall': {
+        n: 23,
+        f: r => {
+            var x = d3round(r * 0.7, 2);
+            var y = d3round(r * 1.4, 2);
+            return 'M0,' + y + 'L' + x + ',0L0,-' + y + 'L-' + x + ',0Z';
+        }
+    },
+    'diamond-wide': {
+        n: 24,
+        f: r => {
+            var x = d3round(r * 1.4, 2);
+            var y = d3round(r * 0.7, 2);
+            return 'M0,' + y + 'L' + x + ',0L0,-' + y + 'L-' + x + ',0Z';
+        }
+    },
+    hourglass: {
+        n: 25,
+        f: r => {
+            var rs = d3round(r, 2);
+            return 'M' + rs + ',' + rs + 'H-' + rs + 'L' + rs + ',-' + rs + 'H-' + rs + 'Z';
+        },
+        noDot: true
+    },
+    bowtie: {
+        n: 26,
+        f: r => {
+            var rs = d3round(r, 2);
+            return 'M' + rs + ',' + rs + 'V-' + rs + 'L-' + rs + ',' + rs + 'V-' + rs + 'Z';
+        },
+        noDot: true
+    },
+    'circle-cross': {
+        n: 27,
+        f: r => {
+            var rs = d3round(r, 2);
+            return 'M0,' + rs + 'V-' + rs + 'M' + rs + ',0H-' + rs +
+                'M' + rs + ',0A' + rs + ',' + rs + ' 0 1,1 0,-' + rs +
+                'A' + rs + ',' + rs + ' 0 0,1 ' + rs + ',0Z';
+        },
+        needLine: true,
+        noDot: true
+    },
+    'circle-x': {
+        n: 28,
+        f: r => {
+            var rs = d3round(r, 2);
+            var rc = d3round(r / Math.sqrt(2), 2);
+            return 'M' + rc + ',' + rc + 'L-' + rc + ',-' + rc +
+                'M' + rc + ',-' + rc + 'L-' + rc + ',' + rc +
+                'M' + rs + ',0A' + rs + ',' + rs + ' 0 1,1 0,-' + rs +
+                'A' + rs + ',' + rs + ' 0 0,1 ' + rs + ',0Z';
+        },
+        needLine: true,
+        noDot: true
+    },
+    'square-cross': {
+        n: 29,
+        f: r => {
+            var rs = d3round(r, 2);
+            return 'M0,' + rs + 'V-' + rs + 'M' + rs + ',0H-' + rs +
+                'M' + rs + ',' + rs + 'H-' + rs + 'V-' + rs + 'H' + rs + 'Z';
+        },
+        needLine: true,
+        noDot: true
+    },
+    'square-x': {
+        n: 30,
+        f: r => {
+            var rs = d3round(r, 2);
+            return 'M' + rs + ',' + rs + 'L-' + rs + ',-' + rs +
+                'M' + rs + ',-' + rs + 'L-' + rs + ',' + rs +
+                'M' + rs + ',' + rs + 'H-' + rs + 'V-' + rs + 'H' + rs + 'Z';
+        },
+        needLine: true,
+        noDot: true
+    },
+    'diamond-cross': {
+        n: 31,
+        f: r => {
+            var rd = d3round(r * 1.3, 2);
+            return 'M' + rd + ',0L0,' + rd + 'L-' + rd + ',0L0,-' + rd + 'Z' +
+                'M0,-' + rd + 'V' + rd + 'M-' + rd + ',0H' + rd;
+        },
+        needLine: true,
+        noDot: true
+    },
+    'diamond-x': {
+        n: 32,
+        f: r => {
+            var rd = d3round(r * 1.3, 2);
+            var r2 = d3round(r * 0.65, 2);
+            return 'M' + rd + ',0L0,' + rd + 'L-' + rd + ',0L0,-' + rd + 'Z' +
+                'M-' + r2 + ',-' + r2 + 'L' + r2 + ',' + r2 +
+                'M-' + r2 + ',' + r2 + 'L' + r2 + ',-' + r2;
+        },
+        needLine: true,
+        noDot: true
+    },
+    'cross-thin': {
+        n: 33,
+        f: r => {
+            var rc = d3round(r * 1.4, 2);
+            return 'M0,' + rc + 'V-' + rc + 'M' + rc + ',0H-' + rc;
+        },
+        needLine: true,
+        noDot: true,
+        noFill: true
+    },
+    'x-thin': {
+        n: 34,
+        f: r => {
+            var rx = d3round(r, 2);
+            return 'M' + rx + ',' + rx + 'L-' + rx + ',-' + rx +
+                'M' + rx + ',-' + rx + 'L-' + rx + ',' + rx;
+        },
+        needLine: true,
+        noDot: true,
+        noFill: true
+    },
+    asterisk: {
+        n: 35,
+        f: r => {
+            var rc = d3round(r * 1.2, 2);
+            var rs = d3round(r * 0.85, 2);
+            return 'M0,' + rc + 'V-' + rc + 'M' + rc + ',0H-' + rc +
+                'M' + rs + ',' + rs + 'L-' + rs + ',-' + rs +
+                'M' + rs + ',-' + rs + 'L-' + rs + ',' + rs;
+        },
+        needLine: true,
+        noDot: true,
+        noFill: true
+    },
+    hash: {
+        n: 36,
+        f: r => {
+            var r1 = d3round(r / 2, 2);
+            var r2 = d3round(r, 2);
+            return 'M' + r1 + ',' + r2 + 'V-' + r2 +
+                'm-' + r2 + ',0V' + r2 +
+                'M' + r2 + ',' + r1 + 'H-' + r2 +
+                'm0,-' + r2 + 'H' + r2;
+        },
+        needLine: true,
+        noFill: true
+    },
+    'y-up': {
+        n: 37,
+        f: r => {
+            var x = d3round(r * 1.2, 2);
+            var y0 = d3round(r * 1.6, 2);
+            var y1 = d3round(r * 0.8, 2);
+            return 'M-' + x + ',' + y1 + 'L0,0M' + x + ',' + y1 + 'L0,0M0,-' + y0 + 'L0,0';
+        },
+        needLine: true,
+        noDot: true,
+        noFill: true
+    },
+    'y-down': {
+        n: 38,
+        f: r => {
+            var x = d3round(r * 1.2, 2);
+            var y0 = d3round(r * 1.6, 2);
+            var y1 = d3round(r * 0.8, 2);
+            return 'M-' + x + ',-' + y1 + 'L0,0M' + x + ',-' + y1 + 'L0,0M0,' + y0 + 'L0,0';
+        },
+        needLine: true,
+        noDot: true,
+        noFill: true
+    },
+    'y-left': {
+        n: 39,
+        f: r => {
+            var y = d3round(r * 1.2, 2);
+            var x0 = d3round(r * 1.6, 2);
+            var x1 = d3round(r * 0.8, 2);
+            return 'M' + x1 + ',' + y + 'L0,0M' + x1 + ',-' + y + 'L0,0M-' + x0 + ',0L0,0';
+        },
+        needLine: true,
+        noDot: true,
+        noFill: true
+    },
+    'y-right': {
+        n: 40,
+        f: r => {
+            var y = d3round(r * 1.2, 2);
+            var x0 = d3round(r * 1.6, 2);
+            var x1 = d3round(r * 0.8, 2);
+            return 'M-' + x1 + ',' + y + 'L0,0M-' + x1 + ',-' + y + 'L0,0M' + x0 + ',0L0,0';
+        },
+        needLine: true,
+        noDot: true,
+        noFill: true
+    },
+    'line-ew': {
+        n: 41,
+        f: r => {
+            var rc = d3round(r * 1.4, 2);
+            return 'M' + rc + ',0H-' + rc;
+        },
+        needLine: true,
+        noDot: true,
+        noFill: true
+    },
+    'line-ns': {
+        n: 42,
+        f: r => {
+            var rc = d3round(r * 1.4, 2);
+            return 'M0,' + rc + 'V-' + rc;
+        },
+        needLine: true,
+        noDot: true,
+        noFill: true
+    },
+    'line-ne': {
+        n: 43,
+        f: r => {
+            var rx = d3round(r, 2);
+            return 'M' + rx + ',-' + rx + 'L-' + rx + ',' + rx;
+        },
+        needLine: true,
+        noDot: true,
+        noFill: true
+    },
+    'line-nw': {
+        n: 44,
+        f: r => {
+            var rx = d3round(r, 2);
+            return 'M' + rx + ',' + rx + 'L-' + rx + ',-' + rx;
+        },
+        needLine: true,
+        noDot: true,
+        noFill: true
+    },
+    'arrow-up': {
+        n: 45,
+        f: r => {
+            var rx = d3round(r, 2);
+            var ry = d3round(r * 2, 2);
+            return 'M0,0L-' + rx + ',' + ry + 'H' + rx + 'Z';
+        },
+        noDot: true
+    },
+    'arrow-down': {
+        n: 46,
+        f: r => {
+            var rx = d3round(r, 2);
+            var ry = d3round(r * 2, 2);
+            return 'M0,0L-' + rx + ',-' + ry + 'H' + rx + 'Z';
+        },
+        noDot: true
+    },
+    'arrow-left': {
+        n: 47,
+        f: r => {
+            var rx = d3round(r * 2, 2);
+            var ry = d3round(r, 2);
+            return 'M0,0L' + rx + ',-' + ry + 'V' + ry + 'Z';
+        },
+        noDot: true
+    },
+    'arrow-right': {
+        n: 48,
+        f: r => {
+            var rx = d3round(r * 2, 2);
+            var ry = d3round(r, 2);
+            return 'M0,0L-' + rx + ',-' + ry + 'V' + ry + 'Z';
+        },
+        noDot: true
+    },
+    'arrow-bar-up': {
+        n: 49,
+        f: r => {
+            var rx = d3round(r, 2);
+            var ry = d3round(r * 2, 2);
+            return 'M-' + rx + ',0H' + rx + 'M0,0L-' + rx + ',' + ry + 'H' + rx + 'Z';
+        },
+        needLine: true,
+        noDot: true
+    },
+    'arrow-bar-down': {
+        n: 50,
+        f: r => {
+            var rx = d3round(r, 2);
+            var ry = d3round(r * 2, 2);
+            return 'M-' + rx + ',0H' + rx + 'M0,0L-' + rx + ',-' + ry + 'H' + rx + 'Z';
+        },
+        needLine: true,
+        noDot: true
+    },
+    'arrow-bar-left': {
+        n: 51,
+        f: r => {
+            var rx = d3round(r * 2, 2);
+            var ry = d3round(r, 2);
+            return 'M0,-' + ry + 'V' + ry + 'M0,0L' + rx + ',-' + ry + 'V' + ry + 'Z';
+        },
+        needLine: true,
+        noDot: true
+    },
+    'arrow-bar-right': {
+        n: 52,
+        f: r => {
+            var rx = d3round(r * 2, 2);
+            var ry = d3round(r, 2);
+            return 'M0,-' + ry + 'V' + ry + 'M0,0L-' + rx + ',-' + ry + 'V' + ry + 'Z';
+        },
+        needLine: true,
+        noDot: true
+    }
+};
+
+const DOTPATH = 'M0,0.5L0.5,0L0,-0.5L-0.5,0Z';
+
+const drawing = {
+    symbolFuncs: [],
+};
+
+/**
+ * Create arrays of symbol functions.
+ * https://plotly.com/javascript/reference/scatter/#scatter-marker-symbol
+ */
+Object.keys(SYMBOLDEFS).forEach(function(k) {
+    var symDef = SYMBOLDEFS[k];
+    var n = symDef.n;
+    drawing.symbolFuncs[n] = symDef.f;
+});
+
+/**
+ * Returns a <path></path> element that have to be placed in a <svg></svg> element.
+ * 
+ * @param {int} symbolNumber
+ * @param {String} color
+ * @return {Element}
+ */
+const createPathElement = (symbolNumber, color) => {
+    const path = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+    // d is the shape of the symbol.
+    path.setAttribute('d', createPathString(symbolNumber, 5));
+    // Translation must be the half of the svg size to have the symbol centered.
+    path.setAttribute('transform', 'translate(15, 15)');
+
+    // If svg is type "open" or "open-dot" : https://plotly.com/javascript/reference/scatter/#scatter-marker-symbol
+    if ((100 <= symbolNumber && symbolNumber < 200) || 300 <= symbolNumber) {
+        path.setAttribute('stroke', color);
+        path.setAttribute('stroke-width', 0.5);
+        path.setAttribute('stroke-opacity', 1);
+        path.setAttribute('fill', 'white');
+    }
+
+    // If svg is type "normal" or "dot" : https://plotly.com/javascript/reference/scatter/#scatter-marker-symbol
+    if (symbolNumber < 100 || (200 <= symbolNumber && symbolNumber < 300)) {
+        path.setAttribute('fill-opacity', 1);
+        path.setAttribute('fill', color);
+    }
+
+    // If svg is type "dot" : https://plotly.com/javascript/reference/scatter/#scatter-marker-symbol
+    if (200 <= symbolNumber && symbolNumber < 300) {
+        path.setAttribute('stroke', 'black');
+        path.setAttribute('stroke-width', 0.5);
+        path.setAttribute('stroke-opacity', 1);
+    }
+    
+    return path;
+}
+
+/**
+ * Returns the string corresponding of the symbol shape requested by symbolNumber.
+ * 
+ * @param {int} symbolNumber
+ * @param {int} r size of the symbol (currently, we request a 5)
+ * @returns {String} this string must be placed in the "d" attribute of <path></path> SVG element.
+ */
+function createPathString(symbolNumber, r) {
+    var base = symbolNumber % 100;
+    return drawing.symbolFuncs[base](r) + (symbolNumber >= 200 ? DOTPATH : '');
+}
+
+            const NON_CONVERGENT_COLOR = 'rgba(0.8627, 0.8627, 0.8627)'
+
+/*
+ * ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+ * STATE MANAGEMENT
+ * 
+ * The state represent the plot state. It's an object
+ * that is stored into the window.state variable.
+ * 
+ * Do not manually update window.state,
+ * instead, foreach state modification,
+ * you shoud call the setState() function
+ * to keep the plot in sync with its state.
+ * 
+ * The state contains the following keys :
+ *   - dataset (string),
+ *   - objective (string),
+ *   - objective_column (string),
+ *   - plot_kind (string),
+ *   - scale (string)
+ *   - with_quantiles (boolean)
+ *   - hidden_solvers (array)
+ * ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+ */
+
+/**
+ * Update the state and create/update the plot
+ * using the new state.
+ * 
+ * @param {Object} partialState 
+ */
+const setState = (partialState) => {
+  window.state = {...state(), ...partialState};
+  displayScatterElements(!isBarChart());
+  makePlot();
+  makeLegend();
+}
+
+/**
+ * Retrieve the state object from window.state
+ * 
+ * @returns Object
+ */
+const state = () => window.state;
+
+/*
+ * ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+ * PLOT MANAGEMENT
+ * 
+ * Retrieve formatted data for PlotlyJS using state
+ * and create/update the plot.
+ * ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+ */
+
+/**
+ * Create/Update the plot.
+ */
+const makePlot = () => {
+  const div = document.getElementById('unique_plot');
+  const data = isBarChart() ? getBarData() : getScatterCurves();
+  const layout = isBarChart() ? getBarChartLayout() : getScatterChartLayout();
+
+  Plotly.react(div, data, layout);
+};
+
+/**
+ * Gives the data formatted for plotlyJS bar chart.
+ * 
+ * @returns {array}
+ */
+const getBarData = () => {
+  if (!isAvailable()) return [{type:'bar'}];
+
+  const {x, y, colors, texts} = barDataToArrays()
+
+  // Add bars
+  const barData = [{
+    type: 'bar',
+    x: x,
+    y: y,
+    marker: {
+      color: colors,
+    },
+    text: texts,
+    textposition: 'inside',
+    insidetextanchor: 'middle',
+    textangle: '-90',
+  }];
+
+  x.forEach(solver => {
+    // Add times for each convergent solver
+    // Check if text is not 'Did not converge'
+    if (data(solver).bar.text === '') {
+      let nbTimes = data(solver).bar.times.length
+
+      barData.push({
+        type: 'scatter',
+        x: new Array(nbTimes).fill(solver),
+        y: data(solver).bar.times,
+        marker: {
+          color: 'black',
+          symbol: 'line-ew-open'
+        },
+        line: {
+          width: 0
+        },
+      });
+    }
+  });
+
+  return barData;
+};
+
+/**
+ * Gives the data formatted for plotlyJS scatter chart.
+ * 
+ * @returns {array}
+ */
+const getScatterCurves = () => {
+  // create a list of object to plot in plotly
+  const curves = [];
+
+  // For each solver, add the median curve with proper style and visibility.
+  getSolvers().forEach(solver => {
+    curves.push({
+      type: 'scatter',
+      name: solver,
+      mode: 'lines+markers',
+      line: {
+        color: data(solver).color,
+      },
+      marker: {
+        symbol: data(solver).marker,
+        size: 10,
+      },
+      legendgroup: solver,
+      hovertemplate: solver + ' <br> (%{x:.1e},%{y:.1e}) <extra></extra>',
+      visible: isVisible(solver) ? true : 'legendonly',
+      x: data(solver).scatter.x,
+      y: useTransformer(data(solver).scatter.y, 'y', data().transformers),
+    });
+
+    if (state().with_quantiles) {
+      // Add shaded area for each solver, with proper style and visibility.
+      curves.push({
+        type: 'scatter',
+        mode: 'lines',
+        showlegend: false,
+        line: {
+          width: 0,
+          color: data(solver).color,
+        },
+        legendgroup: solver,
+        hovertemplate: '(%{x:.1e},%{y:.1e}) <extra></extra>',
+        visible: isVisible(solver) ? true : 'legendonly',
+        x: data(solver).scatter.q1,
+        y: data(solver).scatter.y,
+      }, {
+        type: 'scatter',
+        mode: 'lines',
+        showlegend: false,
+        fill: 'tonextx',
+        line: {
+          width: 0,
+          color: data(solver).color,
+        },
+        legendgroup: solver,
+        hovertemplate: '(%{x:.1e},%{y:.1e}) <extra></extra>',
+        visible: isVisible(solver) ? true : 'legendonly',
+        x: data(solver).scatter.q9,
+        y: data(solver).scatter.y,
+      });
+    }
+  });
+
+  return curves;
+};
+
+/*
+ * ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+ * DATA TRANSFORMERS
+ * 
+ * Transformers are used to modify data
+ * on the fly.
+ * 
+ * WARNING : If you add a new transformer function,
+ * don't forget to register it in the object : window.tranformers,
+ * at the end of this section.
+ * ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+ */
+
+/**
+ * Select the right transformer according to the state.
+ * If the requested transformer does not exists,
+ * it returns raw data.
+ * 
+ * @param {Object} data 
+ * @param {String} solver 
+ * @param {String} axis it could be x, y, q1, q9
+ * @returns {array}
+ */
+const useTransformer = (data, axis, options) => {
+  try {
+    let transformer = 'transformer_' + axis + '_' + state().plot_kind;
+    return window.transformers[transformer](data, options);
+  } catch(error) {
+    return data;
+  }
+};
+
+/**
+ * Transform data on the y axis for subotimality curve.
+ * 
+ * @param {Object} data 
+ * @param {String} solver 
+ * @returns {array}
+ */
+const transformer_y_suboptimality_curve = (y, options) => {
+  // Retrieve c_star value
+  const c_star = options.c_star;
+  
+  // Compute suboptimality for each data
+  return y.map(value => value - c_star);
+};
+
+/**
+ * Transform data ont the y axis for relative suboptimality curve.
+ * 
+ * @param {Object} data 
+ * @param {String} solver 
+ * @returns {array}
+ */
+const transformer_y_relative_suboptimality_curve = (y, options) => {
+  // Retrieve transformer values
+  const c_star = options.c_star;
+  const max_f_0 = options.max_f_0;
+
+  // Compute relative suboptimality for each data
+  return y.map(value => (value - c_star) / (max_f_0 - c_star));
+};
+
+/**
+ * Store all the transformer functions to be callable
+ * by the useTransformer function.
+ */
+window.transformers = {
+  transformer_y_suboptimality_curve,
+  transformer_y_relative_suboptimality_curve,
+};
+
+/*
+ * ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+ * TOOLS
+ * 
+ * Various functions to simplify life.
+ * ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+ */
+
+const data = (solver = null) => {
+  return solver ?
+    window.data[state().dataset][state().objective][state().objective_column].solvers[solver]:
+    window.data[state().dataset][state().objective][state().objective_column]
+}
+
+const getSolvers = () => Object.keys(data().solvers);
+
+const isBarChart = () => state().plot_kind === 'bar_chart';
+
+const isVisible = solver => !state().hidden_solvers.includes(solver);
+
+const isSolverAvailable = solver => data(solver).scatter.y.filter(value => !isNaN(value)).length > 0;
+
+const isSmallScreen = () => window.screen.availHeight < 900;
+
+/**
+ * Check for each solver
+ * if data is available
+ * 
+ * @returns {Boolean}
+ */
+const isAvailable = () => {
+  let isNotAvailable = true;
+
+  getSolvers().forEach(solver => {
+    if (isSolverAvailable(solver)) {
+      isNotAvailable = false;
+    }
+  });
+
+  return !isNotAvailable;
+}
+
+const displayScatterElements = shouldBeVisible => {
+  if (shouldBeVisible) {
+    document.getElementById('change_scaling').style.display = 'inline-block';
+    document.getElementById('legend_container').style.display = 'block';
+    document.getElementById('plot_legend').style.display = 'flex';
+  } else {
+    document.getElementById('change_scaling').style.display = 'none';
+    document.getElementById('legend_container').style.display = 'none';
+    document.getElementById('plot_legend').style.display = 'none';
+  }
+};
+
+const barDataToArrays = () => {
+  const colors = [], texts = [], x = [], y = [];
+
+  getSolvers().forEach(solver => {
+    x.push(solver);
+    y.push(data(solver).bar.y);
+    colors.push(data(solver).bar.text === '' ? data(solver).color : NON_CONVERGENT_COLOR);
+    texts.push(data(solver).bar.text);
+  });
+
+  return {x, y, colors, texts}
+}
+
+const getScale = () => {
+  switch (state().scale) {
+    case 'loglog':
+      return {
+        xaxis: 'log',
+        yaxis: 'log',
+      };
+    case "semilog-y":
+      return {
+        xaxis: 'linear',
+        yaxis: 'log',
+      };
+    case "semilog-x":
+      return {
+        xaxis: 'log',
+        yaxis: 'linear',
+      };
+    case "linear":
+      return {
+        xaxis: 'linear',
+        yaxis: 'linear',
+      };
+    default:
+      console.error('Unknown scale value : ' + state().scale);
+  }
+}
+
+const getScatterChartLayout = () => {
+  const layout = {
+    autosize: !isSmallScreen(),
+    modebar: {
+      orientation: 'v',
+    },
+    height: 700,
+    showlegend: false,
+    legend: {
+      title: {
+        text: 'Solvers',
+      },
+      orientation: 'h',
+      xanchor: 'center',
+      yanchor: 'top',
+      y: -.2,
+      x: .5
+    },
+    xaxis: {
+      type: getScale().xaxis,
+      title: 'Time [sec]',
+      tickformat: '.1e',
+      tickangle: -45,
+      gridcolor: '#ffffff',
+      zeroline : false,
+    },
+    yaxis: {
+      type: getScale().yaxis,
+      title: getYLabel(),
+      tickformat: '.1e',
+      gridcolor: '#ffffff',
+      zeroline : false,
+    },
+    title: `${state().objective}<br />Data: ${state().dataset}`,
+    plot_bgcolor: '#e5ecf6',
+  };
+
+  if (isSmallScreen()) {
+    layout.width = 900;
+    layout.height = window.screen.availHeight - 200;
+    layout.dragmode = false;
+  }
+
+  if (!isAvailable()) {
+    layout.annotations = [{
+      xref: 'paper',
+      yref: 'paper',
+      x: 0.5,
+      y: 0.5,
+      text: 'Not available',
+      showarrow: false,
+      font: {
+        color: 'black',
+        size: 32,
+      }
+    }];
+  };
+
+  return layout;
+};
+
+const getBarChartLayout = () => {
+
+  const layout = {
+    autosize: !isSmallScreen(),
+    modebar: {
+      orientation: 'v',
+    },
+    yaxis: {
+      type: 'log',
+      title: 'Time [sec]',
+      tickformat: '.1e',
+      gridcolor: '#ffffff',
+    },
+    xaxis: {
+      tickangle: -60,
+      ticktext: getSolvers(),
+    },
+    showlegend: false,
+    title: `${state().objective}<br />Data: ${state().dataset}`,
+    plot_bgcolor: '#e5ecf6',
+  };
+
+  if (isSmallScreen()) {
+    layout.width = 900;
+    layout.height = window.screen.availHeight - 200;
+    layout.dragmode = false;
+  }
+
+  if (!isAvailable()) {
+    layout.annotations = [{
+      xref: 'paper',
+      yref: 'paper',
+      x: 0.5,
+      y: 0.5,
+      text: 'Not available',
+      showarrow: false,
+      font: {
+        color: 'black',
+        size: 32,
+      }
+    }];
+  };
+
+  return layout;
+};
+
+const getYLabel = () => {
+  switch(state().plot_kind) {
+    case 'objective_curve':
+      return 'F(x)';
+    case 'suboptimality_curve':
+      return 'F(x) - F(x*)';
+    case 'relative_suboptimality_curve':
+      return 'F(x) - F(x*) / F(x0) - F(x*)'
+    case 'bar_chart':
+      return 'Time [sec]';
+    default:
+      return 'unknown';
+  };
+};
+
+/*
+ * ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+ * MANAGE HIDDEN SOLVERS
+ * 
+ * Functions to hide/display and memorize solvers which were clicked
+ * by user on the legend of the plot.
+ * ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+ */
+const getSolverFromEvent = event => {
+  const target = event.currentTarget;
+
+  for (let i = 0; i < target.children.length; i++) {
+    if (target.children[i].className == 'solver') {
+      return target.children[i].firstChild.nodeValue;
+    }
+  }
+
+  return null;
+};
+
+const purgeHiddenSolvers = () => setState({hidden_solvers: []});
+
+const hideAllSolversExcept = solver => {setState({hidden_solvers: getSolvers().filter(elmt => elmt !== solver)})};
+
+const hideSolver = solver => isVisible(solver) ? setState({hidden_solvers: [...state().hidden_solvers, solver]}) : null;
+
+const showSolver = solver => setState({hidden_solvers: state().hidden_solvers.filter(hidden => hidden !== solver)});
+
+/**
+ * Add or remove solver name from the list of hidden solvers.
+ * 
+ * @param {String} solver
+ * @returns {void}
+ */
+const handleSolverClick = solver => {
+  if (!isVisible(solver)) {
+    showSolver(solver);
+
+    return;
+  }
+
+  hideSolver(solver);
+};
+
+const handleSolverDoubleClick = solver => {
+  // If all solvers except one are hidden, so double click should show all solvers
+  if (state().hidden_solvers.length === getSolvers().length - 1) {
+    purgeHiddenSolvers();
+
+    return;
+  }
+
+  hideAllSolversExcept(solver);
+};
+
+/**
+ * ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+ * MANAGE PLOT LEGEND
+ * 
+ * We don't use the plotly legend to keep control
+ * on the size of the plot.
+ * ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+ */
+
+/**
+ * Creates the legend at the bottom of the plot.
+ */
+const makeLegend = () => {
+  const legend = document.getElementById('plot_legend');
+
+  legend.innerHTML = '';
+
+  Object.keys(data().solvers).forEach(solver => {
+    const color = data().solvers[solver].color;
+    const symbolNumber = data().solvers[solver].marker;
+
+    legend.appendChild(createLegendItem(solver, color, symbolNumber));
+  });
+}
+
+/**
+ * Creates a legend item which contains the solver name,
+ * the solver marker as an SVG and an horizontal bar with
+ * the solver color.
+ * 
+ * @param {String} solver
+ * @param {String} color
+ * @param {int} symbolNumber
+ * @retuns {HTMLElement}
+ */
+const createLegendItem = (solver, color, symbolNumber) => {
+  // Create item container
+  const item = document.createElement('div');
+  item.style.display = 'flex';
+  item.style.flexDirection = 'row';
+  item.style.alignItems = 'center';
+  item.style.position = 'relative';
+  item.style.cursor = 'pointer';
+  item.className = 'bg-white py-1 px-4 shadow-sm mt-2 rounded'
+
+  if (!isVisible(solver)) {
+    item.style.opacity = 0.5;
+  }
+
+  // Click on a solver in the legend
+  item.addEventListener('click', event => {
+    solver = getSolverFromEvent(event);
+
+    if (!getSolvers().includes(solver)) {
+      console.error('An invalid solver has been handled during the click event.');
+
+      return;
+    }
+
+    // In javascript we must simulate double click.
+    // So first click is handled and kept in memory (window.clickedSolver)
+    // during 500ms, if nothing else happen timeout will execute
+    // single click function. However, if an other click happen during this
+    // 500ms, it clears the timeout and execute the double click function.
+    if (!window.clickedSolver) {
+      window.clickedSolver = solver;
+
+      // Timeout will execute single click function after 500ms
+      window.clickedTimeout = setTimeout(() => {
+        window.clickedSolver = null;
+        
+        handleSolverClick(solver);
+      }, 500);
+    } else if (window.clickedSolver === solver) {
+      clearTimeout(window.clickedTimeout);
+      window.clickedSolver = null;
+      handleSolverDoubleClick(solver);
+    }
+  });
+
+  // Create the HTML text node for the solver name in the legend
+  const textContainer = document.createElement('div');
+  textContainer.style.marginLeft = '0.5rem';
+  textContainer.className = 'solver';
+  textContainer.appendChild(document.createTextNode(solver));
+
+  // Create the horizontal bar in the legend to represent the curve
+  const hBar = document.createElement('div');
+  hBar.style.height = '2px';
+  hBar.style.width = '30px';
+  hBar.style.backgroundColor = color;
+  hBar.style.position = 'absolute';
+  hBar.style.left = '1em';
+  hBar.style.zIndex = 10;
+
+  // Append elements to the legend item
+  item.appendChild(createSymbol(symbolNumber, color));
+  item.appendChild(hBar);
+  item.appendChild(textContainer);
+
+  return item;
+}
+
+/**
+ * Create the same svg symbol as plotly.
+ * Returns an <svg> HTML Element
+ * 
+ * @param {int} symbolNumber 
+ * @param {String} color 
+ * @returns {HTMLElement}
+ */
+const createSymbol = (symbolNumber, color) => {
+  const svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+
+  svg.setAttribute('width', 30);
+  svg.setAttribute('height', 30);
+  svg.style.zIndex = 20;
+
+  // createPathElement() come from the local file symbols.js
+  svg.appendChild(createPathElement(symbolNumber, color));
+
+  return svg;
+}
+
+/**
+ * ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+ * EVENT REGISTRATIONS
+ * 
+ * Some events are also registered in result.html.
+ * ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+ */
+
+document.getElementById('btn-plot-config').addEventListener('click', () => {
+  const elmt = document.getElementById('mobile-plot-form');
+
+  if (elmt.style.display === 'block') {
+      elmt.style.display = 'none';
+
+      return;
+  }
+
+  elmt.style.display = 'block';
+});
+
+document.getElementById('btn-main-menu').addEventListener('click', () => {
+  const elmt = document.getElementById('mobile-menu');
+
+  if (elmt.style.display === 'block') {
+      elmt.style.display = 'none';
+
+      return;
+  }
+
+  elmt.style.display = 'block';
+});
+
+        </script>
+    </body>
+</html>
