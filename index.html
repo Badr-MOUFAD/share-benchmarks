@@ -1,75 +1,87 @@
 <!DOCTYPE html>
 
 <html>
-    <header>
-        <title>Benchmark results</title>
-    </header>
+<header>
+    <title>Benchmark results</title>
+</header>
 
-    <body>
-        <h1>
-            <a target="_blank" href="https://github.com/scikit-learn-contrib/skglm/pull/77">
-                PR#77:
-            </a> ENH - fit intercept in ProxNewton solver
-        </h1>
+<body>
+    <h1>
+        <a target="_blank" href="https://github.com/scikit-learn-contrib/skglm/pull/103">
+            PR#103:
+        </a> ENH - add modular group prox Newton solver
+    </h1>
 
-        <ul>
-            <li><a href="pn-intercept/benchmark_logreg_l1_benchopt_run_2022-10-04_08h33m33.html">Benchmark results</a></li>
-        </ul>
+    <ul>
+        <li><a href="grp_logreg/benchmark_group_logreg_benchopt_run_2022-10-19_13h22m36.html">Benchmark results</a></li>
+    </ul>
 
-        <h1>
-            <a target="_blank" href="https://github.com/scikit-learn-contrib/skglm/pull/59">
-                PR#59:
-            </a> Add Gram Solver for single task Quadratic datafit
-        </h1>
+    <h1>
+        <a target="_blank" href="https://github.com/scikit-learn-contrib/skglm/pull/77">
+            PR#77:
+        </a> ENH - fit intercept in ProxNewton solver
+    </h1>
 
-        <ul>
-            <li><a href="gram_solver/benchmark_lasso_benchopt_run_2022-08-25_09h22m25.html">Benchmark results</a></li>
-        </ul>
+    <ul>
+        <li><a href="pn-intercept/benchmark_logreg_l1_benchopt_run_2022-10-04_08h33m33.html">Benchmark results</a></li>
+    </ul>
 
-        <h1>
-            <a target="_blank" href="https://github.com/scikit-learn-contrib/skglm/pull/51">
-                PR#51:
-            </a> Prox Newton solver à la skglm
-        </h1>
+    <h1>
+        <a target="_blank" href="https://github.com/scikit-learn-contrib/skglm/pull/59">
+            PR#59:
+        </a> Add Gram Solver for single task Quadratic datafit
+    </h1>
 
-        <ul>
-            <li><a href="pn_a_la_skglm/benchmark_logreg_benchopt_run_2022-08-15_14h11m47.html">version 1</a></li>
-            <li><a href="pn-a-al-skgml-improved/benchmark_logreg_benchopt_run_2022-08-19_12h56m05.html">version 2</a></li>
-            <li><a href="pn_a_la_skgml_fastmath/benchmark_logreg_l1_benchopt_run_2022-08-20_20h12m26.html">fastmath</a></li>
-        </ul>
+    <ul>
+        <li><a href="gram_solver/benchmark_lasso_benchopt_run_2022-08-25_09h22m25.html">Benchmark results</a></li>
+    </ul>
 
-        <h1>
-            <a target="_blank" href="https://github.com/Badr-MOUFAD/skglm/tree/PN-skglm">
-                no PR:
-            </a> Prox Newton solvers
-        </h1>
+    <h1>
+        <a target="_blank" href="https://github.com/scikit-learn-contrib/skglm/pull/51">
+            PR#51:
+        </a> Prox Newton solver à la skglm
+    </h1>
 
-        <ul>
-            <li><a href="pn_solver/benchmark_logreg_benchopt_run_2022-08-03_17h59m00.html">PN solver</a></li>
-            <li><a href="pn_solver_acc/benchmark_logreg_benchopt_run_2022-08-04_12h03m45.html">PN solver with acc</a></li>
-            <li><a href="pn_sparse/benchmark_logreg_benchopt_run_2022-08-05_15h03m05.html">PN solver (sparse)</a></li>
-            <li><a href="py_blitz/benchmark_logreg_benchopt_run_2022-08-12_09h41m06.html">py_blitz</a></li>
-            <li><a href="pn_solver_all/benchmark_logreg_benchopt_run_2022-08-14_10h57m32.html">py_blitz all benchs</a></li>
-        </ul>
-        
-        <h1>
-            <a target="_blank" href="https://github.com/scikit-learn-contrib/skglm/pull/33">
-                PR#33:
-            </a> use AndersonAcceleration class in cd_solver
-        </h1>
+    <ul>
+        <li><a href="pn_a_la_skglm/benchmark_logreg_benchopt_run_2022-08-15_14h11m47.html">version 1</a></li>
+        <li><a href="pn-a-al-skgml-improved/benchmark_logreg_benchopt_run_2022-08-19_12h56m05.html">version 2</a></li>
+        <li><a href="pn_a_la_skgml_fastmath/benchmark_logreg_l1_benchopt_run_2022-08-20_20h12m26.html">fastmath</a></li>
+    </ul>
 
-        <ul>
-            <li><a href="cd_solver/benchmark_aa_single_benchopt_run_2022-07-25_23h48m09.html">cd solver</a></li>
-        </ul>
+    <h1>
+        <a target="_blank" href="https://github.com/Badr-MOUFAD/skglm/tree/PN-skglm">
+            no PR:
+        </a> Prox Newton solvers
+    </h1>
 
-        <h1>
-            <a target="_blank" href="https://github.com/scikit-learn-contrib/skglm/pull/43">
-                PR#43:
-            </a> Extend AndersonAcceleration class to handle matrix iterates
-        </h1>
+    <ul>
+        <li><a href="pn_solver/benchmark_logreg_benchopt_run_2022-08-03_17h59m00.html">PN solver</a></li>
+        <li><a href="pn_solver_acc/benchmark_logreg_benchopt_run_2022-08-04_12h03m45.html">PN solver with acc</a></li>
+        <li><a href="pn_sparse/benchmark_logreg_benchopt_run_2022-08-05_15h03m05.html">PN solver (sparse)</a></li>
+        <li><a href="py_blitz/benchmark_logreg_benchopt_run_2022-08-12_09h41m06.html">py_blitz</a></li>
+        <li><a href="pn_solver_all/benchmark_logreg_benchopt_run_2022-08-14_10h57m32.html">py_blitz all benchs</a></li>
+    </ul>
 
-        <ul>
-            <li><a href="mlt_solver/benchmark_aa_multi_benchopt_run_2022-07-27_23h54m58.html">multitask solver results</a></li>
-        </ul>
-    </body>
+    <h1>
+        <a target="_blank" href="https://github.com/scikit-learn-contrib/skglm/pull/33">
+            PR#33:
+        </a> use AndersonAcceleration class in cd_solver
+    </h1>
+
+    <ul>
+        <li><a href="cd_solver/benchmark_aa_single_benchopt_run_2022-07-25_23h48m09.html">cd solver</a></li>
+    </ul>
+
+    <h1>
+        <a target="_blank" href="https://github.com/scikit-learn-contrib/skglm/pull/43">
+            PR#43:
+        </a> Extend AndersonAcceleration class to handle matrix iterates
+    </h1>
+
+    <ul>
+        <li><a href="mlt_solver/benchmark_aa_multi_benchopt_run_2022-07-27_23h54m58.html">multitask solver results</a>
+        </li>
+    </ul>
+</body>
+
 </html>

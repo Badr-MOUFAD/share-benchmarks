@@ -1,0 +1,3348 @@
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>📈</text></svg>">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="./static/utilities.css">
+        <link rel="stylesheet" href="./static/hover_index.css">
+
+        <title>Result on group logreg benchmark</title>
+
+        <style>
+            /*
+! tailwindcss v3.1.2 | MIT License | https://tailwindcss.com
+*/
+
+/*
+1. Prevent padding and border from affecting element width. (https://github.com/mozdevs/cssremedy/issues/4)
+2. Allow adding a border to an element by just adding a border-width. (https://github.com/tailwindcss/tailwindcss/pull/116)
+*/
+
+*,
+::before,
+::after {
+  box-sizing: border-box;
+  /* 1 */
+  border-width: 0;
+  /* 2 */
+  border-style: solid;
+  /* 2 */
+  border-color: #e5e7eb;
+  /* 2 */
+}
+
+::before,
+::after {
+  --tw-content: '';
+}
+
+/*
+1. Use a consistent sensible line-height in all browsers.
+2. Prevent adjustments of font size after orientation changes in iOS.
+3. Use a more readable tab size.
+4. Use the user's configured `sans` font-family by default.
+*/
+
+html {
+  line-height: 1.5;
+  /* 1 */
+  -webkit-text-size-adjust: 100%;
+  /* 2 */
+  -moz-tab-size: 4;
+  /* 3 */
+  -o-tab-size: 4;
+     tab-size: 4;
+  /* 3 */
+  font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+  /* 4 */
+}
+
+/*
+1. Remove the margin in all browsers.
+2. Inherit line-height from `html` so users can set them as a class directly on the `html` element.
+*/
+
+body {
+  margin: 0;
+  /* 1 */
+  line-height: inherit;
+  /* 2 */
+}
+
+/*
+1. Add the correct height in Firefox.
+2. Correct the inheritance of border color in Firefox. (https://bugzilla.mozilla.org/show_bug.cgi?id=190655)
+3. Ensure horizontal rules are visible by default.
+*/
+
+hr {
+  height: 0;
+  /* 1 */
+  color: inherit;
+  /* 2 */
+  border-top-width: 1px;
+  /* 3 */
+}
+
+/*
+Add the correct text decoration in Chrome, Edge, and Safari.
+*/
+
+abbr:where([title]) {
+  -webkit-text-decoration: underline dotted;
+          text-decoration: underline dotted;
+}
+
+/*
+Remove the default font size and weight for headings.
+*/
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-size: inherit;
+  font-weight: inherit;
+}
+
+/*
+Reset links to optimize for opt-in styling instead of opt-out.
+*/
+
+a {
+  color: inherit;
+  text-decoration: inherit;
+}
+
+/*
+Add the correct font weight in Edge and Safari.
+*/
+
+b,
+strong {
+  font-weight: bolder;
+}
+
+/*
+1. Use the user's configured `mono` font family by default.
+2. Correct the odd `em` font sizing in all browsers.
+*/
+
+code,
+kbd,
+samp,
+pre {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+  /* 1 */
+  font-size: 1em;
+  /* 2 */
+}
+
+/*
+Add the correct font size in all browsers.
+*/
+
+small {
+  font-size: 80%;
+}
+
+/*
+Prevent `sub` and `sup` elements from affecting the line height in all browsers.
+*/
+
+sub,
+sup {
+  font-size: 75%;
+  line-height: 0;
+  position: relative;
+  vertical-align: baseline;
+}
+
+sub {
+  bottom: -0.25em;
+}
+
+sup {
+  top: -0.5em;
+}
+
+/*
+1. Remove text indentation from table contents in Chrome and Safari. (https://bugs.chromium.org/p/chromium/issues/detail?id=999088, https://bugs.webkit.org/show_bug.cgi?id=201297)
+2. Correct table border color inheritance in all Chrome and Safari. (https://bugs.chromium.org/p/chromium/issues/detail?id=935729, https://bugs.webkit.org/show_bug.cgi?id=195016)
+3. Remove gaps between table borders by default.
+*/
+
+table {
+  text-indent: 0;
+  /* 1 */
+  border-color: inherit;
+  /* 2 */
+  border-collapse: collapse;
+  /* 3 */
+}
+
+/*
+1. Change the font styles in all browsers.
+2. Remove the margin in Firefox and Safari.
+3. Remove default padding in all browsers.
+*/
+
+button,
+input,
+optgroup,
+select,
+textarea {
+  font-family: inherit;
+  /* 1 */
+  font-size: 100%;
+  /* 1 */
+  font-weight: inherit;
+  /* 1 */
+  line-height: inherit;
+  /* 1 */
+  color: inherit;
+  /* 1 */
+  margin: 0;
+  /* 2 */
+  padding: 0;
+  /* 3 */
+}
+
+/*
+Remove the inheritance of text transform in Edge and Firefox.
+*/
+
+button,
+select {
+  text-transform: none;
+}
+
+/*
+1. Correct the inability to style clickable types in iOS and Safari.
+2. Remove default button styles.
+*/
+
+button,
+[type='button'],
+[type='reset'],
+[type='submit'] {
+  -webkit-appearance: button;
+  /* 1 */
+  background-color: transparent;
+  /* 2 */
+  background-image: none;
+  /* 2 */
+}
+
+/*
+Use the modern Firefox focus style for all focusable elements.
+*/
+
+:-moz-focusring {
+  outline: auto;
+}
+
+/*
+Remove the additional `:invalid` styles in Firefox. (https://github.com/mozilla/gecko-dev/blob/2f9eacd9d3d995c937b4251a5557d95d494c9be1/layout/style/res/forms.css#L728-L737)
+*/
+
+:-moz-ui-invalid {
+  box-shadow: none;
+}
+
+/*
+Add the correct vertical alignment in Chrome and Firefox.
+*/
+
+progress {
+  vertical-align: baseline;
+}
+
+/*
+Correct the cursor style of increment and decrement buttons in Safari.
+*/
+
+::-webkit-inner-spin-button,
+::-webkit-outer-spin-button {
+  height: auto;
+}
+
+/*
+1. Correct the odd appearance in Chrome and Safari.
+2. Correct the outline style in Safari.
+*/
+
+[type='search'] {
+  -webkit-appearance: textfield;
+  /* 1 */
+  outline-offset: -2px;
+  /* 2 */
+}
+
+/*
+Remove the inner padding in Chrome and Safari on macOS.
+*/
+
+::-webkit-search-decoration {
+  -webkit-appearance: none;
+}
+
+/*
+1. Correct the inability to style clickable types in iOS and Safari.
+2. Change font properties to `inherit` in Safari.
+*/
+
+::-webkit-file-upload-button {
+  -webkit-appearance: button;
+  /* 1 */
+  font: inherit;
+  /* 2 */
+}
+
+/*
+Add the correct display in Chrome and Safari.
+*/
+
+summary {
+  display: list-item;
+}
+
+/*
+Removes the default spacing and border for appropriate elements.
+*/
+
+blockquote,
+dl,
+dd,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+hr,
+figure,
+p,
+pre {
+  margin: 0;
+}
+
+fieldset {
+  margin: 0;
+  padding: 0;
+}
+
+legend {
+  padding: 0;
+}
+
+ol,
+ul,
+menu {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+/*
+Prevent resizing textareas horizontally by default.
+*/
+
+textarea {
+  resize: vertical;
+}
+
+/*
+1. Reset the default placeholder opacity in Firefox. (https://github.com/tailwindlabs/tailwindcss/issues/3300)
+2. Set the default placeholder color to the user's configured gray 400 color.
+*/
+
+input::-moz-placeholder, textarea::-moz-placeholder {
+  opacity: 1;
+  /* 1 */
+  color: #9ca3af;
+  /* 2 */
+}
+
+input:-ms-input-placeholder, textarea:-ms-input-placeholder {
+  opacity: 1;
+  /* 1 */
+  color: #9ca3af;
+  /* 2 */
+}
+
+input::placeholder,
+textarea::placeholder {
+  opacity: 1;
+  /* 1 */
+  color: #9ca3af;
+  /* 2 */
+}
+
+/*
+Set the default cursor for buttons.
+*/
+
+button,
+[role="button"] {
+  cursor: pointer;
+}
+
+/*
+Make sure disabled buttons don't get the pointer cursor.
+*/
+
+:disabled {
+  cursor: default;
+}
+
+/*
+1. Make replaced elements `display: block` by default. (https://github.com/mozdevs/cssremedy/issues/14)
+2. Add `vertical-align: middle` to align replaced elements more sensibly by default. (https://github.com/jensimmons/cssremedy/issues/14#issuecomment-634934210)
+   This can trigger a poorly considered lint error in some tools but is included by design.
+*/
+
+img,
+svg,
+video,
+canvas,
+audio,
+iframe,
+embed,
+object {
+  display: block;
+  /* 1 */
+  vertical-align: middle;
+  /* 2 */
+}
+
+/*
+Constrain images and videos to the parent width and preserve their intrinsic aspect ratio. (https://github.com/mozdevs/cssremedy/issues/14)
+*/
+
+img,
+video {
+  max-width: 100%;
+  height: auto;
+}
+
+*, ::before, ::after {
+  --tw-border-spacing-x: 0;
+  --tw-border-spacing-y: 0;
+  --tw-translate-x: 0;
+  --tw-translate-y: 0;
+  --tw-rotate: 0;
+  --tw-skew-x: 0;
+  --tw-skew-y: 0;
+  --tw-scale-x: 1;
+  --tw-scale-y: 1;
+  --tw-pan-x:  ;
+  --tw-pan-y:  ;
+  --tw-pinch-zoom:  ;
+  --tw-scroll-snap-strictness: proximity;
+  --tw-ordinal:  ;
+  --tw-slashed-zero:  ;
+  --tw-numeric-figure:  ;
+  --tw-numeric-spacing:  ;
+  --tw-numeric-fraction:  ;
+  --tw-ring-inset:  ;
+  --tw-ring-offset-width: 0px;
+  --tw-ring-offset-color: #fff;
+  --tw-ring-color: rgb(59 130 246 / 0.5);
+  --tw-ring-offset-shadow: 0 0 #0000;
+  --tw-ring-shadow: 0 0 #0000;
+  --tw-shadow: 0 0 #0000;
+  --tw-shadow-colored: 0 0 #0000;
+  --tw-blur:  ;
+  --tw-brightness:  ;
+  --tw-contrast:  ;
+  --tw-grayscale:  ;
+  --tw-hue-rotate:  ;
+  --tw-invert:  ;
+  --tw-saturate:  ;
+  --tw-sepia:  ;
+  --tw-drop-shadow:  ;
+  --tw-backdrop-blur:  ;
+  --tw-backdrop-brightness:  ;
+  --tw-backdrop-contrast:  ;
+  --tw-backdrop-grayscale:  ;
+  --tw-backdrop-hue-rotate:  ;
+  --tw-backdrop-invert:  ;
+  --tw-backdrop-opacity:  ;
+  --tw-backdrop-saturate:  ;
+  --tw-backdrop-sepia:  ;
+}
+
+::-webkit-backdrop {
+  --tw-border-spacing-x: 0;
+  --tw-border-spacing-y: 0;
+  --tw-translate-x: 0;
+  --tw-translate-y: 0;
+  --tw-rotate: 0;
+  --tw-skew-x: 0;
+  --tw-skew-y: 0;
+  --tw-scale-x: 1;
+  --tw-scale-y: 1;
+  --tw-pan-x:  ;
+  --tw-pan-y:  ;
+  --tw-pinch-zoom:  ;
+  --tw-scroll-snap-strictness: proximity;
+  --tw-ordinal:  ;
+  --tw-slashed-zero:  ;
+  --tw-numeric-figure:  ;
+  --tw-numeric-spacing:  ;
+  --tw-numeric-fraction:  ;
+  --tw-ring-inset:  ;
+  --tw-ring-offset-width: 0px;
+  --tw-ring-offset-color: #fff;
+  --tw-ring-color: rgb(59 130 246 / 0.5);
+  --tw-ring-offset-shadow: 0 0 #0000;
+  --tw-ring-shadow: 0 0 #0000;
+  --tw-shadow: 0 0 #0000;
+  --tw-shadow-colored: 0 0 #0000;
+  --tw-blur:  ;
+  --tw-brightness:  ;
+  --tw-contrast:  ;
+  --tw-grayscale:  ;
+  --tw-hue-rotate:  ;
+  --tw-invert:  ;
+  --tw-saturate:  ;
+  --tw-sepia:  ;
+  --tw-drop-shadow:  ;
+  --tw-backdrop-blur:  ;
+  --tw-backdrop-brightness:  ;
+  --tw-backdrop-contrast:  ;
+  --tw-backdrop-grayscale:  ;
+  --tw-backdrop-hue-rotate:  ;
+  --tw-backdrop-invert:  ;
+  --tw-backdrop-opacity:  ;
+  --tw-backdrop-saturate:  ;
+  --tw-backdrop-sepia:  ;
+}
+
+::backdrop {
+  --tw-border-spacing-x: 0;
+  --tw-border-spacing-y: 0;
+  --tw-translate-x: 0;
+  --tw-translate-y: 0;
+  --tw-rotate: 0;
+  --tw-skew-x: 0;
+  --tw-skew-y: 0;
+  --tw-scale-x: 1;
+  --tw-scale-y: 1;
+  --tw-pan-x:  ;
+  --tw-pan-y:  ;
+  --tw-pinch-zoom:  ;
+  --tw-scroll-snap-strictness: proximity;
+  --tw-ordinal:  ;
+  --tw-slashed-zero:  ;
+  --tw-numeric-figure:  ;
+  --tw-numeric-spacing:  ;
+  --tw-numeric-fraction:  ;
+  --tw-ring-inset:  ;
+  --tw-ring-offset-width: 0px;
+  --tw-ring-offset-color: #fff;
+  --tw-ring-color: rgb(59 130 246 / 0.5);
+  --tw-ring-offset-shadow: 0 0 #0000;
+  --tw-ring-shadow: 0 0 #0000;
+  --tw-shadow: 0 0 #0000;
+  --tw-shadow-colored: 0 0 #0000;
+  --tw-blur:  ;
+  --tw-brightness:  ;
+  --tw-contrast:  ;
+  --tw-grayscale:  ;
+  --tw-hue-rotate:  ;
+  --tw-invert:  ;
+  --tw-saturate:  ;
+  --tw-sepia:  ;
+  --tw-drop-shadow:  ;
+  --tw-backdrop-blur:  ;
+  --tw-backdrop-brightness:  ;
+  --tw-backdrop-contrast:  ;
+  --tw-backdrop-grayscale:  ;
+  --tw-backdrop-hue-rotate:  ;
+  --tw-backdrop-invert:  ;
+  --tw-backdrop-opacity:  ;
+  --tw-backdrop-saturate:  ;
+  --tw-backdrop-sepia:  ;
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border-width: 0;
+}
+
+.fixed {
+  position: fixed;
+}
+
+.absolute {
+  position: absolute;
+}
+
+.relative {
+  position: relative;
+}
+
+.inset-0 {
+  top: 0px;
+  right: 0px;
+  bottom: 0px;
+  left: 0px;
+}
+
+.z-10 {
+  z-index: 10;
+}
+
+.mx-auto {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.mt-10 {
+  margin-top: 2.5rem;
+}
+
+.mt-1 {
+  margin-top: 0.25rem;
+}
+
+.mt-8 {
+  margin-top: 2rem;
+}
+
+.mt-2 {
+  margin-top: 0.5rem;
+}
+
+.mt-5 {
+  margin-top: 1.25rem;
+}
+
+.mt-3 {
+  margin-top: 0.75rem;
+}
+
+.block {
+  display: block;
+}
+
+.inline {
+  display: inline;
+}
+
+.flex {
+  display: flex;
+}
+
+.inline-flex {
+  display: inline-flex;
+}
+
+.table {
+  display: table;
+}
+
+.grid {
+  display: grid;
+}
+
+.hidden {
+  display: none;
+}
+
+.h-screen {
+  height: 100vh;
+}
+
+.h-16 {
+  height: 4rem;
+}
+
+.h-10 {
+  height: 2.5rem;
+}
+
+.h-8 {
+  height: 2rem;
+}
+
+.h-6 {
+  height: 1.5rem;
+}
+
+.h-5 {
+  height: 1.25rem;
+}
+
+.h-4 {
+  height: 1rem;
+}
+
+.h-12 {
+  height: 3rem;
+}
+
+.min-h-full {
+  min-height: 100%;
+}
+
+.w-96 {
+  width: 24rem;
+}
+
+.w-full {
+  width: 100%;
+}
+
+.w-6 {
+  width: 1.5rem;
+}
+
+.w-5 {
+  width: 1.25rem;
+}
+
+.w-4 {
+  width: 1rem;
+}
+
+.w-12 {
+  width: 3rem;
+}
+
+.min-w-0 {
+  min-width: 0px;
+}
+
+.flex-1 {
+  flex: 1 1 0%;
+}
+
+.flex-shrink-0 {
+  flex-shrink: 0;
+}
+
+.transform {
+  transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
+}
+
+.flex-col {
+  flex-direction: column;
+}
+
+.flex-wrap {
+  flex-wrap: wrap;
+}
+
+.items-end {
+  align-items: flex-end;
+}
+
+.items-center {
+  align-items: center;
+}
+
+.justify-center {
+  justify-content: center;
+}
+
+.justify-between {
+  justify-content: space-between;
+}
+
+.space-x-4 > :not([hidden]) ~ :not([hidden]) {
+  --tw-space-x-reverse: 0;
+  margin-right: calc(1rem * var(--tw-space-x-reverse));
+  margin-left: calc(1rem * calc(1 - var(--tw-space-x-reverse)));
+}
+
+.space-y-1 > :not([hidden]) ~ :not([hidden]) {
+  --tw-space-y-reverse: 0;
+  margin-top: calc(0.25rem * calc(1 - var(--tw-space-y-reverse)));
+  margin-bottom: calc(0.25rem * var(--tw-space-y-reverse));
+}
+
+.space-y-4 > :not([hidden]) ~ :not([hidden]) {
+  --tw-space-y-reverse: 0;
+  margin-top: calc(1rem * calc(1 - var(--tw-space-y-reverse)));
+  margin-bottom: calc(1rem * var(--tw-space-y-reverse));
+}
+
+.space-x-2 > :not([hidden]) ~ :not([hidden]) {
+  --tw-space-x-reverse: 0;
+  margin-right: calc(0.5rem * var(--tw-space-x-reverse));
+  margin-left: calc(0.5rem * calc(1 - var(--tw-space-x-reverse)));
+}
+
+.overflow-hidden {
+  overflow: hidden;
+}
+
+.overflow-y-auto {
+  overflow-y: auto;
+}
+
+.rounded-md {
+  border-radius: 0.375rem;
+}
+
+.rounded-lg {
+  border-radius: 0.5rem;
+}
+
+.rounded-full {
+  border-radius: 9999px;
+}
+
+.border {
+  border-width: 1px;
+}
+
+.border-gray-300 {
+  --tw-border-opacity: 1;
+  border-color: rgb(209 213 219 / var(--tw-border-opacity));
+}
+
+.border-gray-800 {
+  --tw-border-opacity: 1;
+  border-color: rgb(31 41 55 / var(--tw-border-opacity));
+}
+
+.border-transparent {
+  border-color: transparent;
+}
+
+.bg-gray-700 {
+  --tw-bg-opacity: 1;
+  background-color: rgb(55 65 81 / var(--tw-bg-opacity));
+}
+
+.bg-gray-800 {
+  --tw-bg-opacity: 1;
+  background-color: rgb(31 41 55 / var(--tw-bg-opacity));
+}
+
+.bg-blue-600 {
+  --tw-bg-opacity: 1;
+  background-color: rgb(37 99 235 / var(--tw-bg-opacity));
+}
+
+.bg-white {
+  --tw-bg-opacity: 1;
+  background-color: rgb(255 255 255 / var(--tw-bg-opacity));
+}
+
+.bg-gray-500 {
+  --tw-bg-opacity: 1;
+  background-color: rgb(107 114 128 / var(--tw-bg-opacity));
+}
+
+.bg-slate-200 {
+  --tw-bg-opacity: 1;
+  background-color: rgb(241 245 249 / var(--tw-bg-opacity));
+}
+
+.bg-blue-100 {
+  --tw-bg-opacity: 1;
+  background-color: rgb(219 234 254 / var(--tw-bg-opacity));
+}
+
+.bg-gray-50 {
+  --tw-bg-opacity: 1;
+  background-color: rgb(249 250 251 / var(--tw-bg-opacity));
+}
+
+.bg-opacity-75 {
+  --tw-bg-opacity: 0.75;
+}
+
+.p-1 {
+  padding: 0.25rem;
+}
+
+.p-2 {
+  padding: 0.5rem;
+}
+
+.p-4 {
+  padding: 1rem;
+}
+
+.px-8 {
+  padding-left: 2rem;
+  padding-right: 2rem;
+}
+
+.px-4 {
+  padding-left: 1rem;
+  padding-right: 1rem;
+}
+
+.px-3 {
+  padding-left: 0.75rem;
+  padding-right: 0.75rem;
+}
+
+.py-2 {
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+}
+
+.px-2 {
+  padding-left: 0.5rem;
+  padding-right: 0.5rem;
+}
+
+.py-4 {
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+}
+
+.py-1 {
+  padding-top: 0.25rem;
+  padding-bottom: 0.25rem;
+}
+
+.py-3 {
+  padding-top: 0.75rem;
+  padding-bottom: 0.75rem;
+}
+
+.pt-2 {
+  padding-top: 0.5rem;
+}
+
+.pt-4 {
+  padding-top: 1rem;
+}
+
+.pb-0 {
+  padding-bottom: 0;
+}
+
+.pb-1 {
+  padding-bottom: 0.25rem;
+}
+
+.pb-3 {
+  padding-bottom: 0.75rem;
+}
+
+.pt-5 {
+  padding-top: 1.25rem;
+}
+
+.pb-4 {
+  padding-bottom: 1rem;
+}
+
+.text-left {
+  text-align: left;
+}
+
+.text-center {
+  text-align: center;
+}
+
+.text-2xl {
+  font-size: 1.5rem;
+  line-height: 2rem;
+}
+
+.text-sm {
+  font-size: 0.875rem;
+  line-height: 1.25rem;
+}
+
+.text-xl {
+  font-size: 1.25rem;
+  line-height: 1.75rem;
+}
+
+.text-base {
+  font-size: 1rem;
+  line-height: 1.5rem;
+}
+
+.text-lg {
+  font-size: 1.125rem;
+  line-height: 1.75rem;
+}
+
+.font-medium {
+  font-weight: 500;
+}
+
+.font-bold {
+  font-weight: 700;
+}
+
+.capitalize {
+  text-transform: capitalize;
+}
+
+.leading-7 {
+  line-height: 1.75rem;
+}
+
+.leading-6 {
+  line-height: 1.5rem;
+}
+
+.text-white {
+  --tw-text-opacity: 1;
+  color: rgb(255 255 255 / var(--tw-text-opacity));
+}
+
+.text-gray-100 {
+  --tw-text-opacity: 1;
+  color: rgb(243 244 246 / var(--tw-text-opacity));
+}
+
+.text-gray-900 {
+  --tw-text-opacity: 1;
+  color: rgb(17 24 39 / var(--tw-text-opacity));
+}
+
+.text-gray-500 {
+  --tw-text-opacity: 1;
+  color: rgb(107 114 128 / var(--tw-text-opacity));
+}
+
+.text-black {
+  --tw-text-opacity: 1;
+  color: rgb(0 0 0 / var(--tw-text-opacity));
+}
+
+.text-blue-600 {
+  --tw-text-opacity: 1;
+  color: rgb(37 99 235 / var(--tw-text-opacity));
+}
+
+.text-gray-700 {
+  --tw-text-opacity: 1;
+  color: rgb(55 65 81 / var(--tw-text-opacity));
+}
+
+.shadow-sm {
+  --tw-shadow: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+  --tw-shadow-colored: 0 1px 2px 0 var(--tw-shadow-color);
+  box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
+}
+
+.shadow-xl {
+  --tw-shadow: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
+  --tw-shadow-colored: 0 20px 25px -5px var(--tw-shadow-color), 0 8px 10px -6px var(--tw-shadow-color);
+  box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
+}
+
+.transition-opacity {
+  transition-property: opacity;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-duration: 150ms;
+}
+
+.transition-all {
+  transition-property: all;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-duration: 150ms;
+}
+
+.hover\:bg-blue-800:hover {
+  --tw-bg-opacity: 1;
+  background-color: rgb(30 64 175 / var(--tw-bg-opacity));
+}
+
+.hover\:bg-gray-100:hover {
+  --tw-bg-opacity: 1;
+  background-color: rgb(243 244 246 / var(--tw-bg-opacity));
+}
+
+.hover\:bg-blue-700:hover {
+  --tw-bg-opacity: 1;
+  background-color: rgb(29 78 216 / var(--tw-bg-opacity));
+}
+
+.hover\:bg-gray-50:hover {
+  --tw-bg-opacity: 1;
+  background-color: rgb(249 250 251 / var(--tw-bg-opacity));
+}
+
+.hover\:text-white:hover {
+  --tw-text-opacity: 1;
+  color: rgb(255 255 255 / var(--tw-text-opacity));
+}
+
+.focus\:border-blue-500:focus {
+  --tw-border-opacity: 1;
+  border-color: rgb(59 130 246 / var(--tw-border-opacity));
+}
+
+.focus\:outline-none:focus {
+  outline: 2px solid transparent;
+  outline-offset: 2px;
+}
+
+.focus\:ring-2:focus {
+  --tw-ring-offset-shadow: var(--tw-ring-inset) 0 0 0 var(--tw-ring-offset-width) var(--tw-ring-offset-color);
+  --tw-ring-shadow: var(--tw-ring-inset) 0 0 0 calc(2px + var(--tw-ring-offset-width)) var(--tw-ring-color);
+  box-shadow: var(--tw-ring-offset-shadow), var(--tw-ring-shadow), var(--tw-shadow, 0 0 #0000);
+}
+
+.focus\:ring-inset:focus {
+  --tw-ring-inset: inset;
+}
+
+.focus\:ring-blue-500:focus {
+  --tw-ring-opacity: 1;
+  --tw-ring-color: rgb(59 130 246 / var(--tw-ring-opacity));
+}
+
+.focus\:ring-white:focus {
+  --tw-ring-opacity: 1;
+  --tw-ring-color: rgb(255 255 255 / var(--tw-ring-opacity));
+}
+
+.focus\:ring-gray-500:focus {
+  --tw-ring-opacity: 1;
+  --tw-ring-color: rgb(107 114 128 / var(--tw-ring-opacity));
+}
+
+.focus\:ring-offset-2:focus {
+  --tw-ring-offset-width: 2px;
+}
+
+@media (min-width: 640px) {
+  .sm\:my-8 {
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+  }
+
+  .sm\:mx-0 {
+    margin-left: 0px;
+    margin-right: 0px;
+  }
+
+  .sm\:mt-0 {
+    margin-top: 0px;
+  }
+
+  .sm\:ml-3 {
+    margin-left: 0.75rem;
+  }
+
+  .sm\:ml-4 {
+    margin-left: 1rem;
+  }
+
+  .sm\:block {
+    display: block;
+  }
+
+  .sm\:flex {
+    display: flex;
+  }
+
+  .sm\:hidden {
+    display: none;
+  }
+
+  .sm\:h-10 {
+    height: 2.5rem;
+  }
+
+  .sm\:w-full {
+    width: 100%;
+  }
+
+  .sm\:w-10 {
+    width: 2.5rem;
+  }
+
+  .sm\:w-auto {
+    width: auto;
+  }
+
+  .sm\:max-w-lg {
+    max-width: 32rem;
+  }
+
+  .sm\:flex-row-reverse {
+    flex-direction: row-reverse;
+  }
+
+  .sm\:items-start {
+    align-items: flex-start;
+  }
+
+  .sm\:items-center {
+    align-items: center;
+  }
+
+  .sm\:items-stretch {
+    align-items: stretch;
+  }
+
+  .sm\:justify-start {
+    justify-content: flex-start;
+  }
+
+  .sm\:space-x-6 > :not([hidden]) ~ :not([hidden]) {
+    --tw-space-x-reverse: 0;
+    margin-right: calc(1.5rem * var(--tw-space-x-reverse));
+    margin-left: calc(1.5rem * calc(1 - var(--tw-space-x-reverse)));
+  }
+
+  .sm\:truncate {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  .sm\:p-0 {
+    padding: 0px;
+  }
+
+  .sm\:p-6 {
+    padding: 1.5rem;
+  }
+
+  .sm\:px-6 {
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+  }
+
+  .sm\:pb-4 {
+    padding-bottom: 1rem;
+  }
+
+  .sm\:text-left {
+    text-align: left;
+  }
+
+  .sm\:text-sm {
+    font-size: 0.875rem;
+    line-height: 1.25rem;
+  }
+
+  .sm\:text-3xl {
+    font-size: 1.875rem;
+    line-height: 2.25rem;
+  }
+
+  .sm\:mr-6 {
+    margin-right: 1.5rem; /* 24px */
+  }
+}
+
+@media (min-width: 768px) {
+  .md\:inline {
+    display: inline;
+  }
+
+  .md\:flex {
+    display: flex;
+  }
+
+  .md\:hidden {
+    display: none;
+  }
+
+  .md\:justify-start {
+    justify-content: flex-start;
+  }
+
+  .md\:text-left {
+    text-align: left;
+  }
+
+  .md\:block {
+    display: block;
+  }
+
+  .md\:inline-block {
+    display: inline-block;
+  }
+}
+
+@media (min-width: 1024px) {
+  .lg\:mt-0 {
+    margin-top: 0px;
+  }
+
+  .lg\:ml-4 {
+    margin-left: 1rem;
+  }
+
+  .lg\:flex {
+    display: flex;
+  }
+
+  .lg\:items-center {
+    align-items: center;
+  }
+
+  .lg\:justify-between {
+    justify-content: space-between;
+  }
+
+  .lg\:inline {
+    display: inline;
+  }
+
+  .lg\:hidden {
+    display: none;
+  }
+
+  .lg\:justify-start {
+    justify-content: flex-start;
+  }
+
+  .lg\:text-left {
+    text-align: left;
+  }
+
+  .lg\:block {
+    display:block;
+  }
+}
+
+.overflow-scroll {
+  overflow: scroll;
+}
+
+.absolute {
+  position: absolute;
+}
+
+.px-10 {
+  padding-left: 2.5rem; /* 40px */
+  padding-right: 2.5rem; /* 40px */
+}
+
+.py-10 {
+  padding-top: 2.5rem; /* 40px */
+  padding-bottom: 2.5rem; /* 40px */
+}
+
+.mb-4 {
+  margin-bottom: 1rem; /* 16px */
+}
+
+.mt-4 {
+  margin-top: 1rem; /* 16px */
+}
+
+.mr-6 {
+  margin-right: 1.5rem; /* 24px */
+}
+
+.mr-4 {
+  margin-right: 1rem; /* 24px */
+}
+
+.rounded {
+  border-radius: 0.25rem; /* 4px */
+}
+
+
+            /*----------------------------------------*/
+/***** Stylesheet for the hover index *****/
+/*----------------------------------------*/
+
+/* Place rectangles in a grid */
+.grid {
+  position: relative; /* each rectangle is dependant of others */
+  margin: 0 auto;
+  padding: 1em 0 4em; /* padding top horizontal bottom */
+  display: grid; /* type of boxes generated */
+  max-width: 1000px;
+  list-style: none; /* no item */
+  text-align: center;
+  column-gap: 2em; /* space between columns */
+}
+
+/* Figure inside grid */
+.grid figure {
+  position: relative;
+  float: left;
+  overflow: hidden; /* overflow not taken into account */
+  margin: 10px 1%;
+  width: 100%; /* 100% of the column */
+  background: #3085a3;
+  text-align: center;
+  cursor: pointer; /* change shape cursor */
+  border-radius: 30px; /* rounded corners */
+}
+
+/* Each figure contains an img */
+.grid figure img {
+  position: relative;
+  display: block;
+  max-height: 100%;
+  max-width: 100%;
+  opacity: 1; /* over a dummy image */
+}
+
+/* Style caption (title of benchmarks) */
+.grid figure figcaption {
+  padding: 0.1em; /* add space */
+  color: #fff; /* writing color */
+  text-transform: uppercase; /* title in uppercase */
+  font-size: 1.25em;
+}
+
+/* Small sized screens */
+@media (min-width: 600px) {
+  .grid {
+    grid-template-columns: repeat(2, 1fr);
+  } /* split in 2 columns */
+}
+
+/* Larger sized screens */
+@media (min-width: 900px) {
+  .grid {
+    grid-template-columns: repeat(3, 1fr);
+  } /* split in 3 columns */
+}
+
+/* Position and style of <a> elements (the View more) */
+.grid figure figcaption,
+.grid figure figcaption > a {
+  position: absolute;
+  top: 0em; /* no space offset top */
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+/* only to figcaption <a> tag */
+.grid figure figcaption > a {
+  z-index: 1000; /* top level */
+  text-indent: 0%;
+  white-space: nowrap;
+  font-size: 0; /* do not display the View more */
+  opacity: 1;
+}
+
+/* h2: Problem name (LASSO, ...) */
+.grid figure h2 {
+  word-spacing: 0em;
+  font-weight: 300;
+}
+
+.grid figure h2 span {
+  font-weight: 800;
+}
+
+.grid figure h2,
+.grid figure p {
+  margin: 0;
+}
+
+/* p: number of files */
+.grid figure p {
+  letter-spacing: 1px;
+  font-size: 70%;
+}
+
+/* Default color */
+figure.effect-ruby {
+  background-color: #2c3e50;
+}
+
+/* Color when hovering */
+figure.effect-ruby:hover {
+  background-color: DodgerBlue;
+}
+
+/* Define transformation */
+figure.effect-ruby img {
+  opacity: 0;
+  transition: opacity 0.35s, transform 0.35s; /* transition time */
+  transform: scale(1.15); /* size transformation -> bigger */
+}
+
+/* transformation with hovering */
+figure.effect-ruby:hover img {
+  opacity: 0;
+  transform: scale(1); /* size -> smaller */
+}
+
+/* Apply effect to problem name */
+figure.effect-ruby h2 {
+  margin-top: 0;
+  transition: transform 0.35s; /* transition time */
+  transform: translate3d(0, calc((150px - 100%)/2), 0);
+  font-size: 1.25em; /* default font */
+}
+
+figure.effect-ruby p {
+  margin: 2em -1em 2em -1em;
+  padding: 1em 0em 1em 0em;
+  border: 1px solid #fff; /* create sort of white frame */
+  opacity: 0;
+  transition: opacity 0.35s, transform 0.35s;
+  transform: translate3d(0, 20px, 0) scale(1.1); /* size transform */
+}
+
+/* Transform title on hover */
+figure.effect-ruby:hover h2 {
+  -webkit-transform: translate3d(0, 0, 0);
+  transform: translate3d(0px, 10px, 0) scale(0.8); /* smaller */
+  margin-top: 0em; /* move up */
+}
+
+figure.effect-ruby:hover p {
+  opacity: 1;
+  transform: translate3d(0, 0, 0) scale(1.2); /* placement in box */
+}
+
+/* Button for inside the table with system informations */
+.buttoncent {
+  border: none;
+  background-color: transparent;
+  outline: none;
+  text-align: center;
+}
+
+/* button for inside text
+ in benchmark page above graph for system informations */
+.buttonleft {
+  border: none;
+  background-color: transparent;
+  outline: none;
+  text-align: center;
+  margin-left: 1px; /* add margin */
+}
+
+
+/* switch slider with an adaptable height.
+Change switch-height and switch-padding, and all the dimensions are adjusted.
+See https://stackoverflow.com/questions/70590125/how-to-change-the-size-of-a-css-toggle-switch */
+* {
+  --switch-height: 20px;
+  --switch-padding: 2px;
+  --switch-width: calc((var(--switch-height) * 2) - var(--switch-padding));
+  --slider-height: calc(var(--switch-height) - var(--switch-padding));
+  --slider-on: calc(var(--switch-height) - var(--switch-padding));
+}
+
+.switch {
+  position: relative;
+  display: inline-block;
+  width: var(--switch-width);
+  height: var(--switch-height);
+}
+
+.switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ccc;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+.slider:before {
+  content: "";
+  position: absolute;
+  height: var(--slider-height);
+  width: var(--slider-height);
+  left: calc(var(--switch-padding) / 2);
+  bottom: calc(var(--switch-padding) / 2);
+  background-color: white;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+input:checked+.slider {
+  background-color: #2196F3;
+}
+
+input:focus+.slider {
+  box-shadow: 0 0 1px #2196F3;
+}
+
+input:checked+.slider:before {
+  -webkit-transform: translateX(var(--slider-on));
+  -ms-transform: translateX(var(--slider-on));
+  transform: translateX(var(--slider-on));
+}
+
+.slider.round {
+  border-radius: var(--slider-height);
+}
+
+.slider.round:before {
+  border-radius: 50%;
+}
+
+/*----------------------------------------*/
+/***** Brand text animated *****/
+/*----------------------------------------*/
+
+
+.ml11 .text-wrapper {
+  position: relative;
+  display: inline-block;
+  padding-top: 0.1em;
+  padding-right: 0.05em;
+  padding-bottom: 0.15em;
+}
+
+.ml11 .line {
+  opacity: 0;
+  position: absolute;
+  left: 0;
+  height: 100%;
+  width: 3px;
+  background-color: #fff;
+  transform-origin: 0 50%;
+}
+
+.ml11 .line1 { 
+  top: 0; 
+  left: 0;
+}
+
+.ml11 .letter {
+  display: inline-block;
+  line-height: 1em;
+  font-family: 'Kanit', sans-serif;
+}
+
+/*----------------------------------------*/
+/***** Plot *****/
+/*----------------------------------------*/
+
+@media (min-width: 768px) {
+  #unique_plot {
+    flex: 1 1 0%;
+  }
+}
+
+@media (max-width: 767px) {
+  #unique_plot {
+    flex: initial;
+    flex-shrink: 0;
+  }
+}
+
+.js-plotly-plot .plotly .modebar {
+  transform: translateX(-30px);
+}
+
+/*----------------------------------------*/
+/***** Custom legend *****/
+/*----------------------------------------*/
+
+#plot_legend {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+
+#legend_title {
+  font-size: 1.2rem;
+  font-weight: bold;
+}
+
+#legend_help {
+  font-size: 0.75rem;
+  color: #475569;
+}
+
+.space-r-2 > * {
+  margin-right: 0.5rem;
+}
+
+        </style>
+    </head>
+    <body>
+        <!-- Two main columns container -->
+        <div class="flex">
+            <!-- Left column on big screen (plot selectors) -->
+            <div class="hidden lg:flex flex-col w-96 bg-gray-700">
+                <div class="h-screen">
+                    <div class="px-8 h-16 flex items-center bg-gray-800">
+                        <h1 class="ml11">
+                            <span class="text-wrapper">
+                                <span class="line line1"></span>
+                                <span id="brand" class="hidden letters text-2xl text-white">Benchopt</span>
+                            </span>
+                        </h1>
+                    </div>
+                    <div class="flex-1 flex flex-col">
+                        <div class="mt-10 px-8">
+                            <label for="dataset_selector" class="block text-sm font-medium text-white">Dataset:</label>
+                            <div class="mt-1 rounded-md shadow-sm">
+                                <select id="dataset_selector" class="focus:ring-blue-500 focus:border-blue-500 block w-full h-8 px-4 sm:text-sm border-gray-300 rounded-md" onchange="setState({dataset: this.value})">
+                                    <option value="leukemia[n_groups=100]">leukemia[n_groups=100]</option>
+                                    <option value="leukemia[n_groups=500]">leukemia[n_groups=500]</option>
+                                    <option value="leukemia[n_groups=2000]">leukemia[n_groups=2000]</option>
+                                    <option value="simulated[n_features=5000,n_groups=100,n_samples=500]">simulated[n_features=5000,n_groups=100,n_samples=500]</option>
+                                    <option value="simulated[n_features=5000,n_groups=500,n_samples=500]">simulated[n_features=5000,n_groups=500,n_samples=500]</option>
+                                    <option value="simulated[n_features=5000,n_groups=1000,n_samples=500]">simulated[n_features=5000,n_groups=1000,n_samples=500]</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="mt-8 px-8">
+                            <label for="objective_selector" class="block text-sm font-medium text-white">Objective:</label>
+                            <div class="mt-1 rounded-md shadow-sm">
+                                <select id="objective_selector" class="focus:ring-blue-500 focus:border-blue-500 block w-full h-8 px-4 sm:text-sm border-gray-300 rounded-md" onchange="setState({objective: this.value})">
+                                    <option value="Group Logistic regression[rho=1.0]">Group Logistic regression[rho=1.0]</option>
+                                    <option value="Group Logistic regression[rho=0.1]">Group Logistic regression[rho=0.1]</option>
+                                    <option value="Group Logistic regression[rho=0.01]">Group Logistic regression[rho=0.01]</option>
+                                    <option value="Group Logistic regression[rho=0.005]">Group Logistic regression[rho=0.005]</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="mt-8 px-8">
+                            <label for="objective_column" class="block text-sm font-medium text-white">Objective column</label>
+                            <div class="mt-1 rounded-md shadow-sm">
+                                <select id="objective_column" class="focus:ring-blue-500 focus:border-blue-500 block w-full h-8 px-4 sm:text-sm border-gray-300 rounded-md" onchange="setState({objective_column: this.value})">
+                                    <option value="objective_value">objective_value</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="mt-8 px-8">
+                            <label for="plot_kind" class="block text-sm font-medium text-white">Chart type</label>
+                            <div class="mt-1 rounded-md shadow-sm">
+                                <select id="plot_kind" class="focus:ring-blue-500 focus:border-blue-500 block w-full h-8 px-4 sm:text-sm border-gray-300 rounded-md" onchange="setState({plot_kind: this.value})">
+                                    <option value="objective_curve">objective_curve</option>
+                                    <option value="suboptimality_curve">suboptimality_curve</option>
+                                    <option value="relative_suboptimality_curve">relative_suboptimality_curve</option>
+                                    <option value="bar_chart">bar_chart</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div id="scale-form-group" class="mt-8 px-8">
+                            <label for="change_scaling" class="block text-sm font-medium text-white">Scale</label>
+                            <div class="mt-1 rounded-md shadow-sm">
+                                <select id="change_scaling" class="focus:ring-blue-500 focus:border-blue-500 block w-full h-8 px-4 sm:text-sm border-gray-300 rounded-md" onchange="setState({scale: this.value})">
+                                    <option value="semilog-y">semilog-y</option>
+                                    <option value="semilog-x">semilog-x</option>
+                                    <option value="loglog">loglog</option>
+                                    <option value="linear">linear</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="flex items-center justify-between mt-8 px-8">
+                            <div class="block text-sm font-medium text-white">Quantiles</div>
+                            <label class="block switch">
+                                <input id="change_shades" type="checkbox" checked onchange="setState({with_quantiles: this.checked})">
+                                <span class="slider round"></span>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Right column on big screen and main column on mobile -->
+            <div class="w-full flex flex-col overflow-scroll">
+                <!-- Main menu -->
+                <nav class="bg-blue-600">
+                    <div class="px-4">
+                        <div class="relative flex items-center justify-between h-16">
+                            <!-- mobile navbar -->
+                            <div class="absolute inset-0 flex items-center justify-between lg:hidden">
+                                <!-- Mobile menu brand text -->
+                                <span class="text-white text-xl">
+                                    Benchopt
+                                </span>
+                                <!-- Mobile menu button-->
+                                <button type="button" id="btn-main-menu" class="inline-flex items-center justify-center p-2 rounded-md text-white focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white" aria-controls="mobile-menu" aria-expanded="false">
+                                    <span class="sr-only">Open main menu</span>
+                                    <svg class="block h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" aria-hidden="true">
+                                        <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16" />
+                                    </svg>
+                                    <svg class="hidden h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" aria-hidden="true">
+                                        <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+                                    </svg>
+                                </button>
+                            </div>
+                            <!-- big screen navbar-->
+                            <div class="flex-1 flex items-center justify-center lg:items-stretch lg:justify-start">
+                                <div class="hidden lg:block">
+                                    <div class="flex space-x-4">
+                                        <a href="benchmark_group_logreg.html" class="text-gray-100 hover:bg-blue-800 hover:text-white px-3 py-2 rounded-md text-sm font-medium" aria-current="page">Home</a>
+                                        <a href="https://benchopt.github.io" class="text-gray-100 hover:bg-blue-800 hover:text-white px-3 py-2 rounded-md text-sm font-medium" target="_blank">Website</a>
+                                        <a href="https://github.com/benchopt/benchopt" class="text-gray-100 hover:bg-blue-800 hover:text-white px-3 py-2 rounded-md text-sm font-medium" target="_blank">Github</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Mobile menu, show/hide based on menu state. -->
+                    <div class="hidden" id="mobile-menu">
+                        <div class="px-2 pt-2 pb-3 space-y-1">
+                            <a href="benchmark_group_logreg.html" class="text-white block px-3 py-2 rounded-md text-base font-medium" aria-current="page">Home</a>
+                            <a href="https://benchopt.github.io" class="text-white block px-3 py-2 rounded-md text-base font-medium">Website</a>
+                            <a href="https://github.com/benchopt/benchopt" class="text-white block px-3 py-2 rounded-md text-base font-medium">Github</a>
+                            <a href="benchopt_run_2022-10-19_13h22m36.parquet" class="text-white block px-3 py-2 rounded-md text-base font-medium">Download data</a>
+                        </div>
+                    </div>
+                </nav>
+
+                <!-- Plot menu for mobiles -->
+                <nav class="lg:hidden bg-gray-700">
+                    <div class="px-4" id="btn-plot-config">
+                        <div class="relative flex items-center justify-between h-10">
+                            <div class="absolute inset-0 flex items-center justify-between lg:hidden">
+                                <!-- Mobile menu button-->
+                                <span class="flex items-center space-x-2 text-white">
+                                    <span>Change plot</span>
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                                        <path stroke-linecap="round" stroke-linejoin="round" d="M13 5l7 7-7 7M5 5l7 7-7 7" />
+                                    </svg>
+                                </span>
+                                <button type="button" class="inline-flex items-center justify-center p-2 rounded-md text-white focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white" aria-controls="mobile-menu" aria-expanded="false">
+                                    <span class="sr-only">Open main menu</span>
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                                        <path stroke-linecap="round" stroke-linejoin="round" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z" />
+                                        <path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                                    </svg>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Mobile menu, show/hide based on menu state. -->
+                    <div class="hidden" id="mobile-plot-form">
+                        <div class="px-2 pt-2 pb-3 space-y-4">
+                            <div class="px-8">
+                                <label for="dataset_selector" class="block text-sm font-medium text-white">Dataset:</label>
+                                <div class="mt-1 rounded-md shadow-sm">
+                                    <select id="dataset_selector" class="focus:ring-blue-500 focus:border-blue-500 block w-full h-8 px-4 sm:text-sm border-gray-300 rounded-md" onchange="setState({dataset: this.value})">
+                                        <option value="leukemia[n_groups=100]">leukemia[n_groups=100]</option>
+                                        <option value="leukemia[n_groups=500]">leukemia[n_groups=500]</option>
+                                        <option value="leukemia[n_groups=2000]">leukemia[n_groups=2000]</option>
+                                        <option value="simulated[n_features=5000,n_groups=100,n_samples=500]">simulated[n_features=5000,n_groups=100,n_samples=500]</option>
+                                        <option value="simulated[n_features=5000,n_groups=500,n_samples=500]">simulated[n_features=5000,n_groups=500,n_samples=500]</option>
+                                        <option value="simulated[n_features=5000,n_groups=1000,n_samples=500]">simulated[n_features=5000,n_groups=1000,n_samples=500]</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="px-8">
+                                <label for="objective_selector" class="block text-sm font-medium text-white">Objective:</label>
+                                <div class="mt-1 rounded-md shadow-sm">
+                                    <select id="objective_selector" class="focus:ring-blue-500 focus:border-blue-500 block w-full h-8 px-4 sm:text-sm border-gray-300 rounded-md" onchange="setState({objective: this.value})">
+                                        <option value="Group Logistic regression[rho=1.0]">Group Logistic regression[rho=1.0]</option>
+                                        <option value="Group Logistic regression[rho=0.1]">Group Logistic regression[rho=0.1]</option>
+                                        <option value="Group Logistic regression[rho=0.01]">Group Logistic regression[rho=0.01]</option>
+                                        <option value="Group Logistic regression[rho=0.005]">Group Logistic regression[rho=0.005]</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="px-8">
+                                <label for="objective_column" class="block text-sm font-medium text-white">Objective column</label>
+                                <div class="mt-1 rounded-md shadow-sm">
+                                    <select id="objective_column" class="focus:ring-blue-500 focus:border-blue-500 block w-full h-8 px-4 sm:text-sm border-gray-300 rounded-md" onchange="setState({objective_column: this.value})">
+                                        <option value="objective_value">objective_value</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="px-8">
+                                <label for="plot_kind" class="block text-sm font-medium text-white">Chart type</label>
+                                <div class="mt-1 rounded-md shadow-sm">
+                                    <select id="plot_kind" class="focus:ring-blue-500 focus:border-blue-500 block w-full h-8 px-4 sm:text-sm border-gray-300 rounded-md" onchange="setState({plot_kind: this.value})">
+                                        <option value="objective_curve">objective_curve</option>
+                                        <option value="suboptimality_curve">suboptimality_curve</option>
+                                        <option value="relative_suboptimality_curve">relative_suboptimality_curve</option>
+                                        <option value="bar_chart">bar_chart</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div id="scale-form-group" class="px-8">
+                                <label for="change_scaling" class="block text-sm font-medium text-white">Scale</label>
+                                <div class="mt-1 rounded-md shadow-sm">
+                                    <select id="change_scaling" class="focus:ring-blue-500 focus:border-blue-500 block w-full h-8 px-4 sm:text-sm border-gray-300 rounded-md" onchange="setState({scale: this.value})">
+                                        <option value="semilog-y">semilog-y</option>
+                                        <option value="semilog-x">semilog-x</option>
+                                        <option value="loglog">loglog</option>
+                                        <option value="linear">linear</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="flex items-center justify-between mt-8 px-8">
+                                <div class="block text-sm font-medium text-white">Quantiles</div>
+                                <label class="block switch">
+                                    <input id="change_shades" type="checkbox" checked onchange="setState({with_quantiles: this.checked})">
+                                    <span class="slider round"></span>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                </nav>
+    
+                <!-- Page heading -->
+                <div class="px-4 pt-4 pb-1 md:py-4 lg:flex lg:items-center lg:justify-between">
+                    <div class="flex-1 min-w-0">
+                        <h2 class="w-full text-center lg:text-left text-2xl font-bold leading-7 text-gray-900 sm:text-3xl sm:truncate">Result on group logreg benchmark</h2>
+                        <div class="mt-1 flex flex-wrap justify-center lg:justify-start sm:mt-0">
+                            <div class="mt-2 sm:mr-6 hidden md:flex items-center text-sm text-gray-500">
+                                <span class="font-bold"></span>CPU : 20
+                            </div>
+                            <div class="mt-2 sm:mr-6 hidden md:flex items-center text-sm text-gray-500">
+                                <span class="font-bold"></span>RAM (GB) : 31
+                            </div>
+                            <div class="mt-2 sm:mr-6 hidden md:flex items-center text-sm text-gray-500">
+                                <span class="font-bold"></span>CUDA : NVIDIA T600 Laptop GPU: cuda_11.6
+                            </div>
+                            <div class="mt-2">
+                                <button class="inline-flex items-center px-2 py-1 space-x-2 border border-gray-500 rounded-md shadow-sm text-sm font-medium text-gray-500 bg-white hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-500" onclick="document.getElementById('system-modal').style.display = 'block'">
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                                        <path stroke-linecap="round" stroke-linejoin="round" d="M12 9v3m0 0v3m0-3h3m-3 0H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z" />
+                                    </svg>
+                                    <span class="hidden md:inline-block text-sm">Show more</span>
+                                    <span class="md:hidden text-sm">Show system information</span>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="hidden lg:flex mt-5 lg:mt-0 lg:ml-4">
+                        <span>
+                            <a href="benchopt_run_2022-10-19_13h22m36.parquet" class="inline-flex items-center px-4 py-2 space-x-2 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
+                                </svg>
+                                <span class="hidden lg:inline">Download data</span>
+                            </a>
+                        </span>
+                    </div>
+                </div>
+    
+                <!-- Plot -->
+                <div id="unique_plot"></div>
+                <div id="legend_container" class="py-10 bg-slate-200">
+                    <div id="legend_title" class="px-10 mb-4">
+                        Solvers <span id="legend_help">(Click on a solver to hide it or double click to hide all the others)</span>
+                    </div>
+                    <div id="plot_legend" class="px-10 space-r-2"></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- System information modal -->
+        <div id="system-modal" class="hidden relative z-10" aria-labelledby="modal-title" role="dialog" aria-modal="true">
+            <div class="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity"></div>
+            <div class="fixed z-10 inset-0 overflow-y-auto">
+                <div class="flex items-end sm:items-center justify-center min-h-full p-4 text-center sm:p-0">
+                    <div class="relative bg-white rounded-lg text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:max-w-lg sm:w-full">
+                        <div class="bg-white px-4 pt-5 pb-4 sm:p-6 sm:pb-4">
+                            <div class="sm:flex sm:items-start">
+                                <div class="mx-auto flex-shrink-0 flex items-center justify-center h-12 w-12 rounded-full bg-blue-100 sm:mx-0 sm:h-10 sm:w-10">
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-blue-600" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                                        <path stroke-linecap="round" stroke-linejoin="round" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                                    </svg>
+                                </div>
+                                <div class="mt-3 text-center sm:mt-0 sm:ml-4 sm:text-left">
+                                    <h3 class="text-lg leading-6 font-medium text-gray-900" id="modal-title">System information</h3>
+                                    <div class="mt-2">
+                                        <ul class="text-sm text-gray-500">
+                                            <li> <b>CPU</b>: 20 </li>
+                                            <li> <b>RAM (GB)</b>: 31 </li>
+                                            <li> <b>CUDA</b>: NVIDIA T600 Laptop GPU: cuda_11.6 </li>
+                                            <li> <b>platform</b>: Linux5.14.0-1051-oem-x86_64 </li>
+                                            <li> <b>processor</b>: 12th Gen Intel(R) Core(TM) i7-12700H </li>
+                                            
+                                            <li> <b>numpy</b>: 1.23.4  </li>
+                                            
+                                            <li> <b>scipy</b>: 1.9.2 </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="bg-gray-50 px-4 py-3 sm:px-6 sm:flex sm:flex-row-reverse">
+                            <button type="button" class="mt-3 w-full inline-flex justify-center rounded-md border border-gray-300 shadow-sm px-4 py-2 bg-white text-base font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 sm:mt-0 sm:ml-3 sm:w-auto sm:text-sm" onclick="document.getElementById('system-modal').style.display = 'none'">Close</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <script src="https://cdn.plot.ly/plotly-2.12.1.min.js"></script>
+        <!-- Used for the brand animation -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/2.0.2/anime.min.js"></script>
+        <!-- Define the brand animation -->
+        <script>
+            var textWrapper = document.querySelector('.ml11 .letters');
+            textWrapper.innerHTML = textWrapper.textContent.replace(/([^\x00-\x80]|\w)/g, "<span class='letter'>$&</span>");
+
+            window.addEventListener('load', () => {
+                document.getElementById('brand').style.display = 'inline';
+
+                anime.timeline({loop: false})
+                    .add({
+                        targets: '.ml11 .line',
+                        scaleY: [0,1],
+                        opacity: [0.5,1],
+                        easing: "easeOutExpo",
+                        duration: 700
+                    })
+                    .add({
+                        targets: '.ml11 .line',
+                        translateX: [0, document.querySelector('.ml11 .letters').getBoundingClientRect().width + 10],
+                        easing: "easeOutExpo",
+                        duration: 700,
+                        delay: 100
+                    }).add({
+                        targets: '.ml11 .letter',
+                        opacity: [0,1],
+                        easing: "easeOutExpo",
+                        duration: 600,
+                        offset: '-=775',
+                        delay: (el, i) => 34 * (i+1)
+                    }).add({
+                        targets: '.ml11 .line',
+                        scaleY: [1,0],
+                        opacity: [1,0.5],
+                        easing: "easeOutExpo",
+                        duration: 700,
+                        translateX: [document.querySelector('.ml11 .letters').getBoundingClientRect().width + 10, document.querySelector('.ml11 .letters').getBoundingClientRect().width + 10],
+                    });
+            });
+        </script>
+        <!-- Manage plot -->
+        <script>
+            window.data = {"leukemia[n_groups=100]": {"Group Logistic regression[rho=1.0]": {"objective_value": {"solvers": {"skglm[solver=GroupBCD]": {"scatter": {"x": [0.03463091399953555, 0.07119728199995734, 0.19110997099960514, 0.1489357549999113], "y": [0.6931471805599453, 0.6931471805599453, 0.6931471805599453, 0.6931471805599453], "q1": [0.03463091399953555, 0.07119728199995734, 0.19110997099960514, 0.1489357549999113], "q9": [0.03463091399953555, 0.07119728199995734, 0.19110997099960514, 0.1489357549999113]}, "bar": {"y": 0.03463091399953555, "times": [0.03463091399953555], "text": ""}, "color": "rgba(31.0, 119.0, 180.0, 1.0)", "marker": 1}, "skglm[solver=GroupProxNewton]": {"scatter": {"x": [3.42800003636512e-05, 0.0005068270002084319, 0.0004916119996778434, 0.000523426000654581], "y": [0.6931471805599453, 0.6931471805599453, 0.6931471805599453, 0.6931471805599453], "q1": [3.42800003636512e-05, 0.0005068270002084319, 0.0004916119996778434, 0.000523426000654581], "q9": [3.42800003636512e-05, 0.0005068270002084319, 0.0004916119996778434, 0.000523426000654581]}, "bar": {"y": 3.42800003636512e-05, "times": [3.42800003636512e-05], "text": ""}, "color": "rgba(174.0, 199.0, 232.0, 1.0)", "marker": 2}}, "transformers": {"c_star": 0.6931471804599453, "max_f_0": 0.6931471805599453}}}, "Group Logistic regression[rho=0.1]": {"objective_value": {"solvers": {"skglm[solver=GroupBCD]": {"scatter": {"x": [0.04516589600007137, 0.06605207299980975, 0.08622191999984352, 0.16404070800035697, 0.4660510539997631, 0.2507003850005276, 0.24376206400029332, 0.40703451199988194, 0.28916796799967415, 0.28840198699981556], "y": [0.6931471805599453, 0.6410057482938616, 0.4446304251293485, 0.4131069808497226, 0.40712286592927954, 0.40685789191669897, 0.40685771545648575, 0.40685771544741955, 0.4068577154474195, 0.4068577154474195], "q1": [0.04516589600007137, 0.06605207299980975, 0.08622191999984352, 0.16404070800035697, 0.4660510539997631, 0.2507003850005276, 0.24376206400029332, 0.40703451199988194, 0.28916796799967415, 0.28840198699981556], "q9": [0.04516589600007137, 0.06605207299980975, 0.08622191999984352, 0.16404070800035697, 0.4660510539997631, 0.2507003850005276, 0.24376206400029332, 0.40703451199988194, 0.28916796799967415, 0.28840198699981556]}, "bar": {"y": 0.2507003850005276, "times": [0.2507003850005276], "text": ""}, "color": "rgba(31.0, 119.0, 180.0, 1.0)", "marker": 1}, "skglm[solver=GroupProxNewton]": {"scatter": {"x": [5.493800017575268e-05, 0.017542979000609193, 0.03713269600029889, 0.055960423999749764, 0.23023015499984467, 0.3013214259999586, 0.6302568089995475, 0.866908943999988, 1.8270584270003383, 2.877139334000276, 2.486673680000422], "y": [0.6931471805599453, 0.5608158023320317, 0.44582273854551574, 0.4113541496154257, 0.4071854396108031, 0.4068587948536938, 0.4068577157334648, 0.4068577154474269, 0.40685771544741944, 0.4068577154474195, 0.4068577154474195], "q1": [5.493800017575268e-05, 0.017542979000609193, 0.03713269600029889, 0.055960423999749764, 0.23023015499984467, 0.3013214259999586, 0.6302568089995475, 0.866908943999988, 1.8270584270003383, 2.877139334000276, 2.486673680000422], "q9": [5.493800017575268e-05, 0.017542979000609193, 0.03713269600029889, 0.055960423999749764, 0.23023015499984467, 0.3013214259999586, 0.6302568089995475, 0.866908943999988, 1.8270584270003383, 2.877139334000276, 2.486673680000422]}, "bar": {"y": 0.6302568089995475, "times": [0.6302568089995475], "text": ""}, "color": "rgba(174.0, 199.0, 232.0, 1.0)", "marker": 2}}, "transformers": {"c_star": 0.40685771534741944, "max_f_0": 0.6410057482938616}}}, "Group Logistic regression[rho=0.01]": {"objective_value": {"solvers": {"skglm[solver=GroupBCD]": {"scatter": {"x": [0.08685126199998194, 0.06971266900018236, 0.08297176100040815, 0.20709632900070574, 0.3793756199993368, 0.3281716960000267, 0.48369408500002464, 0.5037410679997265, 0.7432313379995321, 1.179378213999371, 1.632596289000503], "y": [0.6931471805599453, 0.6071559860465732, 0.12505036989082954, 0.1015205219773641, 0.09820411917013482, 0.09270972381843201, 0.09014669049419657, 0.09014640286720019, 0.09014640286226079, 0.09014640286226011, 0.09014640286226012], "q1": [0.08685126199998194, 0.06971266900018236, 0.08297176100040815, 0.20709632900070574, 0.3793756199993368, 0.3281716960000267, 0.48369408500002464, 0.5037410679997265, 0.7432313379995321, 1.179378213999371, 1.632596289000503], "q9": [0.08685126199998194, 0.06971266900018236, 0.08297176100040815, 0.20709632900070574, 0.3793756199993368, 0.3281716960000267, 0.48369408500002464, 0.5037410679997265, 0.7432313379995321, 1.179378213999371, 1.632596289000503]}, "bar": {"y": 0.48369408500002464, "times": [0.48369408500002464], "text": ""}, "color": "rgba(31.0, 119.0, 180.0, 1.0)", "marker": 1}, "skglm[solver=GroupProxNewton]": {"scatter": {"x": [4.032700053357985e-05, 0.019876288000887143, 0.10885000300004322, 0.4090950049994717, 0.7485616049998498, 1.1192916789996161, 2.1103939240001637, 3.1488418160006404, 6.4280334310005856, 10.845619716999863, 13.615848880000158], "y": [0.6931471805599453, 0.34629673221167767, 0.1263799271455252, 0.10218271501694592, 0.09078454492861794, 0.09014993002909184, 0.09014640534482081, 0.0901464028624179, 0.09014640286225992, 0.09014640286225992, 0.09014640286225992], "q1": [4.032700053357985e-05, 0.019876288000887143, 0.10885000300004322, 0.4090950049994717, 0.7485616049998498, 1.1192916789996161, 2.1103939240001637, 3.1488418160006404, 6.4280334310005856, 10.845619716999863, 13.615848880000158], "q9": [4.032700053357985e-05, 0.019876288000887143, 0.10885000300004322, 0.4090950049994717, 0.7485616049998498, 1.1192916789996161, 2.1103939240001637, 3.1488418160006404, 6.4280334310005856, 10.845619716999863, 13.615848880000158]}, "bar": {"y": 2.1103939240001637, "times": [2.1103939240001637], "text": ""}, "color": "rgba(174.0, 199.0, 232.0, 1.0)", "marker": 2}}, "transformers": {"c_star": 0.09014640276225992, "max_f_0": 0.6071559860465732}}}, "Group Logistic regression[rho=0.005]": {"objective_value": {"solvers": {"skglm[solver=GroupBCD]": {"scatter": {"x": [0.09248197699980665, 0.07078365800043684, 0.10169726699950843, 0.11274643799970363, 0.4117145720001645, 0.5029184029999669, 0.5883400490001804, 0.7456035020004492, 1.1822186159997727, 1.430639551999775, 2.0584776920004515, 3.3989227269994444, 4.812158017000002], "y": [0.6931471805599453, 0.6046785098418733, 0.08532567288164705, 0.06821348328215904, 0.058599294635411275, 0.05375840665071465, 0.053593439439596345, 0.052767544942245455, 0.05276177525864314, 0.052761721692730926, 0.05276172169116241, 0.052761721691162035, 0.05276172169116202], "q1": [0.09248197699980665, 0.07078365800043684, 0.10169726699950843, 0.11274643799970363, 0.4117145720001645, 0.5029184029999669, 0.5883400490001804, 0.7456035020004492, 1.1822186159997727, 1.430639551999775, 2.0584776920004515, 3.3989227269994444, 4.812158017000002], "q9": [0.09248197699980665, 0.07078365800043684, 0.10169726699950843, 0.11274643799970363, 0.4117145720001645, 0.5029184029999669, 0.5883400490001804, 0.7456035020004492, 1.1822186159997727, 1.430639551999775, 2.0584776920004515, 3.3989227269994444, 4.812158017000002]}, "bar": {"y": 1.1822186159997727, "times": [1.1822186159997727], "text": ""}, "color": "rgba(31.0, 119.0, 180.0, 1.0)", "marker": 1}, "skglm[solver=GroupProxNewton]": {"scatter": {"x": [4.742899909615517e-05, 0.018500221999602218, 0.1574380089996339, 0.28065114399942104, 0.7691797600000427, 1.4530181590007487, 3.0694201090000206, 4.164310470000601, 9.60957576599958, 15.556099512999936, 15.48064755500036], "y": [0.6931471805599453, 0.3272491313052483, 0.08927597388714203, 0.06431893400172342, 0.05424934478226082, 0.05276896600519314, 0.05276172673198017, 0.05276172169148095, 0.05276172169115982, 0.05276172169115982, 0.05276172169115982], "q1": [4.742899909615517e-05, 0.018500221999602218, 0.1574380089996339, 0.28065114399942104, 0.7691797600000427, 1.4530181590007487, 3.0694201090000206, 4.164310470000601, 9.60957576599958, 15.556099512999936, 15.48064755500036], "q9": [4.742899909615517e-05, 0.018500221999602218, 0.1574380089996339, 0.28065114399942104, 0.7691797600000427, 1.4530181590007487, 3.0694201090000206, 4.164310470000601, 9.60957576599958, 15.556099512999936, 15.48064755500036]}, "bar": {"y": 3.0694201090000206, "times": [3.0694201090000206], "text": ""}, "color": "rgba(174.0, 199.0, 232.0, 1.0)", "marker": 2}}, "transformers": {"c_star": 0.05276172159115982, "max_f_0": 0.6046785098418733}}}}, "leukemia[n_groups=500]": {"Group Logistic regression[rho=1.0]": {"objective_value": {"solvers": {"skglm[solver=GroupBCD]": {"scatter": {"x": [0.011754494000342675, 0.013138280000021041, 0.018117051999979594, 0.012952022999343171], "y": [0.6931471805599453, 0.6931471805599453, 0.6931471805599453, 0.6931471805599453], "q1": [0.011754494000342675, 0.013138280000021041, 0.018117051999979594, 0.012952022999343171], "q9": [0.011754494000342675, 0.013138280000021041, 0.018117051999979594, 0.012952022999343171]}, "bar": {"y": 0.011754494000342675, "times": [0.011754494000342675], "text": ""}, "color": "rgba(31.0, 119.0, 180.0, 1.0)", "marker": 1}, "skglm[solver=GroupProxNewton]": {"scatter": {"x": [3.500900038488908e-05, 0.0006773040004190989, 0.0006972239998503937, 0.0006918070002939203], "y": [0.6931471805599453, 0.6931471805599453, 0.6931471805599453, 0.6931471805599453], "q1": [3.500900038488908e-05, 0.0006773040004190989, 0.0006972239998503937, 0.0006918070002939203], "q9": [3.500900038488908e-05, 0.0006773040004190989, 0.0006972239998503937, 0.0006918070002939203]}, "bar": {"y": 3.500900038488908e-05, "times": [3.500900038488908e-05], "text": ""}, "color": "rgba(174.0, 199.0, 232.0, 1.0)", "marker": 2}}, "transformers": {"c_star": 0.6931471804599453, "max_f_0": 0.6931471805599453}}}, "Group Logistic regression[rho=0.1]": {"objective_value": {"solvers": {"skglm[solver=GroupBCD]": {"scatter": {"x": [0.04358569699979853, 0.02177939100056392, 0.038182158000381605, 0.0393394980001176, 0.06513255699974252, 0.0873108260002482, 0.19515681700067944, 0.16358938199937256, 0.2070469750005941, 0.1960336689999167], "y": [0.6931471805599453, 0.6526175025235065, 0.4646704220301397, 0.44829787566273205, 0.4404606582752142, 0.4396288712270655, 0.43962581244992593, 0.43962581242391285, 0.43962581242391285, 0.43962581242391285], "q1": [0.04358569699979853, 0.02177939100056392, 0.038182158000381605, 0.0393394980001176, 0.06513255699974252, 0.0873108260002482, 0.19515681700067944, 0.16358938199937256, 0.2070469750005941, 0.1960336689999167], "q9": [0.04358569699979853, 0.02177939100056392, 0.038182158000381605, 0.0393394980001176, 0.06513255699974252, 0.0873108260002482, 0.19515681700067944, 0.16358938199937256, 0.2070469750005941, 0.1960336689999167]}, "bar": {"y": 0.19515681700067944, "times": [0.19515681700067944], "text": ""}, "color": "rgba(31.0, 119.0, 180.0, 1.0)", "marker": 1}, "skglm[solver=GroupProxNewton]": {"scatter": {"x": [3.5940000088885427e-05, 0.0037233759994705906, 0.006591215999833366, 0.006949619999431889, 0.011166715000399563, 0.023144208999838156, 0.044202413999300916, 0.08332214599977306, 0.34748717900038173, 0.45785253400026704, 0.4557562489999327], "y": [0.6931471805599453, 0.5786060681571402, 0.4609201233034463, 0.4414973727791922, 0.4398909900945149, 0.439627306200564, 0.43962581264158745, 0.43962581242391685, 0.43962581242391285, 0.43962581242391285, 0.43962581242391285], "q1": [3.5940000088885427e-05, 0.0037233759994705906, 0.006591215999833366, 0.006949619999431889, 0.011166715000399563, 0.023144208999838156, 0.044202413999300916, 0.08332214599977306, 0.34748717900038173, 0.45785253400026704, 0.4557562489999327], "q9": [3.5940000088885427e-05, 0.0037233759994705906, 0.006591215999833366, 0.006949619999431889, 0.011166715000399563, 0.023144208999838156, 0.044202413999300916, 0.08332214599977306, 0.34748717900038173, 0.45785253400026704, 0.4557562489999327]}, "bar": {"y": 0.044202413999300916, "times": [0.044202413999300916], "text": ""}, "color": "rgba(174.0, 199.0, 232.0, 1.0)", "marker": 2}}, "transformers": {"c_star": 0.43962581232391285, "max_f_0": 0.6526175025235065}}}, "Group Logistic regression[rho=0.01]": {"objective_value": {"solvers": {"skglm[solver=GroupBCD]": {"scatter": {"x": [0.04262102499978937, 0.012989732000278309, 0.014164079000693164, 0.046474714999931166, 0.2615794310004276, 0.25264879099995596, 0.38524022299952776, 0.6287351150003815, 0.6323288730000058, 0.9302505539999402, 1.236852011999872, 1.3231556259997888], "y": [0.6931471805599453, 0.6210233704875564, 0.2505078250382013, 0.14747667663179742, 0.1110204390585235, 0.10347153156719006, 0.10259342947208618, 0.10259080601519197, 0.1025905864423847, 0.10259058644238318, 0.10259058644238318, 0.10259058644238318], "q1": [0.04262102499978937, 0.012989732000278309, 0.014164079000693164, 0.046474714999931166, 0.2615794310004276, 0.25264879099995596, 0.38524022299952776, 0.6287351150003815, 0.6323288730000058, 0.9302505539999402, 1.236852011999872, 1.3231556259997888], "q9": [0.04262102499978937, 0.012989732000278309, 0.014164079000693164, 0.046474714999931166, 0.2615794310004276, 0.25264879099995596, 0.38524022299952776, 0.6287351150003815, 0.6323288730000058, 0.9302505539999402, 1.236852011999872, 1.3231556259997888]}, "bar": {"y": 0.6287351150003815, "times": [0.6287351150003815], "text": ""}, "color": "rgba(31.0, 119.0, 180.0, 1.0)", "marker": 1}, "skglm[solver=GroupProxNewton]": {"scatter": {"x": [4.819799960387172e-05, 0.004116129000067303, 0.008337253000718192, 0.018473553999683645, 0.03082703899963235, 0.048826930000359425, 0.11236127400024998, 0.20373173600000882, 0.5369170009998925, 1.1228921230003834, 1.1229558159993758], "y": [0.6931471805599453, 0.37693153049593986, 0.14238780056779365, 0.10878847487971378, 0.10326761369771124, 0.10259907309269112, 0.10259058904242487, 0.102590586442467, 0.10259058644238317, 0.1025905864423832, 0.1025905864423832], "q1": [4.819799960387172e-05, 0.004116129000067303, 0.008337253000718192, 0.018473553999683645, 0.03082703899963235, 0.048826930000359425, 0.11236127400024998, 0.20373173600000882, 0.5369170009998925, 1.1228921230003834, 1.1229558159993758], "q9": [4.819799960387172e-05, 0.004116129000067303, 0.008337253000718192, 0.018473553999683645, 0.03082703899963235, 0.048826930000359425, 0.11236127400024998, 0.20373173600000882, 0.5369170009998925, 1.1228921230003834, 1.1229558159993758]}, "bar": {"y": 0.11236127400024998, "times": [0.11236127400024998], "text": ""}, "color": "rgba(174.0, 199.0, 232.0, 1.0)", "marker": 2}}, "transformers": {"c_star": 0.10259058634238317, "max_f_0": 0.6210233704875564}}}, "Group Logistic regression[rho=0.005]": {"objective_value": {"solvers": {"skglm[solver=GroupBCD]": {"scatter": {"x": [0.023735509000289312, 0.013450690999889048, 0.025214086000232783, 0.03977690400006395, 0.09583766400010063, 0.28386928500003705, 0.41180300999985775, 0.5787214950005364, 0.9365886389996376, 1.1974571840000863, 2.589409242000329], "y": [0.6931471805599453, 0.6184666867820747, 0.08862741391675123, 0.0744471137918576, 0.06770089621200717, 0.060804695925944126, 0.060558759331383494, 0.06055854350159696, 0.060558543499646206, 0.060558543499646164, 0.06055854349964618], "q1": [0.023735509000289312, 0.013450690999889048, 0.025214086000232783, 0.03977690400006395, 0.09583766400010063, 0.28386928500003705, 0.41180300999985775, 0.5787214950005364, 0.9365886389996376, 1.1974571840000863, 2.589409242000329], "q9": [0.023735509000289312, 0.013450690999889048, 0.025214086000232783, 0.03977690400006395, 0.09583766400010063, 0.28386928500003705, 0.41180300999985775, 0.5787214950005364, 0.9365886389996376, 1.1974571840000863, 2.589409242000329]}, "bar": {"y": 0.41180300999985775, "times": [0.41180300999985775], "text": ""}, "color": "rgba(31.0, 119.0, 180.0, 1.0)", "marker": 1}, "skglm[solver=GroupProxNewton]": {"scatter": {"x": [4.9358000069332775e-05, 0.00417776800077263, 0.013716375000512926, 0.01914178599963634, 0.03849269300008018, 0.06938231699950848, 0.1526937580001686, 0.2748352300004626, 0.7303162490006798, 1.3921383430006244, 1.3886658060000627], "y": [0.6931471805599453, 0.35773308951568, 0.10644205000352838, 0.06755980657110965, 0.06123696315549984, 0.06056027459182638, 0.06055854451630713, 0.06055854349970232, 0.06055854349964615, 0.06055854349964613, 0.06055854349964613], "q1": [4.9358000069332775e-05, 0.00417776800077263, 0.013716375000512926, 0.01914178599963634, 0.03849269300008018, 0.06938231699950848, 0.1526937580001686, 0.2748352300004626, 0.7303162490006798, 1.3921383430006244, 1.3886658060000627], "q9": [4.9358000069332775e-05, 0.00417776800077263, 0.013716375000512926, 0.01914178599963634, 0.03849269300008018, 0.06938231699950848, 0.1526937580001686, 0.2748352300004626, 0.7303162490006798, 1.3921383430006244, 1.3886658060000627]}, "bar": {"y": 0.1526937580001686, "times": [0.1526937580001686], "text": ""}, "color": "rgba(174.0, 199.0, 232.0, 1.0)", "marker": 2}}, "transformers": {"c_star": 0.06055854339964613, "max_f_0": 0.6184666867820747}}}}, "leukemia[n_groups=2000]": {"Group Logistic regression[rho=1.0]": {"objective_value": {"solvers": {"skglm[solver=GroupBCD]": {"scatter": {"x": [0.007055446999402193, 0.009103390999371186, 0.009030236000398872, 0.009169775000373193], "y": [0.6931471805599453, 0.6931471805599453, 0.6931471805599453, 0.6931471805599453], "q1": [0.007055446999402193, 0.009103390999371186, 0.009030236000398872, 0.009169775000373193], "q9": [0.007055446999402193, 0.009103390999371186, 0.009030236000398872, 0.009169775000373193]}, "bar": {"y": 0.007055446999402193, "times": [0.007055446999402193], "text": ""}, "color": "rgba(31.0, 119.0, 180.0, 1.0)", "marker": 1}, "skglm[solver=GroupProxNewton]": {"scatter": {"x": [3.857499996229308e-05, 0.0011505110005600727, 0.0011151019998578704, 0.0011661190001177602], "y": [0.6931471805599453, 0.6931471805599453, 0.6931471805599453, 0.6931471805599453], "q1": [3.857499996229308e-05, 0.0011505110005600727, 0.0011151019998578704, 0.0011661190001177602], "q9": [3.857499996229308e-05, 0.0011505110005600727, 0.0011151019998578704, 0.0011661190001177602]}, "bar": {"y": 3.857499996229308e-05, "times": [3.857499996229308e-05], "text": ""}, "color": "rgba(174.0, 199.0, 232.0, 1.0)", "marker": 2}}, "transformers": {"c_star": 0.6931471804599453, "max_f_0": 0.6931471805599453}}}, "Group Logistic regression[rho=0.1]": {"objective_value": {"solvers": {"skglm[solver=GroupBCD]": {"scatter": {"x": [0.03472471599980054, 0.014082926000810403, 0.06488059799994517, 0.058937787000104436, 0.09412249799970596, 0.14239010700021026, 0.19974114500018914, 0.3099370790005196, 0.3433859329998086, 0.24582372099939676], "y": [0.6931471805599453, 0.6424741053419377, 0.46314473191030336, 0.4506366692017277, 0.443889997630333, 0.4436642209902434, 0.4436640705920841, 0.44366407058927027, 0.44366407058927027, 0.44366407058927027], "q1": [0.03472471599980054, 0.014082926000810403, 0.06488059799994517, 0.058937787000104436, 0.09412249799970596, 0.14239010700021026, 0.19974114500018914, 0.3099370790005196, 0.3433859329998086, 0.24582372099939676], "q9": [0.03472471599980054, 0.014082926000810403, 0.06488059799994517, 0.058937787000104436, 0.09412249799970596, 0.14239010700021026, 0.19974114500018914, 0.3099370790005196, 0.3433859329998086, 0.24582372099939676]}, "bar": {"y": 0.14239010700021026, "times": [0.14239010700021026], "text": ""}, "color": "rgba(31.0, 119.0, 180.0, 1.0)", "marker": 1}, "skglm[solver=GroupProxNewton]": {"scatter": {"x": [4.6785000449744985e-05, 0.0027556380000532954, 0.005013708000660699, 0.007558014000096591, 0.012885111999821675, 0.022549633999915386, 0.05669596600000659, 0.05589797799984808, 0.2206067899996924, 0.3540457850003804, 0.33848279799985903], "y": [0.6931471805599453, 0.6438618967879138, 0.4604610428587844, 0.4544546820648283, 0.4439942304991053, 0.4436647482553878, 0.44366407070128566, 0.44366407058927126, 0.4436640705892702, 0.44366407058927027, 0.44366407058927027], "q1": [4.6785000449744985e-05, 0.0027556380000532954, 0.005013708000660699, 0.007558014000096591, 0.012885111999821675, 0.022549633999915386, 0.05669596600000659, 0.05589797799984808, 0.2206067899996924, 0.3540457850003804, 0.33848279799985903], "q9": [4.6785000449744985e-05, 0.0027556380000532954, 0.005013708000660699, 0.007558014000096591, 0.012885111999821675, 0.022549633999915386, 0.05669596600000659, 0.05589797799984808, 0.2206067899996924, 0.3540457850003804, 0.33848279799985903]}, "bar": {"y": 0.022549633999915386, "times": [0.022549633999915386], "text": ""}, "color": "rgba(174.0, 199.0, 232.0, 1.0)", "marker": 2}}, "transformers": {"c_star": 0.4436640704892702, "max_f_0": 0.6438618967879138}}}, "Group Logistic regression[rho=0.01]": {"objective_value": {"solvers": {"skglm[solver=GroupBCD]": {"scatter": {"x": [0.031020391999845742, 0.016167482999662752, 0.027070122000623087, 0.10712181500002771, 0.12093046600057278, 0.3349552319996292, 0.4062518860000637, 0.6647501360002934, 0.9709430640004939, 1.1959190829993531, 1.3831551690000197, 1.49508754100043], "y": [0.6931471805599453, 0.644957099518389, 0.14678298498588968, 0.12010160061743608, 0.1047963771132841, 0.10418589564845274, 0.1031321938130664, 0.10304352083290462, 0.103043519355946, 0.10304351935594598, 0.10304351935594598, 0.10304351935594598], "q1": [0.031020391999845742, 0.016167482999662752, 0.027070122000623087, 0.10712181500002771, 0.12093046600057278, 0.3349552319996292, 0.4062518860000637, 0.6647501360002934, 0.9709430640004939, 1.1959190829993531, 1.3831551690000197, 1.49508754100043], "q9": [0.031020391999845742, 0.016167482999662752, 0.027070122000623087, 0.10712181500002771, 0.12093046600057278, 0.3349552319996292, 0.4062518860000637, 0.6647501360002934, 0.9709430640004939, 1.1959190829993531, 1.3831551690000197, 1.49508754100043]}, "bar": {"y": 0.6647501360002934, "times": [0.6647501360002934], "text": ""}, "color": "rgba(31.0, 119.0, 180.0, 1.0)", "marker": 1}, "skglm[solver=GroupProxNewton]": {"scatter": {"x": [4.086999979335815e-05, 0.003977037999902677, 0.005635423000057926, 0.011171836999892548, 0.017691603999992367, 0.07454981499995483, 0.0915987739999764, 0.10322687400002906, 0.27824295299978985, 0.7654626909998115, 0.7747336489992449], "y": [0.6931471805599453, 0.5365441901559947, 0.22147520827636688, 0.1266992385499901, 0.10407326276661248, 0.10305849258411655, 0.10304352525421408, 0.10304351935623522, 0.10304351935594598, 0.10304351935594597, 0.10304351935594597], "q1": [4.086999979335815e-05, 0.003977037999902677, 0.005635423000057926, 0.011171836999892548, 0.017691603999992367, 0.07454981499995483, 0.0915987739999764, 0.10322687400002906, 0.27824295299978985, 0.7654626909998115, 0.7747336489992449], "q9": [4.086999979335815e-05, 0.003977037999902677, 0.005635423000057926, 0.011171836999892548, 0.017691603999992367, 0.07454981499995483, 0.0915987739999764, 0.10322687400002906, 0.27824295299978985, 0.7654626909998115, 0.7747336489992449]}, "bar": {"y": 0.0915987739999764, "times": [0.0915987739999764], "text": ""}, "color": "rgba(174.0, 199.0, 232.0, 1.0)", "marker": 2}}, "transformers": {"c_star": 0.10304351925594597, "max_f_0": 0.644957099518389}}}, "Group Logistic regression[rho=0.005]": {"objective_value": {"solvers": {"skglm[solver=GroupBCD]": {"scatter": {"x": [0.0254345489993284, 0.00986595100039267, 0.027585765999901923, 0.04922326499945484, 0.14274981100061268, 0.21388723000018217, 0.5187400639997577, 1.1074447990004046, 1.47763815000053, 1.9307716779994735, 2.716916332999972, 2.5992960420007876, 2.504824519000067], "y": [0.6931471805599453, 0.643411075026811, 0.10466353594429353, 0.07515874280452972, 0.0640393596946299, 0.06255193189494826, 0.06147769277405892, 0.061047982482769284, 0.06082310358129366, 0.06082291084635507, 0.06082291084635469, 0.0608229108463547, 0.0608229108463547], "q1": [0.0254345489993284, 0.00986595100039267, 0.027585765999901923, 0.04922326499945484, 0.14274981100061268, 0.21388723000018217, 0.5187400639997577, 1.1074447990004046, 1.47763815000053, 1.9307716779994735, 2.716916332999972, 2.5992960420007876, 2.504824519000067], "q9": [0.0254345489993284, 0.00986595100039267, 0.027585765999901923, 0.04922326499945484, 0.14274981100061268, 0.21388723000018217, 0.5187400639997577, 1.1074447990004046, 1.47763815000053, 1.9307716779994735, 2.716916332999972, 2.5992960420007876, 2.504824519000067]}, "bar": {"y": 1.47763815000053, "times": [1.47763815000053], "text": ""}, "color": "rgba(31.0, 119.0, 180.0, 1.0)", "marker": 1}, "skglm[solver=GroupProxNewton]": {"scatter": {"x": [4.0644000364409294e-05, 0.0029939910000393866, 0.006057743999917875, 0.03237289100070484, 0.03132740100045339, 0.07132928700048069, 0.10143391700057691, 0.14365679000002274, 0.47876964999977645, 1.1990526950003186, 1.2063211760005288], "y": [0.6931471805599453, 0.5244426228926286, 0.1906367187503472, 0.11618452371521554, 0.06784455116179006, 0.06083486021027417, 0.06082291796574374, 0.06082291084664026, 0.060822910846354696, 0.060822910846354675, 0.060822910846354675], "q1": [4.0644000364409294e-05, 0.0029939910000393866, 0.006057743999917875, 0.03237289100070484, 0.03132740100045339, 0.07132928700048069, 0.10143391700057691, 0.14365679000002274, 0.47876964999977645, 1.1990526950003186, 1.2063211760005288], "q9": [4.0644000364409294e-05, 0.0029939910000393866, 0.006057743999917875, 0.03237289100070484, 0.03132740100045339, 0.07132928700048069, 0.10143391700057691, 0.14365679000002274, 0.47876964999977645, 1.1990526950003186, 1.2063211760005288]}, "bar": {"y": 0.10143391700057691, "times": [0.10143391700057691], "text": ""}, "color": "rgba(174.0, 199.0, 232.0, 1.0)", "marker": 2}}, "transformers": {"c_star": 0.06082291074635467, "max_f_0": 0.643411075026811}}}}, "simulated[n_features=5000,n_groups=100,n_samples=500]": {"Group Logistic regression[rho=1.0]": {"objective_value": {"solvers": {"skglm[solver=GroupBCD]": {"scatter": {"x": [0.09602437499961525, 0.21078766000027827, 0.2101366090000738, 0.1353913939992708], "y": [0.6931471805599454, 0.6931471805599454, 0.6931471805599454, 0.6931471805599454], "q1": [0.09602437499961525, 0.21078766000027827, 0.2101366090000738, 0.1353913939992708], "q9": [0.09602437499961525, 0.21078766000027827, 0.2101366090000738, 0.1353913939992708]}, "bar": {"y": 0.09602437499961525, "times": [0.09602437499961525], "text": ""}, "color": "rgba(31.0, 119.0, 180.0, 1.0)", "marker": 1}, "skglm[solver=GroupProxNewton]": {"scatter": {"x": [3.260100038460223e-05, 0.001388005999615416, 0.0016502870003023418, 0.0018178380005338113], "y": [0.6931471805599454, 0.6931471805599454, 0.6931471805599454, 0.6931471805599454], "q1": [3.260100038460223e-05, 0.001388005999615416, 0.0016502870003023418, 0.0018178380005338113], "q9": [3.260100038460223e-05, 0.001388005999615416, 0.0016502870003023418, 0.0018178380005338113]}, "bar": {"y": 3.260100038460223e-05, "times": [3.260100038460223e-05], "text": ""}, "color": "rgba(174.0, 199.0, 232.0, 1.0)", "marker": 2}}, "transformers": {"c_star": 0.6931471804599454, "max_f_0": 0.6931471805599454}}}, "Group Logistic regression[rho=0.1]": {"objective_value": {"solvers": {"skglm[solver=GroupBCD]": {"scatter": {"x": [0.17926904099931562, 0.302930114999981, 0.3271477300004335, 0.43885437900007673, 0.5237944479995349, 0.7107516180003586, 0.7972114910007804, 0.8063226140002371, 0.7649740069991822], "y": [0.6931471805599454, 0.24321623653706334, 0.23864538856179407, 0.23858342223688728, 0.23858336303627903, 0.23858336241522532, 0.23858336241513706, 0.23858336241513706, 0.23858336241513706], "q1": [0.17926904099931562, 0.302930114999981, 0.3271477300004335, 0.43885437900007673, 0.5237944479995349, 0.7107516180003586, 0.7972114910007804, 0.8063226140002371, 0.7649740069991822], "q9": [0.17926904099931562, 0.302930114999981, 0.3271477300004335, 0.43885437900007673, 0.5237944479995349, 0.7107516180003586, 0.7972114910007804, 0.8063226140002371, 0.7649740069991822]}, "bar": {"y": 0.43885437900007673, "times": [0.43885437900007673], "text": ""}, "color": "rgba(31.0, 119.0, 180.0, 1.0)", "marker": 1}, "skglm[solver=GroupProxNewton]": {"scatter": {"x": [6.742299956385978e-05, 0.10716895800032944, 0.1388327909999134, 0.5218424450004022, 0.8519705290000275, 1.3578529670003263, 2.1616131399996448, 2.840446782000072, 2.3875415880002038, 2.354266098000153], "y": [0.6931471805599454, 0.28501356474921513, 0.24480108098796632, 0.23911526786013193, 0.23862928571892883, 0.23858342329803997, 0.2385833624152721, 0.23858336241513706, 0.23858336241513706, 0.23858336241513706], "q1": [6.742299956385978e-05, 0.10716895800032944, 0.1388327909999134, 0.5218424450004022, 0.8519705290000275, 1.3578529670003263, 2.1616131399996448, 2.840446782000072, 2.3875415880002038, 2.354266098000153], "q9": [6.742299956385978e-05, 0.10716895800032944, 0.1388327909999134, 0.5218424450004022, 0.8519705290000275, 1.3578529670003263, 2.1616131399996448, 2.840446782000072, 2.3875415880002038, 2.354266098000153]}, "bar": {"y": 1.3578529670003263, "times": [1.3578529670003263], "text": ""}, "color": "rgba(174.0, 199.0, 232.0, 1.0)", "marker": 2}}, "transformers": {"c_star": 0.23858336231513705, "max_f_0": 0.28501356474921513}}}, "Group Logistic regression[rho=0.01]": {"objective_value": {"solvers": {"skglm[solver=GroupBCD]": {"scatter": {"x": [0.21851667300052213, 0.21657269899969833, 0.476911349999682, 0.5025414530000489, 0.6040271860001667, 1.077346103000309, 1.634047069999724, 2.3557048780003242, 1.8849326939998718, 1.9594231410001157, 1.9784343219998846], "y": [0.6931471805599454, 0.04366699013101932, 0.040876724760711816, 0.039719305190853954, 0.039637806912430636, 0.03962842412372298, 0.039628407009082385, 0.03962840700443472, 0.03962840700443472, 0.03962840700443472, 0.03962840700443472], "q1": [0.21851667300052213, 0.21657269899969833, 0.476911349999682, 0.5025414530000489, 0.6040271860001667, 1.077346103000309, 1.634047069999724, 2.3557048780003242, 1.8849326939998718, 1.9594231410001157, 1.9784343219998846], "q9": [0.21851667300052213, 0.21657269899969833, 0.476911349999682, 0.5025414530000489, 0.6040271860001667, 1.077346103000309, 1.634047069999724, 2.3557048780003242, 1.8849326939998718, 1.9594231410001157, 1.9784343219998846]}, "bar": {"y": 1.077346103000309, "times": [1.077346103000309], "text": ""}, "color": "rgba(31.0, 119.0, 180.0, 1.0)", "marker": 1}, "skglm[solver=GroupProxNewton]": {"scatter": {"x": [6.384900007105898e-05, 0.10621721899951808, 0.5090721899996424, 0.8427673989999676, 0.8671389600003749, 2.0673718369998824, 4.090946535000512, 4.818776664000325, 4.312904039001296, 4.673090198999489], "y": [0.6931471805599454, 0.15106193384045108, 0.04741693286984797, 0.040437031089593595, 0.03967650691777209, 0.03962844973455171, 0.03962840700597417, 0.03962840700443407, 0.03962840700443407, 0.03962840700443407], "q1": [6.384900007105898e-05, 0.10621721899951808, 0.5090721899996424, 0.8427673989999676, 0.8671389600003749, 2.0673718369998824, 4.090946535000512, 4.818776664000325, 4.312904039001296, 4.673090198999489], "q9": [6.384900007105898e-05, 0.10621721899951808, 0.5090721899996424, 0.8427673989999676, 0.8671389600003749, 2.0673718369998824, 4.090946535000512, 4.818776664000325, 4.312904039001296, 4.673090198999489]}, "bar": {"y": 2.0673718369998824, "times": [2.0673718369998824], "text": ""}, "color": "rgba(174.0, 199.0, 232.0, 1.0)", "marker": 2}}, "transformers": {"c_star": 0.03962840690443407, "max_f_0": 0.15106193384045108}}}, "Group Logistic regression[rho=0.005]": {"objective_value": {"solvers": {"skglm[solver=GroupBCD]": {"scatter": {"x": [0.1984739149993402, 0.24800366800081974, 0.33699445400088734, 0.6967969500001345, 0.8135525140005484, 1.5767509350007458, 2.3409201630001917, 3.9079868139997416, 5.409458633999748, 5.136657589999231, 5.2582206610004505, 5.072429829999237], "y": [0.6931471805599454, 0.027971068539956193, 0.02291187821349486, 0.02219281389719101, 0.02216754729544979, 0.02216635130132981, 0.0221663327221234, 0.022166330328809332, 0.022166322957086843, 0.022166322957086843, 0.022166322957086843, 0.022166322957086843], "q1": [0.1984739149993402, 0.24800366800081974, 0.33699445400088734, 0.6967969500001345, 0.8135525140005484, 1.5767509350007458, 2.3409201630001917, 3.9079868139997416, 5.409458633999748, 5.136657589999231, 5.2582206610004505, 5.072429829999237], "q9": [0.1984739149993402, 0.24800366800081974, 0.33699445400088734, 0.6967969500001345, 0.8135525140005484, 1.5767509350007458, 2.3409201630001917, 3.9079868139997416, 5.409458633999748, 5.136657589999231, 5.2582206610004505, 5.072429829999237]}, "bar": {"y": 1.5767509350007458, "times": [1.5767509350007458], "text": ""}, "color": "rgba(31.0, 119.0, 180.0, 1.0)", "marker": 1}, "skglm[solver=GroupProxNewton]": {"scatter": {"x": [5.721700108551886e-05, 0.1112457090002863, 0.7643419039995933, 0.9217618139991828, 1.109112163001555, 2.248928883998815, 3.5438202650002495, 5.195307758000126, 4.946863368000777, 4.268336670000281, 5.071402552999643], "y": [0.6931471805599454, 0.14259412259759788, 0.03224826993934063, 0.023353074086636685, 0.02223982775105598, 0.022166471874038467, 0.02216632297512848, 0.0221663229570867, 0.0221663229570867, 0.0221663229570867, 0.0221663229570867], "q1": [5.721700108551886e-05, 0.1112457090002863, 0.7643419039995933, 0.9217618139991828, 1.109112163001555, 2.248928883998815, 3.5438202650002495, 5.195307758000126, 4.946863368000777, 4.268336670000281, 5.071402552999643], "q9": [5.721700108551886e-05, 0.1112457090002863, 0.7643419039995933, 0.9217618139991828, 1.109112163001555, 2.248928883998815, 3.5438202650002495, 5.195307758000126, 4.946863368000777, 4.268336670000281, 5.071402552999643]}, "bar": {"y": 2.248928883998815, "times": [2.248928883998815], "text": ""}, "color": "rgba(174.0, 199.0, 232.0, 1.0)", "marker": 2}}, "transformers": {"c_star": 0.0221663228570867, "max_f_0": 0.14259412259759788}}}}, "simulated[n_features=5000,n_groups=500,n_samples=500]": {"Group Logistic regression[rho=1.0]": {"objective_value": {"solvers": {"skglm[solver=GroupBCD]": {"scatter": {"x": [0.08022522999999637, 0.06858343900057662, 0.0772165109992784, 0.07704670500061184], "y": [0.6931471805599454, 0.6931471805599454, 0.6931471805599454, 0.6931471805599454], "q1": [0.08022522999999637, 0.06858343900057662, 0.0772165109992784, 0.07704670500061184], "q9": [0.08022522999999637, 0.06858343900057662, 0.0772165109992784, 0.07704670500061184]}, "bar": {"y": 0.08022522999999637, "times": [0.08022522999999637], "text": ""}, "color": "rgba(31.0, 119.0, 180.0, 1.0)", "marker": 1}, "skglm[solver=GroupProxNewton]": {"scatter": {"x": [4.902900036540814e-05, 0.0016040490008890629, 0.0013926259998697788, 0.0015655799998057773], "y": [0.6931471805599454, 0.6931471805599454, 0.6931471805599454, 0.6931471805599454], "q1": [4.902900036540814e-05, 0.0016040490008890629, 0.0013926259998697788, 0.0015655799998057773], "q9": [4.902900036540814e-05, 0.0016040490008890629, 0.0013926259998697788, 0.0015655799998057773]}, "bar": {"y": 4.902900036540814e-05, "times": [4.902900036540814e-05], "text": ""}, "color": "rgba(174.0, 199.0, 232.0, 1.0)", "marker": 2}}, "transformers": {"c_star": 0.6931471804599454, "max_f_0": 0.6931471805599454}}}, "Group Logistic regression[rho=0.1]": {"objective_value": {"solvers": {"skglm[solver=GroupBCD]": {"scatter": {"x": [0.1092327460009983, 0.10979129799852672, 0.14894986100080132, 0.3243122209987632, 0.2623305920005805, 0.3263320219994057, 0.4392072859991458, 0.7428427639988513, 0.6036023070009833, 0.5837571339998249], "y": [0.6931471805599454, 0.3314901833345201, 0.2902256836496119, 0.26355311427709394, 0.2611493134065072, 0.2607639670586769, 0.2607621935769388, 0.26076219357654007, 0.26076219357654007, 0.26076219357654007], "q1": [0.1092327460009983, 0.10979129799852672, 0.14894986100080132, 0.3243122209987632, 0.2623305920005805, 0.3263320219994057, 0.4392072859991458, 0.7428427639988513, 0.6036023070009833, 0.5837571339998249], "q9": [0.1092327460009983, 0.10979129799852672, 0.14894986100080132, 0.3243122209987632, 0.2623305920005805, 0.3263320219994057, 0.4392072859991458, 0.7428427639988513, 0.6036023070009833, 0.5837571339998249]}, "bar": {"y": 0.4392072859991458, "times": [0.4392072859991458], "text": ""}, "color": "rgba(31.0, 119.0, 180.0, 1.0)", "marker": 1}, "skglm[solver=GroupProxNewton]": {"scatter": {"x": [4.623499989975244e-05, 0.010549492999416543, 0.02554476700061059, 0.08943712699874595, 0.15323638300105813, 0.26746723799988104, 0.4244003949988837, 0.5283561349988304, 0.566895869000291, 0.41413224499956414], "y": [0.6931471805599454, 0.3866227006856678, 0.29260374864920136, 0.2642146866685359, 0.26080881059973854, 0.2607622017622391, 0.2607621935766419, 0.26076219357654007, 0.26076219357654007, 0.26076219357654007], "q1": [4.623499989975244e-05, 0.010549492999416543, 0.02554476700061059, 0.08943712699874595, 0.15323638300105813, 0.26746723799988104, 0.4244003949988837, 0.5283561349988304, 0.566895869000291, 0.41413224499956414], "q9": [4.623499989975244e-05, 0.010549492999416543, 0.02554476700061059, 0.08943712699874595, 0.15323638300105813, 0.26746723799988104, 0.4244003949988837, 0.5283561349988304, 0.566895869000291, 0.41413224499956414]}, "bar": {"y": 0.26746723799988104, "times": [0.26746723799988104], "text": ""}, "color": "rgba(174.0, 199.0, 232.0, 1.0)", "marker": 2}}, "transformers": {"c_star": 0.26076219347654006, "max_f_0": 0.3866227006856678}}}, "Group Logistic regression[rho=0.01]": {"objective_value": {"solvers": {"skglm[solver=GroupBCD]": {"scatter": {"x": [0.10243011099919386, 0.13137995599936403, 0.21441495600083726, 0.1517544509988511, 0.2804762830000982, 0.8733342750001611, 1.4920261010011018, 2.488609340000039, 2.876800516998628, 3.130807838000692, 2.9797708359983517], "y": [0.6931471805599454, 0.12081573401574598, 0.05254554928239839, 0.04919063643130922, 0.044767253312556446, 0.044169382151535416, 0.044167756941566196, 0.04416775631676047, 0.04416775631673706, 0.04416775631673706, 0.04416775631673706], "q1": [0.10243011099919386, 0.13137995599936403, 0.21441495600083726, 0.1517544509988511, 0.2804762830000982, 0.8733342750001611, 1.4920261010011018, 2.488609340000039, 2.876800516998628, 3.130807838000692, 2.9797708359983517], "q9": [0.10243011099919386, 0.13137995599936403, 0.21441495600083726, 0.1517544509988511, 0.2804762830000982, 0.8733342750001611, 1.4920261010011018, 2.488609340000039, 2.876800516998628, 3.130807838000692, 2.9797708359983517]}, "bar": {"y": 1.4920261010011018, "times": [1.4920261010011018], "text": ""}, "color": "rgba(31.0, 119.0, 180.0, 1.0)", "marker": 1}, "skglm[solver=GroupProxNewton]": {"scatter": {"x": [5.333599983714521e-05, 0.011095902998931706, 0.022077521998653538, 0.11950763399909192, 0.1711471899998287, 0.29011641099896224, 0.6733435920014017, 0.9765143589993386, 0.9721476129998337, 0.9834084440008155, 0.99129694200019], "y": [0.6931471805599454, 0.275343412815167, 0.11023946662369606, 0.048665209693888184, 0.0446204948572599, 0.044170744581533784, 0.04416775632234987, 0.0441677563167374, 0.0441677563167374, 0.0441677563167374, 0.0441677563167374], "q1": [5.333599983714521e-05, 0.011095902998931706, 0.022077521998653538, 0.11950763399909192, 0.1711471899998287, 0.29011641099896224, 0.6733435920014017, 0.9765143589993386, 0.9721476129998337, 0.9834084440008155, 0.99129694200019], "q9": [5.333599983714521e-05, 0.011095902998931706, 0.022077521998653538, 0.11950763399909192, 0.1711471899998287, 0.29011641099896224, 0.6733435920014017, 0.9765143589993386, 0.9721476129998337, 0.9834084440008155, 0.99129694200019]}, "bar": {"y": 0.6733435920014017, "times": [0.6733435920014017], "text": ""}, "color": "rgba(174.0, 199.0, 232.0, 1.0)", "marker": 2}}, "transformers": {"c_star": 0.04416775621673706, "max_f_0": 0.275343412815167}}}, "Group Logistic regression[rho=0.005]": {"objective_value": {"solvers": {"skglm[solver=GroupBCD]": {"scatter": {"x": [0.07228118599959998, 0.10215900899856933, 0.12161522199858155, 0.22818483500122966, 0.5000712599994586, 1.1436619219985005, 2.23117177200038, 3.2491533880001953, 3.078349880999667, 2.9548942029996397, 3.3822470609993616], "y": [0.6931471805599454, 0.10478861331852285, 0.03176567940125456, 0.027610223086543772, 0.02519698974960083, 0.024779862246051075, 0.024778382522657308, 0.02477838195107181, 0.02477838195107181, 0.02477838195107181, 0.02477838195107181], "q1": [0.07228118599959998, 0.10215900899856933, 0.12161522199858155, 0.22818483500122966, 0.5000712599994586, 1.1436619219985005, 2.23117177200038, 3.2491533880001953, 3.078349880999667, 2.9548942029996397, 3.3822470609993616], "q9": [0.07228118599959998, 0.10215900899856933, 0.12161522199858155, 0.22818483500122966, 0.5000712599994586, 1.1436619219985005, 2.23117177200038, 3.2491533880001953, 3.078349880999667, 2.9548942029996397, 3.3822470609993616]}, "bar": {"y": 2.23117177200038, "times": [2.23117177200038], "text": ""}, "color": "rgba(31.0, 119.0, 180.0, 1.0)", "marker": 1}, "skglm[solver=GroupProxNewton]": {"scatter": {"x": [5.0025000746245496e-05, 0.008744564000153332, 0.023631689000467304, 0.11442983400047524, 0.2059356959998695, 0.382975840000654, 0.8368552680003631, 1.127782229999866, 1.134317383999587, 1.2176869449995138, 1.2021811270005855], "y": [0.6931471805599454, 0.26820861183250416, 0.09701841981025845, 0.03059467801705485, 0.02499933410365254, 0.024781107803412944, 0.02477838198533165, 0.024778381951070218, 0.024778381951070218, 0.024778381951070218, 0.024778381951070218], "q1": [5.0025000746245496e-05, 0.008744564000153332, 0.023631689000467304, 0.11442983400047524, 0.2059356959998695, 0.382975840000654, 0.8368552680003631, 1.127782229999866, 1.134317383999587, 1.2176869449995138, 1.2021811270005855], "q9": [5.0025000746245496e-05, 0.008744564000153332, 0.023631689000467304, 0.11442983400047524, 0.2059356959998695, 0.382975840000654, 0.8368552680003631, 1.127782229999866, 1.134317383999587, 1.2176869449995138, 1.2021811270005855]}, "bar": {"y": 0.8368552680003631, "times": [0.8368552680003631], "text": ""}, "color": "rgba(174.0, 199.0, 232.0, 1.0)", "marker": 2}}, "transformers": {"c_star": 0.024778381851070216, "max_f_0": 0.26820861183250416}}}}, "simulated[n_features=5000,n_groups=1000,n_samples=500]": {"Group Logistic regression[rho=1.0]": {"objective_value": {"solvers": {"skglm[solver=GroupBCD]": {"scatter": {"x": [0.040267301999847405, 0.0617606159994466, 0.11530549300005077, 0.04805433199908293], "y": [0.6931471805599454, 0.6931471805599454, 0.6931471805599454, 0.6931471805599454], "q1": [0.040267301999847405, 0.0617606159994466, 0.11530549300005077, 0.04805433199908293], "q9": [0.040267301999847405, 0.0617606159994466, 0.11530549300005077, 0.04805433199908293]}, "bar": {"y": 0.040267301999847405, "times": [0.040267301999847405], "text": ""}, "color": "rgba(31.0, 119.0, 180.0, 1.0)", "marker": 1}, "skglm[solver=GroupProxNewton]": {"scatter": {"x": [0.008595958001023973, 0.003762047999771312, 0.0014992579999670852, 0.0034215149989904603], "y": [0.6931471805599454, 0.6931471805599454, 0.6931471805599454, 0.6931471805599454], "q1": [0.008595958001023973, 0.003762047999771312, 0.0014992579999670852, 0.0034215149989904603], "q9": [0.008595958001023973, 0.003762047999771312, 0.0014992579999670852, 0.0034215149989904603]}, "bar": {"y": 0.008595958001023973, "times": [0.008595958001023973], "text": ""}, "color": "rgba(174.0, 199.0, 232.0, 1.0)", "marker": 2}}, "transformers": {"c_star": 0.6931471804599454, "max_f_0": 0.6931471805599454}}}, "Group Logistic regression[rho=0.1]": {"objective_value": {"solvers": {"skglm[solver=GroupBCD]": {"scatter": {"x": [0.10788513599982252, 0.1122673109985044, 0.14338723900073091, 0.1691353030000755, 0.1647365209992131, 0.2607714869991469, 0.5436586159994476, 0.6720124989988108, 0.6475097729999106, 0.6895128670003032], "y": [0.6931471805599454, 0.4476470457356103, 0.34110697307161536, 0.3125049559796186, 0.30043870259467326, 0.2997132961961698, 0.2997122716838728, 0.2997122716835648, 0.2997122716835648, 0.2997122716835648], "q1": [0.10788513599982252, 0.1122673109985044, 0.14338723900073091, 0.1691353030000755, 0.1647365209992131, 0.2607714869991469, 0.5436586159994476, 0.6720124989988108, 0.6475097729999106, 0.6895128670003032], "q9": [0.10788513599982252, 0.1122673109985044, 0.14338723900073091, 0.1691353030000755, 0.1647365209992131, 0.2607714869991469, 0.5436586159994476, 0.6720124989988108, 0.6475097729999106, 0.6895128670003032]}, "bar": {"y": 0.5436586159994476, "times": [0.5436586159994476], "text": ""}, "color": "rgba(31.0, 119.0, 180.0, 1.0)", "marker": 1}, "skglm[solver=GroupProxNewton]": {"scatter": {"x": [5.5194001106428914e-05, 0.007001218998993863, 0.011643376999927568, 0.029457842998453998, 0.062275027001305716, 0.15767307100031758, 0.2566869480015157, 0.3495432569998229, 0.23018592800144688, 0.3284118629999284], "y": [0.6931471805599454, 0.47408287059795784, 0.3649864529873786, 0.31103236654562827, 0.2999780274857134, 0.2997122932625696, 0.2997122716836323, 0.29971227168356473, 0.29971227168356473, 0.29971227168356473], "q1": [5.5194001106428914e-05, 0.007001218998993863, 0.011643376999927568, 0.029457842998453998, 0.062275027001305716, 0.15767307100031758, 0.2566869480015157, 0.3495432569998229, 0.23018592800144688, 0.3284118629999284], "q9": [5.5194001106428914e-05, 0.007001218998993863, 0.011643376999927568, 0.029457842998453998, 0.062275027001305716, 0.15767307100031758, 0.2566869480015157, 0.3495432569998229, 0.23018592800144688, 0.3284118629999284]}, "bar": {"y": 0.15767307100031758, "times": [0.15767307100031758], "text": ""}, "color": "rgba(174.0, 199.0, 232.0, 1.0)", "marker": 2}}, "transformers": {"c_star": 0.2997122715835647, "max_f_0": 0.47408287059795784}}}, "Group Logistic regression[rho=0.01]": {"objective_value": {"solvers": {"skglm[solver=GroupBCD]": {"scatter": {"x": [0.09134902999903716, 0.06326809100028186, 0.1505375870001444, 0.1418831480004883, 0.28307457299888483, 0.7914038030012307, 1.9217356160006602, 2.7133943169992563, 2.98011804700036, 2.791506842000672, 3.055289611000262], "y": [0.6931471805599454, 0.3078553834244641, 0.09833072012647182, 0.06148956552668518, 0.05494759404212483, 0.05253336607832977, 0.05249938175400065, 0.05249937585228362, 0.05249937585216788, 0.05249937585216788, 0.05249937585216788], "q1": [0.09134902999903716, 0.06326809100028186, 0.1505375870001444, 0.1418831480004883, 0.28307457299888483, 0.7914038030012307, 1.9217356160006602, 2.7133943169992563, 2.98011804700036, 2.791506842000672, 3.055289611000262], "q9": [0.09134902999903716, 0.06326809100028186, 0.1505375870001444, 0.1418831480004883, 0.28307457299888483, 0.7914038030012307, 1.9217356160006602, 2.7133943169992563, 2.98011804700036, 2.791506842000672, 3.055289611000262]}, "bar": {"y": 1.9217356160006602, "times": [1.9217356160006602], "text": ""}, "color": "rgba(31.0, 119.0, 180.0, 1.0)", "marker": 1}, "skglm[solver=GroupProxNewton]": {"scatter": {"x": [4.4180000259075314e-05, 0.008231825999246212, 0.012213805999635952, 0.029023241999311722, 0.09744927599967923, 0.17077353999957268, 0.37041570200017304, 0.6610685350005951, 0.8098252380004851, 0.6127744610002992, 0.8154085320002196], "y": [0.6931471805599454, 0.38979826744691626, 0.19132492617798685, 0.08974879555971246, 0.0556079935497889, 0.05250727398546952, 0.052499376232872326, 0.0524993758521684, 0.0524993758521684, 0.0524993758521684, 0.0524993758521684], "q1": [4.4180000259075314e-05, 0.008231825999246212, 0.012213805999635952, 0.029023241999311722, 0.09744927599967923, 0.17077353999957268, 0.37041570200017304, 0.6610685350005951, 0.8098252380004851, 0.6127744610002992, 0.8154085320002196], "q9": [4.4180000259075314e-05, 0.008231825999246212, 0.012213805999635952, 0.029023241999311722, 0.09744927599967923, 0.17077353999957268, 0.37041570200017304, 0.6610685350005951, 0.8098252380004851, 0.6127744610002992, 0.8154085320002196]}, "bar": {"y": 0.37041570200017304, "times": [0.37041570200017304], "text": ""}, "color": "rgba(174.0, 199.0, 232.0, 1.0)", "marker": 2}}, "transformers": {"c_star": 0.05249937575216788, "max_f_0": 0.38979826744691626}}}, "Group Logistic regression[rho=0.005]": {"objective_value": {"solvers": {"skglm[solver=GroupBCD]": {"scatter": {"x": [0.0985648690002563, 0.06886393400054658, 0.11529831300140359, 0.1433329870014859, 0.2642922089999047, 1.158761187998607, 2.479197696000483, 3.9383711999998923, 6.262352373001704, 6.335382724000738, 6.4618505430007644, 6.177146875001199], "y": [0.6931471805599454, 0.29709879114137433, 0.07960398574475731, 0.03607114830856145, 0.032011457079848954, 0.029707742907962843, 0.02966136936832088, 0.029595670014288644, 0.02959550197533683, 0.02959550197533683, 0.02959550197533683, 0.02959550197533683], "q1": [0.0985648690002563, 0.06886393400054658, 0.11529831300140359, 0.1433329870014859, 0.2642922089999047, 1.158761187998607, 2.479197696000483, 3.9383711999998923, 6.262352373001704, 6.335382724000738, 6.4618505430007644, 6.177146875001199], "q9": [0.0985648690002563, 0.06886393400054658, 0.11529831300140359, 0.1433329870014859, 0.2642922089999047, 1.158761187998607, 2.479197696000483, 3.9383711999998923, 6.262352373001704, 6.335382724000738, 6.4618505430007644, 6.177146875001199]}, "bar": {"y": 3.9383711999998923, "times": [3.9383711999998923], "text": ""}, "color": "rgba(31.0, 119.0, 180.0, 1.0)", "marker": 1}, "skglm[solver=GroupProxNewton]": {"scatter": {"x": [5.191899981582537e-05, 0.005769434999820078, 0.012011098999209935, 0.0535389380002016, 0.15072559299915156, 0.22543655299887178, 0.4142607970006793, 0.6893255569993926, 0.9344263189996127, 1.0203924170000391, 0.9901882839985774], "y": [0.6931471805599454, 0.3843923943799017, 0.17930376303670678, 0.043930940668504254, 0.03037676091413361, 0.02959964799715044, 0.029595502056942898, 0.029595501975335305, 0.029595501975335305, 0.029595501975335305, 0.029595501975335305], "q1": [5.191899981582537e-05, 0.005769434999820078, 0.012011098999209935, 0.0535389380002016, 0.15072559299915156, 0.22543655299887178, 0.4142607970006793, 0.6893255569993926, 0.9344263189996127, 1.0203924170000391, 0.9901882839985774], "q9": [5.191899981582537e-05, 0.005769434999820078, 0.012011098999209935, 0.0535389380002016, 0.15072559299915156, 0.22543655299887178, 0.4142607970006793, 0.6893255569993926, 0.9344263189996127, 1.0203924170000391, 0.9901882839985774]}, "bar": {"y": 0.4142607970006793, "times": [0.4142607970006793], "text": ""}, "color": "rgba(174.0, 199.0, 232.0, 1.0)", "marker": 2}}, "transformers": {"c_star": 0.029595501875335304, "max_f_0": 0.3843923943799017}}}}};
+
+            window.addEventListener("load", () => {
+                // Initialize plot state
+                setState({
+                    'dataset': document.getElementById('dataset_selector').value,
+                    'objective': document.getElementById('objective_selector').value,
+                    'objective_column': document.getElementById('objective_column').value,
+                    'plot_kind': document.getElementById('plot_kind').value,
+                    'scale': document.getElementById('change_scaling').value,
+                    'with_quantiles': document.getElementById('change_shades').checked,
+                    'hidden_solvers': []
+                });
+            });
+        </script>
+        <script type="text/javascript">
+            /**
+ * Round with precision control
+ * https://github.com/plotly/d3/blob/6bb40cd42f6479be84efda3e50c8444b50d5905d/d3.js#L2189
+ */
+const d3round = (x, n) => {
+    return n ? Math.round(x * (n = Math.pow(10, n))) / n : Math.round(x);
+};
+
+/**
+ * Container of function that create path for SVG plot marker
+ * https://github.com/plotly/plotly.js/blob/b2df3710d7877ff5b4f85256015a88c8ea8fbe1d/src/components/drawing/symbol_defs.js#L13
+ */
+const SYMBOLDEFS = {
+    circle: {
+        n: 0,
+        f: r => {
+            var rs = d3round(r, 2);
+            return 'M' + rs + ',0A' + rs + ',' + rs + ' 0 1,1 0,-' + rs +
+                'A' + rs + ',' + rs + ' 0 0,1 ' + rs + ',0Z';
+        }
+    },
+    square: {
+        n: 1,
+        f: r => {
+            var rs = d3round(r, 2);
+            return 'M' + rs + ',' + rs + 'H-' + rs + 'V-' + rs + 'H' + rs + 'Z';
+        }
+    },
+    diamond: {
+        n: 2,
+        f: r => {
+            var rd = d3round(r * 1.3, 2);
+            return 'M' + rd + ',0L0,' + rd + 'L-' + rd + ',0L0,-' + rd + 'Z';
+        }
+    },
+    cross: {
+        n: 3,
+        f: r => {
+            var rc = d3round(r * 0.4, 2);
+            var rc2 = d3round(r * 1.2, 2);
+            return 'M' + rc2 + ',' + rc + 'H' + rc + 'V' + rc2 + 'H-' + rc +
+                'V' + rc + 'H-' + rc2 + 'V-' + rc + 'H-' + rc + 'V-' + rc2 +
+                'H' + rc + 'V-' + rc + 'H' + rc2 + 'Z';
+        }
+    },
+    x: {
+        n: 4,
+        f: r => {
+            var rx = d3round(r * 0.8 / Math.sqrt(2), 2);
+            var ne = 'l' + rx + ',' + rx;
+            var se = 'l' + rx + ',-' + rx;
+            var sw = 'l-' + rx + ',-' + rx;
+            var nw = 'l-' + rx + ',' + rx;
+            return 'M0,' + rx + ne + se + sw + se + sw + nw + sw + nw + ne + nw + ne + 'Z';
+        }
+    },
+    'triangle-up': {
+        n: 5,
+        f: r => {
+            var rt = d3round(r * 2 / Math.sqrt(3), 2);
+            var r2 = d3round(r / 2, 2);
+            var rs = d3round(r, 2);
+            return 'M-' + rt + ',' + r2 + 'H' + rt + 'L0,-' + rs + 'Z';
+        }
+    },
+    'triangle-down': {
+        n: 6,
+        f: r => {
+            var rt = d3round(r * 2 / Math.sqrt(3), 2);
+            var r2 = d3round(r / 2, 2);
+            var rs = d3round(r, 2);
+            return 'M-' + rt + ',-' + r2 + 'H' + rt + 'L0,' + rs + 'Z';
+        }
+    },
+    'triangle-left': {
+        n: 7,
+        f: r => {
+            var rt = d3round(r * 2 / Math.sqrt(3), 2);
+            var r2 = d3round(r / 2, 2);
+            var rs = d3round(r, 2);
+            return 'M' + r2 + ',-' + rt + 'V' + rt + 'L-' + rs + ',0Z';
+        }
+    },
+    'triangle-right': {
+        n: 8,
+        f: r => {
+            var rt = d3round(r * 2 / Math.sqrt(3), 2);
+            var r2 = d3round(r / 2, 2);
+            var rs = d3round(r, 2);
+            return 'M-' + r2 + ',-' + rt + 'V' + rt + 'L' + rs + ',0Z';
+        }
+    },
+    'triangle-ne': {
+        n: 9,
+        f: r => {
+            var r1 = d3round(r * 0.6, 2);
+            var r2 = d3round(r * 1.2, 2);
+            return 'M-' + r2 + ',-' + r1 + 'H' + r1 + 'V' + r2 + 'Z';
+        }
+    },
+    'triangle-se': {
+        n: 10,
+        f: r => {
+            var r1 = d3round(r * 0.6, 2);
+            var r2 = d3round(r * 1.2, 2);
+            return 'M' + r1 + ',-' + r2 + 'V' + r1 + 'H-' + r2 + 'Z';
+        }
+    },
+    'triangle-sw': {
+        n: 11,
+        f: r => {
+            var r1 = d3round(r * 0.6, 2);
+            var r2 = d3round(r * 1.2, 2);
+            return 'M' + r2 + ',' + r1 + 'H-' + r1 + 'V-' + r2 + 'Z';
+        }
+    },
+    'triangle-nw': {
+        n: 12,
+        f: r => {
+            var r1 = d3round(r * 0.6, 2);
+            var r2 = d3round(r * 1.2, 2);
+            return 'M-' + r1 + ',' + r2 + 'V-' + r1 + 'H' + r2 + 'Z';
+        }
+    },
+    pentagon: {
+        n: 13,
+        f: r => {
+            var x1 = d3round(r * 0.951, 2);
+            var x2 = d3round(r * 0.588, 2);
+            var y0 = d3round(-r, 2);
+            var y1 = d3round(r * -0.309, 2);
+            var y2 = d3round(r * 0.809, 2);
+            return 'M' + x1 + ',' + y1 + 'L' + x2 + ',' + y2 + 'H-' + x2 +
+                'L-' + x1 + ',' + y1 + 'L0,' + y0 + 'Z';
+        }
+    },
+    hexagon: {
+        n: 14,
+        f: r => {
+            var y0 = d3round(r, 2);
+            var y1 = d3round(r / 2, 2);
+            var x = d3round(r * Math.sqrt(3) / 2, 2);
+            return 'M' + x + ',-' + y1 + 'V' + y1 + 'L0,' + y0 +
+                'L-' + x + ',' + y1 + 'V-' + y1 + 'L0,-' + y0 + 'Z';
+        }
+    },
+    hexagon2: {
+        n: 15,
+        f: r => {
+            var x0 = d3round(r, 2);
+            var x1 = d3round(r / 2, 2);
+            var y = d3round(r * Math.sqrt(3) / 2, 2);
+            return 'M-' + x1 + ',' + y + 'H' + x1 + 'L' + x0 +
+                ',0L' + x1 + ',-' + y + 'H-' + x1 + 'L-' + x0 + ',0Z';
+        }
+    },
+    octagon: {
+        n: 16,
+        f: r => {
+            var a = d3round(r * 0.924, 2);
+            var b = d3round(r * 0.383, 2);
+            return 'M-' + b + ',-' + a + 'H' + b + 'L' + a + ',-' + b + 'V' + b +
+                'L' + b + ',' + a + 'H-' + b + 'L-' + a + ',' + b + 'V-' + b + 'Z';
+        }
+    },
+    star: {
+        n: 17,
+        f: r => {
+            var rs = r * 1.4;
+            var x1 = d3round(rs * 0.225, 2);
+            var x2 = d3round(rs * 0.951, 2);
+            var x3 = d3round(rs * 0.363, 2);
+            var x4 = d3round(rs * 0.588, 2);
+            var y0 = d3round(-rs, 2);
+            var y1 = d3round(rs * -0.309, 2);
+            var y3 = d3round(rs * 0.118, 2);
+            var y4 = d3round(rs * 0.809, 2);
+            var y5 = d3round(rs * 0.382, 2);
+            return 'M' + x1 + ',' + y1 + 'H' + x2 + 'L' + x3 + ',' + y3 +
+                'L' + x4 + ',' + y4 + 'L0,' + y5 + 'L-' + x4 + ',' + y4 +
+                'L-' + x3 + ',' + y3 + 'L-' + x2 + ',' + y1 + 'H-' + x1 +
+                'L0,' + y0 + 'Z';
+        }
+    },
+    hexagram: {
+        n: 18,
+        f: r => {
+            var y = d3round(r * 0.66, 2);
+            var x1 = d3round(r * 0.38, 2);
+            var x2 = d3round(r * 0.76, 2);
+            return 'M-' + x2 + ',0l-' + x1 + ',-' + y + 'h' + x2 +
+                'l' + x1 + ',-' + y + 'l' + x1 + ',' + y + 'h' + x2 +
+                'l-' + x1 + ',' + y + 'l' + x1 + ',' + y + 'h-' + x2 +
+                'l-' + x1 + ',' + y + 'l-' + x1 + ',-' + y + 'h-' + x2 + 'Z';
+        }
+    },
+    'star-triangle-up': {
+        n: 19,
+        f: r => {
+            var x = d3round(r * Math.sqrt(3) * 0.8, 2);
+            var y1 = d3round(r * 0.8, 2);
+            var y2 = d3round(r * 1.6, 2);
+            var rc = d3round(r * 4, 2);
+            var aPart = 'A ' + rc + ',' + rc + ' 0 0 1 ';
+            return 'M-' + x + ',' + y1 + aPart + x + ',' + y1 +
+                aPart + '0,-' + y2 + aPart + '-' + x + ',' + y1 + 'Z';
+        }
+    },
+    'star-triangle-down': {
+        n: 20,
+        f: r => {
+            var x = d3round(r * Math.sqrt(3) * 0.8, 2);
+            var y1 = d3round(r * 0.8, 2);
+            var y2 = d3round(r * 1.6, 2);
+            var rc = d3round(r * 4, 2);
+            var aPart = 'A ' + rc + ',' + rc + ' 0 0 1 ';
+            return 'M' + x + ',-' + y1 + aPart + '-' + x + ',-' + y1 +
+                aPart + '0,' + y2 + aPart + x + ',-' + y1 + 'Z';
+        }
+    },
+    'star-square': {
+        n: 21,
+        f: r => {
+            var rp = d3round(r * 1.1, 2);
+            var rc = d3round(r * 2, 2);
+            var aPart = 'A ' + rc + ',' + rc + ' 0 0 1 ';
+            return 'M-' + rp + ',-' + rp + aPart + '-' + rp + ',' + rp +
+                aPart + rp + ',' + rp + aPart + rp + ',-' + rp +
+                aPart + '-' + rp + ',-' + rp + 'Z';
+        }
+    },
+    'star-diamond': {
+        n: 22,
+        f: r => {
+            var rp = d3round(r * 1.4, 2);
+            var rc = d3round(r * 1.9, 2);
+            var aPart = 'A ' + rc + ',' + rc + ' 0 0 1 ';
+            return 'M-' + rp + ',0' + aPart + '0,' + rp +
+                aPart + rp + ',0' + aPart + '0,-' + rp +
+                aPart + '-' + rp + ',0' + 'Z';
+        }
+    },
+    'diamond-tall': {
+        n: 23,
+        f: r => {
+            var x = d3round(r * 0.7, 2);
+            var y = d3round(r * 1.4, 2);
+            return 'M0,' + y + 'L' + x + ',0L0,-' + y + 'L-' + x + ',0Z';
+        }
+    },
+    'diamond-wide': {
+        n: 24,
+        f: r => {
+            var x = d3round(r * 1.4, 2);
+            var y = d3round(r * 0.7, 2);
+            return 'M0,' + y + 'L' + x + ',0L0,-' + y + 'L-' + x + ',0Z';
+        }
+    },
+    hourglass: {
+        n: 25,
+        f: r => {
+            var rs = d3round(r, 2);
+            return 'M' + rs + ',' + rs + 'H-' + rs + 'L' + rs + ',-' + rs + 'H-' + rs + 'Z';
+        },
+        noDot: true
+    },
+    bowtie: {
+        n: 26,
+        f: r => {
+            var rs = d3round(r, 2);
+            return 'M' + rs + ',' + rs + 'V-' + rs + 'L-' + rs + ',' + rs + 'V-' + rs + 'Z';
+        },
+        noDot: true
+    },
+    'circle-cross': {
+        n: 27,
+        f: r => {
+            var rs = d3round(r, 2);
+            return 'M0,' + rs + 'V-' + rs + 'M' + rs + ',0H-' + rs +
+                'M' + rs + ',0A' + rs + ',' + rs + ' 0 1,1 0,-' + rs +
+                'A' + rs + ',' + rs + ' 0 0,1 ' + rs + ',0Z';
+        },
+        needLine: true,
+        noDot: true
+    },
+    'circle-x': {
+        n: 28,
+        f: r => {
+            var rs = d3round(r, 2);
+            var rc = d3round(r / Math.sqrt(2), 2);
+            return 'M' + rc + ',' + rc + 'L-' + rc + ',-' + rc +
+                'M' + rc + ',-' + rc + 'L-' + rc + ',' + rc +
+                'M' + rs + ',0A' + rs + ',' + rs + ' 0 1,1 0,-' + rs +
+                'A' + rs + ',' + rs + ' 0 0,1 ' + rs + ',0Z';
+        },
+        needLine: true,
+        noDot: true
+    },
+    'square-cross': {
+        n: 29,
+        f: r => {
+            var rs = d3round(r, 2);
+            return 'M0,' + rs + 'V-' + rs + 'M' + rs + ',0H-' + rs +
+                'M' + rs + ',' + rs + 'H-' + rs + 'V-' + rs + 'H' + rs + 'Z';
+        },
+        needLine: true,
+        noDot: true
+    },
+    'square-x': {
+        n: 30,
+        f: r => {
+            var rs = d3round(r, 2);
+            return 'M' + rs + ',' + rs + 'L-' + rs + ',-' + rs +
+                'M' + rs + ',-' + rs + 'L-' + rs + ',' + rs +
+                'M' + rs + ',' + rs + 'H-' + rs + 'V-' + rs + 'H' + rs + 'Z';
+        },
+        needLine: true,
+        noDot: true
+    },
+    'diamond-cross': {
+        n: 31,
+        f: r => {
+            var rd = d3round(r * 1.3, 2);
+            return 'M' + rd + ',0L0,' + rd + 'L-' + rd + ',0L0,-' + rd + 'Z' +
+                'M0,-' + rd + 'V' + rd + 'M-' + rd + ',0H' + rd;
+        },
+        needLine: true,
+        noDot: true
+    },
+    'diamond-x': {
+        n: 32,
+        f: r => {
+            var rd = d3round(r * 1.3, 2);
+            var r2 = d3round(r * 0.65, 2);
+            return 'M' + rd + ',0L0,' + rd + 'L-' + rd + ',0L0,-' + rd + 'Z' +
+                'M-' + r2 + ',-' + r2 + 'L' + r2 + ',' + r2 +
+                'M-' + r2 + ',' + r2 + 'L' + r2 + ',-' + r2;
+        },
+        needLine: true,
+        noDot: true
+    },
+    'cross-thin': {
+        n: 33,
+        f: r => {
+            var rc = d3round(r * 1.4, 2);
+            return 'M0,' + rc + 'V-' + rc + 'M' + rc + ',0H-' + rc;
+        },
+        needLine: true,
+        noDot: true,
+        noFill: true
+    },
+    'x-thin': {
+        n: 34,
+        f: r => {
+            var rx = d3round(r, 2);
+            return 'M' + rx + ',' + rx + 'L-' + rx + ',-' + rx +
+                'M' + rx + ',-' + rx + 'L-' + rx + ',' + rx;
+        },
+        needLine: true,
+        noDot: true,
+        noFill: true
+    },
+    asterisk: {
+        n: 35,
+        f: r => {
+            var rc = d3round(r * 1.2, 2);
+            var rs = d3round(r * 0.85, 2);
+            return 'M0,' + rc + 'V-' + rc + 'M' + rc + ',0H-' + rc +
+                'M' + rs + ',' + rs + 'L-' + rs + ',-' + rs +
+                'M' + rs + ',-' + rs + 'L-' + rs + ',' + rs;
+        },
+        needLine: true,
+        noDot: true,
+        noFill: true
+    },
+    hash: {
+        n: 36,
+        f: r => {
+            var r1 = d3round(r / 2, 2);
+            var r2 = d3round(r, 2);
+            return 'M' + r1 + ',' + r2 + 'V-' + r2 +
+                'm-' + r2 + ',0V' + r2 +
+                'M' + r2 + ',' + r1 + 'H-' + r2 +
+                'm0,-' + r2 + 'H' + r2;
+        },
+        needLine: true,
+        noFill: true
+    },
+    'y-up': {
+        n: 37,
+        f: r => {
+            var x = d3round(r * 1.2, 2);
+            var y0 = d3round(r * 1.6, 2);
+            var y1 = d3round(r * 0.8, 2);
+            return 'M-' + x + ',' + y1 + 'L0,0M' + x + ',' + y1 + 'L0,0M0,-' + y0 + 'L0,0';
+        },
+        needLine: true,
+        noDot: true,
+        noFill: true
+    },
+    'y-down': {
+        n: 38,
+        f: r => {
+            var x = d3round(r * 1.2, 2);
+            var y0 = d3round(r * 1.6, 2);
+            var y1 = d3round(r * 0.8, 2);
+            return 'M-' + x + ',-' + y1 + 'L0,0M' + x + ',-' + y1 + 'L0,0M0,' + y0 + 'L0,0';
+        },
+        needLine: true,
+        noDot: true,
+        noFill: true
+    },
+    'y-left': {
+        n: 39,
+        f: r => {
+            var y = d3round(r * 1.2, 2);
+            var x0 = d3round(r * 1.6, 2);
+            var x1 = d3round(r * 0.8, 2);
+            return 'M' + x1 + ',' + y + 'L0,0M' + x1 + ',-' + y + 'L0,0M-' + x0 + ',0L0,0';
+        },
+        needLine: true,
+        noDot: true,
+        noFill: true
+    },
+    'y-right': {
+        n: 40,
+        f: r => {
+            var y = d3round(r * 1.2, 2);
+            var x0 = d3round(r * 1.6, 2);
+            var x1 = d3round(r * 0.8, 2);
+            return 'M-' + x1 + ',' + y + 'L0,0M-' + x1 + ',-' + y + 'L0,0M' + x0 + ',0L0,0';
+        },
+        needLine: true,
+        noDot: true,
+        noFill: true
+    },
+    'line-ew': {
+        n: 41,
+        f: r => {
+            var rc = d3round(r * 1.4, 2);
+            return 'M' + rc + ',0H-' + rc;
+        },
+        needLine: true,
+        noDot: true,
+        noFill: true
+    },
+    'line-ns': {
+        n: 42,
+        f: r => {
+            var rc = d3round(r * 1.4, 2);
+            return 'M0,' + rc + 'V-' + rc;
+        },
+        needLine: true,
+        noDot: true,
+        noFill: true
+    },
+    'line-ne': {
+        n: 43,
+        f: r => {
+            var rx = d3round(r, 2);
+            return 'M' + rx + ',-' + rx + 'L-' + rx + ',' + rx;
+        },
+        needLine: true,
+        noDot: true,
+        noFill: true
+    },
+    'line-nw': {
+        n: 44,
+        f: r => {
+            var rx = d3round(r, 2);
+            return 'M' + rx + ',' + rx + 'L-' + rx + ',-' + rx;
+        },
+        needLine: true,
+        noDot: true,
+        noFill: true
+    },
+    'arrow-up': {
+        n: 45,
+        f: r => {
+            var rx = d3round(r, 2);
+            var ry = d3round(r * 2, 2);
+            return 'M0,0L-' + rx + ',' + ry + 'H' + rx + 'Z';
+        },
+        noDot: true
+    },
+    'arrow-down': {
+        n: 46,
+        f: r => {
+            var rx = d3round(r, 2);
+            var ry = d3round(r * 2, 2);
+            return 'M0,0L-' + rx + ',-' + ry + 'H' + rx + 'Z';
+        },
+        noDot: true
+    },
+    'arrow-left': {
+        n: 47,
+        f: r => {
+            var rx = d3round(r * 2, 2);
+            var ry = d3round(r, 2);
+            return 'M0,0L' + rx + ',-' + ry + 'V' + ry + 'Z';
+        },
+        noDot: true
+    },
+    'arrow-right': {
+        n: 48,
+        f: r => {
+            var rx = d3round(r * 2, 2);
+            var ry = d3round(r, 2);
+            return 'M0,0L-' + rx + ',-' + ry + 'V' + ry + 'Z';
+        },
+        noDot: true
+    },
+    'arrow-bar-up': {
+        n: 49,
+        f: r => {
+            var rx = d3round(r, 2);
+            var ry = d3round(r * 2, 2);
+            return 'M-' + rx + ',0H' + rx + 'M0,0L-' + rx + ',' + ry + 'H' + rx + 'Z';
+        },
+        needLine: true,
+        noDot: true
+    },
+    'arrow-bar-down': {
+        n: 50,
+        f: r => {
+            var rx = d3round(r, 2);
+            var ry = d3round(r * 2, 2);
+            return 'M-' + rx + ',0H' + rx + 'M0,0L-' + rx + ',-' + ry + 'H' + rx + 'Z';
+        },
+        needLine: true,
+        noDot: true
+    },
+    'arrow-bar-left': {
+        n: 51,
+        f: r => {
+            var rx = d3round(r * 2, 2);
+            var ry = d3round(r, 2);
+            return 'M0,-' + ry + 'V' + ry + 'M0,0L' + rx + ',-' + ry + 'V' + ry + 'Z';
+        },
+        needLine: true,
+        noDot: true
+    },
+    'arrow-bar-right': {
+        n: 52,
+        f: r => {
+            var rx = d3round(r * 2, 2);
+            var ry = d3round(r, 2);
+            return 'M0,-' + ry + 'V' + ry + 'M0,0L-' + rx + ',-' + ry + 'V' + ry + 'Z';
+        },
+        needLine: true,
+        noDot: true
+    }
+};
+
+const DOTPATH = 'M0,0.5L0.5,0L0,-0.5L-0.5,0Z';
+
+const drawing = {
+    symbolFuncs: [],
+};
+
+/**
+ * Create arrays of symbol functions.
+ * https://plotly.com/javascript/reference/scatter/#scatter-marker-symbol
+ */
+Object.keys(SYMBOLDEFS).forEach(function(k) {
+    var symDef = SYMBOLDEFS[k];
+    var n = symDef.n;
+    drawing.symbolFuncs[n] = symDef.f;
+});
+
+/**
+ * Returns a <path></path> element that have to be placed in a <svg></svg> element.
+ * 
+ * @param {int} symbolNumber
+ * @param {String} color
+ * @return {Element}
+ */
+const createPathElement = (symbolNumber, color) => {
+    const path = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+    // d is the shape of the symbol.
+    path.setAttribute('d', createPathString(symbolNumber, 5));
+    // Translation must be the half of the svg size to have the symbol centered.
+    path.setAttribute('transform', 'translate(15, 15)');
+
+    // If svg is type "open" or "open-dot" : https://plotly.com/javascript/reference/scatter/#scatter-marker-symbol
+    if ((100 <= symbolNumber && symbolNumber < 200) || 300 <= symbolNumber) {
+        path.setAttribute('stroke', color);
+        path.setAttribute('stroke-width', 0.5);
+        path.setAttribute('stroke-opacity', 1);
+        path.setAttribute('fill', 'white');
+    }
+
+    // If svg is type "normal" or "dot" : https://plotly.com/javascript/reference/scatter/#scatter-marker-symbol
+    if (symbolNumber < 100 || (200 <= symbolNumber && symbolNumber < 300)) {
+        path.setAttribute('fill-opacity', 1);
+        path.setAttribute('fill', color);
+    }
+
+    // If svg is type "dot" : https://plotly.com/javascript/reference/scatter/#scatter-marker-symbol
+    if (200 <= symbolNumber && symbolNumber < 300) {
+        path.setAttribute('stroke', 'black');
+        path.setAttribute('stroke-width', 0.5);
+        path.setAttribute('stroke-opacity', 1);
+    }
+    
+    return path;
+}
+
+/**
+ * Returns the string corresponding of the symbol shape requested by symbolNumber.
+ * 
+ * @param {int} symbolNumber
+ * @param {int} r size of the symbol (currently, we request a 5)
+ * @returns {String} this string must be placed in the "d" attribute of <path></path> SVG element.
+ */
+function createPathString(symbolNumber, r) {
+    var base = symbolNumber % 100;
+    return drawing.symbolFuncs[base](r) + (symbolNumber >= 200 ? DOTPATH : '');
+}
+
+            const NON_CONVERGENT_COLOR = 'rgba(0.8627, 0.8627, 0.8627)'
+
+/*
+ * ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+ * STATE MANAGEMENT
+ * 
+ * The state represent the plot state. It's an object
+ * that is stored into the window.state variable.
+ * 
+ * Do not manually update window.state,
+ * instead, foreach state modification,
+ * you shoud call the setState() function
+ * to keep the plot in sync with its state.
+ * 
+ * The state contains the following keys :
+ *   - dataset (string),
+ *   - objective (string),
+ *   - objective_column (string),
+ *   - plot_kind (string),
+ *   - scale (string)
+ *   - with_quantiles (boolean)
+ *   - hidden_solvers (array)
+ * ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+ */
+
+/**
+ * Update the state and create/update the plot
+ * using the new state.
+ * 
+ * @param {Object} partialState 
+ */
+const setState = (partialState) => {
+  window.state = {...state(), ...partialState};
+  displayScatterElements(!isBarChart());
+  makePlot();
+  makeLegend();
+}
+
+/**
+ * Retrieve the state object from window.state
+ * 
+ * @returns Object
+ */
+const state = () => window.state;
+
+/*
+ * ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+ * PLOT MANAGEMENT
+ * 
+ * Retrieve formatted data for PlotlyJS using state
+ * and create/update the plot.
+ * ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+ */
+
+/**
+ * Create/Update the plot.
+ */
+const makePlot = () => {
+  const div = document.getElementById('unique_plot');
+  const data = isBarChart() ? getBarData() : getScatterCurves();
+  const layout = isBarChart() ? getBarChartLayout() : getScatterChartLayout();
+
+  Plotly.react(div, data, layout);
+};
+
+/**
+ * Gives the data formatted for plotlyJS bar chart.
+ * 
+ * @returns {array}
+ */
+const getBarData = () => {
+  if (!isAvailable()) return [{type:'bar'}];
+
+  const {x, y, colors, texts} = barDataToArrays()
+
+  // Add bars
+  const barData = [{
+    type: 'bar',
+    x: x,
+    y: y,
+    marker: {
+      color: colors,
+    },
+    text: texts,
+    textposition: 'inside',
+    insidetextanchor: 'middle',
+    textangle: '-90',
+  }];
+
+  x.forEach(solver => {
+    // Add times for each convergent solver
+    // Check if text is not 'Did not converge'
+    if (data(solver).bar.text === '') {
+      let nbTimes = data(solver).bar.times.length
+
+      barData.push({
+        type: 'scatter',
+        x: new Array(nbTimes).fill(solver),
+        y: data(solver).bar.times,
+        marker: {
+          color: 'black',
+          symbol: 'line-ew-open'
+        },
+        line: {
+          width: 0
+        },
+      });
+    }
+  });
+
+  return barData;
+};
+
+/**
+ * Gives the data formatted for plotlyJS scatter chart.
+ * 
+ * @returns {array}
+ */
+const getScatterCurves = () => {
+  // create a list of object to plot in plotly
+  const curves = [];
+
+  // For each solver, add the median curve with proper style and visibility.
+  getSolvers().forEach(solver => {
+    curves.push({
+      type: 'scatter',
+      name: solver,
+      mode: 'lines+markers',
+      line: {
+        color: data(solver).color,
+      },
+      marker: {
+        symbol: data(solver).marker,
+        size: 10,
+      },
+      legendgroup: solver,
+      hovertemplate: solver + ' <br> (%{x:.1e},%{y:.1e}) <extra></extra>',
+      visible: isVisible(solver) ? true : 'legendonly',
+      x: data(solver).scatter.x,
+      y: useTransformer(data(solver).scatter.y, 'y', data().transformers),
+    });
+
+    if (state().with_quantiles) {
+      // Add shaded area for each solver, with proper style and visibility.
+      curves.push({
+        type: 'scatter',
+        mode: 'lines',
+        showlegend: false,
+        line: {
+          width: 0,
+          color: data(solver).color,
+        },
+        legendgroup: solver,
+        hovertemplate: '(%{x:.1e},%{y:.1e}) <extra></extra>',
+        visible: isVisible(solver) ? true : 'legendonly',
+        x: data(solver).scatter.q1,
+        y: data(solver).scatter.y,
+      }, {
+        type: 'scatter',
+        mode: 'lines',
+        showlegend: false,
+        fill: 'tonextx',
+        line: {
+          width: 0,
+          color: data(solver).color,
+        },
+        legendgroup: solver,
+        hovertemplate: '(%{x:.1e},%{y:.1e}) <extra></extra>',
+        visible: isVisible(solver) ? true : 'legendonly',
+        x: data(solver).scatter.q9,
+        y: data(solver).scatter.y,
+      });
+    }
+  });
+
+  return curves;
+};
+
+/*
+ * ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+ * DATA TRANSFORMERS
+ * 
+ * Transformers are used to modify data
+ * on the fly.
+ * 
+ * WARNING : If you add a new transformer function,
+ * don't forget to register it in the object : window.tranformers,
+ * at the end of this section.
+ * ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+ */
+
+/**
+ * Select the right transformer according to the state.
+ * If the requested transformer does not exists,
+ * it returns raw data.
+ * 
+ * @param {Object} data 
+ * @param {String} solver 
+ * @param {String} axis it could be x, y, q1, q9
+ * @returns {array}
+ */
+const useTransformer = (data, axis, options) => {
+  try {
+    let transformer = 'transformer_' + axis + '_' + state().plot_kind;
+    return window.transformers[transformer](data, options);
+  } catch(error) {
+    return data;
+  }
+};
+
+/**
+ * Transform data on the y axis for subotimality curve.
+ * 
+ * @param {Object} data 
+ * @param {String} solver 
+ * @returns {array}
+ */
+const transformer_y_suboptimality_curve = (y, options) => {
+  // Retrieve c_star value
+  const c_star = options.c_star;
+  
+  // Compute suboptimality for each data
+  return y.map(value => value - c_star);
+};
+
+/**
+ * Transform data ont the y axis for relative suboptimality curve.
+ * 
+ * @param {Object} data 
+ * @param {String} solver 
+ * @returns {array}
+ */
+const transformer_y_relative_suboptimality_curve = (y, options) => {
+  // Retrieve transformer values
+  const c_star = options.c_star;
+  const max_f_0 = options.max_f_0;
+
+  // Compute relative suboptimality for each data
+  return y.map(value => (value - c_star) / (max_f_0 - c_star));
+};
+
+/**
+ * Store all the transformer functions to be callable
+ * by the useTransformer function.
+ */
+window.transformers = {
+  transformer_y_suboptimality_curve,
+  transformer_y_relative_suboptimality_curve,
+};
+
+/*
+ * ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+ * TOOLS
+ * 
+ * Various functions to simplify life.
+ * ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+ */
+
+const data = (solver = null) => {
+  return solver ?
+    window.data[state().dataset][state().objective][state().objective_column].solvers[solver]:
+    window.data[state().dataset][state().objective][state().objective_column]
+}
+
+const getSolvers = () => Object.keys(data().solvers);
+
+const isBarChart = () => state().plot_kind === 'bar_chart';
+
+const isVisible = solver => !state().hidden_solvers.includes(solver);
+
+const isSolverAvailable = solver => data(solver).scatter.y.filter(value => !isNaN(value)).length > 0;
+
+const isSmallScreen = () => window.screen.availHeight < 900;
+
+/**
+ * Check for each solver
+ * if data is available
+ * 
+ * @returns {Boolean}
+ */
+const isAvailable = () => {
+  let isNotAvailable = true;
+
+  getSolvers().forEach(solver => {
+    if (isSolverAvailable(solver)) {
+      isNotAvailable = false;
+    }
+  });
+
+  return !isNotAvailable;
+}
+
+const displayScatterElements = shouldBeVisible => {
+  if (shouldBeVisible) {
+    document.getElementById('change_scaling').style.display = 'inline-block';
+    document.getElementById('legend_container').style.display = 'block';
+    document.getElementById('plot_legend').style.display = 'flex';
+  } else {
+    document.getElementById('change_scaling').style.display = 'none';
+    document.getElementById('legend_container').style.display = 'none';
+    document.getElementById('plot_legend').style.display = 'none';
+  }
+};
+
+const barDataToArrays = () => {
+  const colors = [], texts = [], x = [], y = [];
+
+  getSolvers().forEach(solver => {
+    x.push(solver);
+    y.push(data(solver).bar.y);
+    colors.push(data(solver).bar.text === '' ? data(solver).color : NON_CONVERGENT_COLOR);
+    texts.push(data(solver).bar.text);
+  });
+
+  return {x, y, colors, texts}
+}
+
+const getScale = () => {
+  switch (state().scale) {
+    case 'loglog':
+      return {
+        xaxis: 'log',
+        yaxis: 'log',
+      };
+    case "semilog-y":
+      return {
+        xaxis: 'linear',
+        yaxis: 'log',
+      };
+    case "semilog-x":
+      return {
+        xaxis: 'log',
+        yaxis: 'linear',
+      };
+    case "linear":
+      return {
+        xaxis: 'linear',
+        yaxis: 'linear',
+      };
+    default:
+      console.error('Unknown scale value : ' + state().scale);
+  }
+}
+
+const getScatterChartLayout = () => {
+  const layout = {
+    autosize: !isSmallScreen(),
+    modebar: {
+      orientation: 'v',
+    },
+    height: 700,
+    showlegend: false,
+    legend: {
+      title: {
+        text: 'Solvers',
+      },
+      orientation: 'h',
+      xanchor: 'center',
+      yanchor: 'top',
+      y: -.2,
+      x: .5
+    },
+    xaxis: {
+      type: getScale().xaxis,
+      title: 'Time [sec]',
+      tickformat: '.1e',
+      tickangle: -45,
+      gridcolor: '#ffffff',
+      zeroline : false,
+    },
+    yaxis: {
+      type: getScale().yaxis,
+      title: getYLabel(),
+      tickformat: '.1e',
+      gridcolor: '#ffffff',
+      zeroline : false,
+    },
+    title: `${state().objective}<br />Data: ${state().dataset}`,
+    plot_bgcolor: '#e5ecf6',
+  };
+
+  if (isSmallScreen()) {
+    layout.width = 900;
+    layout.height = window.screen.availHeight - 200;
+    layout.dragmode = false;
+  }
+
+  if (!isAvailable()) {
+    layout.annotations = [{
+      xref: 'paper',
+      yref: 'paper',
+      x: 0.5,
+      y: 0.5,
+      text: 'Not available',
+      showarrow: false,
+      font: {
+        color: 'black',
+        size: 32,
+      }
+    }];
+  };
+
+  return layout;
+};
+
+const getBarChartLayout = () => {
+
+  const layout = {
+    autosize: !isSmallScreen(),
+    modebar: {
+      orientation: 'v',
+    },
+    yaxis: {
+      type: 'log',
+      title: 'Time [sec]',
+      tickformat: '.1e',
+      gridcolor: '#ffffff',
+    },
+    xaxis: {
+      tickangle: -60,
+      ticktext: getSolvers(),
+    },
+    showlegend: false,
+    title: `${state().objective}<br />Data: ${state().dataset}`,
+    plot_bgcolor: '#e5ecf6',
+  };
+
+  if (isSmallScreen()) {
+    layout.width = 900;
+    layout.height = window.screen.availHeight - 200;
+    layout.dragmode = false;
+  }
+
+  if (!isAvailable()) {
+    layout.annotations = [{
+      xref: 'paper',
+      yref: 'paper',
+      x: 0.5,
+      y: 0.5,
+      text: 'Not available',
+      showarrow: false,
+      font: {
+        color: 'black',
+        size: 32,
+      }
+    }];
+  };
+
+  return layout;
+};
+
+const getYLabel = () => {
+  switch(state().plot_kind) {
+    case 'objective_curve':
+      return 'F(x)';
+    case 'suboptimality_curve':
+      return 'F(x) - F(x*)';
+    case 'relative_suboptimality_curve':
+      return 'F(x) - F(x*) / F(x0) - F(x*)'
+    case 'bar_chart':
+      return 'Time [sec]';
+    default:
+      return 'unknown';
+  };
+};
+
+/*
+ * ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+ * MANAGE HIDDEN SOLVERS
+ * 
+ * Functions to hide/display and memorize solvers which were clicked
+ * by user on the legend of the plot.
+ * ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+ */
+const getSolverFromEvent = event => {
+  const target = event.currentTarget;
+
+  for (let i = 0; i < target.children.length; i++) {
+    if (target.children[i].className == 'solver') {
+      return target.children[i].firstChild.nodeValue;
+    }
+  }
+
+  return null;
+};
+
+const purgeHiddenSolvers = () => setState({hidden_solvers: []});
+
+const hideAllSolversExcept = solver => {setState({hidden_solvers: getSolvers().filter(elmt => elmt !== solver)})};
+
+const hideSolver = solver => isVisible(solver) ? setState({hidden_solvers: [...state().hidden_solvers, solver]}) : null;
+
+const showSolver = solver => setState({hidden_solvers: state().hidden_solvers.filter(hidden => hidden !== solver)});
+
+/**
+ * Add or remove solver name from the list of hidden solvers.
+ * 
+ * @param {String} solver
+ * @returns {void}
+ */
+const handleSolverClick = solver => {
+  if (!isVisible(solver)) {
+    showSolver(solver);
+
+    return;
+  }
+
+  hideSolver(solver);
+};
+
+const handleSolverDoubleClick = solver => {
+  // If all solvers except one are hidden, so double click should show all solvers
+  if (state().hidden_solvers.length === getSolvers().length - 1) {
+    purgeHiddenSolvers();
+
+    return;
+  }
+
+  hideAllSolversExcept(solver);
+};
+
+/**
+ * ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+ * MANAGE PLOT LEGEND
+ * 
+ * We don't use the plotly legend to keep control
+ * on the size of the plot.
+ * ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+ */
+
+/**
+ * Creates the legend at the bottom of the plot.
+ */
+const makeLegend = () => {
+  const legend = document.getElementById('plot_legend');
+
+  legend.innerHTML = '';
+
+  Object.keys(data().solvers).forEach(solver => {
+    const color = data().solvers[solver].color;
+    const symbolNumber = data().solvers[solver].marker;
+
+    legend.appendChild(createLegendItem(solver, color, symbolNumber));
+  });
+}
+
+/**
+ * Creates a legend item which contains the solver name,
+ * the solver marker as an SVG and an horizontal bar with
+ * the solver color.
+ * 
+ * @param {String} solver
+ * @param {String} color
+ * @param {int} symbolNumber
+ * @retuns {HTMLElement}
+ */
+const createLegendItem = (solver, color, symbolNumber) => {
+  // Create item container
+  const item = document.createElement('div');
+  item.style.display = 'flex';
+  item.style.flexDirection = 'row';
+  item.style.alignItems = 'center';
+  item.style.position = 'relative';
+  item.style.cursor = 'pointer';
+  item.className = 'bg-white py-1 px-4 shadow-sm mt-2 rounded'
+
+  if (!isVisible(solver)) {
+    item.style.opacity = 0.5;
+  }
+
+  // Click on a solver in the legend
+  item.addEventListener('click', event => {
+    solver = getSolverFromEvent(event);
+
+    if (!getSolvers().includes(solver)) {
+      console.error('An invalid solver has been handled during the click event.');
+
+      return;
+    }
+
+    // In javascript we must simulate double click.
+    // So first click is handled and kept in memory (window.clickedSolver)
+    // during 500ms, if nothing else happen timeout will execute
+    // single click function. However, if an other click happen during this
+    // 500ms, it clears the timeout and execute the double click function.
+    if (!window.clickedSolver) {
+      window.clickedSolver = solver;
+
+      // Timeout will execute single click function after 500ms
+      window.clickedTimeout = setTimeout(() => {
+        window.clickedSolver = null;
+        
+        handleSolverClick(solver);
+      }, 500);
+    } else if (window.clickedSolver === solver) {
+      clearTimeout(window.clickedTimeout);
+      window.clickedSolver = null;
+      handleSolverDoubleClick(solver);
+    }
+  });
+
+  // Create the HTML text node for the solver name in the legend
+  const textContainer = document.createElement('div');
+  textContainer.style.marginLeft = '0.5rem';
+  textContainer.className = 'solver';
+  textContainer.appendChild(document.createTextNode(solver));
+
+  // Create the horizontal bar in the legend to represent the curve
+  const hBar = document.createElement('div');
+  hBar.style.height = '2px';
+  hBar.style.width = '30px';
+  hBar.style.backgroundColor = color;
+  hBar.style.position = 'absolute';
+  hBar.style.left = '1em';
+  hBar.style.zIndex = 10;
+
+  // Append elements to the legend item
+  item.appendChild(createSymbol(symbolNumber, color));
+  item.appendChild(hBar);
+  item.appendChild(textContainer);
+
+  return item;
+}
+
+/**
+ * Create the same svg symbol as plotly.
+ * Returns an <svg> HTML Element
+ * 
+ * @param {int} symbolNumber 
+ * @param {String} color 
+ * @returns {HTMLElement}
+ */
+const createSymbol = (symbolNumber, color) => {
+  const svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+
+  svg.setAttribute('width', 30);
+  svg.setAttribute('height', 30);
+  svg.style.zIndex = 20;
+
+  // createPathElement() come from the local file symbols.js
+  svg.appendChild(createPathElement(symbolNumber, color));
+
+  return svg;
+}
+
+/**
+ * ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+ * EVENT REGISTRATIONS
+ * 
+ * Some events are also registered in result.html.
+ * ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+ */
+
+document.getElementById('btn-plot-config').addEventListener('click', () => {
+  const elmt = document.getElementById('mobile-plot-form');
+
+  if (elmt.style.display === 'block') {
+      elmt.style.display = 'none';
+
+      return;
+  }
+
+  elmt.style.display = 'block';
+});
+
+document.getElementById('btn-main-menu').addEventListener('click', () => {
+  const elmt = document.getElementById('mobile-menu');
+
+  if (elmt.style.display === 'block') {
+      elmt.style.display = 'none';
+
+      return;
+  }
+
+  elmt.style.display = 'block';
+});
+
+        </script>
+    </body>
+</html>
