@@ -1680,19 +1680,6 @@ input:checked+.slider:before {
   margin-right: 0.5rem;
 }
 
-.solver-accordion {
-  background-color: #eee;
-  color: #444;
-  cursor: pointer;
-  padding: 18px;
-  width: 100%;
-  border: none;
-  text-align: left;
-  outline: none;
-  font-size: 15px;
-  transition: 0.4s;
-}
-
         </style>
     </head>
     <body>
@@ -3221,7 +3208,7 @@ const makeLegend = () => {
   //   solver_name[param1]                --> false
   pattern = new RegExp('\\[\\w+=\\w+.+\\]');
 
-  let aggregateName = aggregateButton = aggregateDiv = null;
+  let aggregateName = aggregateButton = aggregateDiv = masterAggregateDiv =  null;
 
   for(let solver in data().solvers) {
     const solverName = solver.split("[")[0];
@@ -3243,12 +3230,17 @@ const makeLegend = () => {
     // create button to toggle accordion
     aggregateButton = document.createElement("button");
     aggregateButton.innerText = solverName;
-    aggregateButton.className = 'solver-accordion';
+    aggregateButton.className = 'text-white bg-gray-700 py-1 px-4 shadow-sm mt-2 rounded cursor-pointer w-full';
 
     // create div to gather the solvers with other bench params
     aggregateDiv = document.createElement("div");
     displayAggregatedSolvers = state().disabled_solvers_accordions.includes(solverName) ? "hidden" : "";
     aggregateDiv.className = `${displayAggregatedSolvers} flex flex-wrap inline-block space-r-2`;
+
+    masterAggregateDiv = document.createElement("div");
+    masterAggregateDiv.className = "flex-wrap block";
+    masterAggregateDiv.appendChild(aggregateButton);
+    masterAggregateDiv.appendChild(aggregateDiv);
 
     // add event handler for accordion
     aggregateButton.addEventListener('click', function () {
@@ -3269,8 +3261,8 @@ const makeLegend = () => {
       }
     });
       
-    legend.appendChild(aggregateButton);
-    legend.appendChild(aggregateDiv);
+
+    legend.appendChild(masterAggregateDiv);
     aggregateDiv.appendChild(createLegendItem(solver, color, symbolNumber));
 
     aggregateName = solverName;
