@@ -1,0 +1,3345 @@
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>📈</text></svg>">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300&display=swap" rel="stylesheet">
+
+        <title>Result on quantile regression benchmark</title>
+
+        <style>
+            /*
+! tailwindcss v3.1.2 | MIT License | https://tailwindcss.com
+*/
+
+/*
+1. Prevent padding and border from affecting element width. (https://github.com/mozdevs/cssremedy/issues/4)
+2. Allow adding a border to an element by just adding a border-width. (https://github.com/tailwindcss/tailwindcss/pull/116)
+*/
+
+*,
+::before,
+::after {
+  box-sizing: border-box;
+  /* 1 */
+  border-width: 0;
+  /* 2 */
+  border-style: solid;
+  /* 2 */
+  border-color: #e5e7eb;
+  /* 2 */
+}
+
+::before,
+::after {
+  --tw-content: '';
+}
+
+/*
+1. Use a consistent sensible line-height in all browsers.
+2. Prevent adjustments of font size after orientation changes in iOS.
+3. Use a more readable tab size.
+4. Use the user's configured `sans` font-family by default.
+*/
+
+html {
+  line-height: 1.5;
+  /* 1 */
+  -webkit-text-size-adjust: 100%;
+  /* 2 */
+  -moz-tab-size: 4;
+  /* 3 */
+  -o-tab-size: 4;
+     tab-size: 4;
+  /* 3 */
+  font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+  /* 4 */
+}
+
+/*
+1. Remove the margin in all browsers.
+2. Inherit line-height from `html` so users can set them as a class directly on the `html` element.
+*/
+
+body {
+  margin: 0;
+  /* 1 */
+  line-height: inherit;
+  /* 2 */
+}
+
+/*
+1. Add the correct height in Firefox.
+2. Correct the inheritance of border color in Firefox. (https://bugzilla.mozilla.org/show_bug.cgi?id=190655)
+3. Ensure horizontal rules are visible by default.
+*/
+
+hr {
+  height: 0;
+  /* 1 */
+  color: inherit;
+  /* 2 */
+  border-top-width: 1px;
+  /* 3 */
+}
+
+/*
+Add the correct text decoration in Chrome, Edge, and Safari.
+*/
+
+abbr:where([title]) {
+  -webkit-text-decoration: underline dotted;
+          text-decoration: underline dotted;
+}
+
+/*
+Remove the default font size and weight for headings.
+*/
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-size: inherit;
+  font-weight: inherit;
+}
+
+/*
+Reset links to optimize for opt-in styling instead of opt-out.
+*/
+
+a {
+  color: inherit;
+  text-decoration: inherit;
+}
+
+/*
+Add the correct font weight in Edge and Safari.
+*/
+
+b,
+strong {
+  font-weight: bolder;
+}
+
+/*
+1. Use the user's configured `mono` font family by default.
+2. Correct the odd `em` font sizing in all browsers.
+*/
+
+code,
+kbd,
+samp,
+pre {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+  /* 1 */
+  font-size: 1em;
+  /* 2 */
+}
+
+/*
+Add the correct font size in all browsers.
+*/
+
+small {
+  font-size: 80%;
+}
+
+/*
+Prevent `sub` and `sup` elements from affecting the line height in all browsers.
+*/
+
+sub,
+sup {
+  font-size: 75%;
+  line-height: 0;
+  position: relative;
+  vertical-align: baseline;
+}
+
+sub {
+  bottom: -0.25em;
+}
+
+sup {
+  top: -0.5em;
+}
+
+/*
+1. Remove text indentation from table contents in Chrome and Safari. (https://bugs.chromium.org/p/chromium/issues/detail?id=999088, https://bugs.webkit.org/show_bug.cgi?id=201297)
+2. Correct table border color inheritance in all Chrome and Safari. (https://bugs.chromium.org/p/chromium/issues/detail?id=935729, https://bugs.webkit.org/show_bug.cgi?id=195016)
+3. Remove gaps between table borders by default.
+*/
+
+table {
+  text-indent: 0;
+  /* 1 */
+  border-color: inherit;
+  /* 2 */
+  border-collapse: collapse;
+  /* 3 */
+}
+
+/*
+1. Change the font styles in all browsers.
+2. Remove the margin in Firefox and Safari.
+3. Remove default padding in all browsers.
+*/
+
+button,
+input,
+optgroup,
+select,
+textarea {
+  font-family: inherit;
+  /* 1 */
+  font-size: 100%;
+  /* 1 */
+  font-weight: inherit;
+  /* 1 */
+  line-height: inherit;
+  /* 1 */
+  color: inherit;
+  /* 1 */
+  margin: 0;
+  /* 2 */
+  padding: 0;
+  /* 3 */
+}
+
+/*
+Remove the inheritance of text transform in Edge and Firefox.
+*/
+
+button,
+select {
+  text-transform: none;
+}
+
+/*
+1. Correct the inability to style clickable types in iOS and Safari.
+2. Remove default button styles.
+*/
+
+button,
+[type='button'],
+[type='reset'],
+[type='submit'] {
+  -webkit-appearance: button;
+  /* 1 */
+  background-color: transparent;
+  /* 2 */
+  background-image: none;
+  /* 2 */
+}
+
+/*
+Use the modern Firefox focus style for all focusable elements.
+*/
+
+:-moz-focusring {
+  outline: auto;
+}
+
+/*
+Remove the additional `:invalid` styles in Firefox. (https://github.com/mozilla/gecko-dev/blob/2f9eacd9d3d995c937b4251a5557d95d494c9be1/layout/style/res/forms.css#L728-L737)
+*/
+
+:-moz-ui-invalid {
+  box-shadow: none;
+}
+
+/*
+Add the correct vertical alignment in Chrome and Firefox.
+*/
+
+progress {
+  vertical-align: baseline;
+}
+
+/*
+Correct the cursor style of increment and decrement buttons in Safari.
+*/
+
+::-webkit-inner-spin-button,
+::-webkit-outer-spin-button {
+  height: auto;
+}
+
+/*
+1. Correct the odd appearance in Chrome and Safari.
+2. Correct the outline style in Safari.
+*/
+
+[type='search'] {
+  -webkit-appearance: textfield;
+  /* 1 */
+  outline-offset: -2px;
+  /* 2 */
+}
+
+/*
+Remove the inner padding in Chrome and Safari on macOS.
+*/
+
+::-webkit-search-decoration {
+  -webkit-appearance: none;
+}
+
+/*
+1. Correct the inability to style clickable types in iOS and Safari.
+2. Change font properties to `inherit` in Safari.
+*/
+
+::-webkit-file-upload-button {
+  -webkit-appearance: button;
+  /* 1 */
+  font: inherit;
+  /* 2 */
+}
+
+/*
+Add the correct display in Chrome and Safari.
+*/
+
+summary {
+  display: list-item;
+}
+
+/*
+Removes the default spacing and border for appropriate elements.
+*/
+
+blockquote,
+dl,
+dd,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+hr,
+figure,
+p,
+pre {
+  margin: 0;
+}
+
+fieldset {
+  margin: 0;
+  padding: 0;
+}
+
+legend {
+  padding: 0;
+}
+
+ol,
+ul,
+menu {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+/*
+Prevent resizing textareas horizontally by default.
+*/
+
+textarea {
+  resize: vertical;
+}
+
+/*
+1. Reset the default placeholder opacity in Firefox. (https://github.com/tailwindlabs/tailwindcss/issues/3300)
+2. Set the default placeholder color to the user's configured gray 400 color.
+*/
+
+input::-moz-placeholder, textarea::-moz-placeholder {
+  opacity: 1;
+  /* 1 */
+  color: #9ca3af;
+  /* 2 */
+}
+
+input:-ms-input-placeholder, textarea:-ms-input-placeholder {
+  opacity: 1;
+  /* 1 */
+  color: #9ca3af;
+  /* 2 */
+}
+
+input::placeholder,
+textarea::placeholder {
+  opacity: 1;
+  /* 1 */
+  color: #9ca3af;
+  /* 2 */
+}
+
+/*
+Set the default cursor for buttons.
+*/
+
+button,
+[role="button"] {
+  cursor: pointer;
+}
+
+/*
+Make sure disabled buttons don't get the pointer cursor.
+*/
+
+:disabled {
+  cursor: default;
+}
+
+/*
+1. Make replaced elements `display: block` by default. (https://github.com/mozdevs/cssremedy/issues/14)
+2. Add `vertical-align: middle` to align replaced elements more sensibly by default. (https://github.com/jensimmons/cssremedy/issues/14#issuecomment-634934210)
+   This can trigger a poorly considered lint error in some tools but is included by design.
+*/
+
+img,
+svg,
+video,
+canvas,
+audio,
+iframe,
+embed,
+object {
+  display: block;
+  /* 1 */
+  vertical-align: middle;
+  /* 2 */
+}
+
+/*
+Constrain images and videos to the parent width and preserve their intrinsic aspect ratio. (https://github.com/mozdevs/cssremedy/issues/14)
+*/
+
+img,
+video {
+  max-width: 100%;
+  height: auto;
+}
+
+*, ::before, ::after {
+  --tw-border-spacing-x: 0;
+  --tw-border-spacing-y: 0;
+  --tw-translate-x: 0;
+  --tw-translate-y: 0;
+  --tw-rotate: 0;
+  --tw-skew-x: 0;
+  --tw-skew-y: 0;
+  --tw-scale-x: 1;
+  --tw-scale-y: 1;
+  --tw-pan-x:  ;
+  --tw-pan-y:  ;
+  --tw-pinch-zoom:  ;
+  --tw-scroll-snap-strictness: proximity;
+  --tw-ordinal:  ;
+  --tw-slashed-zero:  ;
+  --tw-numeric-figure:  ;
+  --tw-numeric-spacing:  ;
+  --tw-numeric-fraction:  ;
+  --tw-ring-inset:  ;
+  --tw-ring-offset-width: 0px;
+  --tw-ring-offset-color: #fff;
+  --tw-ring-color: rgb(59 130 246 / 0.5);
+  --tw-ring-offset-shadow: 0 0 #0000;
+  --tw-ring-shadow: 0 0 #0000;
+  --tw-shadow: 0 0 #0000;
+  --tw-shadow-colored: 0 0 #0000;
+  --tw-blur:  ;
+  --tw-brightness:  ;
+  --tw-contrast:  ;
+  --tw-grayscale:  ;
+  --tw-hue-rotate:  ;
+  --tw-invert:  ;
+  --tw-saturate:  ;
+  --tw-sepia:  ;
+  --tw-drop-shadow:  ;
+  --tw-backdrop-blur:  ;
+  --tw-backdrop-brightness:  ;
+  --tw-backdrop-contrast:  ;
+  --tw-backdrop-grayscale:  ;
+  --tw-backdrop-hue-rotate:  ;
+  --tw-backdrop-invert:  ;
+  --tw-backdrop-opacity:  ;
+  --tw-backdrop-saturate:  ;
+  --tw-backdrop-sepia:  ;
+}
+
+::-webkit-backdrop {
+  --tw-border-spacing-x: 0;
+  --tw-border-spacing-y: 0;
+  --tw-translate-x: 0;
+  --tw-translate-y: 0;
+  --tw-rotate: 0;
+  --tw-skew-x: 0;
+  --tw-skew-y: 0;
+  --tw-scale-x: 1;
+  --tw-scale-y: 1;
+  --tw-pan-x:  ;
+  --tw-pan-y:  ;
+  --tw-pinch-zoom:  ;
+  --tw-scroll-snap-strictness: proximity;
+  --tw-ordinal:  ;
+  --tw-slashed-zero:  ;
+  --tw-numeric-figure:  ;
+  --tw-numeric-spacing:  ;
+  --tw-numeric-fraction:  ;
+  --tw-ring-inset:  ;
+  --tw-ring-offset-width: 0px;
+  --tw-ring-offset-color: #fff;
+  --tw-ring-color: rgb(59 130 246 / 0.5);
+  --tw-ring-offset-shadow: 0 0 #0000;
+  --tw-ring-shadow: 0 0 #0000;
+  --tw-shadow: 0 0 #0000;
+  --tw-shadow-colored: 0 0 #0000;
+  --tw-blur:  ;
+  --tw-brightness:  ;
+  --tw-contrast:  ;
+  --tw-grayscale:  ;
+  --tw-hue-rotate:  ;
+  --tw-invert:  ;
+  --tw-saturate:  ;
+  --tw-sepia:  ;
+  --tw-drop-shadow:  ;
+  --tw-backdrop-blur:  ;
+  --tw-backdrop-brightness:  ;
+  --tw-backdrop-contrast:  ;
+  --tw-backdrop-grayscale:  ;
+  --tw-backdrop-hue-rotate:  ;
+  --tw-backdrop-invert:  ;
+  --tw-backdrop-opacity:  ;
+  --tw-backdrop-saturate:  ;
+  --tw-backdrop-sepia:  ;
+}
+
+::backdrop {
+  --tw-border-spacing-x: 0;
+  --tw-border-spacing-y: 0;
+  --tw-translate-x: 0;
+  --tw-translate-y: 0;
+  --tw-rotate: 0;
+  --tw-skew-x: 0;
+  --tw-skew-y: 0;
+  --tw-scale-x: 1;
+  --tw-scale-y: 1;
+  --tw-pan-x:  ;
+  --tw-pan-y:  ;
+  --tw-pinch-zoom:  ;
+  --tw-scroll-snap-strictness: proximity;
+  --tw-ordinal:  ;
+  --tw-slashed-zero:  ;
+  --tw-numeric-figure:  ;
+  --tw-numeric-spacing:  ;
+  --tw-numeric-fraction:  ;
+  --tw-ring-inset:  ;
+  --tw-ring-offset-width: 0px;
+  --tw-ring-offset-color: #fff;
+  --tw-ring-color: rgb(59 130 246 / 0.5);
+  --tw-ring-offset-shadow: 0 0 #0000;
+  --tw-ring-shadow: 0 0 #0000;
+  --tw-shadow: 0 0 #0000;
+  --tw-shadow-colored: 0 0 #0000;
+  --tw-blur:  ;
+  --tw-brightness:  ;
+  --tw-contrast:  ;
+  --tw-grayscale:  ;
+  --tw-hue-rotate:  ;
+  --tw-invert:  ;
+  --tw-saturate:  ;
+  --tw-sepia:  ;
+  --tw-drop-shadow:  ;
+  --tw-backdrop-blur:  ;
+  --tw-backdrop-brightness:  ;
+  --tw-backdrop-contrast:  ;
+  --tw-backdrop-grayscale:  ;
+  --tw-backdrop-hue-rotate:  ;
+  --tw-backdrop-invert:  ;
+  --tw-backdrop-opacity:  ;
+  --tw-backdrop-saturate:  ;
+  --tw-backdrop-sepia:  ;
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border-width: 0;
+}
+
+.fixed {
+  position: fixed;
+}
+
+.absolute {
+  position: absolute;
+}
+
+.relative {
+  position: relative;
+}
+
+.inset-0 {
+  top: 0px;
+  right: 0px;
+  bottom: 0px;
+  left: 0px;
+}
+
+.z-10 {
+  z-index: 10;
+}
+
+.mx-auto {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.mt-10 {
+  margin-top: 2.5rem;
+}
+
+.mt-1 {
+  margin-top: 0.25rem;
+}
+
+.mt-8 {
+  margin-top: 2rem;
+}
+
+.mt-2 {
+  margin-top: 0.5rem;
+}
+
+.mt-5 {
+  margin-top: 1.25rem;
+}
+
+.mt-3 {
+  margin-top: 0.75rem;
+}
+
+.block {
+  display: block;
+}
+
+.inline {
+  display: inline;
+}
+
+.flex {
+  display: flex;
+}
+
+.inline-flex {
+  display: inline-flex;
+}
+
+.table {
+  display: table;
+}
+
+.grid {
+  display: grid;
+}
+
+.hidden {
+  display: none;
+}
+
+.h-screen {
+  height: 100vh;
+}
+
+.h-16 {
+  height: 4rem;
+}
+
+.h-10 {
+  height: 2.5rem;
+}
+
+.h-8 {
+  height: 2rem;
+}
+
+.h-6 {
+  height: 1.5rem;
+}
+
+.h-5 {
+  height: 1.25rem;
+}
+
+.h-4 {
+  height: 1rem;
+}
+
+.h-12 {
+  height: 3rem;
+}
+
+.min-h-full {
+  min-height: 100%;
+}
+
+.w-96 {
+  width: 24rem;
+}
+
+.w-full {
+  width: 100%;
+}
+
+.w-6 {
+  width: 1.5rem;
+}
+
+.w-5 {
+  width: 1.25rem;
+}
+
+.w-4 {
+  width: 1rem;
+}
+
+.w-12 {
+  width: 3rem;
+}
+
+.min-w-0 {
+  min-width: 0px;
+}
+
+.flex-1 {
+  flex: 1 1 0%;
+}
+
+.flex-shrink-0 {
+  flex-shrink: 0;
+}
+
+.transform {
+  transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
+}
+
+.flex-col {
+  flex-direction: column;
+}
+
+.flex-wrap {
+  flex-wrap: wrap;
+}
+
+.items-end {
+  align-items: flex-end;
+}
+
+.items-center {
+  align-items: center;
+}
+
+.justify-center {
+  justify-content: center;
+}
+
+.justify-between {
+  justify-content: space-between;
+}
+
+.space-x-4 > :not([hidden]) ~ :not([hidden]) {
+  --tw-space-x-reverse: 0;
+  margin-right: calc(1rem * var(--tw-space-x-reverse));
+  margin-left: calc(1rem * calc(1 - var(--tw-space-x-reverse)));
+}
+
+.space-y-1 > :not([hidden]) ~ :not([hidden]) {
+  --tw-space-y-reverse: 0;
+  margin-top: calc(0.25rem * calc(1 - var(--tw-space-y-reverse)));
+  margin-bottom: calc(0.25rem * var(--tw-space-y-reverse));
+}
+
+.space-y-4 > :not([hidden]) ~ :not([hidden]) {
+  --tw-space-y-reverse: 0;
+  margin-top: calc(1rem * calc(1 - var(--tw-space-y-reverse)));
+  margin-bottom: calc(1rem * var(--tw-space-y-reverse));
+}
+
+.space-x-2 > :not([hidden]) ~ :not([hidden]) {
+  --tw-space-x-reverse: 0;
+  margin-right: calc(0.5rem * var(--tw-space-x-reverse));
+  margin-left: calc(0.5rem * calc(1 - var(--tw-space-x-reverse)));
+}
+
+.overflow-hidden {
+  overflow: hidden;
+}
+
+.overflow-y-auto {
+  overflow-y: auto;
+}
+
+.rounded-md {
+  border-radius: 0.375rem;
+}
+
+.rounded-lg {
+  border-radius: 0.5rem;
+}
+
+.rounded-full {
+  border-radius: 9999px;
+}
+
+.border {
+  border-width: 1px;
+}
+
+.border-gray-300 {
+  --tw-border-opacity: 1;
+  border-color: rgb(209 213 219 / var(--tw-border-opacity));
+}
+
+.border-gray-800 {
+  --tw-border-opacity: 1;
+  border-color: rgb(31 41 55 / var(--tw-border-opacity));
+}
+
+.border-transparent {
+  border-color: transparent;
+}
+
+.bg-gray-700 {
+  --tw-bg-opacity: 1;
+  background-color: rgb(55 65 81 / var(--tw-bg-opacity));
+}
+
+.bg-gray-800 {
+  --tw-bg-opacity: 1;
+  background-color: rgb(31 41 55 / var(--tw-bg-opacity));
+}
+
+.bg-blue-600 {
+  --tw-bg-opacity: 1;
+  background-color: rgb(37 99 235 / var(--tw-bg-opacity));
+}
+
+.bg-white {
+  --tw-bg-opacity: 1;
+  background-color: rgb(255 255 255 / var(--tw-bg-opacity));
+}
+
+.bg-gray-500 {
+  --tw-bg-opacity: 1;
+  background-color: rgb(107 114 128 / var(--tw-bg-opacity));
+}
+
+.bg-slate-200 {
+  --tw-bg-opacity: 1;
+  background-color: rgb(241 245 249 / var(--tw-bg-opacity));
+}
+
+.bg-blue-100 {
+  --tw-bg-opacity: 1;
+  background-color: rgb(219 234 254 / var(--tw-bg-opacity));
+}
+
+.bg-gray-50 {
+  --tw-bg-opacity: 1;
+  background-color: rgb(249 250 251 / var(--tw-bg-opacity));
+}
+
+.bg-opacity-75 {
+  --tw-bg-opacity: 0.75;
+}
+
+.p-1 {
+  padding: 0.25rem;
+}
+
+.p-2 {
+  padding: 0.5rem;
+}
+
+.p-4 {
+  padding: 1rem;
+}
+
+.px-8 {
+  padding-left: 2rem;
+  padding-right: 2rem;
+}
+
+.px-4 {
+  padding-left: 1rem;
+  padding-right: 1rem;
+}
+
+.px-3 {
+  padding-left: 0.75rem;
+  padding-right: 0.75rem;
+}
+
+.py-2 {
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+}
+
+.px-2 {
+  padding-left: 0.5rem;
+  padding-right: 0.5rem;
+}
+
+.py-4 {
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+}
+
+.py-1 {
+  padding-top: 0.25rem;
+  padding-bottom: 0.25rem;
+}
+
+.py-3 {
+  padding-top: 0.75rem;
+  padding-bottom: 0.75rem;
+}
+
+.pt-2 {
+  padding-top: 0.5rem;
+}
+
+.pt-4 {
+  padding-top: 1rem;
+}
+
+.pb-0 {
+  padding-bottom: 0;
+}
+
+.pb-1 {
+  padding-bottom: 0.25rem;
+}
+
+.pb-3 {
+  padding-bottom: 0.75rem;
+}
+
+.pt-5 {
+  padding-top: 1.25rem;
+}
+
+.pb-4 {
+  padding-bottom: 1rem;
+}
+
+.text-left {
+  text-align: left;
+}
+
+.text-center {
+  text-align: center;
+}
+
+.text-2xl {
+  font-size: 1.5rem;
+  line-height: 2rem;
+}
+
+.text-sm {
+  font-size: 0.875rem;
+  line-height: 1.25rem;
+}
+
+.text-xl {
+  font-size: 1.25rem;
+  line-height: 1.75rem;
+}
+
+.text-base {
+  font-size: 1rem;
+  line-height: 1.5rem;
+}
+
+.text-lg {
+  font-size: 1.125rem;
+  line-height: 1.75rem;
+}
+
+.font-medium {
+  font-weight: 500;
+}
+
+.font-bold {
+  font-weight: 700;
+}
+
+.capitalize {
+  text-transform: capitalize;
+}
+
+.leading-7 {
+  line-height: 1.75rem;
+}
+
+.leading-6 {
+  line-height: 1.5rem;
+}
+
+.text-white {
+  --tw-text-opacity: 1;
+  color: rgb(255 255 255 / var(--tw-text-opacity));
+}
+
+.text-gray-100 {
+  --tw-text-opacity: 1;
+  color: rgb(243 244 246 / var(--tw-text-opacity));
+}
+
+.text-gray-900 {
+  --tw-text-opacity: 1;
+  color: rgb(17 24 39 / var(--tw-text-opacity));
+}
+
+.text-gray-500 {
+  --tw-text-opacity: 1;
+  color: rgb(107 114 128 / var(--tw-text-opacity));
+}
+
+.text-black {
+  --tw-text-opacity: 1;
+  color: rgb(0 0 0 / var(--tw-text-opacity));
+}
+
+.text-blue-600 {
+  --tw-text-opacity: 1;
+  color: rgb(37 99 235 / var(--tw-text-opacity));
+}
+
+.text-gray-700 {
+  --tw-text-opacity: 1;
+  color: rgb(55 65 81 / var(--tw-text-opacity));
+}
+
+.shadow-sm {
+  --tw-shadow: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+  --tw-shadow-colored: 0 1px 2px 0 var(--tw-shadow-color);
+  box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
+}
+
+.shadow-xl {
+  --tw-shadow: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
+  --tw-shadow-colored: 0 20px 25px -5px var(--tw-shadow-color), 0 8px 10px -6px var(--tw-shadow-color);
+  box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
+}
+
+.transition-opacity {
+  transition-property: opacity;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-duration: 150ms;
+}
+
+.transition-all {
+  transition-property: all;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-duration: 150ms;
+}
+
+.hover\:bg-blue-800:hover {
+  --tw-bg-opacity: 1;
+  background-color: rgb(30 64 175 / var(--tw-bg-opacity));
+}
+
+.hover\:bg-gray-100:hover {
+  --tw-bg-opacity: 1;
+  background-color: rgb(243 244 246 / var(--tw-bg-opacity));
+}
+
+.hover\:bg-blue-700:hover {
+  --tw-bg-opacity: 1;
+  background-color: rgb(29 78 216 / var(--tw-bg-opacity));
+}
+
+.hover\:bg-gray-50:hover {
+  --tw-bg-opacity: 1;
+  background-color: rgb(249 250 251 / var(--tw-bg-opacity));
+}
+
+.hover\:text-white:hover {
+  --tw-text-opacity: 1;
+  color: rgb(255 255 255 / var(--tw-text-opacity));
+}
+
+.focus\:border-blue-500:focus {
+  --tw-border-opacity: 1;
+  border-color: rgb(59 130 246 / var(--tw-border-opacity));
+}
+
+.focus\:outline-none:focus {
+  outline: 2px solid transparent;
+  outline-offset: 2px;
+}
+
+.focus\:ring-2:focus {
+  --tw-ring-offset-shadow: var(--tw-ring-inset) 0 0 0 var(--tw-ring-offset-width) var(--tw-ring-offset-color);
+  --tw-ring-shadow: var(--tw-ring-inset) 0 0 0 calc(2px + var(--tw-ring-offset-width)) var(--tw-ring-color);
+  box-shadow: var(--tw-ring-offset-shadow), var(--tw-ring-shadow), var(--tw-shadow, 0 0 #0000);
+}
+
+.focus\:ring-inset:focus {
+  --tw-ring-inset: inset;
+}
+
+.focus\:ring-blue-500:focus {
+  --tw-ring-opacity: 1;
+  --tw-ring-color: rgb(59 130 246 / var(--tw-ring-opacity));
+}
+
+.focus\:ring-white:focus {
+  --tw-ring-opacity: 1;
+  --tw-ring-color: rgb(255 255 255 / var(--tw-ring-opacity));
+}
+
+.focus\:ring-gray-500:focus {
+  --tw-ring-opacity: 1;
+  --tw-ring-color: rgb(107 114 128 / var(--tw-ring-opacity));
+}
+
+.focus\:ring-offset-2:focus {
+  --tw-ring-offset-width: 2px;
+}
+
+@media (min-width: 640px) {
+  .sm\:my-8 {
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+  }
+
+  .sm\:mx-0 {
+    margin-left: 0px;
+    margin-right: 0px;
+  }
+
+  .sm\:mt-0 {
+    margin-top: 0px;
+  }
+
+  .sm\:ml-3 {
+    margin-left: 0.75rem;
+  }
+
+  .sm\:ml-4 {
+    margin-left: 1rem;
+  }
+
+  .sm\:block {
+    display: block;
+  }
+
+  .sm\:flex {
+    display: flex;
+  }
+
+  .sm\:hidden {
+    display: none;
+  }
+
+  .sm\:h-10 {
+    height: 2.5rem;
+  }
+
+  .sm\:w-full {
+    width: 100%;
+  }
+
+  .sm\:w-10 {
+    width: 2.5rem;
+  }
+
+  .sm\:w-auto {
+    width: auto;
+  }
+
+  .sm\:max-w-lg {
+    max-width: 32rem;
+  }
+
+  .sm\:flex-row-reverse {
+    flex-direction: row-reverse;
+  }
+
+  .sm\:items-start {
+    align-items: flex-start;
+  }
+
+  .sm\:items-center {
+    align-items: center;
+  }
+
+  .sm\:items-stretch {
+    align-items: stretch;
+  }
+
+  .sm\:justify-start {
+    justify-content: flex-start;
+  }
+
+  .sm\:space-x-6 > :not([hidden]) ~ :not([hidden]) {
+    --tw-space-x-reverse: 0;
+    margin-right: calc(1.5rem * var(--tw-space-x-reverse));
+    margin-left: calc(1.5rem * calc(1 - var(--tw-space-x-reverse)));
+  }
+
+  .sm\:truncate {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  .sm\:p-0 {
+    padding: 0px;
+  }
+
+  .sm\:p-6 {
+    padding: 1.5rem;
+  }
+
+  .sm\:px-6 {
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+  }
+
+  .sm\:pb-4 {
+    padding-bottom: 1rem;
+  }
+
+  .sm\:text-left {
+    text-align: left;
+  }
+
+  .sm\:text-sm {
+    font-size: 0.875rem;
+    line-height: 1.25rem;
+  }
+
+  .sm\:text-3xl {
+    font-size: 1.875rem;
+    line-height: 2.25rem;
+  }
+
+  .sm\:mr-6 {
+    margin-right: 1.5rem; /* 24px */
+  }
+}
+
+@media (min-width: 768px) {
+  .md\:inline {
+    display: inline;
+  }
+
+  .md\:flex {
+    display: flex;
+  }
+
+  .md\:hidden {
+    display: none;
+  }
+
+  .md\:justify-start {
+    justify-content: flex-start;
+  }
+
+  .md\:text-left {
+    text-align: left;
+  }
+
+  .md\:block {
+    display: block;
+  }
+
+  .md\:inline-block {
+    display: inline-block;
+  }
+}
+
+@media (min-width: 1024px) {
+  .lg\:mt-0 {
+    margin-top: 0px;
+  }
+
+  .lg\:ml-4 {
+    margin-left: 1rem;
+  }
+
+  .lg\:flex {
+    display: flex;
+  }
+
+  .lg\:items-center {
+    align-items: center;
+  }
+
+  .lg\:justify-between {
+    justify-content: space-between;
+  }
+
+  .lg\:inline {
+    display: inline;
+  }
+
+  .lg\:hidden {
+    display: none;
+  }
+
+  .lg\:justify-start {
+    justify-content: flex-start;
+  }
+
+  .lg\:text-left {
+    text-align: left;
+  }
+
+  .lg\:block {
+    display:block;
+  }
+}
+
+.overflow-scroll {
+  overflow: scroll;
+}
+
+.absolute {
+  position: absolute;
+}
+
+.px-10 {
+  padding-left: 2.5rem; /* 40px */
+  padding-right: 2.5rem; /* 40px */
+}
+
+.py-10 {
+  padding-top: 2.5rem; /* 40px */
+  padding-bottom: 2.5rem; /* 40px */
+}
+
+.mb-4 {
+  margin-bottom: 1rem; /* 16px */
+}
+
+.mt-4 {
+  margin-top: 1rem; /* 16px */
+}
+
+.mr-6 {
+  margin-right: 1.5rem; /* 24px */
+}
+
+.mr-4 {
+  margin-right: 1rem; /* 24px */
+}
+
+.rounded {
+  border-radius: 0.25rem; /* 4px */
+}
+
+
+            /*----------------------------------------*/
+/***** Stylesheet for the hover index *****/
+/*----------------------------------------*/
+
+/* Place rectangles in a grid */
+.grid {
+  position: relative; /* each rectangle is dependant of others */
+  margin: 0 auto;
+  padding: 1em 0 4em; /* padding top horizontal bottom */
+  display: grid; /* type of boxes generated */
+  max-width: 1000px;
+  list-style: none; /* no item */
+  text-align: center;
+  column-gap: 2em; /* space between columns */
+}
+
+/* Figure inside grid */
+.grid figure {
+  position: relative;
+  float: left;
+  overflow: hidden; /* overflow not taken into account */
+  margin: 10px 1%;
+  width: 100%; /* 100% of the column */
+  background: #3085a3;
+  text-align: center;
+  cursor: pointer; /* change shape cursor */
+  border-radius: 30px; /* rounded corners */
+}
+
+/* Each figure contains an img */
+.grid figure img {
+  position: relative;
+  display: block;
+  max-height: 100%;
+  max-width: 100%;
+  opacity: 1; /* over a dummy image */
+}
+
+/* Style caption (title of benchmarks) */
+.grid figure figcaption {
+  padding: 0.1em; /* add space */
+  color: #fff; /* writing color */
+  text-transform: uppercase; /* title in uppercase */
+  font-size: 1.25em;
+}
+
+/* Small sized screens */
+@media (min-width: 600px) {
+  .grid {
+    grid-template-columns: repeat(2, 1fr);
+  } /* split in 2 columns */
+}
+
+/* Larger sized screens */
+@media (min-width: 900px) {
+  .grid {
+    grid-template-columns: repeat(3, 1fr);
+  } /* split in 3 columns */
+}
+
+/* Position and style of <a> elements (the View more) */
+.grid figure figcaption,
+.grid figure figcaption > a {
+  position: absolute;
+  top: 0em; /* no space offset top */
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+/* only to figcaption <a> tag */
+.grid figure figcaption > a {
+  z-index: 1000; /* top level */
+  text-indent: 0%;
+  white-space: nowrap;
+  font-size: 0; /* do not display the View more */
+  opacity: 1;
+}
+
+/* h2: Problem name (LASSO, ...) */
+.grid figure h2 {
+  word-spacing: 0em;
+  font-weight: 300;
+}
+
+.grid figure h2 span {
+  font-weight: 800;
+}
+
+.grid figure h2,
+.grid figure p {
+  margin: 0;
+}
+
+/* p: number of files */
+.grid figure p {
+  letter-spacing: 1px;
+  font-size: 70%;
+}
+
+/* Default color */
+figure.effect-ruby {
+  background-color: #2c3e50;
+}
+
+/* Color when hovering */
+figure.effect-ruby:hover {
+  background-color: DodgerBlue;
+}
+
+/* Define transformation */
+figure.effect-ruby img {
+  opacity: 0;
+  transition: opacity 0.35s, transform 0.35s; /* transition time */
+  transform: scale(1.15); /* size transformation -> bigger */
+}
+
+/* transformation with hovering */
+figure.effect-ruby:hover img {
+  opacity: 0;
+  transform: scale(1); /* size -> smaller */
+}
+
+/* Apply effect to problem name */
+figure.effect-ruby h2 {
+  margin-top: 0;
+  transition: transform 0.35s; /* transition time */
+  transform: translate3d(0, calc((150px - 100%)/2), 0);
+  font-size: 1.25em; /* default font */
+}
+
+figure.effect-ruby p {
+  margin: 2em -1em 2em -1em;
+  padding: 1em 0em 1em 0em;
+  border: 1px solid #fff; /* create sort of white frame */
+  opacity: 0;
+  transition: opacity 0.35s, transform 0.35s;
+  transform: translate3d(0, 20px, 0) scale(1.1); /* size transform */
+}
+
+/* Transform title on hover */
+figure.effect-ruby:hover h2 {
+  -webkit-transform: translate3d(0, 0, 0);
+  transform: translate3d(0px, 10px, 0) scale(0.8); /* smaller */
+  margin-top: 0em; /* move up */
+}
+
+figure.effect-ruby:hover p {
+  opacity: 1;
+  transform: translate3d(0, 0, 0) scale(1.2); /* placement in box */
+}
+
+/* Button for inside the table with system informations */
+.buttoncent {
+  border: none;
+  background-color: transparent;
+  outline: none;
+  text-align: center;
+}
+
+/* button for inside text
+ in benchmark page above graph for system informations */
+.buttonleft {
+  border: none;
+  background-color: transparent;
+  outline: none;
+  text-align: center;
+  margin-left: 1px; /* add margin */
+}
+
+
+/* switch slider with an adaptable height.
+Change switch-height and switch-padding, and all the dimensions are adjusted.
+See https://stackoverflow.com/questions/70590125/how-to-change-the-size-of-a-css-toggle-switch */
+* {
+  --switch-height: 20px;
+  --switch-padding: 2px;
+  --switch-width: calc((var(--switch-height) * 2) - var(--switch-padding));
+  --slider-height: calc(var(--switch-height) - var(--switch-padding));
+  --slider-on: calc(var(--switch-height) - var(--switch-padding));
+}
+
+.switch {
+  position: relative;
+  display: inline-block;
+  width: var(--switch-width);
+  height: var(--switch-height);
+}
+
+.switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ccc;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+.slider:before {
+  content: "";
+  position: absolute;
+  height: var(--slider-height);
+  width: var(--slider-height);
+  left: calc(var(--switch-padding) / 2);
+  bottom: calc(var(--switch-padding) / 2);
+  background-color: white;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+input:checked+.slider {
+  background-color: #2196F3;
+}
+
+input:focus+.slider {
+  box-shadow: 0 0 1px #2196F3;
+}
+
+input:checked+.slider:before {
+  -webkit-transform: translateX(var(--slider-on));
+  -ms-transform: translateX(var(--slider-on));
+  transform: translateX(var(--slider-on));
+}
+
+.slider.round {
+  border-radius: var(--slider-height);
+}
+
+.slider.round:before {
+  border-radius: 50%;
+}
+
+/*----------------------------------------*/
+/***** Brand text animated *****/
+/*----------------------------------------*/
+
+
+.ml11 .text-wrapper {
+  position: relative;
+  display: inline-block;
+  padding-top: 0.1em;
+  padding-right: 0.05em;
+  padding-bottom: 0.15em;
+}
+
+.ml11 .line {
+  opacity: 0;
+  position: absolute;
+  left: 0;
+  height: 100%;
+  width: 3px;
+  background-color: #fff;
+  transform-origin: 0 50%;
+}
+
+.ml11 .line1 { 
+  top: 0; 
+  left: 0;
+}
+
+.ml11 .letter {
+  display: inline-block;
+  line-height: 1em;
+  font-family: 'Kanit', sans-serif;
+}
+
+/*----------------------------------------*/
+/***** Plot *****/
+/*----------------------------------------*/
+
+@media (min-width: 768px) {
+  #unique_plot {
+    flex: 1 1 0%;
+  }
+}
+
+@media (max-width: 767px) {
+  #unique_plot {
+    flex: initial;
+    flex-shrink: 0;
+  }
+}
+
+.js-plotly-plot .plotly .modebar {
+  transform: translateX(-30px);
+}
+
+/*----------------------------------------*/
+/***** Custom legend *****/
+/*----------------------------------------*/
+
+#plot_legend {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+
+#legend_title {
+  font-size: 1.2rem;
+  font-weight: bold;
+}
+
+#legend_help {
+  font-size: 0.75rem;
+  color: #475569;
+}
+
+.space-r-2 > * {
+  margin-right: 0.5rem;
+}
+
+        </style>
+    </head>
+    <body>
+        <!-- Two main columns container -->
+        <div class="flex">
+            <!-- Left column on big screen (plot selectors) -->
+            <div class="hidden lg:flex flex-col w-96 bg-gray-700">
+                <div class="h-screen">
+                    <div class="px-8 h-16 flex items-center bg-gray-800">
+                        <h1 class="ml11">
+                            <span class="text-wrapper">
+                                <span class="line line1"></span>
+                                <span id="brand" class="hidden letters text-2xl text-white">Benchopt</span>
+                            </span>
+                        </h1>
+                    </div>
+                    <div class="flex-1 flex flex-col">
+                        <div class="mt-10 px-8">
+                            <label for="dataset_selector" class="block text-sm font-medium text-white">Dataset:</label>
+                            <div class="mt-1 rounded-md shadow-sm">
+                                <select id="dataset_selector" class="focus:ring-blue-500 focus:border-blue-500 block w-full h-8 px-4 sm:text-sm border-gray-300 rounded-md" onchange="setState({dataset: this.value})">
+                                    <option value="MEG">MEG</option>
+                                    <option value="Simulated[n_features=900,n_samples=1000]">Simulated[n_features=900,n_samples=1000]</option>
+                                    <option value="Simulated[n_features=3000,n_samples=1000]">Simulated[n_features=3000,n_samples=1000]</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="mt-8 px-8">
+                            <label for="objective_selector" class="block text-sm font-medium text-white">Objective:</label>
+                            <div class="mt-1 rounded-md shadow-sm">
+                                <select id="objective_selector" class="focus:ring-blue-500 focus:border-blue-500 block w-full h-8 px-4 sm:text-sm border-gray-300 rounded-md" onchange="setState({objective: this.value})">
+                                    <option value="L1-regularized Quantile Regression[fit_intercept=False,quantile=0.4,reg=0.5]">L1-regularized Quantile Regression[fit_intercept=False,quantile=0.4,reg=0.5]</option>
+                                    <option value="L1-regularized Quantile Regression[fit_intercept=False,quantile=0.8,reg=0.5]">L1-regularized Quantile Regression[fit_intercept=False,quantile=0.8,reg=0.5]</option>
+                                    <option value="L1-regularized Quantile Regression[fit_intercept=False,quantile=0.4,reg=0.1]">L1-regularized Quantile Regression[fit_intercept=False,quantile=0.4,reg=0.1]</option>
+                                    <option value="L1-regularized Quantile Regression[fit_intercept=False,quantile=0.8,reg=0.1]">L1-regularized Quantile Regression[fit_intercept=False,quantile=0.8,reg=0.1]</option>
+                                    <option value="L1-regularized Quantile Regression[fit_intercept=False,quantile=0.4,reg=0.05]">L1-regularized Quantile Regression[fit_intercept=False,quantile=0.4,reg=0.05]</option>
+                                    <option value="L1-regularized Quantile Regression[fit_intercept=False,quantile=0.8,reg=0.05]">L1-regularized Quantile Regression[fit_intercept=False,quantile=0.8,reg=0.05]</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="mt-8 px-8">
+                            <label for="objective_column" class="block text-sm font-medium text-white">Objective column</label>
+                            <div class="mt-1 rounded-md shadow-sm">
+                                <select id="objective_column" class="focus:ring-blue-500 focus:border-blue-500 block w-full h-8 px-4 sm:text-sm border-gray-300 rounded-md" onchange="setState({objective_column: this.value})">
+                                    <option value="objective_value">objective_value</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="mt-8 px-8">
+                            <label for="plot_kind" class="block text-sm font-medium text-white">Chart type</label>
+                            <div class="mt-1 rounded-md shadow-sm">
+                                <select id="plot_kind" class="focus:ring-blue-500 focus:border-blue-500 block w-full h-8 px-4 sm:text-sm border-gray-300 rounded-md" onchange="setState({plot_kind: this.value})">
+                                    <option value="objective_curve">objective_curve</option>
+                                    <option value="suboptimality_curve">suboptimality_curve</option>
+                                    <option value="relative_suboptimality_curve">relative_suboptimality_curve</option>
+                                    <option value="bar_chart">bar_chart</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div id="scale-form-group" class="mt-8 px-8">
+                            <label for="change_scaling" class="block text-sm font-medium text-white">Scale</label>
+                            <div class="mt-1 rounded-md shadow-sm">
+                                <select id="change_scaling" class="focus:ring-blue-500 focus:border-blue-500 block w-full h-8 px-4 sm:text-sm border-gray-300 rounded-md" onchange="setState({scale: this.value})">
+                                    <option value="semilog-y">semilog-y</option>
+                                    <option value="semilog-x">semilog-x</option>
+                                    <option value="loglog">loglog</option>
+                                    <option value="linear">linear</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="flex items-center justify-between mt-8 px-8">
+                            <div class="block text-sm font-medium text-white">Quantiles</div>
+                            <label class="block switch">
+                                <input id="change_shades" type="checkbox" checked onchange="setState({with_quantiles: this.checked})">
+                                <span class="slider round"></span>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Right column on big screen and main column on mobile -->
+            <div class="w-full flex flex-col overflow-scroll">
+                <!-- Main menu -->
+                <nav class="bg-blue-600">
+                    <div class="px-4">
+                        <div class="relative flex items-center justify-between h-16">
+                            <!-- mobile navbar -->
+                            <div class="absolute inset-0 flex items-center justify-between lg:hidden">
+                                <!-- Mobile menu brand text -->
+                                <span class="text-white text-xl">
+                                    Benchopt
+                                </span>
+                                <!-- Mobile menu button-->
+                                <button type="button" id="btn-main-menu" class="inline-flex items-center justify-center p-2 rounded-md text-white focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white" aria-controls="mobile-menu" aria-expanded="false">
+                                    <span class="sr-only">Open main menu</span>
+                                    <svg class="block h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" aria-hidden="true">
+                                        <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16" />
+                                    </svg>
+                                    <svg class="hidden h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" aria-hidden="true">
+                                        <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+                                    </svg>
+                                </button>
+                            </div>
+                            <!-- big screen navbar-->
+                            <div class="flex-1 flex items-center justify-center lg:items-stretch lg:justify-start">
+                                <div class="hidden lg:block">
+                                    <div class="flex space-x-4">
+                                        <a href="benchmark_quantile_regression.html" class="text-gray-100 hover:bg-blue-800 hover:text-white px-3 py-2 rounded-md text-sm font-medium" aria-current="page">Home</a>
+                                        <a href="https://benchopt.github.io" class="text-gray-100 hover:bg-blue-800 hover:text-white px-3 py-2 rounded-md text-sm font-medium" target="_blank">Website</a>
+                                        <a href="https://github.com/benchopt/benchopt" class="text-gray-100 hover:bg-blue-800 hover:text-white px-3 py-2 rounded-md text-sm font-medium" target="_blank">Github</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Mobile menu, show/hide based on menu state. -->
+                    <div class="hidden" id="mobile-menu">
+                        <div class="px-2 pt-2 pb-3 space-y-1">
+                            <a href="benchmark_quantile_regression.html" class="text-white block px-3 py-2 rounded-md text-base font-medium" aria-current="page">Home</a>
+                            <a href="https://benchopt.github.io" class="text-white block px-3 py-2 rounded-md text-base font-medium">Website</a>
+                            <a href="https://github.com/benchopt/benchopt" class="text-white block px-3 py-2 rounded-md text-base font-medium">Github</a>
+                            <a href="benchopt_run_2022-12-08_13h36m59.parquet" class="text-white block px-3 py-2 rounded-md text-base font-medium">Download data</a>
+                        </div>
+                    </div>
+                </nav>
+
+                <!-- Plot menu for mobiles -->
+                <nav class="lg:hidden bg-gray-700">
+                    <div class="px-4" id="btn-plot-config">
+                        <div class="relative flex items-center justify-between h-10">
+                            <div class="absolute inset-0 flex items-center justify-between lg:hidden">
+                                <!-- Mobile menu button-->
+                                <span class="flex items-center space-x-2 text-white">
+                                    <span>Change plot</span>
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                                        <path stroke-linecap="round" stroke-linejoin="round" d="M13 5l7 7-7 7M5 5l7 7-7 7" />
+                                    </svg>
+                                </span>
+                                <button type="button" class="inline-flex items-center justify-center p-2 rounded-md text-white focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white" aria-controls="mobile-menu" aria-expanded="false">
+                                    <span class="sr-only">Open main menu</span>
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                                        <path stroke-linecap="round" stroke-linejoin="round" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z" />
+                                        <path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                                    </svg>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Mobile menu, show/hide based on menu state. -->
+                    <div class="hidden" id="mobile-plot-form">
+                        <div class="px-2 pt-2 pb-3 space-y-4">
+                            <div class="px-8">
+                                <label for="dataset_selector" class="block text-sm font-medium text-white">Dataset:</label>
+                                <div class="mt-1 rounded-md shadow-sm">
+                                    <select id="dataset_selector" class="focus:ring-blue-500 focus:border-blue-500 block w-full h-8 px-4 sm:text-sm border-gray-300 rounded-md" onchange="setState({dataset: this.value})">
+                                        <option value="MEG">MEG</option>
+                                        <option value="Simulated[n_features=900,n_samples=1000]">Simulated[n_features=900,n_samples=1000]</option>
+                                        <option value="Simulated[n_features=3000,n_samples=1000]">Simulated[n_features=3000,n_samples=1000]</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="px-8">
+                                <label for="objective_selector" class="block text-sm font-medium text-white">Objective:</label>
+                                <div class="mt-1 rounded-md shadow-sm">
+                                    <select id="objective_selector" class="focus:ring-blue-500 focus:border-blue-500 block w-full h-8 px-4 sm:text-sm border-gray-300 rounded-md" onchange="setState({objective: this.value})">
+                                        <option value="L1-regularized Quantile Regression[fit_intercept=False,quantile=0.4,reg=0.5]">L1-regularized Quantile Regression[fit_intercept=False,quantile=0.4,reg=0.5]</option>
+                                        <option value="L1-regularized Quantile Regression[fit_intercept=False,quantile=0.8,reg=0.5]">L1-regularized Quantile Regression[fit_intercept=False,quantile=0.8,reg=0.5]</option>
+                                        <option value="L1-regularized Quantile Regression[fit_intercept=False,quantile=0.4,reg=0.1]">L1-regularized Quantile Regression[fit_intercept=False,quantile=0.4,reg=0.1]</option>
+                                        <option value="L1-regularized Quantile Regression[fit_intercept=False,quantile=0.8,reg=0.1]">L1-regularized Quantile Regression[fit_intercept=False,quantile=0.8,reg=0.1]</option>
+                                        <option value="L1-regularized Quantile Regression[fit_intercept=False,quantile=0.4,reg=0.05]">L1-regularized Quantile Regression[fit_intercept=False,quantile=0.4,reg=0.05]</option>
+                                        <option value="L1-regularized Quantile Regression[fit_intercept=False,quantile=0.8,reg=0.05]">L1-regularized Quantile Regression[fit_intercept=False,quantile=0.8,reg=0.05]</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="px-8">
+                                <label for="objective_column" class="block text-sm font-medium text-white">Objective column</label>
+                                <div class="mt-1 rounded-md shadow-sm">
+                                    <select id="objective_column" class="focus:ring-blue-500 focus:border-blue-500 block w-full h-8 px-4 sm:text-sm border-gray-300 rounded-md" onchange="setState({objective_column: this.value})">
+                                        <option value="objective_value">objective_value</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="px-8">
+                                <label for="plot_kind" class="block text-sm font-medium text-white">Chart type</label>
+                                <div class="mt-1 rounded-md shadow-sm">
+                                    <select id="plot_kind" class="focus:ring-blue-500 focus:border-blue-500 block w-full h-8 px-4 sm:text-sm border-gray-300 rounded-md" onchange="setState({plot_kind: this.value})">
+                                        <option value="objective_curve">objective_curve</option>
+                                        <option value="suboptimality_curve">suboptimality_curve</option>
+                                        <option value="relative_suboptimality_curve">relative_suboptimality_curve</option>
+                                        <option value="bar_chart">bar_chart</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div id="scale-form-group" class="px-8">
+                                <label for="change_scaling" class="block text-sm font-medium text-white">Scale</label>
+                                <div class="mt-1 rounded-md shadow-sm">
+                                    <select id="change_scaling" class="focus:ring-blue-500 focus:border-blue-500 block w-full h-8 px-4 sm:text-sm border-gray-300 rounded-md" onchange="setState({scale: this.value})">
+                                        <option value="semilog-y">semilog-y</option>
+                                        <option value="semilog-x">semilog-x</option>
+                                        <option value="loglog">loglog</option>
+                                        <option value="linear">linear</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="flex items-center justify-between mt-8 px-8">
+                                <div class="block text-sm font-medium text-white">Quantiles</div>
+                                <label class="block switch">
+                                    <input id="change_shades" type="checkbox" checked onchange="setState({with_quantiles: this.checked})">
+                                    <span class="slider round"></span>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                </nav>
+
+                <!-- Page heading -->
+                <div class="px-4 pt-4 pb-1 md:py-4 lg:flex lg:items-center lg:justify-between">
+                    <div class="flex-1 min-w-0">
+                        <h2 class="w-full text-center lg:text-left text-2xl font-bold leading-7 text-gray-900 sm:text-3xl sm:truncate">Result on quantile regression benchmark</h2>
+                        <div class="mt-1 flex flex-wrap justify-center lg:justify-start sm:mt-0">
+                            <div class="mt-2 sm:mr-6 hidden md:flex items-center text-sm text-gray-500">
+                                <span class="font-bold"></span>CPU : 20
+                            </div>
+                            <div class="mt-2 sm:mr-6 hidden md:flex items-center text-sm text-gray-500">
+                                <span class="font-bold"></span>RAM (GB) : 31
+                            </div>
+                            <div class="mt-2 sm:mr-6 hidden md:flex items-center text-sm text-gray-500">
+                                <span class="font-bold"></span>CUDA : NVIDIA T600 Laptop GPU: cuda_11.6
+                            </div>
+                            <div class="mt-2">
+                                <button class="inline-flex items-center px-2 py-1 space-x-2 border border-gray-500 rounded-md shadow-sm text-sm font-medium text-gray-500 bg-white hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-500" onclick="document.getElementById('system-modal').style.display = 'block'">
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                                        <path stroke-linecap="round" stroke-linejoin="round" d="M12 9v3m0 0v3m0-3h3m-3 0H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z" />
+                                    </svg>
+                                    <span class="hidden md:inline-block text-sm">Show more</span>
+                                    <span class="md:hidden text-sm">Show system information</span>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="hidden lg:flex mt-5 lg:mt-0 lg:ml-4">
+                        <span>
+                            <a href="benchopt_run_2022-12-08_13h36m59.parquet" class="inline-flex items-center px-4 py-2 space-x-2 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
+                                </svg>
+                                <span class="hidden lg:inline">Download data</span>
+                            </a>
+                        </span>
+                    </div>
+                </div>
+
+                <!-- Plot -->
+                <div id="unique_plot"></div>
+                <div id="legend_container" class="py-10 bg-slate-200">
+                    <div id="legend_title" class="px-10 mb-4">
+                        Solvers <span id="legend_help">(Click on a solver to hide it or double click to hide all the others)</span>
+                    </div>
+                    <div id="plot_legend" class="px-10 space-r-2"></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- System information modal -->
+        <div id="system-modal" class="hidden relative z-10" aria-labelledby="modal-title" role="dialog" aria-modal="true">
+            <div class="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity"></div>
+            <div class="fixed z-10 inset-0 overflow-y-auto">
+                <div class="flex items-end sm:items-center justify-center min-h-full p-4 text-center sm:p-0">
+                    <div class="relative bg-white rounded-lg text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:max-w-lg sm:w-full">
+                        <div class="bg-white px-4 pt-5 pb-4 sm:p-6 sm:pb-4">
+                            <div class="sm:flex sm:items-start">
+                                <div class="mx-auto flex-shrink-0 flex items-center justify-center h-12 w-12 rounded-full bg-blue-100 sm:mx-0 sm:h-10 sm:w-10">
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-blue-600" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                                        <path stroke-linecap="round" stroke-linejoin="round" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                                    </svg>
+                                </div>
+                                <div class="mt-3 text-center sm:mt-0 sm:ml-4 sm:text-left">
+                                    <h3 class="text-lg leading-6 font-medium text-gray-900" id="modal-title">System information</h3>
+                                    <div class="mt-2">
+                                        <ul class="text-sm text-gray-500">
+                                            <li> <b>CPU</b>: 20 </li>
+                                            <li> <b>RAM (GB)</b>: 31 </li>
+                                            <li> <b>CUDA</b>: NVIDIA T600 Laptop GPU: cuda_11.6 </li>
+                                            <li> <b>platform</b>: Linux5.14.0-1054-oem-x86_64 </li>
+                                            <li> <b>processor</b>: 12th Gen Intel(R) Core(TM) i7-12700H </li>
+                                            <li> <b>nb threads</b>: 1 </li>
+                                            
+                                            <li> <b>numpy</b>: 1.23.5  </li>
+                                            
+                                            <li> <b>scipy</b>: 1.9.3 </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="bg-gray-50 px-4 py-3 sm:px-6 sm:flex sm:flex-row-reverse">
+                            <button type="button" class="mt-3 w-full inline-flex justify-center rounded-md border border-gray-300 shadow-sm px-4 py-2 bg-white text-base font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 sm:mt-0 sm:ml-3 sm:w-auto sm:text-sm" onclick="document.getElementById('system-modal').style.display = 'none'">Close</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <script src="https://cdn.plot.ly/plotly-2.12.1.min.js"></script>
+        <!-- Used for the brand animation -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/2.0.2/anime.min.js"></script>
+        <!-- Define the brand animation -->
+        <script>
+            var textWrapper = document.querySelector('.ml11 .letters');
+            textWrapper.innerHTML = textWrapper.textContent.replace(/([^\x00-\x80]|\w)/g, "<span class='letter'>$&</span>");
+
+            window.addEventListener('load', () => {
+                document.getElementById('brand').style.display = 'inline';
+
+                anime.timeline({loop: false})
+                    .add({
+                        targets: '.ml11 .line',
+                        scaleY: [0,1],
+                        opacity: [0.5,1],
+                        easing: "easeOutExpo",
+                        duration: 700
+                    })
+                    .add({
+                        targets: '.ml11 .line',
+                        translateX: [0, document.querySelector('.ml11 .letters').getBoundingClientRect().width + 10],
+                        easing: "easeOutExpo",
+                        duration: 700,
+                        delay: 100
+                    }).add({
+                        targets: '.ml11 .letter',
+                        opacity: [0,1],
+                        easing: "easeOutExpo",
+                        duration: 600,
+                        offset: '-=775',
+                        delay: (el, i) => 34 * (i+1)
+                    }).add({
+                        targets: '.ml11 .line',
+                        scaleY: [1,0],
+                        opacity: [1,0.5],
+                        easing: "easeOutExpo",
+                        duration: 700,
+                        translateX: [document.querySelector('.ml11 .letters').getBoundingClientRect().width + 10, document.querySelector('.ml11 .letters').getBoundingClientRect().width + 10],
+                    });
+            });
+        </script>
+        <!-- Manage plot -->
+        <script>
+            window.data = {"MEG": {"L1-regularized Quantile Regression[fit_intercept=False,quantile=0.4,reg=0.5]": {"objective_value": {"solvers": {"PDCD-WS": {"scatter": {"x": [6.144899998616893e-05, 0.5024771739990683, 0.7658538409996254, 1.3401228520015138, 2.572865625999839, 4.481026978000955, 10.676383141999395, 29.16233432899935], "y": [0.1335172447959222, 0.1335172447959222, 0.1335172447959222, 0.13058238270191683, 0.12121731301580592, 0.12109484047223495, 0.12101174596167326, 0.12097335248181035], "q1": [4.386180116853211e-05, 0.3870350259996485, 0.5716210570004477, 1.2552210272013327, 2.3575089748010214, 4.2268055860000455, 7.5725889875997385, 27.20269383140003], "q9": [7.472820034308825e-05, 0.7572394371993141, 0.791402425000706, 1.3956999087997246, 3.1655636803996456, 6.869610381999882, 16.723690665199683, 37.39752582659894]}, "bar": {"y": 39.45632370099884, "times": NaN, "text": "Did not converge"}, "color": "rgba(31.0, 119.0, 180.0, 1.0)", "marker": 0}, "scipy-linprog[solver=simplex]": {"scatter": {"x": [19.58107974199993, 16.080138892999457, 13.265963529000146, 2.7994073730005766], "y": [0.12300927346369632, 0.12508432345695913, 0.1251091962086254, 0.1335172447959222], "q1": [18.12977051000089, 12.556924249799703, 12.656674949799344, 2.2920576050004455], "q9": [22.04115887160042, 16.212004857800274, 15.176367171399033, 3.3136575690004975]}, "bar": {"y": 39.45632370099884, "times": NaN, "text": "Did not converge"}, "color": "rgba(255.0, 127.0, 14.0, 1.0)", "marker": 1}, "scipy-linprog[solver=interior-point]": {"scatter": {"x": [9.572185060000265, 8.836167767998631, 8.017782277000151, 8.925101028000427, 7.581454301000122, 1.4958536849990196], "y": [0.12097615200813411, 0.12097615200813411, 0.12097615200813411, 0.1210222621770462, 0.1210222621770462, 0.1335172447959222], "q1": [9.572185060000265, 8.258850836800047, 7.798107285000515, 5.45821967920092, 5.734556501800034, 1.257698231399263], "q9": [9.572185060000265, 8.904944279200208, 9.058660528999827, 9.333404012000027, 8.861202481801229, 1.5427748529989913]}, "bar": {"y": 39.45632370099884, "times": NaN, "text": "Did not converge"}, "color": "rgba(44.0, 160.0, 44.0, 1.0)", "marker": 2}, "scipy-linprog[solver=revised simplex]": {"scatter": {"x": [3.4190433399999165, 2.9704954930002714, 3.2191363190013362, 3.0262862059989857, 3.0024641919990245, 2.6786167879999994, 2.3319828450003115, 1.729043442001057, 2.180006542999763, 2.2312807140006043, 2.218940635999388, 1.6518783909996273, 1.613540403001025], "y": [0.12097421373048056, 0.12097421373048056, 0.12100359554537297, 0.1210203267151496, 0.12108524218838916, 0.12108524218838916, 0.12207895267923569, 0.12208429356483731, 0.12300487241283473, 0.12300927346369633, 0.12508625535856174, 0.12969377101730004, 0.1335172447959222], "q1": [3.4190433399999165, 2.4823249873999886, 2.956369332601389, 2.4948662860002515, 2.6717057087989815, 1.9416523480005707, 1.9532979698000417, 1.7054335260010702, 2.0112316030004878, 2.090281935600069, 1.9190080336007669, 1.555330589399091, 1.4771456366001074], "q9": [3.4190433399999165, 3.3550501458001234, 4.024905269399824, 3.633440636398518, 3.4667614207988664, 2.9178441671992914, 2.7949360161997903, 2.82404972520053, 2.3012567805999424, 3.2764844804005406, 3.0229524015991047, 2.5493732422008177, 2.5589655478008355]}, "bar": {"y": 39.45632370099884, "times": NaN, "text": "Did not converge"}, "color": "rgba(214.0, 39.0, 40.0, 1.0)", "marker": 3}, "scipy-linprog[solver=highs]": {"scatter": {"x": [3.9512315430001763, 4.701013906998924, 3.814557900001091, 4.603506874000232, 3.722442966000017, 3.1955795400008356, 3.37964160500087], "y": [0.12096707961655184, 0.12096707961655184, 0.12096707961655181, 0.12096707961655187, 0.1209670882103069, 0.1209670882103069, 0.1335172447959222], "q1": [3.0988764574001832, 4.212865812599557, 3.5076258791996224, 4.564078782801152, 2.8266577795995547, 2.9333963432003656, 2.596600037799726], "q9": [4.620592374999978, 5.654318812600468, 4.5752504896001485, 5.037689085999955, 4.529501399600486, 4.1665733767997155, 3.6479053986007783]}, "bar": {"y": 3.9512315430001763, "times": [4.787932582999929, 3.9512315430001763, 2.885787686000185], "text": ""}, "color": "rgba(148.0, 103.0, 189.0, 1.0)", "marker": 4}, "scipy-linprog[solver=highs-ipm]": {"scatter": {"x": [14.626221168499796, 14.849036748000799, 14.715536609999617], "y": [0.12096707961655181, 0.12096707961655181, 0.12096707961655181], "q1": [13.51243085769911, 14.042227132801054, 12.658213512399016], "q9": [15.740011479300483, 15.745300616000169, 20.784412689200327]}, "bar": {"y": 14.626221168499796, "times": [16.018459057000655, 13.233983279998938], "text": ""}, "color": "rgba(140.0, 86.0, 75.0, 1.0)", "marker": 5}, "scipy-linprog[solver=highs-ds]": {"scatter": {"x": [4.51631644400004, 4.530536127000232, 4.433857087999058, 4.623790446001294, 4.941216854998856, 5.727926379000564, 3.899557378999816], "y": [0.12096707961655184, 0.12096707961655184, 0.12096707961655181, 0.12096707961655187, 0.1209670882103069, 0.1209670882103069, 0.1335172447959222], "q1": [3.233530695999434, 4.141632755799219, 4.209038534399587, 4.438707179599805, 4.422562870200272, 4.93939063259968, 3.058561241399366], "q9": [4.866587783999785, 4.638439577400277, 5.041893125599017, 4.646417121999912, 5.325986151000325, 7.015881215799164, 4.241297052599475]}, "bar": {"y": 4.51631644400004, "times": [4.954155618999721, 2.9128342589992826, 4.51631644400004], "text": ""}, "color": "rgba(227.0, 119.0, 194.0, 1.0)", "marker": 6}}, "transformers": {"c_star": 0.12096707951655182, "max_f_0": 0.1335172447959222}}}, "L1-regularized Quantile Regression[fit_intercept=False,quantile=0.8,reg=0.5]": {"objective_value": {"solvers": {"PDCD-WS": {"scatter": {"x": [8.083400098257698e-05, 0.4505679190006049, 0.7185974889998761, 0.8677015129997017, 1.3720374949989491, 3.495616844998949, 7.401568441000563, 13.270181477999358, 19.441474657998697], "y": [0.1273112226227992, 0.1273112226227992, 0.11321371106755794, 0.1141834486772153, 0.11518814476638088, 0.1106609764019528, 0.10960446725366726, 0.10955903437003231, 0.10949923887457184], "q1": [3.694359984365292e-05, 0.43215122780020465, 0.6966585177997331, 0.8581922370005486, 0.9660347198005184, 3.3943512914000165, 6.239571631399303, 9.6802561460001, 17.61413572999991], "q9": [8.101960047497414e-05, 0.5041354038003192, 0.7452553409992106, 1.0111681202000908, 1.4843799462003517, 3.87282233380065, 7.4298911713987765, 14.453643029200247, 23.684334129999844]}, "bar": {"y": 26.30605444399953, "times": NaN, "text": "Did not converge"}, "color": "rgba(31.0, 119.0, 180.0, 1.0)", "marker": 0}, "scipy-linprog[solver=simplex]": {"scatter": {"x": [18.186411829001372, 16.517571248999957, 3.224481060000471], "y": [0.11472466566465779, 0.11867548221418434, 0.1273112226227992], "q1": [17.59581101620097, 16.175837792199673, 3.0103350351997507], "q9": [19.043603722600892, 18.54193036739998, 3.341541519199018]}, "bar": {"y": 26.30605444399953, "times": NaN, "text": "Did not converge"}, "color": "rgba(255.0, 127.0, 14.0, 1.0)", "marker": 1}, "scipy-linprog[solver=interior-point]": {"scatter": {"x": [5.974252177999006, 7.927943241000321, 5.67313807499886, 5.888174412999433, 6.180903447000674, 6.674967331000516, 1.6835002909992909], "y": [0.1094734977821177, 0.1094734977821177, 0.10948993255274217, 0.10951175003685773, 0.10951175003685773, 0.10951175003685773, 0.1273112226227992], "q1": [5.974252177999006, 6.034317965000082, 5.269485287000134, 5.458879743400393, 5.698857290200612, 6.412042059799569, 1.5059050958003355], "q9": [5.974252177999006, 9.82156851700056, 8.950400006199198, 8.063922337000623, 7.8429312022013615, 6.709604956598923, 1.7616220462001366]}, "bar": {"y": 26.30605444399953, "times": NaN, "text": "Did not converge"}, "color": "rgba(44.0, 160.0, 44.0, 1.0)", "marker": 2}, "scipy-linprog[solver=revised simplex]": {"scatter": {"x": [5.560285723999186, 4.750811001000329, 5.260096470999997, 4.48097216899987, 4.049683354000081, 3.0114943609987677, 2.2064046329996927, 2.2941291770002863, 1.6018473990006896, 1.345326473001478], "y": [0.1094750949969343, 0.1094851139312252, 0.1094969367389438, 0.1097453322914939, 0.10986815572992653, 0.11129360977061416, 0.11176266965586207, 0.11419087863604473, 0.1273112226227992, 0.1273112226227992], "q1": [5.278056471999662, 4.664449983399754, 3.61207180939964, 4.203415664999193, 3.7182862579993525, 2.525164992200007, 1.7096568850003677, 1.8958896610005467, 1.5469115021995095, 1.2399339602001418], "q9": [5.851485086400862, 4.933679445000235, 5.261030194199702, 4.622075278600823, 4.066405733998908, 3.554887312200299, 2.346728032199098, 2.681107568999141, 1.8895260158002203, 1.5528544377993967]}, "bar": {"y": 26.30605444399953, "times": NaN, "text": "Did not converge"}, "color": "rgba(214.0, 39.0, 40.0, 1.0)", "marker": 3}, "scipy-linprog[solver=highs]": {"scatter": {"x": [4.797704321999845, 5.2754134139995585, 4.455422782000824, 4.952670783999565, 3.8131577990006917, 3.6695125750011357], "y": [0.10947202278848908, 0.1094720227884895, 0.10947202278848889, 0.10947202278848842, 0.1094744441428093, 0.1273112226227992], "q1": [3.6568296667999673, 3.5069911059999868, 4.072869445999823, 3.107553674400333, 2.9162592413998936, 3.57786873100049], "q9": [5.069863787600116, 5.480560302798767, 4.8020112195990805, 5.1406724895994556, 3.9780833174012513, 3.8568594686010327]}, "bar": {"y": 4.797704321999845, "times": [5.1379036540001835, 4.797704321999845, 3.371611002999998], "text": ""}, "color": "rgba(148.0, 103.0, 189.0, 1.0)", "marker": 4}, "scipy-linprog[solver=highs-ipm]": {"scatter": {"x": [20.97817404200032, 19.689386783000373], "y": [0.1094719011360912, 0.1094719011360912], "q1": [18.863562820400695, 18.856344415800415], "q9": [25.240478363599685, 20.11212067180022]}, "bar": {"y": 20.97817404200032, "times": [20.97817404200032, 18.334910015000787, 26.30605444399953], "text": ""}, "color": "rgba(140.0, 86.0, 75.0, 1.0)", "marker": 5}, "scipy-linprog[solver=highs-ds]": {"scatter": {"x": [5.09323522700106, 5.093809686999521, 5.197918137999295, 5.029999754999153, 4.826095018999695, 4.023673894998865], "y": [0.10947202278848908, 0.1094720227884895, 0.10947202278848889, 0.10947202278848842, 0.1094744441428093, 0.1273112226227992], "q1": [4.463477272601085, 4.828972752600021, 5.0950953603995, 4.645229473399377, 4.4229479557991, 3.963097730199297], "q9": [5.630690697399769, 5.898076465399572, 6.16778593559975, 5.414123526999174, 5.035880494999219, 4.047916623799028]}, "bar": {"y": 5.09323522700106, "times": [5.09323522700106, 5.765054564999446, 4.3060377840010915], "text": ""}, "color": "rgba(227.0, 119.0, 194.0, 1.0)", "marker": 6}}, "transformers": {"c_star": 0.10947190103609121, "max_f_0": 0.1273112226227992}}}, "L1-regularized Quantile Regression[fit_intercept=False,quantile=0.4,reg=0.1]": {"objective_value": {"solvers": {"PDCD-WS": {"scatter": {"x": [6.704199950036127e-05, 0.5566696459991363, 0.7343151439999929, 0.8626324770011706, 1.0724324179991527, 1.2596766100014065, 2.0380906840000534, 3.6944565909998346, 6.186888206000731, 8.507911303999208, 17.955941698999595], "y": [0.1335172447959222, 0.128823075297067, 0.10340806852718007, 0.09590140450517651, 0.08841524140982167, 0.0895885112227235, 0.07910735127496618, 0.07749484182330026, 0.07718565126053374, 0.07689074572216938, 0.07682594943160245], "q1": [4.1570800021872856e-05, 0.48964077399978123, 0.6618601543988916, 0.8320624721993226, 1.012759639599608, 1.2219072115996823, 1.9030598600002122, 3.677767649398811, 6.135096423600044, 8.145048455198776, 15.917775849401005], "q9": [6.940999919606839e-05, 0.5918437907992484, 0.7416417879998335, 0.9312113913998473, 1.3191037323998898, 1.3299411316005716, 2.096143175200268, 3.8297699045997433, 7.6917063884000525, 10.672124466399328, 24.513658339800532]}, "bar": {"y": 35.694505785999354, "times": NaN, "text": "Did not converge"}, "color": "rgba(31.0, 119.0, 180.0, 1.0)", "marker": 0}, "scipy-linprog[solver=simplex]": {"scatter": {"x": [32.8426661170015, 21.993632955000066, 3.424263996001173], "y": [0.08620256385098317, 0.08787523250868376, 0.1335172447959222], "q1": [29.17872619060072, 18.35932319499916, 2.034100902401042], "q9": [35.12413785219978, 27.30062128299978, 3.778915947200221]}, "bar": {"y": 35.694505785999354, "times": NaN, "text": "Did not converge"}, "color": "rgba(255.0, 127.0, 14.0, 1.0)", "marker": 1}, "scipy-linprog[solver=interior-point]": {"scatter": {"x": [8.783323105000818, 10.414134605000072, 9.57956989899867, 6.369734592000896, 0.9277275960012048], "y": [0.07679440509583797, 0.07679440509583797, 0.07684489223396868, 0.07688307861487104, 0.1335172447959222], "q1": [8.406258348999472, 8.314431372200124, 8.75805630619907, 6.258390195999527, 0.9007535488002759], "q9": [9.30827928500039, 11.936225655400994, 9.796844594199865, 8.127991398400628, 1.4280662160010253]}, "bar": {"y": 35.694505785999354, "times": NaN, "text": "Did not converge"}, "color": "rgba(44.0, 160.0, 44.0, 1.0)", "marker": 2}, "scipy-linprog[solver=revised simplex]": {"scatter": {"x": [10.04548996199992, 9.492051160999836, 7.247169708000001, 3.8251199159985845, 4.598854791000122, 3.2955616480012395, 1.413540497998838], "y": [0.07907842180313737, 0.07989948457019055, 0.08084059568312532, 0.08400334650271075, 0.08620256385098315, 0.08787523250868376, 0.1335172447959222], "q1": [8.249890538800901, 8.906260339399887, 6.733830895998835, 3.260341138399599, 3.760940799000309, 2.531883420000304, 1.1709515059996192], "q9": [12.669691885199791, 9.6579141281989, 7.480383705600252, 5.6602055375999045, 4.845807781400436, 4.199844375199973, 1.4885366755992435]}, "bar": {"y": 35.694505785999354, "times": NaN, "text": "Did not converge"}, "color": "rgba(214.0, 39.0, 40.0, 1.0)", "marker": 3}, "scipy-linprog[solver=highs]": {"scatter": {"x": [12.309254628999042, 13.401317490999645, 17.245626972999162, 4.415668932000699], "y": [0.07674140131411265, 0.07674140131412074, 0.07674140131411185, 0.1335172447959222], "q1": [12.309254628999042, 12.945771117400728, 12.072660494599404, 3.0534156879992222], "q9": [12.309254628999042, 15.077544347000366, 17.451828029800527, 4.423701619201165]}, "bar": {"y": 12.309254628999042, "times": [12.309254628999042], "text": ""}, "color": "rgba(148.0, 103.0, 189.0, 1.0)", "marker": 4}, "scipy-linprog[solver=highs-ipm]": {"scatter": {"x": [28.387771511500432, 24.256301454001004], "y": [0.07674140131411174, 0.07674140131411174], "q1": [26.930364796700996, 23.224018946801152], "q9": [29.84517822629987, 31.555179747600413]}, "bar": {"y": 28.387771511500432, "times": [26.566013118001138, 30.209529904999727], "text": ""}, "color": "rgba(140.0, 86.0, 75.0, 1.0)", "marker": 5}, "scipy-linprog[solver=highs-ds]": {"scatter": {"x": [14.89559160599947, 13.013284783999552, 12.249826236000445, 3.602092442999492], "y": [0.07674140131411265, 0.07674140131412074, 0.07674140131411185, 0.1335172447959222], "q1": [14.135071534800044, 10.527341003999755, 12.24647441199886, 3.4790107933997207], "q9": [15.656111677198897, 15.690271100799146, 16.816370723199725, 3.8738692470000387]}, "bar": {"y": 14.89559160599947, "times": [15.846241694998753, 13.944941517000188], "text": ""}, "color": "rgba(227.0, 119.0, 194.0, 1.0)", "marker": 6}}, "transformers": {"c_star": 0.07674140121411174, "max_f_0": 0.128823075297067}}}, "L1-regularized Quantile Regression[fit_intercept=False,quantile=0.8,reg=0.1]": {"objective_value": {"solvers": {"PDCD-WS": {"scatter": {"x": [8.191899905796163e-05, 0.5487007609990542, 0.6935175519993209, 0.8309335920002923, 1.0896119959998032, 0.6998839209991274, 1.4851852009996946, 3.210757503999048, 5.241050084998278, 9.85748187200079, 16.42163863099995], "y": [0.1273112226227992, 0.11885009430567699, 0.10198626711043952, 0.09298229391577226, 0.088584222679542, 0.08223408607450881, 0.0771288099590912, 0.07125821229253129, 0.06868211536554261, 0.06802226093070428, 0.06783354600067458], "q1": [5.170059957890771e-05, 0.5080413674004376, 0.6672566015990015, 0.7759681008003099, 1.0085646735995397, 0.6796629322008811, 1.0553371777998108, 1.917520655199769, 3.7057871081990017, 8.837886491999962, 12.489708398999937], "q9": [8.401419981964863e-05, 0.5582352818004438, 0.804052734400102, 0.8571387343999959, 1.2025948399994377, 0.9621945626000525, 1.8055998306001129, 3.425406775198644, 6.264738628999476, 10.977379956800723, 21.786489324599096]}, "bar": {"y": 48.92822389600042, "times": NaN, "text": "Did not converge"}, "color": "rgba(31.0, 119.0, 180.0, 1.0)", "marker": 0}, "scipy-linprog[solver=simplex]": {"scatter": {"x": [48.505201549998674, 20.53391184999964, 3.2518711920001806], "y": [0.07731667508289504, 0.09063789595281814, 0.1273112226227992], "q1": [46.696548527600314, 19.532156235599906, 3.242771079999875], "q9": [48.84361942680007, 22.95044148999914, 3.374703707998924]}, "bar": {"y": 48.92822389600042, "times": NaN, "text": "Did not converge"}, "color": "rgba(255.0, 127.0, 14.0, 1.0)", "marker": 1}, "scipy-linprog[solver=interior-point]": {"scatter": {"x": [7.345417948000431, 7.228530893000425, 8.35692644700066, 5.970757529999901, 7.969695044999753, 1.7853446209992399], "y": [0.06776949923352887, 0.06779661295973444, 0.0678103998933532, 0.06786916846757945, 0.06791144679448277, 0.1273112226227992], "q1": [6.683057434400871, 6.439391240999976, 6.007478858999457, 5.608252907600035, 7.680592504198648, 1.6640386617989862], "q9": [8.007778461599992, 11.092521359398962, 10.35895022539953, 6.890032509199591, 8.642004521800482, 1.906468335399404]}, "bar": {"y": 48.92822389600042, "times": NaN, "text": "Did not converge"}, "color": "rgba(44.0, 160.0, 44.0, 1.0)", "marker": 2}, "scipy-linprog[solver=revised simplex]": {"scatter": {"x": [11.30239166499996, 6.9143839690004825, 6.590386550000403, 4.901450856001247, 3.1848942579999857, 1.6864156510000612], "y": [0.07107172631128914, 0.07236239589539217, 0.07385523377885493, 0.07702299088063541, 0.0879035829020928, 0.1273112226227992], "q1": [11.091411604200038, 5.387092561800091, 5.229336977200001, 4.147060733600301, 2.835151123599644, 1.0238867989992286], "q9": [12.580461794599614, 8.935569385001145, 6.671588375599822, 5.034552335999979, 3.4600378259994615, 2.0608670141988115]}, "bar": {"y": 48.92822389600042, "times": NaN, "text": "Did not converge"}, "color": "rgba(214.0, 39.0, 40.0, 1.0)", "marker": 3}, "scipy-linprog[solver=highs]": {"scatter": {"x": [11.48369140000068, 10.70090014699963, 10.31852286100002, 14.229843922001237, 2.718972542999836], "y": [0.0677309327075718, 0.0677309327070648, 0.06773093270709732, 0.06773093270706468, 0.1273112226227992], "q1": [11.48369140000068, 10.357486921400413, 8.308624439400955, 11.1759980068, 2.66724032380007], "q9": [11.48369140000068, 11.2885039574001, 11.78176092340109, 16.896258280401163, 3.114752693400078]}, "bar": {"y": 11.48369140000068, "times": [11.48369140000068], "text": ""}, "color": "rgba(148.0, 103.0, 189.0, 1.0)", "marker": 4}, "scipy-linprog[solver=highs-ipm]": {"scatter": {"x": [25.329445556999417, 27.167211644999043], "y": [0.06773093270706473, 0.06773093270706473], "q1": [21.106442002598488, 26.767920808999044], "q9": [28.099311611399752, 30.3862538226007]}, "bar": {"y": 25.329445556999417, "times": [20.050691113998255, 28.791778124999837, 25.329445556999417], "text": ""}, "color": "rgba(140.0, 86.0, 75.0, 1.0)", "marker": 5}, "scipy-linprog[solver=highs-ds]": {"scatter": {"x": [11.065765648998422, 9.258684285999152, 11.803396397999677, 12.58644453099987, 3.938628926000092], "y": [0.0677309327075718, 0.0677309327070648, 0.06773093270709732, 0.06773093270706468, 0.1273112226227992], "q1": [11.065765648998422, 7.691712533998907, 8.381867788399177, 10.330939534999198, 2.6808339740004157], "q9": [11.065765648998422, 10.825656037999398, 12.40721629320069, 18.548568826199336, 3.9594685315998506]}, "bar": {"y": 11.065765648998422, "times": [11.065765648998422], "text": ""}, "color": "rgba(227.0, 119.0, 194.0, 1.0)", "marker": 6}}, "transformers": {"c_star": 0.06773093260706468, "max_f_0": 0.11885009430567699}}}, "L1-regularized Quantile Regression[fit_intercept=False,quantile=0.4,reg=0.05]": {"objective_value": {"solvers": {"PDCD-WS": {"scatter": {"x": [7.625199941685423e-05, 0.5410223359995143, 0.739366052999685, 0.8580838739999308, 0.9686933339999086, 1.1181370270005573, 2.029794189000313, 3.1205602459995134, 4.970766949998506, 13.717842904999998, 28.376078502000382], "y": [0.1335172447959222, 0.12864303839428137, 0.10300209643668574, 0.09403886324967994, 0.0883320588976706, 0.0839005094888479, 0.06961053691937644, 0.06823748561229569, 0.06726970475151767, 0.0664349213739899, 0.06624102014826942], "q1": [4.2063998989760876e-05, 0.5284979623986146, 0.68548985140078, 0.554084413199962, 0.7915072220002912, 0.8467566221999732, 1.420987940199484, 2.273796405999019, 4.932141609200334, 11.274504674599303, 20.688109457999598], "q9": [9.621360077289864e-05, 0.6512378551993606, 0.7742287201996078, 0.928857753199918, 1.0053352988008555, 1.2044928038001672, 2.268814685000325, 3.5453617211991513, 7.117105119599728, 14.897420531399984, 29.939611483599947]}, "bar": {"y": 39.18749089800076, "times": NaN, "text": "Did not converge"}, "color": "rgba(31.0, 119.0, 180.0, 1.0)", "marker": 0}, "scipy-linprog[solver=simplex]": {"scatter": {"x": [34.56341764700119, 24.950088130999575, 3.372575551000409], "y": [0.07982105078009474, 0.08305467201537911, 0.1335172447959222], "q1": [28.359729701399193, 24.92846334060123, 3.256194890199913], "q9": [38.26267624780085, 26.27530169180063, 3.795585399800257]}, "bar": {"y": 39.18749089800076, "times": NaN, "text": "Did not converge"}, "color": "rgba(255.0, 127.0, 14.0, 1.0)", "marker": 1}, "scipy-linprog[solver=interior-point]": {"scatter": {"x": [10.021475849998751, 9.63449165900056, 6.258307235999382, 10.081864669000424, 10.005229297999904, 0.8800220709999849], "y": [0.06620314717594007, 0.06622604670639753, 0.06626296588469893, 0.06632740430920994, 0.0664462026395852, 0.1335172447959222], "q1": [10.021475849998751, 6.810990709399266, 5.754870122399007, 6.834762824201244, 6.329274755600636, 0.85523273660001], "q9": [10.021475849998751, 9.91402543020049, 7.888205709599424, 11.706897940999989, 10.171050027599994, 1.3728882853996764]}, "bar": {"y": 39.18749089800076, "times": NaN, "text": "Did not converge"}, "color": "rgba(44.0, 160.0, 44.0, 1.0)", "marker": 2}, "scipy-linprog[solver=revised simplex]": {"scatter": {"x": [8.515841001000808, 10.655189020999387, 6.113681075999921, 5.407649590000801, 4.273244602998602, 1.8464211850005086], "y": [0.07099921393480764, 0.07170875392803833, 0.07456772106034423, 0.07982105078009474, 0.08305467201537912, 0.1335172447959222], "q1": [8.304748374599876, 7.978127407399734, 5.620877152799221, 5.27542580760055, 2.523867370199878, 1.2985059482001815], "q9": [12.54870606340046, 12.035277582600974, 8.066781187200103, 5.666225649999978, 4.655917613400379, 1.924883982600295]}, "bar": {"y": 39.18749089800076, "times": NaN, "text": "Did not converge"}, "color": "rgba(214.0, 39.0, 40.0, 1.0)", "marker": 3}, "scipy-linprog[solver=highs]": {"scatter": {"x": [12.764023069999894, 19.236119246999806, 14.462055796999266, 4.569681938999565], "y": [0.06615165506056485, 0.0661516550035344, 0.06615569728870596, 0.1335172447959222], "q1": [12.764023069999894, 14.005541398999412, 11.725971376999587, 4.099950255799922], "q9": [12.764023069999894, 22.103675071799444, 18.56231519059984, 4.684144660600578]}, "bar": {"y": 12.764023069999894, "times": [12.764023069999894], "text": ""}, "color": "rgba(148.0, 103.0, 189.0, 1.0)", "marker": 4}, "scipy-linprog[solver=highs-ipm]": {"scatter": {"x": [28.57606754850076, 29.888092035998852], "y": [0.06615165078015912, 0.06615165078015912], "q1": [28.425335280101173, 27.841199212001083], "q9": [28.726799816900346, 35.62121949679931]}, "bar": {"y": 28.57606754850076, "times": [28.764482884000245, 28.387652213001275], "text": ""}, "color": "rgba(140.0, 86.0, 75.0, 1.0)", "marker": 5}, "scipy-linprog[solver=highs-ds]": {"scatter": {"x": [9.974243949000083, 11.599217379000038, 11.537508562998482, 2.6230343539991736], "y": [0.06615165506056485, 0.0661516550035344, 0.06615569728870596, 0.1335172447959222], "q1": [9.242908747401088, 10.712963444599882, 10.26688753019953, 2.6171423667994533], "q9": [12.887984876199335, 13.141668119000679, 12.990137606199642, 3.8304758148002294]}, "bar": {"y": 9.974243949000083, "times": [9.974243949000083, 9.06007494700134, 13.616420107999147], "text": ""}, "color": "rgba(227.0, 119.0, 194.0, 1.0)", "marker": 6}}, "transformers": {"c_star": 0.06615165068015913, "max_f_0": 0.12864303839428137}}}, "L1-regularized Quantile Regression[fit_intercept=False,quantile=0.8,reg=0.05]": {"objective_value": {"solvers": {"PDCD-WS": {"scatter": {"x": [7.185200047388207e-05, 0.5609388970005966, 0.6594560770008684, 0.6627164630008338, 0.8685558170000149, 1.2512157059991296, 1.3200187940001342, 1.7398865260001912, 3.6618803339988517, 11.464229915998658, 30.42313045500123], "y": [0.1273112226227992, 0.12687492490749733, 0.0929378371415705, 0.08689421179092531, 0.07896511778828003, 0.07073540502250081, 0.06258699303880357, 0.06081935297943971, 0.05806824857923423, 0.05731868309910981, 0.0571568230313705], "q1": [4.950800030201208e-05, 0.549986258600984, 0.6560735713992472, 0.47240778299965314, 0.5335380682001414, 1.099312857199766, 1.2575089019996084, 1.6673196395997365, 3.636469765200309, 8.64057401200007, 17.966204520599423], "q9": [7.228960130305495e-05, 0.5716607793998264, 0.8300243858011527, 0.7794386861998646, 0.9541254810006649, 1.2744465940009833, 1.637773949998882, 2.8983776147993923, 4.606507686799887, 15.301263608799854, 34.43126461819993]}, "bar": {"y": 63.50654943700101, "times": NaN, "text": "Did not converge"}, "color": "rgba(31.0, 119.0, 180.0, 1.0)", "marker": 0}, "scipy-linprog[solver=simplex]": {"scatter": {"x": [56.717967580500954, 27.926755731999947, 1.8815615479998087], "y": [0.06870892853117598, 0.08081330273259875, 0.1273112226227992], "q1": [51.28710209530091, 23.437860489600645, 1.7289242047994775], "q9": [62.148833065701, 30.443539636000423, 3.011711323200507]}, "bar": {"y": 63.50654943700101, "times": NaN, "text": "Did not converge"}, "color": "rgba(255.0, 127.0, 14.0, 1.0)", "marker": 1}, "scipy-linprog[solver=interior-point]": {"scatter": {"x": [8.248635992000345, 8.371320915999604, 8.50174122899989, 8.09700237099969, 1.6214458929989632], "y": [0.05717278324203916, 0.05723652976715361, 0.057287239220955695, 0.05739035568602498, 0.1273112226227992], "q1": [7.084307900800195, 6.1060367743997634, 8.34787022419987, 7.966266775799886, 1.4334993090003991], "q9": [9.872424029599642, 8.772214387999338, 9.70909305539899, 8.13700116379987, 1.8537668242006475]}, "bar": {"y": 63.50654943700101, "times": NaN, "text": "Did not converge"}, "color": "rgba(44.0, 160.0, 44.0, 1.0)", "marker": 2}, "scipy-linprog[solver=revised simplex]": {"scatter": {"x": [12.700327372000174, 8.39981280199936, 7.046260351000456, 5.580136391999986, 3.197048261999953, 1.7671210420012358], "y": [0.06109207887131174, 0.06391128557492913, 0.06843241545871767, 0.07182066903300029, 0.0836169818963418, 0.1273112226227992], "q1": [10.733552362399497, 8.030322377999983, 5.21931306780134, 5.254232206400047, 3.154715997200037, 1.6834695892001037], "q9": [19.5088695239996, 9.499742637199962, 7.198666166999828, 7.177637343999959, 3.689131833999636, 1.8059424923994811]}, "bar": {"y": 63.50654943700101, "times": NaN, "text": "Did not converge"}, "color": "rgba(214.0, 39.0, 40.0, 1.0)", "marker": 3}, "scipy-linprog[solver=highs]": {"scatter": {"x": [11.600611379000838, 12.836453644000358, 10.793619891999697, 3.674948558000324], "y": [0.057066946429518435, 0.057066950039191676, 0.057069110689318955, 0.1273112226227992], "q1": [8.570576598200205, 11.765546711199931, 9.622716180799761, 2.459573969199846], "q9": [12.178040823000265, 13.038751511200463, 12.928858426399529, 4.063285475599696]}, "bar": {"y": 11.600611379000838, "times": [12.322398184000122, 11.600611379000838, 7.8130679030000465], "text": ""}, "color": "rgba(148.0, 103.0, 189.0, 1.0)", "marker": 4}, "scipy-linprog[solver=highs-ipm]": {"scatter": {"x": [25.852341513000283, 30.645633725000152], "y": [0.05706694642951918, 0.05706694642951918], "q1": [21.96151042659985, 23.812054764999267], "q9": [25.94246930419977, 31.06945883139888]}, "bar": {"y": 25.852341513000283, "times": [25.965001251999638, 20.988802654999745, 25.852341513000283], "text": ""}, "color": "rgba(140.0, 86.0, 75.0, 1.0)", "marker": 5}, "scipy-linprog[solver=highs-ds]": {"scatter": {"x": [12.305642500000431, 12.23595975399985, 13.861911345999033, 3.795233246000862], "y": [0.057066946429518435, 0.057066950039191676, 0.057069110689318955, 0.1273112226227992], "q1": [12.021122815200396, 10.338961405199735, 9.810312712398808, 3.6829880596000293], "q9": [12.590162184800466, 16.350996209199728, 14.016097440399971, 4.209088509200228]}, "bar": {"y": 12.305642500000431, "times": [11.949992894000388, 12.661292106000474], "text": ""}, "color": "rgba(227.0, 119.0, 194.0, 1.0)", "marker": 6}}, "transformers": {"c_star": 0.057066946329518434, "max_f_0": 0.12687492490749733}}}}, "Simulated[n_features=900,n_samples=1000]": {"L1-regularized Quantile Regression[fit_intercept=False,quantile=0.4,reg=0.5]": {"objective_value": {"solvers": {"PDCD-WS": {"scatter": {"x": [5.3192001360002905e-05, 0.5641134260004037, 0.6943501030000334, 0.8516817030013044, 0.8722837259992957, 0.8656024449992401, 2.188211443999535, 3.682519470999978, 7.1222335120000935, 17.818546898999557, 28.75386881200029], "y": [5.621233958993027, 5.535436825861947, 5.491758016541036, 5.477554296385944, 5.444347664828408, 5.433743571361453, 5.450527602090167, 5.43251122474371, 5.430705526368198, 5.430526384333001, 5.430513279731423], "q1": [3.451039956416935e-05, 0.41063905320042976, 0.6844299870012037, 0.7191519526004413, 0.8703484604004188, 0.8345739913995203, 1.8422836759997154, 2.9041638285991214, 5.424747671999649, 13.033365982999749, 28.75386881200029], "q9": [5.572719965130091e-05, 0.584101786800602, 0.6958641557990631, 1.1400826398003119, 1.202237645200512, 1.947572480201052, 2.7283091920002334, 3.9839820237997627, 8.148466230399936, 22.644847181400472, 28.75386881200029]}, "bar": {"y": 51.666664944999866, "times": NaN, "text": "Did not converge"}, "color": "rgba(31.0, 119.0, 180.0, 1.0)", "marker": 0}, "scipy-linprog[solver=simplex]": {"scatter": {"x": [27.950344814000346, 17.36044679549923, 26.603171456999917, 3.001464479999413], "y": [9.365074168743893, 9.365074168743893, 9.365074168743893, 5.621233958993027], "q1": [27.950344814000346, 14.555025639899759, 18.278250864200892, 1.9869835367986526], "q9": [27.950344814000346, 20.165867951098697, 30.51145214820026, 3.6044548263998877]}, "bar": {"y": 51.666664944999866, "times": NaN, "text": "Did not converge"}, "color": "rgba(255.0, 127.0, 14.0, 1.0)", "marker": 1}, "scipy-linprog[solver=interior-point]": {"scatter": {"x": [9.89857627299898, 7.1270173289995, 9.271744825000496, 9.2874837499985, 1.8566453299990826], "y": [5.447060406919233, 5.461966896618561, 5.486376505239727, 5.515268330227297, 5.621233958993027], "q1": [7.910669066599439, 7.100633611399826, 9.116859173800185, 6.987657703598961, 1.1577823851996072], "q9": [13.449983961799807, 9.002038623400585, 9.865608260199224, 9.778368524399411, 2.1082091779997425]}, "bar": {"y": 51.666664944999866, "times": NaN, "text": "Did not converge"}, "color": "rgba(44.0, 160.0, 44.0, 1.0)", "marker": 2}, "scipy-linprog[solver=revised simplex]": {"scatter": {"x": [44.3440027329998, 3.3782038150002336], "y": [5.431046536907519, 5.621233958993027], "q1": [41.05946935459942, 2.5196785005999116], "q9": [50.20213250259985, 4.517945782999959]}, "bar": {"y": 51.666664944999866, "times": NaN, "text": "Did not converge"}, "color": "rgba(214.0, 39.0, 40.0, 1.0)", "marker": 3}, "scipy-linprog[solver=highs]": {"scatter": {"x": [1.6590570239986846, 1.6905271429986897, 1.797999720000007, 1.6935365879999154, 1.115150163999715], "y": [5.430497021651272, 5.430497021651272, 5.430497021651272, 5.430497021651246, 5.621233958993027], "q1": [1.231819113599704, 1.3418529109996598, 1.7890537248003966, 1.6111992184003612, 1.0222499943996808], "q9": [1.8378864736001561, 1.815735498199865, 1.8405066959992837, 1.839485985599822, 1.2895570016004059]}, "bar": {"y": 1.6590570239986846, "times": [1.6590570239986846, 1.8825938360005239, 1.1250096359999588], "text": ""}, "color": "rgba(148.0, 103.0, 189.0, 1.0)", "marker": 4}, "scipy-linprog[solver=highs-ipm]": {"scatter": {"x": [29.639331988999402, 33.645111953001106], "y": [5.430497021651183, 5.430497021651183], "q1": [29.639331988999402, 33.12986512260068], "q9": [29.639331988999402, 36.0213758370006]}, "bar": {"y": 29.639331988999402, "times": [29.639331988999402], "text": ""}, "color": "rgba(140.0, 86.0, 75.0, 1.0)", "marker": 5}, "scipy-linprog[solver=highs-ds]": {"scatter": {"x": [1.729137828999228, 1.9809873180001887, 1.7709771989993897, 1.7539751160002197, 1.094872646001022], "y": [5.430497021651272, 5.430497021651272, 5.430497021651272, 5.430497021651246, 5.621233958993027], "q1": [1.7049356362003891, 1.382673979598985, 1.3464405901995633, 1.3850323935999769, 1.09086164919936], "q9": [1.8170361449992924, 2.0318306300006954, 1.8358013294000557, 1.8267582872009371, 1.2662807971988514]}, "bar": {"y": 1.729137828999228, "times": [1.729137828999228, 1.6988850880006794, 1.8390107239993085], "text": ""}, "color": "rgba(227.0, 119.0, 194.0, 1.0)", "marker": 6}}, "transformers": {"c_star": 5.430497021551183, "max_f_0": 9.365074168743893}}}, "L1-regularized Quantile Regression[fit_intercept=False,quantile=0.8,reg=0.5]": {"objective_value": {"solvers": {"PDCD-WS": {"scatter": {"x": [5.138300002727192e-05, 0.5236156999999366, 0.6511628059997747, 0.7005448820000311, 0.7326425689989264, 1.7589150619987777, 4.285126042999764, 15.983613272999719, 37.9570402115005], "y": [5.924895805572345, 5.924895805572345, 5.916926242980191, 5.818385084995491, 5.7871183663004135, 5.774748100407846, 5.757237830331421, 5.75689805834393, 5.756862763059239], "q1": [2.645980093802791e-05, 0.4924293944008241, 0.426219033999223, 0.46511937239883994, 0.5714131161996192, 1.65306767799957, 4.197600644600607, 13.729606459400747, 36.438518966301125], "q9": [5.290699882607441e-05, 0.5446668455995678, 0.6885550348008109, 0.8823674364004546, 0.9495935401999305, 1.8048931091998384, 4.8753590382002585, 21.26281393700083, 39.47556145669987]}, "bar": {"y": 43.53409849000127, "times": NaN, "text": "Did not converge"}, "color": "rgba(31.0, 119.0, 180.0, 1.0)", "marker": 0}, "scipy-linprog[solver=simplex]": {"scatter": {"x": [26.922258049999982, 28.004190437000943, 2.671373641000173], "y": [10.532824721989808, 10.532824721989808, 5.924895805572345], "q1": [26.743622195600075, 17.87891816899937, 2.190308235399061], "q9": [27.10089390439989, 32.91341342020023, 3.195190319399626]}, "bar": {"y": 43.53409849000127, "times": NaN, "text": "Did not converge"}, "color": "rgba(255.0, 127.0, 14.0, 1.0)", "marker": 1}, "scipy-linprog[solver=interior-point]": {"scatter": {"x": [12.87372332599989, 10.30797468899982, 9.968910954999956, 9.439137577999645, 1.5009003880004457], "y": [5.769963066765567, 5.781523199433889, 5.799094316959998, 5.822949200924844, 5.924895805572345], "q1": [9.854753036400506, 9.762212965800426, 7.882990759799941, 7.9546329339988, 1.3904635279999638], "q9": [15.892693615599274, 11.84819966340001, 11.334136497400687, 12.935352517999855, 1.6432549048004148]}, "bar": {"y": 43.53409849000127, "times": NaN, "text": "Did not converge"}, "color": "rgba(44.0, 160.0, 44.0, 1.0)", "marker": 2}, "scipy-linprog[solver=revised simplex]": {"scatter": {"x": [42.961822631999894, 3.202032564999172], "y": [5.757509645666631, 5.924895805572345], "q1": [37.938197134399886, 2.1732869417999607], "q9": [43.41964331840099, 3.2788213585994526]}, "bar": {"y": 43.53409849000127, "times": NaN, "text": "Did not converge"}, "color": "rgba(214.0, 39.0, 40.0, 1.0)", "marker": 3}, "scipy-linprog[solver=highs]": {"scatter": {"x": [1.5228791210010968, 1.558916895000948, 1.5910501809994457, 1.2225746370004344, 0.7456516189995455], "y": [5.756859939837767, 5.756859939837767, 5.756859939837765, 5.756859939837766, 5.924895805572345], "q1": [1.4710489610002697, 1.511793479800326, 1.5894556265993742, 1.173257648200888, 0.7338843774006818], "q9": [1.7997211538004194, 1.6211760485992273, 1.7247809369990137, 1.4972436489999381, 0.7853576718000113]}, "bar": {"y": 1.5228791210010968, "times": [1.5228791210010968, 1.4580914210000628, 1.86893166200025], "text": ""}, "color": "rgba(148.0, 103.0, 189.0, 1.0)", "marker": 4}, "scipy-linprog[solver=highs-ipm]": {"scatter": {"x": [36.117345172999194], "y": [5.756859939837762], "q1": [35.739038200200596], "q9": [37.83068009299895]}, "bar": {"y": 36.117345172999194, "times": [38.259013822998895, 36.117345172999194, 35.64446145700094], "text": ""}, "color": "rgba(140.0, 86.0, 75.0, 1.0)", "marker": 5}, "scipy-linprog[solver=highs-ds]": {"scatter": {"x": [1.6922437740013265, 1.5539474899997003, 1.6042408239991346, 1.6700193970009423, 0.9972715040003095], "y": [5.756859939837767, 5.756859939837767, 5.756859939837765, 5.756859939837766, 5.924895805572345], "q1": [1.160704921200886, 1.2808655251996242, 1.1694812967987673, 1.6085174474002997, 0.813449432001289], "q9": [1.7329029292002815, 1.6124909235993983, 1.6712377631985873, 1.6848958954007685, 1.1484966391992202]}, "bar": {"y": 1.6922437740013265, "times": [1.6922437740013265, 1.027820208000776, 1.7430677180000202], "text": ""}, "color": "rgba(227.0, 119.0, 194.0, 1.0)", "marker": 6}}, "transformers": {"c_star": 5.756859939737762, "max_f_0": 10.532824721989808}}}, "L1-regularized Quantile Regression[fit_intercept=False,quantile=0.4,reg=0.1]": {"objective_value": {"solvers": {"PDCD-WS": {"scatter": {"x": [5.62210007046815e-05, 0.6248533309990307, 0.572021453999696, 0.6122231860008469, 0.6013961829994514, 0.9464367319997109, 1.7244309590005287, 4.177585204000934, 24.110941791001096, 61.87686028399912], "y": [5.621233958993027, 4.062355787267702, 3.595330383255072, 3.136093682518398, 2.997473660950091, 2.7282002162771803, 2.626980958853826, 2.610281809639047, 2.607489453617983, 2.6066301436023753], "q1": [2.591299926280044e-05, 0.5084462350001558, 0.503356135600552, 0.5898951148006745, 0.512736527800007, 0.833262719198683, 1.626004764600293, 3.5884284120009395, 14.296554993399331, 61.87686028399912], "q9": [0.0007404458003293258, 0.6533831134001957, 0.5940661731994623, 0.7222755515995232, 1.270073912600492, 1.08879547119941, 2.0066196294003023, 5.172845356000471, 24.273497884599056, 61.87686028399912]}, "bar": {"y": 107.3915232319996, "times": NaN, "text": "Did not converge"}, "color": "rgba(31.0, 119.0, 180.0, 1.0)", "marker": 0}, "scipy-linprog[solver=simplex]": {"scatter": {"x": [17.581244672999674, 18.14063013699888, 3.326804295000329], "y": [4.493004446894589, 4.493004446894589, 5.621233958993027], "q1": [17.372470564999457, 15.048868079400199, 2.627882166199561], "q9": [17.79001878099989, 29.370625749800457, 4.299396804600837]}, "bar": {"y": 107.3915232319996, "times": NaN, "text": "Did not converge"}, "color": "rgba(255.0, 127.0, 14.0, 1.0)", "marker": 1}, "scipy-linprog[solver=interior-point]": {"scatter": {"x": [11.890273826000339, 8.494427699499283, 10.31264658300097, 7.892847765000624, 10.195937459999186, 1.571274423999057], "y": [2.607533858900969, 2.608664882836578, 2.6104665255123223, 2.6104665255123223, 2.614912691598767, 5.621233958993027], "q1": [11.890273826000339, 6.235728663899863, 6.350091446999068, 5.900974690599105, 7.874385343199902, 1.1268047599991404], "q9": [11.890273826000339, 10.753126735098704, 11.193052796599295, 10.235926693800867, 10.500998510398858, 1.6162740472002042]}, "bar": {"y": 107.3915232319996, "times": NaN, "text": "Did not converge"}, "color": "rgba(44.0, 160.0, 44.0, 1.0)", "marker": 2}, "scipy-linprog[solver=revised simplex]": {"scatter": {"x": [100.15990579400022, 3.128404455001146], "y": [2.9913274675220767, 5.621233958993027], "q1": [81.17605604120108, 3.0449995166003645], "q9": [105.94519974439973, 3.152786470999854]}, "bar": {"y": 107.3915232319996, "times": NaN, "text": "Did not converge"}, "color": "rgba(214.0, 39.0, 40.0, 1.0)", "marker": 3}, "scipy-linprog[solver=highs]": {"scatter": {"x": [24.091509537000093, 24.284090334998837, 1.1960067140007595], "y": [2.606569055013826, 2.606585517390658, 5.621233958993027], "q1": [23.101199956200436, 22.798641156599842, 1.1681510107995563], "q9": [24.610687917799805, 24.38489862300012, 1.213315500400131]}, "bar": {"y": 24.091509537000093, "times": [24.091509537000093, 22.85362256100052, 24.740482512999733], "text": ""}, "color": "rgba(148.0, 103.0, 189.0, 1.0)", "marker": 4}, "scipy-linprog[solver=highs-ipm]": {"scatter": {"x": [46.15416178000123], "y": [2.6065690550091336], "q1": [42.13277098560029], "q9": [47.35418732320068]}, "bar": {"y": 46.15416178000123, "times": [47.65419370900054, 41.127423287000056, 46.15416178000123], "text": ""}, "color": "rgba(140.0, 86.0, 75.0, 1.0)", "marker": 5}, "scipy-linprog[solver=highs-ds]": {"scatter": {"x": [21.809601990000374, 22.995741957000064, 1.2130259810001007], "y": [2.606569055013826, 2.606585517390658, 5.621233958993027], "q1": [16.21313392200027, 22.820592004200808, 1.0846988545992644], "q9": [22.025070674000744, 24.099374141000226, 1.241228581800533]}, "bar": {"y": 21.809601990000374, "times": [14.814016905000244, 21.809601990000374, 22.078937845000837], "text": ""}, "color": "rgba(227.0, 119.0, 194.0, 1.0)", "marker": 6}}, "transformers": {"c_star": 2.6065690549091336, "max_f_0": 4.493004446894589}}}, "L1-regularized Quantile Regression[fit_intercept=False,quantile=0.8,reg=0.1]": {"objective_value": {"solvers": {"PDCD-WS": {"scatter": {"x": [4.8950998461805284e-05, 0.5430176769987156, 0.6539934839984198, 0.6583110760002455, 0.704192012999556, 0.7713678700001765, 1.1396583639998425, 2.990342787999907, 6.6260290409991285, 74.09357177899983], "y": [5.924895805572345, 4.792619774254978, 4.073208366177908, 3.5668790244621773, 3.2224194752375066, 2.897660650554922, 2.7926014090388227, 2.7523375967119557, 2.743942010626861, 2.742226788004211], "q1": [2.563179878052324e-05, 0.5089905081993493, 0.6248799768003664, 0.5920742792011879, 0.6918230569994194, 0.7617514723995555, 1.1109273903999566, 2.774802106399511, 5.6017607705987755, 44.242280970199864], "q9": [5.3077399206813426e-05, 0.5708311633999983, 0.6613325303991587, 0.6593682272003207, 0.728768824999861, 0.7824963916002161, 1.1760564064006758, 3.0859947031993213, 7.702494107400708, 74.19805851019956]}, "bar": {"y": 103.18416219999926, "times": NaN, "text": "Did not converge"}, "color": "rgba(31.0, 119.0, 180.0, 1.0)", "marker": 0}, "scipy-linprog[solver=simplex]": {"scatter": {"x": [17.641909050000322, 18.283356301999447, 2.572539621998658], "y": [4.842541320644186, 4.842541320644186, 5.924895805572345], "q1": [14.533203751600013, 15.724774497999897, 2.369836916400163], "q9": [19.57709385399976, 19.107214727599786, 2.7253397995995328]}, "bar": {"y": 103.18416219999926, "times": NaN, "text": "Did not converge"}, "color": "rgba(255.0, 127.0, 14.0, 1.0)", "marker": 1}, "scipy-linprog[solver=interior-point]": {"scatter": {"x": [9.952004128499539, 6.332197576000908, 7.7583046370000375, 5.935352061000231, 5.641476032000355, 0.9998668929983978], "y": [2.7431358768527634, 2.7444424792995354, 2.7459487226010766, 2.7501509341272516, 2.7501509341272516, 5.924895805572345], "q1": [7.480724624899449, 6.220676096800162, 7.143125053000768, 5.487823197799662, 5.424659863999841, 0.9792845441988902], "q9": [12.42328363209963, 6.338090997600375, 7.830612095399192, 7.654023106599562, 9.93064015839991, 1.4398112034003134]}, "bar": {"y": 103.18416219999926, "times": NaN, "text": "Did not converge"}, "color": "rgba(44.0, 160.0, 44.0, 1.0)", "marker": 2}, "scipy-linprog[solver=revised simplex]": {"scatter": {"x": [81.63499456699901, 2.6402465920000395], "y": [3.2529132330395356, 5.924895805572345], "q1": [75.00770566380052, 1.9810541471997567], "q9": [98.87432867339922, 2.8227318983997973]}, "bar": {"y": 103.18416219999926, "times": NaN, "text": "Did not converge"}, "color": "rgba(214.0, 39.0, 40.0, 1.0)", "marker": 3}, "scipy-linprog[solver=highs]": {"scatter": {"x": [14.033137895999971, 17.881067737000194, 1.1973471080000309], "y": [2.742167610161006, 2.7421780628498547, 5.924895805572345], "q1": [13.873822655200637, 17.531748910599344, 1.1314300623987947], "q9": [15.841679610400025, 18.338186224201127, 1.2632743240003037]}, "bar": {"y": 103.18416219999926, "times": NaN, "text": "Did not converge"}, "color": "rgba(148.0, 103.0, 189.0, 1.0)", "marker": 4}, "scipy-linprog[solver=highs-ipm]": {"scatter": {"x": [52.176313474999915], "y": [2.742158471883595], "q1": [49.0599929701988], "q9": [53.465335645400046]}, "bar": {"y": 52.176313474999915, "times": [48.28091284399852, 53.78759118800008, 52.176313474999915], "text": ""}, "color": "rgba(140.0, 86.0, 75.0, 1.0)", "marker": 5}, "scipy-linprog[solver=highs-ds]": {"scatter": {"x": [17.63972048100004, 17.601881716998832, 1.090612568999859], "y": [2.742167610161006, 2.7421780628498547, 5.924895805572345], "q1": [16.161558149800477, 17.40817953859987, 1.076643436199447], "q9": [19.299358419400598, 19.25413450980013, 1.1552499977999104]}, "bar": {"y": 103.18416219999926, "times": NaN, "text": "Did not converge"}, "color": "rgba(227.0, 119.0, 194.0, 1.0)", "marker": 6}}, "transformers": {"c_star": 2.742158471783595, "max_f_0": 4.842541320644186}}}, "L1-regularized Quantile Regression[fit_intercept=False,quantile=0.4,reg=0.05]": {"objective_value": {"solvers": {"PDCD-WS": {"scatter": {"x": [4.9079000746132806e-05, 0.6254368789996079, 0.5880011720000766, 0.7415082099996653, 0.8784220580000692, 0.9542443469999853, 5.062798471999486, 56.662491037999644], "y": [5.621233958993027, 3.7042474306256685, 3.123860573365686, 2.6195962745824706, 2.0645467954037637, 1.8458495229929683, 1.752475561396477, 1.7492839655503019], "q1": [2.5585400726413356e-05, 0.5378247166001529, 0.5788540847992408, 0.7194140435985901, 0.7346620019994589, 0.6694020469996758, 3.770851676800885, 41.49343643560023], "q9": [6.069420123822056e-05, 0.6722492093998881, 0.7156345968003734, 0.7539778379989002, 1.0519723396009795, 1.0643358349992922, 5.268890508798722, 59.65016672520032]}, "bar": {"y": 95.73277685200082, "times": NaN, "text": "Did not converge"}, "color": "rgba(31.0, 119.0, 180.0, 1.0)", "marker": 0}, "scipy-linprog[solver=simplex]": {"scatter": {"x": [26.16231841700028, 17.16983669399997, 3.114275120000457], "y": [3.8839957316634255, 3.8839957316634255, 5.621233958993027], "q1": [20.784565500200188, 16.391705516400542, 2.152983285599839], "q9": [28.307403284999236, 26.08834636840111, 3.1207005751999533]}, "bar": {"y": 95.73277685200082, "times": NaN, "text": "Did not converge"}, "color": "rgba(255.0, 127.0, 14.0, 1.0)", "marker": 1}, "scipy-linprog[solver=interior-point]": {"scatter": {"x": [10.146503137999389, 8.787468632999662, 7.705736403000628, 7.660517289999916, 1.4626384610000969], "y": [1.7499269110594715, 1.7509438045259698, 1.7509438045259698, 1.752065583491433, 5.621233958993027], "q1": [9.278878138799337, 8.408274855399942, 7.649875176601199, 6.805984551600341, 1.3450837209991733], "q9": [10.759957508399385, 10.75997845460006, 8.028638641400175, 9.340604950800117, 1.834536403399761]}, "bar": {"y": 95.73277685200082, "times": NaN, "text": "Did not converge"}, "color": "rgba(44.0, 160.0, 44.0, 1.0)", "marker": 2}, "scipy-linprog[solver=revised simplex]": {"scatter": {"x": [95.62714566300019, 2.922484255999734], "y": [2.0805474181043664, 5.621233958993027], "q1": [91.83386076700008, 2.147446559999662], "q9": [95.71165061420069, 2.958914160799759]}, "bar": {"y": 95.73277685200082, "times": NaN, "text": "Did not converge"}, "color": "rgba(214.0, 39.0, 40.0, 1.0)", "marker": 3}, "scipy-linprog[solver=highs]": {"scatter": {"x": [27.055778678500246, 28.679484377000335, 1.055789353000364], "y": [1.7491678062854636, 1.7491759914301763, 5.621233958993027], "q1": [25.22875790690032, 26.91622263780082, 0.8023850169996877], "q9": [28.882799450100173, 31.994540394600335, 1.0845514985998306]}, "bar": {"y": 27.055778678500246, "times": [24.772002714000337, 29.339554643000156], "text": ""}, "color": "rgba(148.0, 103.0, 189.0, 1.0)", "marker": 4}, "scipy-linprog[solver=highs-ipm]": {"scatter": {"x": [64.00939690299856], "y": [1.7491678062791474], "q1": [49.73847756699979], "q9": [65.85501193899981]}, "bar": {"y": 64.00939690299856, "times": [66.31641569800013, 64.00939690299856, 46.1707477330001], "text": ""}, "color": "rgba(140.0, 86.0, 75.0, 1.0)", "marker": 5}, "scipy-linprog[solver=highs-ds]": {"scatter": {"x": [40.354079988001104, 1.1155213650017686], "y": [1.7491759914301763, 5.621233958993027], "q1": [34.860877665599766, 1.0959572226005547], "q9": [40.82797146480043, 1.2361048114013102]}, "bar": {"y": 95.73277685200082, "times": NaN, "text": "Did not converge"}, "color": "rgba(227.0, 119.0, 194.0, 1.0)", "marker": 6}}, "transformers": {"c_star": 1.7491678061791474, "max_f_0": 3.8839957316634255}}}, "L1-regularized Quantile Regression[fit_intercept=False,quantile=0.8,reg=0.05]": {"objective_value": {"solvers": {"PDCD-WS": {"scatter": {"x": [4.408200038596988e-05, 0.5971096909997868, 0.633268006000435, 0.562443823000649, 0.6312641049989907, 0.8577191239983222, 3.6880588450003415, 31.443071816000156, 135.77830060400083], "y": [5.924895805572345, 4.4189497412683965, 3.724277927742273, 2.8331678138211607, 2.377937585523891, 1.9421481792887878, 1.7830204713604094, 1.7745542134529417, 1.7744462962182874], "q1": [2.6627600891515613e-05, 0.5285335845997906, 0.5395571244007442, 0.5100611525995191, 0.46321765779939594, 0.827548216798823, 2.2670753746002448, 24.737155540799723, 135.77830060400083], "q9": [4.679639969253913e-05, 0.6043940862000454, 0.6383171291992766, 0.5794111405994045, 0.6656481977996009, 0.8668251119994238, 3.692193059400597, 41.44145789120084, 135.77830060400083]}, "bar": {"y": 135.77830060400083, "times": NaN, "text": "Did not converge"}, "color": "rgba(31.0, 119.0, 180.0, 1.0)", "marker": 0}, "scipy-linprog[solver=simplex]": {"scatter": {"x": [26.13623589300005, 18.811861719999797, 2.7613331060001656], "y": [4.131255895475983, 4.131255895475983, 5.924895805572345], "q1": [15.89880963860087, 18.175010355199266, 2.6733698532003474], "q9": [28.737447125000834, 26.28587041440005, 3.162071653199746]}, "bar": {"y": 135.77830060400083, "times": NaN, "text": "Did not converge"}, "color": "rgba(255.0, 127.0, 14.0, 1.0)", "marker": 1}, "scipy-linprog[solver=interior-point]": {"scatter": {"x": [9.756292685000517, 8.584622972999568, 7.963518298000054, 8.575799571999596, 1.4539223669999046], "y": [1.7753644962974453, 1.7766651031905798, 1.7766651031905798, 1.7785603541210055, 5.924895805572345], "q1": [8.90998540740111, 6.63882292820017, 6.25228819399963, 7.506924639200224, 1.0651629518004484], "q9": [11.64968445859995, 8.820281141799569, 8.424678967600993, 10.052668050400461, 1.5623328046000098]}, "bar": {"y": 135.77830060400083, "times": NaN, "text": "Did not converge"}, "color": "rgba(44.0, 160.0, 44.0, 1.0)", "marker": 2}, "scipy-linprog[solver=revised simplex]": {"scatter": {"x": [103.88304832100039, 3.3794713679999404], "y": [2.233576993137512, 5.924895805572345], "q1": [97.69425028100014, 2.6259214607991455], "q9": [105.21480036020003, 3.3822908032008856]}, "bar": {"y": 135.77830060400083, "times": NaN, "text": "Did not converge"}, "color": "rgba(214.0, 39.0, 40.0, 1.0)", "marker": 3}, "scipy-linprog[solver=highs]": {"scatter": {"x": [32.171916863999286, 34.9503571869991, 1.052424522000365], "y": [1.7744240966703062, 1.7744240966698193, 5.924895805572345], "q1": [32.171916863999286, 31.59249001899989, 0.7838219348006532], "q9": [32.171916863999286, 35.06702640859985, 1.0716610052011675]}, "bar": {"y": 32.171916863999286, "times": [32.171916863999286], "text": ""}, "color": "rgba(148.0, 103.0, 189.0, 1.0)", "marker": 4}, "scipy-linprog[solver=highs-ipm]": {"scatter": {"x": [53.42727132999971], "y": [1.7744240966699654], "q1": [46.62031121239961], "q9": [55.37518235639982]}, "bar": {"y": 53.42727132999971, "times": [53.42727132999971, 55.862160112999845, 44.918571182999585], "text": ""}, "color": "rgba(140.0, 86.0, 75.0, 1.0)", "marker": 5}, "scipy-linprog[solver=highs-ds]": {"scatter": {"x": [28.96609474899924, 34.90618758399978, 1.0816578320009285], "y": [1.7744240966703062, 1.7744240966698193, 5.924895805572345], "q1": [28.96609474899924, 30.07823272800051, 1.0597403752006358], "q9": [28.96609474899924, 36.165581647999716, 1.1001594535991899]}, "bar": {"y": 28.96609474899924, "times": [28.96609474899924], "text": ""}, "color": "rgba(227.0, 119.0, 194.0, 1.0)", "marker": 6}}, "transformers": {"c_star": 1.7744240965698193, "max_f_0": 4.4189497412683965}}}}, "Simulated[n_features=3000,n_samples=1000]": {"L1-regularized Quantile Regression[fit_intercept=False,quantile=0.4,reg=0.5]": {"objective_value": {"solvers": {"PDCD-WS": {"scatter": {"x": [5.673300074704457e-05, 1.517259197000385, 1.4859291350003332, 1.814637354000297, 2.0010218610004813, 3.542225453998981, 4.503700919998664, 6.830404627999087, 17.949621613999625], "y": [10.206192100479225, 9.911470718242777, 9.866165602079304, 9.778636521735105, 9.834545899856504, 9.653930084299255, 9.680435232525916, 9.642548580691752, 9.632627520264009], "q1": [2.8110600032960066e-05, 1.42172839699997, 1.4314392237996798, 1.7473405691998778, 1.8638415281988272, 2.9387959011997737, 4.204499075999047, 6.617878187199676, 16.09427815159943], "q9": [5.7081001068581826e-05, 1.6099203850004415, 1.6355451141993398, 1.9891367044008803, 2.1704893641996024, 3.679084990800038, 5.128234614400571, 8.404797939200217, 18.925690501200005]}, "bar": {"y": 103.74127081200095, "times": NaN, "text": "Did not converge"}, "color": "rgba(31.0, 119.0, 180.0, 1.0)", "marker": 0}, "scipy-linprog[solver=simplex]": {"scatter": {"x": [31.2752528609999, 5.106681972998558], "y": [14.62701965990152, 10.206192100479225], "q1": [30.156451671400283, 4.990285530599431], "q9": [33.071252666600046, 6.402441197799999]}, "bar": {"y": 103.74127081200095, "times": NaN, "text": "Did not converge"}, "color": "rgba(255.0, 127.0, 14.0, 1.0)", "marker": 1}, "scipy-linprog[solver=interior-point]": {"scatter": {"x": [22.716216740500386, 24.850259386999824, 3.121298784000828], "y": [9.707493921459559, 9.766352682624136, 10.206192100479225], "q1": [21.539944064099835, 22.830218367799535, 2.1587004863999026], "q9": [23.892489416900936, 34.420625563799696, 3.2694846888007305]}, "bar": {"y": 103.74127081200095, "times": NaN, "text": "Did not converge"}, "color": "rgba(44.0, 160.0, 44.0, 1.0)", "marker": 2}, "scipy-linprog[solver=revised simplex]": {"scatter": {"x": [103.01884774100108, 4.830805663001229], "y": [9.68474272402402, 10.206192100479225], "q1": [91.33853033459964, 4.562827390200255], "q9": [103.59678619780098, 5.149980290199892]}, "bar": {"y": 103.74127081200095, "times": NaN, "text": "Did not converge"}, "color": "rgba(214.0, 39.0, 40.0, 1.0)", "marker": 3}, "scipy-linprog[solver=highs]": {"scatter": {"x": [9.60255273400071, 10.705737039999804, 10.559548007000558, 10.892572523000126, 3.7426475709999067], "y": [9.630756385040439, 9.630756385040439, 9.630756385040442, 9.63075638504044, 10.206192100479225], "q1": [9.60255273400071, 10.196981307999522, 8.324186408600507, 9.285983244598901, 3.0510256182005833], "q9": [9.60255273400071, 11.861659931999748, 11.03778776140025, 11.458996791800018, 4.062598405399695]}, "bar": {"y": 9.60255273400071, "times": [9.60255273400071], "text": ""}, "color": "rgba(148.0, 103.0, 189.0, 1.0)", "marker": 4}, "scipy-linprog[solver=highs-ipm]": {"scatter": {"x": [21.34530382599951, 18.221810175000428], "y": [9.630756385040444, 9.630756385040444], "q1": [20.946438043599848, 16.858808685400437], "q9": [21.791242233199956, 23.00640662059959]}, "bar": {"y": 21.34530382599951, "times": [21.902726835000067, 21.34530382599951, 20.84672159799993], "text": ""}, "color": "rgba(140.0, 86.0, 75.0, 1.0)", "marker": 5}, "scipy-linprog[solver=highs-ds]": {"scatter": {"x": [11.87402894799925, 10.828135169000234, 8.684560550998867, 8.62956459599991, 4.525426847001654], "y": [9.630756385040439, 9.630756385040439, 9.630756385040442, 9.63075638504044, 10.206192100479225], "q1": [11.87402894799925, 8.441789737800354, 7.666685270200105, 8.552597523200166, 4.338320086199383], "q9": [11.87402894799925, 11.735005055399597, 10.811668099000963, 9.708139394400131, 4.662393252601032]}, "bar": {"y": 11.87402894799925, "times": [11.87402894799925], "text": ""}, "color": "rgba(227.0, 119.0, 194.0, 1.0)", "marker": 6}}, "transformers": {"c_star": 9.630756384940439, "max_f_0": 14.62701965990152}}}, "L1-regularized Quantile Regression[fit_intercept=False,quantile=0.8,reg=0.5]": {"objective_value": {"solvers": {"PDCD-WS": {"scatter": {"x": [5.983399933029432e-05, 1.5559990800011292, 1.8500333389984007, 2.015233124999213, 2.525547301998813, 3.305743753999195, 7.698118762000377, 7.503600588999689, 16.156673338000473], "y": [9.89769406212473, 9.596687018284149, 9.522842331003964, 9.57053478622037, 9.446669680022067, 9.412820228644568, 9.405700568965461, 9.401035826789345, 9.394327135186998], "q1": [3.2125998768606226e-05, 1.449150784799349, 1.3520916741999827, 1.7745501034005429, 2.4888542380005676, 3.0239349675994163, 7.196831502799614, 7.284076978600933, 14.456859291600631], "q9": [6.629800082009751e-05, 1.7091781480001373, 1.8582502470006148, 2.02705276980123, 2.5601551179988746, 3.3886857540001074, 7.779662861199904, 7.719710149000457, 18.81131893320089]}, "bar": {"y": 152.5466451250013, "times": NaN, "text": "Did not converge"}, "color": "rgba(31.0, 119.0, 180.0, 1.0)", "marker": 0}, "scipy-linprog[solver=simplex]": {"scatter": {"x": [31.859808101000453, 6.2772923430002265], "y": [15.738566720173345, 9.89769406212473], "q1": [30.407747296200615, 6.080385524600206], "q9": [37.801043634600134, 6.294088954999097]}, "bar": {"y": 152.5466451250013, "times": NaN, "text": "Did not converge"}, "color": "rgba(255.0, 127.0, 14.0, 1.0)", "marker": 1}, "scipy-linprog[solver=interior-point]": {"scatter": {"x": [38.781805018999876, 28.384010815001602, 3.039219829999638], "y": [9.482359839713839, 9.551158469346259, 9.89769406212473], "q1": [38.10303211100036, 24.48418454300081, 2.8452914755987875], "q9": [39.46057792699939, 34.23906418939987, 3.2248621436003306]}, "bar": {"y": 152.5466451250013, "times": NaN, "text": "Did not converge"}, "color": "rgba(44.0, 160.0, 44.0, 1.0)", "marker": 2}, "scipy-linprog[solver=revised simplex]": {"scatter": {"x": [143.87686877399938, 4.473673786998916], "y": [9.429823926463559, 9.89769406212473], "q1": [125.41450163399968, 4.364265408600113], "q9": [150.8126898548009, 4.759975156598739]}, "bar": {"y": 152.5466451250013, "times": NaN, "text": "Did not converge"}, "color": "rgba(214.0, 39.0, 40.0, 1.0)", "marker": 3}, "scipy-linprog[solver=highs]": {"scatter": {"x": [8.757851805999962, 9.478435400000308, 7.926519790000384, 7.21166294700015, 8.154994619999343, 2.81551267299983], "y": [9.393171034955984, 9.393171034955984, 9.393171034955984, 9.393257941798302, 9.393257941798318, 9.89769406212473], "q1": [8.757851805999962, 9.456862080800056, 6.307077291600217, 6.247412038999755, 6.409533365599782, 2.653204669799379], "q9": [8.757851805999962, 10.100135156000032, 8.617137208400163, 8.477068729399615, 9.683753369599435, 4.23750033139986]}, "bar": {"y": 8.757851805999962, "times": [8.757851805999962], "text": ""}, "color": "rgba(148.0, 103.0, 189.0, 1.0)", "marker": 4}, "scipy-linprog[solver=highs-ipm]": {"scatter": {"x": [20.551777246999336, 23.947823384000003, 23.997717784999622], "y": [9.393171034955987, 9.393171034955987, 9.393171034955987], "q1": [20.551777246999336, 16.117203145599706, 17.34819893460044], "q9": [20.551777246999336, 24.56865572239949, 24.613510117800253]}, "bar": {"y": 20.551777246999336, "times": [20.551777246999336], "text": ""}, "color": "rgba(140.0, 86.0, 75.0, 1.0)", "marker": 5}, "scipy-linprog[solver=highs-ds]": {"scatter": {"x": [8.50080210499982, 8.943260289999671, 8.652355276999515, 8.403007279999656, 4.008768656000029], "y": [9.393171034955984, 9.393171034955984, 9.393257941798302, 9.393257941798318, 9.89769406212473], "q1": [6.156844681799339, 6.345397137198961, 7.683933949799029, 6.393587015200683, 3.052506723999977], "q9": [9.595369234599275, 8.970057541999632, 8.747477547400559, 8.67630242159903, 4.56329151920072]}, "bar": {"y": 8.50080210499982, "times": [9.869011016999139, 5.570855325999219, 8.50080210499982], "text": ""}, "color": "rgba(227.0, 119.0, 194.0, 1.0)", "marker": 6}}, "transformers": {"c_star": 9.393171034855984, "max_f_0": 15.738566720173345}}}, "L1-regularized Quantile Regression[fit_intercept=False,quantile=0.4,reg=0.1]": {"objective_value": {"solvers": {"PDCD-WS": {"scatter": {"x": [5.880100070498884e-05, 1.2633774129990343, 1.3523683570001594, 1.6231616090008174, 1.6498308850004832, 2.289360917999147, 2.784183175999715, 5.200615061999997, 14.695661158000803, 67.0912853105001], "y": [10.206192100479225, 8.255508933232862, 7.327048353483512, 6.072234505805749, 5.470011047346892, 3.854392298678705, 3.505176052656719, 3.4235395550249907, 3.3661569787309986, 3.36097468535542], "q1": [2.8138600464444606e-05, 1.2200995161994797, 1.2009743650003657, 1.620478665799601, 1.5390944442002366, 1.639290200400137, 2.063243704799606, 4.614864972399664, 13.101275323600202, 66.05270904930003], "q9": [8.436100033577531e-05, 1.5666168938008922, 1.4833742026003165, 1.7963824282007408, 1.759855972198784, 2.3227063363992784, 3.3326269063993097, 5.685122941200097, 14.892570512400926, 68.12986157170016]}, "bar": {"y": 203.95147383400035, "times": NaN, "text": "Did not converge"}, "color": "rgba(31.0, 119.0, 180.0, 1.0)", "marker": 0}, "scipy-linprog[solver=simplex]": {"scatter": {"x": [27.38777200000004, 31.39121252899895, 5.078930218000096], "y": [7.953290793455817, 7.953290793455817, 10.206192100479225], "q1": [27.38777200000004, 22.84606902339983, 3.864684348399533], "q9": [27.38777200000004, 31.767411745800565, 5.206625105999774]}, "bar": {"y": 203.95147383400035, "times": NaN, "text": "Did not converge"}, "color": "rgba(255.0, 127.0, 14.0, 1.0)", "marker": 1}, "scipy-linprog[solver=interior-point]": {"scatter": {"x": [23.616546041999754, 16.088608403999388, 10.970734587999686, 3.149765334001131], "y": [3.3637413081241925, 3.3687691166615243, 3.3755872050356426, 10.206192100479225], "q1": [21.231376629200167, 13.104210509599216, 10.900199838399931, 2.1689186396011793], "q9": [26.001715454799342, 19.51740031439913, 16.30195578800012, 3.3387429684000383]}, "bar": {"y": 203.95147383400035, "times": NaN, "text": "Did not converge"}, "color": "rgba(44.0, 160.0, 44.0, 1.0)", "marker": 2}, "scipy-linprog[solver=revised simplex]": {"scatter": {"x": [153.22650079800042, 5.01403587599998], "y": [4.672402735233314, 10.206192100479225], "q1": [142.50044778440025, 3.294011677600065], "q9": [161.56946182840002, 5.255184046399518]}, "bar": {"y": 203.95147383400035, "times": NaN, "text": "Did not converge"}, "color": "rgba(214.0, 39.0, 40.0, 1.0)", "marker": 3}, "scipy-linprog[solver=highs]": {"scatter": {"x": [189.09731808500146, 4.196418333000111], "y": [3.357735043668895, 10.206192100479225], "q1": [188.23899976739995, 4.053232575400398], "q9": [189.16182093060124, 4.297901069000727]}, "bar": {"y": 189.09731808500146, "times": [189.1779466420012, 188.02442018799957, 189.09731808500146], "text": ""}, "color": "rgba(148.0, 103.0, 189.0, 1.0)", "marker": 4}, "scipy-linprog[solver=highs-ipm]": {"scatter": {"x": [92.60331725200012], "y": [3.3577350436021955], "q1": [90.94925985759983], "q9": [92.86766922479947]}, "bar": {"y": 92.60331725200012, "times": [92.9337572179993, 90.53574550899975, 92.60331725200012], "text": ""}, "color": "rgba(140.0, 86.0, 75.0, 1.0)", "marker": 5}, "scipy-linprog[solver=highs-ds]": {"scatter": {"x": [185.6465928810012, 3.6024164110003767], "y": [3.357735043668895, 10.206192100479225], "q1": [149.42264542660013, 2.9149113326002407], "q9": [200.29049764340053, 3.782604568600436]}, "bar": {"y": 185.6465928810012, "times": [185.6465928810012, 203.95147383400035, 140.36665856299987], "text": ""}, "color": "rgba(227.0, 119.0, 194.0, 1.0)", "marker": 6}}, "transformers": {"c_star": 3.3577350435021955, "max_f_0": 8.255508933232862}}}, "L1-regularized Quantile Regression[fit_intercept=False,quantile=0.8,reg=0.1]": {"objective_value": {"solvers": {"PDCD-WS": {"scatter": {"x": [4.8986999900080264e-05, 1.7217016510003305, 1.6545040199998766, 1.8856266300008429, 2.0534736569989036, 2.8470936419998907, 3.6758463390015095, 6.662604941999234, 13.051363800999752, 43.317156016999434], "y": [9.89769406212473, 7.8553234128250615, 6.9358531421691, 5.786288270186631, 4.902694591109581, 3.798238684832277, 3.605037128994931, 3.524216031161915, 3.5005811890887815, 3.4929881547194475], "q1": [2.801180089591071e-05, 1.3986995774008393, 1.4837118776005809, 1.6907730131995777, 1.3085865225995803, 2.63661064999942, 3.6732010213996547, 5.902368260400181, 11.192504306599949, 43.317156016999434], "q9": [4.969980072928592e-05, 1.782383122199826, 1.6956475544007845, 1.9860808651999833, 2.197291161799876, 2.945374997999534, 3.727461150200179, 7.2194574452001685, 13.5666000505993, 43.317156016999434]}, "bar": {"y": 158.09120227899984, "times": NaN, "text": "Did not converge"}, "color": "rgba(31.0, 119.0, 180.0, 1.0)", "marker": 0}, "scipy-linprog[solver=simplex]": {"scatter": {"x": [40.345316760998685, 6.248627093998948], "y": [7.968877982319525, 9.89769406212473], "q1": [39.22903204500035, 5.922684422798921], "q9": [41.09817012499989, 6.315727244399023]}, "bar": {"y": 158.09120227899984, "times": NaN, "text": "Did not converge"}, "color": "rgba(255.0, 127.0, 14.0, 1.0)", "marker": 1}, "scipy-linprog[solver=interior-point]": {"scatter": {"x": [22.488175895001405, 24.266574594001213, 2.9376783709994925], "y": [3.5377174862585603, 3.564718126729542, 9.89769406212473], "q1": [22.461186018999797, 21.389970017999804, 2.7817431158000545], "q9": [25.068340994201208, 24.354580765199717, 3.276158595000015]}, "bar": {"y": 158.09120227899984, "times": NaN, "text": "Did not converge"}, "color": "rgba(44.0, 160.0, 44.0, 1.0)", "marker": 2}, "scipy-linprog[solver=revised simplex]": {"scatter": {"x": [130.2615105929999, 4.812580048001109], "y": [4.499436805715864, 9.89769406212473], "q1": [121.61019797939916, 4.355924792000588], "q9": [140.2481202865991, 5.2261545007997485]}, "bar": {"y": 158.09120227899984, "times": NaN, "text": "Did not converge"}, "color": "rgba(214.0, 39.0, 40.0, 1.0)", "marker": 3}, "scipy-linprog[solver=highs]": {"scatter": {"x": [131.79792392799936, 4.141777617000116], "y": [3.4872005311417564, 9.89769406212473], "q1": [125.14004187199971, 4.097767503399882], "q9": [152.83254660879976, 4.378241889000128]}, "bar": {"y": 158.09120227899984, "times": NaN, "text": "Did not converge"}, "color": "rgba(148.0, 103.0, 189.0, 1.0)", "marker": 4}, "scipy-linprog[solver=highs-ipm]": {"scatter": {"x": [58.81725242700122], "y": [3.487192312780275], "q1": [54.519661066999106], "q9": [60.79402007819954]}, "bar": {"y": 58.81725242700122, "times": [61.288211990999116, 58.81725242700122, 53.44526322699858], "text": ""}, "color": "rgba(140.0, 86.0, 75.0, 1.0)", "marker": 5}, "scipy-linprog[solver=highs-ds]": {"scatter": {"x": [141.96613912500106, 4.307087609000519], "y": [3.4872005311417564, 9.89769406212473], "q1": [124.59093751139953, 4.057427465000728], "q9": [153.27517570020063, 4.558243344200673]}, "bar": {"y": 158.09120227899984, "times": NaN, "text": "Did not converge"}, "color": "rgba(227.0, 119.0, 194.0, 1.0)", "marker": 6}}, "transformers": {"c_star": 3.487192312680275, "max_f_0": 7.968877982319525}}}, "L1-regularized Quantile Regression[fit_intercept=False,quantile=0.4,reg=0.05]": {"objective_value": {"solvers": {"PDCD-WS": {"scatter": {"x": [5.091800085210707e-05, 1.3952450529995986, 1.4323433450008451, 1.5953092060008203, 1.767790949999835, 2.265205652000077, 3.6152568880006584, 10.65801021200059, 42.53475150399936], "y": [10.206192100479225, 7.962218020344536, 6.859517537744466, 5.142601123817854, 3.790698080393766, 2.0759764752496834, 1.779654779623897, 1.7126687925059523, 1.7041882770512813], "q1": [2.723720062931534e-05, 1.1408162753989017, 1.2379629841998394, 1.4293213508004556, 1.5064017179993243, 2.1935770039995988, 3.445476545600468, 9.957501740000225, 35.5055948104], "q9": [5.6290800785063766e-05, 1.5367653561992483, 1.5922992905987485, 1.7011367372004316, 1.81828651959986, 2.4922899488006807, 3.707584526398932, 10.99215495360004, 53.09237361360029]}, "bar": {"y": 240.15278394400048, "times": NaN, "text": "Did not converge"}, "color": "rgba(31.0, 119.0, 180.0, 1.0)", "marker": 0}, "scipy-linprog[solver=simplex]": {"scatter": {"x": [31.25902591399972, 30.20341681500031, 5.098117606999949], "y": [7.119074685150103, 7.119074685150103, 10.206192100479225], "q1": [31.25902591399972, 22.39412930780127, 4.092368571000771], "q9": [31.25902591399972, 31.10779051180034, 5.141328078200241]}, "bar": {"y": 240.15278394400048, "times": NaN, "text": "Did not converge"}, "color": "rgba(255.0, 127.0, 14.0, 1.0)", "marker": 1}, "scipy-linprog[solver=interior-point]": {"scatter": {"x": [14.118587857999955, 13.79025520200048, 12.970553936000215, 2.999258075000398], "y": [1.7044929546946332, 1.7044929546946332, 1.7066493173330803, 10.206192100479225], "q1": [12.131132404399978, 13.237713150000127, 12.667583616000774, 2.914678542198817], "q9": [14.200858890000381, 13.855225050799708, 13.245809324800211, 3.0558951445993445]}, "bar": {"y": 240.15278394400048, "times": NaN, "text": "Did not converge"}, "color": "rgba(44.0, 160.0, 44.0, 1.0)", "marker": 2}, "scipy-linprog[solver=revised simplex]": {"scatter": {"x": [129.1873961580004, 3.9965989909997006], "y": [2.861584669612049, 10.206192100479225], "q1": [97.75827266359883, 2.8623998277998908], "q9": [140.9625882459997, 5.5451302429999485]}, "bar": {"y": 240.15278394400048, "times": NaN, "text": "Did not converge"}, "color": "rgba(214.0, 39.0, 40.0, 1.0)", "marker": 3}, "scipy-linprog[solver=highs]": {"scatter": {"x": [190.06658151400006, 3.7728483360006067], "y": [1.70307785565063, 10.206192100479225], "q1": [144.1951309683991, 2.9998083360005694], "q9": [230.1355434580004, 3.955005214400444]}, "bar": {"y": 190.06658151400006, "times": [240.15278394400048, 190.06658151400006, 132.72726833199886], "text": ""}, "color": "rgba(148.0, 103.0, 189.0, 1.0)", "marker": 4}, "scipy-linprog[solver=highs-ipm]": {"scatter": {"x": [108.55063381000036], "y": [1.7030778556481287], "q1": [104.83872205479966], "q9": [134.8997639075995]}, "bar": {"y": 108.55063381000036, "times": [108.55063381000036, 141.48704643199926, 103.91074411599948], "text": ""}, "color": "rgba(140.0, 86.0, 75.0, 1.0)", "marker": 5}, "scipy-linprog[solver=highs-ds]": {"scatter": {"x": [136.5878129240009, 3.890016666999145], "y": [1.70307785565063, 10.206192100479225], "q1": [94.86227147680037, 2.234266983799171], "q9": [202.5642356087992, 4.02469962620089]}, "bar": {"y": 136.5878129240009, "times": [219.05834127999879, 136.5878129240009, 84.43088611500025], "text": ""}, "color": "rgba(227.0, 119.0, 194.0, 1.0)", "marker": 6}}, "transformers": {"c_star": 1.7030778555481287, "max_f_0": 7.962218020344536}}}, "L1-regularized Quantile Regression[fit_intercept=False,quantile=0.8,reg=0.05]": {"objective_value": {"solvers": {"PDCD-WS": {"scatter": {"x": [5.368200072553009e-05, 1.2280644689999463, 1.4369424500000605, 1.537629698001183, 1.965661366999484, 2.699861200999294, 3.689174725999692, 6.166319887999634, 17.48681957199915], "y": [9.89769406212473, 7.553683682295699, 6.589204972642526, 4.926153285484508, 3.4164558263704388, 2.466194888883763, 2.0338227918411245, 1.9511805141828822, 1.928258373932519], "q1": [3.101960028288886e-05, 1.1918809201997647, 1.3507173540005168, 1.212457281200841, 1.9010222629989584, 2.4823160906002157, 3.64766931479935, 5.679841631198724, 16.285455451999223], "q9": [6.270599988056347e-05, 1.6768878938011766, 1.8439715195992903, 1.6258202723995054, 2.004499522999322, 2.858727046599961, 4.078974824401302, 6.269908458400823, 20.310391199999504]}, "bar": {"y": 165.48131707799985, "times": NaN, "text": "Did not converge"}, "color": "rgba(31.0, 119.0, 180.0, 1.0)", "marker": 0}, "scipy-linprog[solver=simplex]": {"scatter": {"x": [31.353417926000475, 6.459840759000144], "y": [6.997666890087797, 9.89769406212473], "q1": [30.45514313160056, 5.207730460600215], "q9": [40.182194350800636, 6.588227305399414]}, "bar": {"y": 165.48131707799985, "times": NaN, "text": "Did not converge"}, "color": "rgba(255.0, 127.0, 14.0, 1.0)", "marker": 1}, "scipy-linprog[solver=interior-point]": {"scatter": {"x": [18.43221021499994, 17.263384907999352, 3.2052041820006707], "y": [1.9414938691678267, 1.947704891676526, 9.89769406212473], "q1": [18.26441237820036, 17.18071183039974, 3.025772521199906], "q9": [20.79412240699967, 18.304575263200604, 3.433716197200192]}, "bar": {"y": 165.48131707799985, "times": NaN, "text": "Did not converge"}, "color": "rgba(44.0, 160.0, 44.0, 1.0)", "marker": 2}, "scipy-linprog[solver=revised simplex]": {"scatter": {"x": [101.92712168700018, 4.383568037001169], "y": [2.7566774314024682, 9.89769406212473], "q1": [78.88443751660016, 3.3480085377999784], "q9": [125.28219306460014, 4.398429509799098]}, "bar": {"y": 165.48131707799985, "times": NaN, "text": "Did not converge"}, "color": "rgba(214.0, 39.0, 40.0, 1.0)", "marker": 3}, "scipy-linprog[solver=highs]": {"scatter": {"x": [96.43083455300075, 2.511001098999259], "y": [1.9218072373793686, 9.89769406212473], "q1": [76.98725723859971, 1.9676446653997117], "q9": [151.67122057300003, 4.108032588600326]}, "bar": {"y": 96.43083455300075, "times": [165.48131707799985, 96.43083455300075, 72.12636290999944], "text": ""}, "color": "rgba(148.0, 103.0, 189.0, 1.0)", "marker": 4}, "scipy-linprog[solver=highs-ipm]": {"scatter": {"x": [66.42670138700123], "y": [1.9218072373828103], "q1": [45.35986646700112], "q9": [98.2496667958003]}, "bar": {"y": 66.42670138700123, "times": [106.20540814800006, 66.42670138700123, 40.09315773700109], "text": ""}, "color": "rgba(140.0, 86.0, 75.0, 1.0)", "marker": 5}, "scipy-linprog[solver=highs-ds]": {"scatter": {"x": [84.85899165200135, 2.262294383999688], "y": [1.9218072373793686, 9.89769406212473], "q1": [71.27972344079936, 1.818186692000745], "q9": [139.05853940800043, 3.723957873600739]}, "bar": {"y": 84.85899165200135, "times": [152.6084263470002, 84.85899165200135, 67.88490638799885], "text": ""}, "color": "rgba(227.0, 119.0, 194.0, 1.0)", "marker": 6}}, "transformers": {"c_star": 1.9218072372793686, "max_f_0": 7.553683682295699}}}}};
+
+            window.addEventListener("load", () => {
+                // Initialize plot state
+                setState({
+                    'dataset': document.getElementById('dataset_selector').value,
+                    'objective': document.getElementById('objective_selector').value,
+                    'objective_column': document.getElementById('objective_column').value,
+                    'plot_kind': document.getElementById('plot_kind').value,
+                    'scale': document.getElementById('change_scaling').value,
+                    'with_quantiles': document.getElementById('change_shades').checked,
+                    'hidden_solvers': []
+                });
+            });
+        </script>
+        <script type="text/javascript">
+            /**
+ * Round with precision control
+ * https://github.com/plotly/d3/blob/6bb40cd42f6479be84efda3e50c8444b50d5905d/d3.js#L2189
+ */
+const d3round = (x, n) => {
+    return n ? Math.round(x * (n = Math.pow(10, n))) / n : Math.round(x);
+};
+
+/**
+ * Container of function that create path for SVG plot marker
+ * https://github.com/plotly/plotly.js/blob/b2df3710d7877ff5b4f85256015a88c8ea8fbe1d/src/components/drawing/symbol_defs.js#L13
+ */
+const SYMBOLDEFS = {
+    circle: {
+        n: 0,
+        f: r => {
+            var rs = d3round(r, 2);
+            return 'M' + rs + ',0A' + rs + ',' + rs + ' 0 1,1 0,-' + rs +
+                'A' + rs + ',' + rs + ' 0 0,1 ' + rs + ',0Z';
+        }
+    },
+    square: {
+        n: 1,
+        f: r => {
+            var rs = d3round(r, 2);
+            return 'M' + rs + ',' + rs + 'H-' + rs + 'V-' + rs + 'H' + rs + 'Z';
+        }
+    },
+    diamond: {
+        n: 2,
+        f: r => {
+            var rd = d3round(r * 1.3, 2);
+            return 'M' + rd + ',0L0,' + rd + 'L-' + rd + ',0L0,-' + rd + 'Z';
+        }
+    },
+    cross: {
+        n: 3,
+        f: r => {
+            var rc = d3round(r * 0.4, 2);
+            var rc2 = d3round(r * 1.2, 2);
+            return 'M' + rc2 + ',' + rc + 'H' + rc + 'V' + rc2 + 'H-' + rc +
+                'V' + rc + 'H-' + rc2 + 'V-' + rc + 'H-' + rc + 'V-' + rc2 +
+                'H' + rc + 'V-' + rc + 'H' + rc2 + 'Z';
+        }
+    },
+    x: {
+        n: 4,
+        f: r => {
+            var rx = d3round(r * 0.8 / Math.sqrt(2), 2);
+            var ne = 'l' + rx + ',' + rx;
+            var se = 'l' + rx + ',-' + rx;
+            var sw = 'l-' + rx + ',-' + rx;
+            var nw = 'l-' + rx + ',' + rx;
+            return 'M0,' + rx + ne + se + sw + se + sw + nw + sw + nw + ne + nw + ne + 'Z';
+        }
+    },
+    'triangle-up': {
+        n: 5,
+        f: r => {
+            var rt = d3round(r * 2 / Math.sqrt(3), 2);
+            var r2 = d3round(r / 2, 2);
+            var rs = d3round(r, 2);
+            return 'M-' + rt + ',' + r2 + 'H' + rt + 'L0,-' + rs + 'Z';
+        }
+    },
+    'triangle-down': {
+        n: 6,
+        f: r => {
+            var rt = d3round(r * 2 / Math.sqrt(3), 2);
+            var r2 = d3round(r / 2, 2);
+            var rs = d3round(r, 2);
+            return 'M-' + rt + ',-' + r2 + 'H' + rt + 'L0,' + rs + 'Z';
+        }
+    },
+    'triangle-left': {
+        n: 7,
+        f: r => {
+            var rt = d3round(r * 2 / Math.sqrt(3), 2);
+            var r2 = d3round(r / 2, 2);
+            var rs = d3round(r, 2);
+            return 'M' + r2 + ',-' + rt + 'V' + rt + 'L-' + rs + ',0Z';
+        }
+    },
+    'triangle-right': {
+        n: 8,
+        f: r => {
+            var rt = d3round(r * 2 / Math.sqrt(3), 2);
+            var r2 = d3round(r / 2, 2);
+            var rs = d3round(r, 2);
+            return 'M-' + r2 + ',-' + rt + 'V' + rt + 'L' + rs + ',0Z';
+        }
+    },
+    'triangle-ne': {
+        n: 9,
+        f: r => {
+            var r1 = d3round(r * 0.6, 2);
+            var r2 = d3round(r * 1.2, 2);
+            return 'M-' + r2 + ',-' + r1 + 'H' + r1 + 'V' + r2 + 'Z';
+        }
+    },
+    'triangle-se': {
+        n: 10,
+        f: r => {
+            var r1 = d3round(r * 0.6, 2);
+            var r2 = d3round(r * 1.2, 2);
+            return 'M' + r1 + ',-' + r2 + 'V' + r1 + 'H-' + r2 + 'Z';
+        }
+    },
+    'triangle-sw': {
+        n: 11,
+        f: r => {
+            var r1 = d3round(r * 0.6, 2);
+            var r2 = d3round(r * 1.2, 2);
+            return 'M' + r2 + ',' + r1 + 'H-' + r1 + 'V-' + r2 + 'Z';
+        }
+    },
+    'triangle-nw': {
+        n: 12,
+        f: r => {
+            var r1 = d3round(r * 0.6, 2);
+            var r2 = d3round(r * 1.2, 2);
+            return 'M-' + r1 + ',' + r2 + 'V-' + r1 + 'H' + r2 + 'Z';
+        }
+    },
+    pentagon: {
+        n: 13,
+        f: r => {
+            var x1 = d3round(r * 0.951, 2);
+            var x2 = d3round(r * 0.588, 2);
+            var y0 = d3round(-r, 2);
+            var y1 = d3round(r * -0.309, 2);
+            var y2 = d3round(r * 0.809, 2);
+            return 'M' + x1 + ',' + y1 + 'L' + x2 + ',' + y2 + 'H-' + x2 +
+                'L-' + x1 + ',' + y1 + 'L0,' + y0 + 'Z';
+        }
+    },
+    hexagon: {
+        n: 14,
+        f: r => {
+            var y0 = d3round(r, 2);
+            var y1 = d3round(r / 2, 2);
+            var x = d3round(r * Math.sqrt(3) / 2, 2);
+            return 'M' + x + ',-' + y1 + 'V' + y1 + 'L0,' + y0 +
+                'L-' + x + ',' + y1 + 'V-' + y1 + 'L0,-' + y0 + 'Z';
+        }
+    },
+    hexagon2: {
+        n: 15,
+        f: r => {
+            var x0 = d3round(r, 2);
+            var x1 = d3round(r / 2, 2);
+            var y = d3round(r * Math.sqrt(3) / 2, 2);
+            return 'M-' + x1 + ',' + y + 'H' + x1 + 'L' + x0 +
+                ',0L' + x1 + ',-' + y + 'H-' + x1 + 'L-' + x0 + ',0Z';
+        }
+    },
+    octagon: {
+        n: 16,
+        f: r => {
+            var a = d3round(r * 0.924, 2);
+            var b = d3round(r * 0.383, 2);
+            return 'M-' + b + ',-' + a + 'H' + b + 'L' + a + ',-' + b + 'V' + b +
+                'L' + b + ',' + a + 'H-' + b + 'L-' + a + ',' + b + 'V-' + b + 'Z';
+        }
+    },
+    star: {
+        n: 17,
+        f: r => {
+            var rs = r * 1.4;
+            var x1 = d3round(rs * 0.225, 2);
+            var x2 = d3round(rs * 0.951, 2);
+            var x3 = d3round(rs * 0.363, 2);
+            var x4 = d3round(rs * 0.588, 2);
+            var y0 = d3round(-rs, 2);
+            var y1 = d3round(rs * -0.309, 2);
+            var y3 = d3round(rs * 0.118, 2);
+            var y4 = d3round(rs * 0.809, 2);
+            var y5 = d3round(rs * 0.382, 2);
+            return 'M' + x1 + ',' + y1 + 'H' + x2 + 'L' + x3 + ',' + y3 +
+                'L' + x4 + ',' + y4 + 'L0,' + y5 + 'L-' + x4 + ',' + y4 +
+                'L-' + x3 + ',' + y3 + 'L-' + x2 + ',' + y1 + 'H-' + x1 +
+                'L0,' + y0 + 'Z';
+        }
+    },
+    hexagram: {
+        n: 18,
+        f: r => {
+            var y = d3round(r * 0.66, 2);
+            var x1 = d3round(r * 0.38, 2);
+            var x2 = d3round(r * 0.76, 2);
+            return 'M-' + x2 + ',0l-' + x1 + ',-' + y + 'h' + x2 +
+                'l' + x1 + ',-' + y + 'l' + x1 + ',' + y + 'h' + x2 +
+                'l-' + x1 + ',' + y + 'l' + x1 + ',' + y + 'h-' + x2 +
+                'l-' + x1 + ',' + y + 'l-' + x1 + ',-' + y + 'h-' + x2 + 'Z';
+        }
+    },
+    'star-triangle-up': {
+        n: 19,
+        f: r => {
+            var x = d3round(r * Math.sqrt(3) * 0.8, 2);
+            var y1 = d3round(r * 0.8, 2);
+            var y2 = d3round(r * 1.6, 2);
+            var rc = d3round(r * 4, 2);
+            var aPart = 'A ' + rc + ',' + rc + ' 0 0 1 ';
+            return 'M-' + x + ',' + y1 + aPart + x + ',' + y1 +
+                aPart + '0,-' + y2 + aPart + '-' + x + ',' + y1 + 'Z';
+        }
+    },
+    'star-triangle-down': {
+        n: 20,
+        f: r => {
+            var x = d3round(r * Math.sqrt(3) * 0.8, 2);
+            var y1 = d3round(r * 0.8, 2);
+            var y2 = d3round(r * 1.6, 2);
+            var rc = d3round(r * 4, 2);
+            var aPart = 'A ' + rc + ',' + rc + ' 0 0 1 ';
+            return 'M' + x + ',-' + y1 + aPart + '-' + x + ',-' + y1 +
+                aPart + '0,' + y2 + aPart + x + ',-' + y1 + 'Z';
+        }
+    },
+    'star-square': {
+        n: 21,
+        f: r => {
+            var rp = d3round(r * 1.1, 2);
+            var rc = d3round(r * 2, 2);
+            var aPart = 'A ' + rc + ',' + rc + ' 0 0 1 ';
+            return 'M-' + rp + ',-' + rp + aPart + '-' + rp + ',' + rp +
+                aPart + rp + ',' + rp + aPart + rp + ',-' + rp +
+                aPart + '-' + rp + ',-' + rp + 'Z';
+        }
+    },
+    'star-diamond': {
+        n: 22,
+        f: r => {
+            var rp = d3round(r * 1.4, 2);
+            var rc = d3round(r * 1.9, 2);
+            var aPart = 'A ' + rc + ',' + rc + ' 0 0 1 ';
+            return 'M-' + rp + ',0' + aPart + '0,' + rp +
+                aPart + rp + ',0' + aPart + '0,-' + rp +
+                aPart + '-' + rp + ',0' + 'Z';
+        }
+    },
+    'diamond-tall': {
+        n: 23,
+        f: r => {
+            var x = d3round(r * 0.7, 2);
+            var y = d3round(r * 1.4, 2);
+            return 'M0,' + y + 'L' + x + ',0L0,-' + y + 'L-' + x + ',0Z';
+        }
+    },
+    'diamond-wide': {
+        n: 24,
+        f: r => {
+            var x = d3round(r * 1.4, 2);
+            var y = d3round(r * 0.7, 2);
+            return 'M0,' + y + 'L' + x + ',0L0,-' + y + 'L-' + x + ',0Z';
+        }
+    },
+    hourglass: {
+        n: 25,
+        f: r => {
+            var rs = d3round(r, 2);
+            return 'M' + rs + ',' + rs + 'H-' + rs + 'L' + rs + ',-' + rs + 'H-' + rs + 'Z';
+        },
+        noDot: true
+    },
+    bowtie: {
+        n: 26,
+        f: r => {
+            var rs = d3round(r, 2);
+            return 'M' + rs + ',' + rs + 'V-' + rs + 'L-' + rs + ',' + rs + 'V-' + rs + 'Z';
+        },
+        noDot: true
+    },
+    'circle-cross': {
+        n: 27,
+        f: r => {
+            var rs = d3round(r, 2);
+            return 'M0,' + rs + 'V-' + rs + 'M' + rs + ',0H-' + rs +
+                'M' + rs + ',0A' + rs + ',' + rs + ' 0 1,1 0,-' + rs +
+                'A' + rs + ',' + rs + ' 0 0,1 ' + rs + ',0Z';
+        },
+        needLine: true,
+        noDot: true
+    },
+    'circle-x': {
+        n: 28,
+        f: r => {
+            var rs = d3round(r, 2);
+            var rc = d3round(r / Math.sqrt(2), 2);
+            return 'M' + rc + ',' + rc + 'L-' + rc + ',-' + rc +
+                'M' + rc + ',-' + rc + 'L-' + rc + ',' + rc +
+                'M' + rs + ',0A' + rs + ',' + rs + ' 0 1,1 0,-' + rs +
+                'A' + rs + ',' + rs + ' 0 0,1 ' + rs + ',0Z';
+        },
+        needLine: true,
+        noDot: true
+    },
+    'square-cross': {
+        n: 29,
+        f: r => {
+            var rs = d3round(r, 2);
+            return 'M0,' + rs + 'V-' + rs + 'M' + rs + ',0H-' + rs +
+                'M' + rs + ',' + rs + 'H-' + rs + 'V-' + rs + 'H' + rs + 'Z';
+        },
+        needLine: true,
+        noDot: true
+    },
+    'square-x': {
+        n: 30,
+        f: r => {
+            var rs = d3round(r, 2);
+            return 'M' + rs + ',' + rs + 'L-' + rs + ',-' + rs +
+                'M' + rs + ',-' + rs + 'L-' + rs + ',' + rs +
+                'M' + rs + ',' + rs + 'H-' + rs + 'V-' + rs + 'H' + rs + 'Z';
+        },
+        needLine: true,
+        noDot: true
+    },
+    'diamond-cross': {
+        n: 31,
+        f: r => {
+            var rd = d3round(r * 1.3, 2);
+            return 'M' + rd + ',0L0,' + rd + 'L-' + rd + ',0L0,-' + rd + 'Z' +
+                'M0,-' + rd + 'V' + rd + 'M-' + rd + ',0H' + rd;
+        },
+        needLine: true,
+        noDot: true
+    },
+    'diamond-x': {
+        n: 32,
+        f: r => {
+            var rd = d3round(r * 1.3, 2);
+            var r2 = d3round(r * 0.65, 2);
+            return 'M' + rd + ',0L0,' + rd + 'L-' + rd + ',0L0,-' + rd + 'Z' +
+                'M-' + r2 + ',-' + r2 + 'L' + r2 + ',' + r2 +
+                'M-' + r2 + ',' + r2 + 'L' + r2 + ',-' + r2;
+        },
+        needLine: true,
+        noDot: true
+    },
+    'cross-thin': {
+        n: 33,
+        f: r => {
+            var rc = d3round(r * 1.4, 2);
+            return 'M0,' + rc + 'V-' + rc + 'M' + rc + ',0H-' + rc;
+        },
+        needLine: true,
+        noDot: true,
+        noFill: true
+    },
+    'x-thin': {
+        n: 34,
+        f: r => {
+            var rx = d3round(r, 2);
+            return 'M' + rx + ',' + rx + 'L-' + rx + ',-' + rx +
+                'M' + rx + ',-' + rx + 'L-' + rx + ',' + rx;
+        },
+        needLine: true,
+        noDot: true,
+        noFill: true
+    },
+    asterisk: {
+        n: 35,
+        f: r => {
+            var rc = d3round(r * 1.2, 2);
+            var rs = d3round(r * 0.85, 2);
+            return 'M0,' + rc + 'V-' + rc + 'M' + rc + ',0H-' + rc +
+                'M' + rs + ',' + rs + 'L-' + rs + ',-' + rs +
+                'M' + rs + ',-' + rs + 'L-' + rs + ',' + rs;
+        },
+        needLine: true,
+        noDot: true,
+        noFill: true
+    },
+    hash: {
+        n: 36,
+        f: r => {
+            var r1 = d3round(r / 2, 2);
+            var r2 = d3round(r, 2);
+            return 'M' + r1 + ',' + r2 + 'V-' + r2 +
+                'm-' + r2 + ',0V' + r2 +
+                'M' + r2 + ',' + r1 + 'H-' + r2 +
+                'm0,-' + r2 + 'H' + r2;
+        },
+        needLine: true,
+        noFill: true
+    },
+    'y-up': {
+        n: 37,
+        f: r => {
+            var x = d3round(r * 1.2, 2);
+            var y0 = d3round(r * 1.6, 2);
+            var y1 = d3round(r * 0.8, 2);
+            return 'M-' + x + ',' + y1 + 'L0,0M' + x + ',' + y1 + 'L0,0M0,-' + y0 + 'L0,0';
+        },
+        needLine: true,
+        noDot: true,
+        noFill: true
+    },
+    'y-down': {
+        n: 38,
+        f: r => {
+            var x = d3round(r * 1.2, 2);
+            var y0 = d3round(r * 1.6, 2);
+            var y1 = d3round(r * 0.8, 2);
+            return 'M-' + x + ',-' + y1 + 'L0,0M' + x + ',-' + y1 + 'L0,0M0,' + y0 + 'L0,0';
+        },
+        needLine: true,
+        noDot: true,
+        noFill: true
+    },
+    'y-left': {
+        n: 39,
+        f: r => {
+            var y = d3round(r * 1.2, 2);
+            var x0 = d3round(r * 1.6, 2);
+            var x1 = d3round(r * 0.8, 2);
+            return 'M' + x1 + ',' + y + 'L0,0M' + x1 + ',-' + y + 'L0,0M-' + x0 + ',0L0,0';
+        },
+        needLine: true,
+        noDot: true,
+        noFill: true
+    },
+    'y-right': {
+        n: 40,
+        f: r => {
+            var y = d3round(r * 1.2, 2);
+            var x0 = d3round(r * 1.6, 2);
+            var x1 = d3round(r * 0.8, 2);
+            return 'M-' + x1 + ',' + y + 'L0,0M-' + x1 + ',-' + y + 'L0,0M' + x0 + ',0L0,0';
+        },
+        needLine: true,
+        noDot: true,
+        noFill: true
+    },
+    'line-ew': {
+        n: 41,
+        f: r => {
+            var rc = d3round(r * 1.4, 2);
+            return 'M' + rc + ',0H-' + rc;
+        },
+        needLine: true,
+        noDot: true,
+        noFill: true
+    },
+    'line-ns': {
+        n: 42,
+        f: r => {
+            var rc = d3round(r * 1.4, 2);
+            return 'M0,' + rc + 'V-' + rc;
+        },
+        needLine: true,
+        noDot: true,
+        noFill: true
+    },
+    'line-ne': {
+        n: 43,
+        f: r => {
+            var rx = d3round(r, 2);
+            return 'M' + rx + ',-' + rx + 'L-' + rx + ',' + rx;
+        },
+        needLine: true,
+        noDot: true,
+        noFill: true
+    },
+    'line-nw': {
+        n: 44,
+        f: r => {
+            var rx = d3round(r, 2);
+            return 'M' + rx + ',' + rx + 'L-' + rx + ',-' + rx;
+        },
+        needLine: true,
+        noDot: true,
+        noFill: true
+    },
+    'arrow-up': {
+        n: 45,
+        f: r => {
+            var rx = d3round(r, 2);
+            var ry = d3round(r * 2, 2);
+            return 'M0,0L-' + rx + ',' + ry + 'H' + rx + 'Z';
+        },
+        noDot: true
+    },
+    'arrow-down': {
+        n: 46,
+        f: r => {
+            var rx = d3round(r, 2);
+            var ry = d3round(r * 2, 2);
+            return 'M0,0L-' + rx + ',-' + ry + 'H' + rx + 'Z';
+        },
+        noDot: true
+    },
+    'arrow-left': {
+        n: 47,
+        f: r => {
+            var rx = d3round(r * 2, 2);
+            var ry = d3round(r, 2);
+            return 'M0,0L' + rx + ',-' + ry + 'V' + ry + 'Z';
+        },
+        noDot: true
+    },
+    'arrow-right': {
+        n: 48,
+        f: r => {
+            var rx = d3round(r * 2, 2);
+            var ry = d3round(r, 2);
+            return 'M0,0L-' + rx + ',-' + ry + 'V' + ry + 'Z';
+        },
+        noDot: true
+    },
+    'arrow-bar-up': {
+        n: 49,
+        f: r => {
+            var rx = d3round(r, 2);
+            var ry = d3round(r * 2, 2);
+            return 'M-' + rx + ',0H' + rx + 'M0,0L-' + rx + ',' + ry + 'H' + rx + 'Z';
+        },
+        needLine: true,
+        noDot: true
+    },
+    'arrow-bar-down': {
+        n: 50,
+        f: r => {
+            var rx = d3round(r, 2);
+            var ry = d3round(r * 2, 2);
+            return 'M-' + rx + ',0H' + rx + 'M0,0L-' + rx + ',-' + ry + 'H' + rx + 'Z';
+        },
+        needLine: true,
+        noDot: true
+    },
+    'arrow-bar-left': {
+        n: 51,
+        f: r => {
+            var rx = d3round(r * 2, 2);
+            var ry = d3round(r, 2);
+            return 'M0,-' + ry + 'V' + ry + 'M0,0L' + rx + ',-' + ry + 'V' + ry + 'Z';
+        },
+        needLine: true,
+        noDot: true
+    },
+    'arrow-bar-right': {
+        n: 52,
+        f: r => {
+            var rx = d3round(r * 2, 2);
+            var ry = d3round(r, 2);
+            return 'M0,-' + ry + 'V' + ry + 'M0,0L-' + rx + ',-' + ry + 'V' + ry + 'Z';
+        },
+        needLine: true,
+        noDot: true
+    }
+};
+
+const DOTPATH = 'M0,0.5L0.5,0L0,-0.5L-0.5,0Z';
+
+const drawing = {
+    symbolFuncs: [],
+};
+
+/**
+ * Create arrays of symbol functions.
+ * https://plotly.com/javascript/reference/scatter/#scatter-marker-symbol
+ */
+Object.keys(SYMBOLDEFS).forEach(function(k) {
+    var symDef = SYMBOLDEFS[k];
+    var n = symDef.n;
+    drawing.symbolFuncs[n] = symDef.f;
+});
+
+/**
+ * Returns a <path></path> element that have to be placed in a <svg></svg> element.
+ * 
+ * @param {int} symbolNumber
+ * @param {String} color
+ * @return {Element}
+ */
+const createPathElement = (symbolNumber, color) => {
+    const path = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+    // d is the shape of the symbol.
+    path.setAttribute('d', createPathString(symbolNumber, 5));
+    // Translation must be the half of the svg size to have the symbol centered.
+    path.setAttribute('transform', 'translate(15, 15)');
+
+    // If svg is type "open" or "open-dot" : https://plotly.com/javascript/reference/scatter/#scatter-marker-symbol
+    if ((100 <= symbolNumber && symbolNumber < 200) || 300 <= symbolNumber) {
+        path.setAttribute('stroke', color);
+        path.setAttribute('stroke-width', 0.5);
+        path.setAttribute('stroke-opacity', 1);
+        path.setAttribute('fill', 'white');
+    }
+
+    // If svg is type "normal" or "dot" : https://plotly.com/javascript/reference/scatter/#scatter-marker-symbol
+    if (symbolNumber < 100 || (200 <= symbolNumber && symbolNumber < 300)) {
+        path.setAttribute('fill-opacity', 1);
+        path.setAttribute('fill', color);
+    }
+
+    // If svg is type "dot" : https://plotly.com/javascript/reference/scatter/#scatter-marker-symbol
+    if (200 <= symbolNumber && symbolNumber < 300) {
+        path.setAttribute('stroke', 'black');
+        path.setAttribute('stroke-width', 0.5);
+        path.setAttribute('stroke-opacity', 1);
+    }
+    
+    return path;
+}
+
+/**
+ * Returns the string corresponding of the symbol shape requested by symbolNumber.
+ * 
+ * @param {int} symbolNumber
+ * @param {int} r size of the symbol (currently, we request a 5)
+ * @returns {String} this string must be placed in the "d" attribute of <path></path> SVG element.
+ */
+function createPathString(symbolNumber, r) {
+    var base = symbolNumber % 100;
+    return drawing.symbolFuncs[base](r) + (symbolNumber >= 200 ? DOTPATH : '');
+}
+
+            const NON_CONVERGENT_COLOR = 'rgba(0.8627, 0.8627, 0.8627)'
+
+/*
+ * ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+ * STATE MANAGEMENT
+ *
+ * The state represent the plot state. It's an object
+ * that is stored into the window.state variable.
+ *
+ * Do not manually update window.state,
+ * instead, foreach state modification,
+ * you shoud call the setState() function
+ * to keep the plot in sync with its state.
+ *
+ * The state contains the following keys :
+ *   - dataset (string),
+ *   - objective (string),
+ *   - objective_column (string),
+ *   - plot_kind (string),
+ *   - scale (string)
+ *   - with_quantiles (boolean)
+ *   - hidden_solvers (array)
+ * ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+ */
+
+/**
+ * Update the state and create/update the plot
+ * using the new state.
+ *
+ * @param {Object} partialState
+ */
+const setState = (partialState) => {
+  window.state = {...state(), ...partialState};
+  displayScatterElements(!isBarChart());
+  makePlot();
+  makeLegend();
+}
+
+/**
+ * Retrieve the state object from window.state
+ *
+ * @returns Object
+ */
+const state = () => window.state;
+
+/*
+ * ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+ * PLOT MANAGEMENT
+ *
+ * Retrieve formatted data for PlotlyJS using state
+ * and create/update the plot.
+ * ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+ */
+
+/**
+ * Create/Update the plot.
+ */
+const makePlot = () => {
+  const div = document.getElementById('unique_plot');
+  const data = isBarChart() ? getBarData() : getScatterCurves();
+  const layout = isBarChart() ? getBarChartLayout() : getScatterChartLayout();
+
+  Plotly.react(div, data, layout);
+};
+
+/**
+ * Gives the data formatted for plotlyJS bar chart.
+ *
+ * @returns {array}
+ */
+const getBarData = () => {
+  if (!isAvailable()) return [{type:'bar'}];
+
+  const {x, y, colors, texts} = barDataToArrays()
+
+  // Add bars
+  const barData = [{
+    type: 'bar',
+    x: x,
+    y: y,
+    marker: {
+      color: colors,
+    },
+    text: texts,
+    textposition: 'inside',
+    insidetextanchor: 'middle',
+    textangle: '-90',
+  }];
+
+  x.forEach(solver => {
+    // Add times for each convergent solver
+    // Check if text is not 'Did not converge'
+    if (data(solver).bar.text === '') {
+      let nbTimes = data(solver).bar.times.length
+
+      barData.push({
+        type: 'scatter',
+        x: new Array(nbTimes).fill(solver),
+        y: data(solver).bar.times,
+        marker: {
+          color: 'black',
+          symbol: 'line-ew-open'
+        },
+        line: {
+          width: 0
+        },
+      });
+    }
+  });
+
+  return barData;
+};
+
+/**
+ * Gives the data formatted for plotlyJS scatter chart.
+ *
+ * @returns {array}
+ */
+const getScatterCurves = () => {
+  // create a list of object to plot in plotly
+  const curves = [];
+
+  // For each solver, add the median curve with proper style and visibility.
+  getSolvers().forEach(solver => {
+    curves.push({
+      type: 'scatter',
+      name: solver,
+      mode: 'lines+markers',
+      line: {
+        color: data(solver).color,
+      },
+      marker: {
+        symbol: data(solver).marker,
+        size: 10,
+      },
+      legendgroup: solver,
+      hovertemplate: solver + ' <br> (%{x:.1e},%{y:.1e}) <extra></extra>',
+      visible: isVisible(solver) ? true : 'legendonly',
+      x: data(solver).scatter.x,
+      y: useTransformer(data(solver).scatter.y, 'y', data().transformers),
+    });
+
+    if (state().with_quantiles) {
+      // Add shaded area for each solver, with proper style and visibility.
+      curves.push({
+        type: 'scatter',
+        mode: 'lines',
+        showlegend: false,
+        line: {
+          width: 0,
+          color: data(solver).color,
+        },
+        legendgroup: solver,
+        hovertemplate: '(%{x:.1e},%{y:.1e}) <extra></extra>',
+        visible: isVisible(solver) ? true : 'legendonly',
+        x: data(solver).scatter.q1,
+        y: useTransformer(data(solver).scatter.y, 'y', data().transformers),
+      }, {
+        type: 'scatter',
+        mode: 'lines',
+        showlegend: false,
+        fill: 'tonextx',
+        line: {
+          width: 0,
+          color: data(solver).color,
+        },
+        legendgroup: solver,
+        hovertemplate: '(%{x:.1e},%{y:.1e}) <extra></extra>',
+        visible: isVisible(solver) ? true : 'legendonly',
+        x: data(solver).scatter.q9,
+        y: useTransformer(data(solver).scatter.y, 'y', data().transformers),
+      });
+    }
+  });
+
+  return curves;
+};
+
+/*
+ * ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+ * DATA TRANSFORMERS
+ *
+ * Transformers are used to modify data
+ * on the fly.
+ *
+ * WARNING : If you add a new transformer function,
+ * don't forget to register it in the object : window.tranformers,
+ * at the end of this section.
+ * ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+ */
+
+/**
+ * Select the right transformer according to the state.
+ * If the requested transformer does not exists,
+ * it returns raw data.
+ *
+ * @param {Object} data
+ * @param {String} solver
+ * @param {String} axis it could be x, y, q1, q9
+ * @returns {array}
+ */
+const useTransformer = (data, axis, options) => {
+  try {
+    let transformer = 'transformer_' + axis + '_' + state().plot_kind;
+    return window.transformers[transformer](data, options);
+  } catch(error) {
+    return data;
+  }
+};
+
+/**
+ * Transform data on the y axis for subotimality curve.
+ *
+ * @param {Object} data
+ * @param {String} solver
+ * @returns {array}
+ */
+const transformer_y_suboptimality_curve = (y, options) => {
+  // Retrieve c_star value
+  const c_star = options.c_star;
+
+  // Compute suboptimality for each data
+  return y.map(value => value - c_star);
+};
+
+/**
+ * Transform data ont the y axis for relative suboptimality curve.
+ *
+ * @param {Object} data
+ * @param {String} solver
+ * @returns {array}
+ */
+const transformer_y_relative_suboptimality_curve = (y, options) => {
+  // Retrieve transformer values
+  const c_star = options.c_star;
+  const max_f_0 = options.max_f_0;
+
+  // Compute relative suboptimality for each data
+  return y.map(value => (value - c_star) / (max_f_0 - c_star));
+};
+
+/**
+ * Store all the transformer functions to be callable
+ * by the useTransformer function.
+ */
+window.transformers = {
+  transformer_y_suboptimality_curve,
+  transformer_y_relative_suboptimality_curve,
+};
+
+/*
+ * ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+ * TOOLS
+ *
+ * Various functions to simplify life.
+ * ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+ */
+
+const data = (solver = null) => {
+  return solver ?
+    window.data[state().dataset][state().objective][state().objective_column].solvers[solver]:
+    window.data[state().dataset][state().objective][state().objective_column]
+}
+
+const getSolvers = () => Object.keys(data().solvers);
+
+const isBarChart = () => state().plot_kind === 'bar_chart';
+
+const isVisible = solver => !state().hidden_solvers.includes(solver);
+
+const isSolverAvailable = solver => data(solver).scatter.y.filter(value => !isNaN(value)).length > 0;
+
+const isSmallScreen = () => window.screen.availHeight < 900;
+
+/**
+ * Check for each solver
+ * if data is available
+ *
+ * @returns {Boolean}
+ */
+const isAvailable = () => {
+  let isNotAvailable = true;
+
+  getSolvers().forEach(solver => {
+    if (isSolverAvailable(solver)) {
+      isNotAvailable = false;
+    }
+  });
+
+  return !isNotAvailable;
+}
+
+const displayScatterElements = shouldBeVisible => {
+  if (shouldBeVisible) {
+    document.getElementById('change_scaling').style.display = 'inline-block';
+    document.getElementById('legend_container').style.display = 'block';
+    document.getElementById('plot_legend').style.display = 'flex';
+  } else {
+    document.getElementById('change_scaling').style.display = 'none';
+    document.getElementById('legend_container').style.display = 'none';
+    document.getElementById('plot_legend').style.display = 'none';
+  }
+};
+
+const barDataToArrays = () => {
+  const colors = [], texts = [], x = [], y = [];
+
+  getSolvers().forEach(solver => {
+    x.push(solver);
+    y.push(data(solver).bar.y);
+    colors.push(data(solver).bar.text === '' ? data(solver).color : NON_CONVERGENT_COLOR);
+    texts.push(data(solver).bar.text);
+  });
+
+  return {x, y, colors, texts}
+}
+
+const getScale = () => {
+  switch (state().scale) {
+    case 'loglog':
+      return {
+        xaxis: 'log',
+        yaxis: 'log',
+      };
+    case "semilog-y":
+      return {
+        xaxis: 'linear',
+        yaxis: 'log',
+      };
+    case "semilog-x":
+      return {
+        xaxis: 'log',
+        yaxis: 'linear',
+      };
+    case "linear":
+      return {
+        xaxis: 'linear',
+        yaxis: 'linear',
+      };
+    default:
+      console.error('Unknown scale value : ' + state().scale);
+  }
+}
+
+const getScatterChartLayout = () => {
+  const layout = {
+    autosize: !isSmallScreen(),
+    modebar: {
+      orientation: 'v',
+    },
+    height: 700,
+    showlegend: false,
+    legend: {
+      title: {
+        text: 'Solvers',
+      },
+      orientation: 'h',
+      xanchor: 'center',
+      yanchor: 'top',
+      y: -.2,
+      x: .5
+    },
+    xaxis: {
+      type: getScale().xaxis,
+      title: 'Time [sec]',
+      tickformat: '.1e',
+      tickangle: -45,
+      gridcolor: '#ffffff',
+      zeroline : false,
+    },
+    yaxis: {
+      type: getScale().yaxis,
+      title: getYLabel(),
+      tickformat: '.1e',
+      gridcolor: '#ffffff',
+      zeroline : false,
+    },
+    title: `${state().objective}<br />Data: ${state().dataset}`,
+    plot_bgcolor: '#e5ecf6',
+  };
+
+  if (isSmallScreen()) {
+    layout.width = 900;
+    layout.height = window.screen.availHeight - 200;
+    layout.dragmode = false;
+  }
+
+  if (!isAvailable()) {
+    layout.annotations = [{
+      xref: 'paper',
+      yref: 'paper',
+      x: 0.5,
+      y: 0.5,
+      text: 'Not available',
+      showarrow: false,
+      font: {
+        color: 'black',
+        size: 32,
+      }
+    }];
+  };
+
+  return layout;
+};
+
+const getBarChartLayout = () => {
+
+  const layout = {
+    autosize: !isSmallScreen(),
+    modebar: {
+      orientation: 'v',
+    },
+    yaxis: {
+      type: 'log',
+      title: 'Time [sec]',
+      tickformat: '.1e',
+      gridcolor: '#ffffff',
+    },
+    xaxis: {
+      tickangle: -60,
+      ticktext: getSolvers(),
+    },
+    showlegend: false,
+    title: `${state().objective}<br />Data: ${state().dataset}`,
+    plot_bgcolor: '#e5ecf6',
+  };
+
+  if (isSmallScreen()) {
+    layout.width = 900;
+    layout.height = window.screen.availHeight - 200;
+    layout.dragmode = false;
+  }
+
+  if (!isAvailable()) {
+    layout.annotations = [{
+      xref: 'paper',
+      yref: 'paper',
+      x: 0.5,
+      y: 0.5,
+      text: 'Not available',
+      showarrow: false,
+      font: {
+        color: 'black',
+        size: 32,
+      }
+    }];
+  };
+
+  return layout;
+};
+
+const getYLabel = () => {
+  switch(state().plot_kind) {
+    case 'objective_curve':
+      return 'F(x)';
+    case 'suboptimality_curve':
+      return 'F(x) - F(x*)';
+    case 'relative_suboptimality_curve':
+      return 'F(x) - F(x*) / F(x0) - F(x*)'
+    case 'bar_chart':
+      return 'Time [sec]';
+    default:
+      return 'unknown';
+  };
+};
+
+/*
+ * ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+ * MANAGE HIDDEN SOLVERS
+ *
+ * Functions to hide/display and memorize solvers which were clicked
+ * by user on the legend of the plot.
+ * ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+ */
+const getSolverFromEvent = event => {
+  const target = event.currentTarget;
+
+  for (let i = 0; i < target.children.length; i++) {
+    if (target.children[i].className == 'solver') {
+      return target.children[i].firstChild.nodeValue;
+    }
+  }
+
+  return null;
+};
+
+const purgeHiddenSolvers = () => setState({hidden_solvers: []});
+
+const hideAllSolversExcept = solver => {setState({hidden_solvers: getSolvers().filter(elmt => elmt !== solver)})};
+
+const hideSolver = solver => isVisible(solver) ? setState({hidden_solvers: [...state().hidden_solvers, solver]}) : null;
+
+const showSolver = solver => setState({hidden_solvers: state().hidden_solvers.filter(hidden => hidden !== solver)});
+
+/**
+ * Add or remove solver name from the list of hidden solvers.
+ *
+ * @param {String} solver
+ * @returns {void}
+ */
+const handleSolverClick = solver => {
+  if (!isVisible(solver)) {
+    showSolver(solver);
+
+    return;
+  }
+
+  hideSolver(solver);
+};
+
+const handleSolverDoubleClick = solver => {
+  // If all solvers except one are hidden, so double click should show all solvers
+  if (state().hidden_solvers.length === getSolvers().length - 1) {
+    purgeHiddenSolvers();
+
+    return;
+  }
+
+  hideAllSolversExcept(solver);
+};
+
+/**
+ * ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+ * MANAGE PLOT LEGEND
+ *
+ * We don't use the plotly legend to keep control
+ * on the size of the plot.
+ * ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+ */
+
+/**
+ * Creates the legend at the bottom of the plot.
+ */
+const makeLegend = () => {
+  const legend = document.getElementById('plot_legend');
+
+  legend.innerHTML = '';
+
+  Object.keys(data().solvers).forEach(solver => {
+    const color = data().solvers[solver].color;
+    const symbolNumber = data().solvers[solver].marker;
+
+    legend.appendChild(createLegendItem(solver, color, symbolNumber));
+  });
+}
+
+/**
+ * Creates a legend item which contains the solver name,
+ * the solver marker as an SVG and an horizontal bar with
+ * the solver color.
+ *
+ * @param {String} solver
+ * @param {String} color
+ * @param {int} symbolNumber
+ * @retuns {HTMLElement}
+ */
+const createLegendItem = (solver, color, symbolNumber) => {
+  // Create item container
+  const item = document.createElement('div');
+  item.style.display = 'flex';
+  item.style.flexDirection = 'row';
+  item.style.alignItems = 'center';
+  item.style.position = 'relative';
+  item.style.cursor = 'pointer';
+  item.className = 'bg-white py-1 px-4 shadow-sm mt-2 rounded'
+
+  if (!isVisible(solver)) {
+    item.style.opacity = 0.5;
+  }
+
+  // Click on a solver in the legend
+  item.addEventListener('click', event => {
+    solver = getSolverFromEvent(event);
+
+    if (!getSolvers().includes(solver)) {
+      console.error('An invalid solver has been handled during the click event.');
+
+      return;
+    }
+
+    // In javascript we must simulate double click.
+    // So first click is handled and kept in memory (window.clickedSolver)
+    // during 500ms, if nothing else happen timeout will execute
+    // single click function. However, if an other click happen during this
+    // 500ms, it clears the timeout and execute the double click function.
+    if (!window.clickedSolver) {
+      window.clickedSolver = solver;
+
+      // Timeout will execute single click function after 500ms
+      window.clickedTimeout = setTimeout(() => {
+        window.clickedSolver = null;
+
+        handleSolverClick(solver);
+      }, 500);
+    } else if (window.clickedSolver === solver) {
+      clearTimeout(window.clickedTimeout);
+      window.clickedSolver = null;
+      handleSolverDoubleClick(solver);
+    }
+  });
+
+  // Create the HTML text node for the solver name in the legend
+  const textContainer = document.createElement('div');
+  textContainer.style.marginLeft = '0.5rem';
+  textContainer.className = 'solver';
+  textContainer.appendChild(document.createTextNode(solver));
+
+  // Create the horizontal bar in the legend to represent the curve
+  const hBar = document.createElement('div');
+  hBar.style.height = '2px';
+  hBar.style.width = '30px';
+  hBar.style.backgroundColor = color;
+  hBar.style.position = 'absolute';
+  hBar.style.left = '1em';
+  hBar.style.zIndex = 10;
+
+  // Append elements to the legend item
+  item.appendChild(createSymbol(symbolNumber, color));
+  item.appendChild(hBar);
+  item.appendChild(textContainer);
+
+  return item;
+}
+
+/**
+ * Create the same svg symbol as plotly.
+ * Returns an <svg> HTML Element
+ *
+ * @param {int} symbolNumber
+ * @param {String} color
+ * @returns {HTMLElement}
+ */
+const createSymbol = (symbolNumber, color) => {
+  const svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+
+  svg.setAttribute('width', 30);
+  svg.setAttribute('height', 30);
+  svg.style.zIndex = 20;
+
+  // createPathElement() come from the local file symbols.js
+  svg.appendChild(createPathElement(symbolNumber, color));
+
+  return svg;
+}
+
+/**
+ * ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+ * EVENT REGISTRATIONS
+ *
+ * Some events are also registered in result.html.
+ * ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+ */
+
+document.getElementById('btn-plot-config').addEventListener('click', () => {
+  const elmt = document.getElementById('mobile-plot-form');
+
+  if (elmt.style.display === 'block') {
+      elmt.style.display = 'none';
+
+      return;
+  }
+
+  elmt.style.display = 'block';
+});
+
+document.getElementById('btn-main-menu').addEventListener('click', () => {
+  const elmt = document.getElementById('mobile-menu');
+
+  if (elmt.style.display === 'block') {
+      elmt.style.display = 'none';
+
+      return;
+  }
+
+  elmt.style.display = 'block';
+});
+
+        </script>
+    </body>
+</html>
