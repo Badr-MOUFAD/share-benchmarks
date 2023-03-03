@@ -1745,22 +1745,20 @@ input:checked+.slider:before {
                                 </select>
                             </div>
                         </div>
+                        <div id="xaxis-type-form-group" class="mt-8 px-8">
+                            <label for="change_scaling" class="block text-sm font-medium text-white">X-axis</label>
+                            <div class="mt-1 rounded-md shadow-sm">
+                                <select id="change_xaxis_type" class="focus:ring-blue-500 focus:border-blue-500 block w-full h-8 px-4 sm:text-sm border-gray-300 rounded-md" onchange="setState({xaxis_type: this.value})">
+                                   <!-- options will be added dynamically -->
+                                </select>
+                            </div>
+                        </div>
                         <div class="flex items-center justify-between mt-8 px-8">
                             <div class="block text-sm font-medium text-white">Quantiles</div>
                             <label class="block switch">
                                 <input id="change_shades" type="checkbox" checked onchange="setState({with_quantiles: this.checked})">
                                 <span class="slider round"></span>
                             </label>
-                        </div>
-                        <div id="xaxis-type-form-group" class="mt-8 px-8">
-                            <label for="change_scaling" class="block text-sm font-medium text-white">X axis type</label>
-                            <div class="mt-1 rounded-md shadow-sm">
-                                <select id="change_xaxis_type" class="focus:ring-blue-500 focus:border-blue-500 block w-full h-8 px-4 sm:text-sm border-gray-300 rounded-md" onchange="setState({xaxis_type: this.value})">
-                                    <option value="time">Time</option>
-                                    <option value="iteration">Iteration</option>
-                                    <option value="tolerance">Tolerance</option>
-                                </select>
-                            </div>
                         </div>
                     </div>
                 </div>
@@ -1806,7 +1804,7 @@ input:checked+.slider:before {
                             <a href="validate-plotting-stop-val.html" class="text-white block px-3 py-2 rounded-md text-base font-medium" aria-current="page">Home</a>
                             <a href="https://benchopt.github.io" class="text-white block px-3 py-2 rounded-md text-base font-medium">Website</a>
                             <a href="https://github.com/benchopt/benchopt" class="text-white block px-3 py-2 rounded-md text-base font-medium">Github</a>
-                            <a href="benchopt_run_2023-03-02_17h04m58.parquet" class="text-white block px-3 py-2 rounded-md text-base font-medium">Download data</a>
+                            <a href="benchopt_run_2023-03-03_15h06m33.parquet" class="text-white block px-3 py-2 rounded-md text-base font-medium">Download data</a>
                         </div>
                     </div>
                 </nav>
@@ -1922,7 +1920,7 @@ input:checked+.slider:before {
                     </div>
                     <div class="hidden lg:flex mt-5 lg:mt-0 lg:ml-4">
                         <span>
-                            <a href="benchopt_run_2023-03-02_17h04m58.parquet" class="inline-flex items-center px-4 py-2 space-x-2 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500">
+                            <a href="benchopt_run_2023-03-03_15h06m33.parquet" class="inline-flex items-center px-4 py-2 space-x-2 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500">
                                 <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
                                     <path stroke-linecap="round" stroke-linejoin="round" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
                                 </svg>
@@ -2037,7 +2035,7 @@ input:checked+.slider:before {
                     'plot_kind': document.getElementById('plot_kind').value,
                     'scale': document.getElementById('change_scaling').value,
                     'with_quantiles': document.getElementById('change_shades').checked,
-                    'xaxis_type':  document.getElementById('change_xaxis_type').value,
+                    'xaxis_type':  document.getElementById('change_xaxis_type').value || "time",
                     'hidden_solvers': []
                 });
             });
@@ -2697,6 +2695,7 @@ function createPathString(symbolNumber, r) {
 const setState = (partialState) => {
   window.state = {...state(), ...partialState};
   displayScatterElements(!isBarChart());
+  updateXaxis();
   makePlot();
   makeLegend();
 }
@@ -2786,7 +2785,7 @@ const getScatterCurves = () => {
   const curves = [];
 
   // For each solver, add the median curve with proper style and visibility.
-  xaxisType = state().xaxis_type
+  let xaxisType = state().xaxis_type;
 
   getSolvers().forEach(solver => {
     solverStoppingStrategy = data(solver)['stopping_strategy'];
@@ -2817,18 +2816,14 @@ const getScatterCurves = () => {
       y: useTransformer(data(solver).scatter.y, 'y', data().transformers),
     });
 
+    // skip plotting quantiles if xaxis is not time
+    // as stop_val are predefined and hence deterministic 
+    if(xaxisType !== "time") {
+      return
+    }
+
     if (state().with_quantiles) {
       // Add shaded area for each solver, with proper style and visibility.
-
-      solverStoppingStrategy = data(solver)['stopping_strategy'];
-
-      // plot only solvers that were stopped using xaxis type
-      // plot all solver if xaxis type is `time`
-      if(xaxisType !== "time" && solverStoppingStrategy !== xaxisType) {
-        return
-      }
-
-      scatterXaxisProperties = xaxisType === "time" ? ['q1', 'q9'] : ['stop_val', 'stop_val'];
   
       curves.push({
         type: 'scatter',
@@ -2841,7 +2836,7 @@ const getScatterCurves = () => {
         legendgroup: solver,
         hovertemplate: '(%{x:.1e},%{y:.1e}) <extra></extra>',
         visible: isVisible(solver) ? true : 'legendonly',
-        x: data(solver).scatter[scatterXaxisProperties[0]],
+        x: data(solver).scatter['q1'],
         y: useTransformer(data(solver).scatter.y, 'y', data().transformers),
       }, {
         type: 'scatter',
@@ -2855,7 +2850,7 @@ const getScatterCurves = () => {
         legendgroup: solver,
         hovertemplate: '(%{x:.1e},%{y:.1e}) <extra></extra>',
         visible: isVisible(solver) ? true : 'legendonly',
-        x: data(solver).scatter[scatterXaxisProperties[1]],
+        x: data(solver).scatter['q9'],
         y: useTransformer(data(solver).scatter.y, 'y', data().transformers),
       });
     }
@@ -3031,7 +3026,8 @@ const getScale = () => {
 }
 
 const getScatterChartLayout = () => {
-  let withStopVal = state().xaxis_with_stop_val;
+  let xaxisType = state().xaxis_type;
+
   const layout = {
     autosize: !isSmallScreen(),
     modebar: {
@@ -3051,8 +3047,8 @@ const getScatterChartLayout = () => {
     },
     xaxis: {
       type: getScale().xaxis,
-      title: withStopVal ? 'Stop value': 'Time [sec]',
-      tickformat: '.1e',
+      title: xaxisType === "time" ? "Time [sec]": xaxisType,
+      tickformat: xaxisType === "time" ? '.1e': '',
       tickangle: -45,
       gridcolor: '#ffffff',
       zeroline : false,
@@ -3309,6 +3305,32 @@ const createLegendItem = (solver, color, symbolNumber) => {
   item.appendChild(textContainer);
 
   return item;
+}
+
+
+function updateXaxis() {
+  let selection = document.getElementById("change_xaxis_type");
+  selection.innerHTML = "";
+
+  let xaxisType = state()["xaxis_type"];
+  let options = new Set(['time']);
+
+  // get solvers run for selected (dataset, objective, objective colum)
+  // and select their unique stopping strategies
+  let solvers = data()['solvers'];
+  Object.values(solvers).forEach(solver => options.add(solver['stopping_strategy']));
+
+  // create xaxis type options
+  options.forEach(option => {
+    element = document.createElement('option');
+    element.setAttribute('value', option);
+    element.innerText = option;
+
+    selection.append(element);
+  });
+
+  // set selected value
+  selection.value = options.has(xaxisType) ? xaxisType : "time";
 }
 
 /**
