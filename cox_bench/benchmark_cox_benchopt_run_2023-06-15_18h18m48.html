@@ -1,0 +1,3414 @@
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>📈</text></svg>">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300&display=swap" rel="stylesheet">
+
+        <title>Result on cox benchmark</title>
+
+        <style>
+            /*
+! tailwindcss v3.1.2 | MIT License | https://tailwindcss.com
+*/
+
+/*
+1. Prevent padding and border from affecting element width. (https://github.com/mozdevs/cssremedy/issues/4)
+2. Allow adding a border to an element by just adding a border-width. (https://github.com/tailwindcss/tailwindcss/pull/116)
+*/
+
+*,
+::before,
+::after {
+  box-sizing: border-box;
+  /* 1 */
+  border-width: 0;
+  /* 2 */
+  border-style: solid;
+  /* 2 */
+  border-color: #e5e7eb;
+  /* 2 */
+}
+
+::before,
+::after {
+  --tw-content: '';
+}
+
+/*
+1. Use a consistent sensible line-height in all browsers.
+2. Prevent adjustments of font size after orientation changes in iOS.
+3. Use a more readable tab size.
+4. Use the user's configured `sans` font-family by default.
+*/
+
+html {
+  line-height: 1.5;
+  /* 1 */
+  -webkit-text-size-adjust: 100%;
+  /* 2 */
+  -moz-tab-size: 4;
+  /* 3 */
+  -o-tab-size: 4;
+     tab-size: 4;
+  /* 3 */
+  font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+  /* 4 */
+}
+
+/*
+1. Remove the margin in all browsers.
+2. Inherit line-height from `html` so users can set them as a class directly on the `html` element.
+*/
+
+body {
+  margin: 0;
+  /* 1 */
+  line-height: inherit;
+  /* 2 */
+}
+
+/*
+1. Add the correct height in Firefox.
+2. Correct the inheritance of border color in Firefox. (https://bugzilla.mozilla.org/show_bug.cgi?id=190655)
+3. Ensure horizontal rules are visible by default.
+*/
+
+hr {
+  height: 0;
+  /* 1 */
+  color: inherit;
+  /* 2 */
+  border-top-width: 1px;
+  /* 3 */
+}
+
+/*
+Add the correct text decoration in Chrome, Edge, and Safari.
+*/
+
+abbr:where([title]) {
+  -webkit-text-decoration: underline dotted;
+          text-decoration: underline dotted;
+}
+
+/*
+Remove the default font size and weight for headings.
+*/
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-size: inherit;
+  font-weight: inherit;
+}
+
+/*
+Reset links to optimize for opt-in styling instead of opt-out.
+*/
+
+a {
+  color: inherit;
+  text-decoration: inherit;
+}
+
+/*
+Add the correct font weight in Edge and Safari.
+*/
+
+b,
+strong {
+  font-weight: bolder;
+}
+
+/*
+1. Use the user's configured `mono` font family by default.
+2. Correct the odd `em` font sizing in all browsers.
+*/
+
+code,
+kbd,
+samp,
+pre {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+  /* 1 */
+  font-size: 1em;
+  /* 2 */
+}
+
+/*
+Add the correct font size in all browsers.
+*/
+
+small {
+  font-size: 80%;
+}
+
+/*
+Prevent `sub` and `sup` elements from affecting the line height in all browsers.
+*/
+
+sub,
+sup {
+  font-size: 75%;
+  line-height: 0;
+  position: relative;
+  vertical-align: baseline;
+}
+
+sub {
+  bottom: -0.25em;
+}
+
+sup {
+  top: -0.5em;
+}
+
+/*
+1. Remove text indentation from table contents in Chrome and Safari. (https://bugs.chromium.org/p/chromium/issues/detail?id=999088, https://bugs.webkit.org/show_bug.cgi?id=201297)
+2. Correct table border color inheritance in all Chrome and Safari. (https://bugs.chromium.org/p/chromium/issues/detail?id=935729, https://bugs.webkit.org/show_bug.cgi?id=195016)
+3. Remove gaps between table borders by default.
+*/
+
+table {
+  text-indent: 0;
+  /* 1 */
+  border-color: inherit;
+  /* 2 */
+  border-collapse: collapse;
+  /* 3 */
+}
+
+/*
+1. Change the font styles in all browsers.
+2. Remove the margin in Firefox and Safari.
+3. Remove default padding in all browsers.
+*/
+
+button,
+input,
+optgroup,
+select,
+textarea {
+  font-family: inherit;
+  /* 1 */
+  font-size: 100%;
+  /* 1 */
+  font-weight: inherit;
+  /* 1 */
+  line-height: inherit;
+  /* 1 */
+  color: inherit;
+  /* 1 */
+  margin: 0;
+  /* 2 */
+  padding: 0;
+  /* 3 */
+}
+
+/*
+Remove the inheritance of text transform in Edge and Firefox.
+*/
+
+button,
+select {
+  text-transform: none;
+}
+
+/*
+1. Correct the inability to style clickable types in iOS and Safari.
+2. Remove default button styles.
+*/
+
+button,
+[type='button'],
+[type='reset'],
+[type='submit'] {
+  -webkit-appearance: button;
+  /* 1 */
+  background-color: transparent;
+  /* 2 */
+  background-image: none;
+  /* 2 */
+}
+
+/*
+Use the modern Firefox focus style for all focusable elements.
+*/
+
+:-moz-focusring {
+  outline: auto;
+}
+
+/*
+Remove the additional `:invalid` styles in Firefox. (https://github.com/mozilla/gecko-dev/blob/2f9eacd9d3d995c937b4251a5557d95d494c9be1/layout/style/res/forms.css#L728-L737)
+*/
+
+:-moz-ui-invalid {
+  box-shadow: none;
+}
+
+/*
+Add the correct vertical alignment in Chrome and Firefox.
+*/
+
+progress {
+  vertical-align: baseline;
+}
+
+/*
+Correct the cursor style of increment and decrement buttons in Safari.
+*/
+
+::-webkit-inner-spin-button,
+::-webkit-outer-spin-button {
+  height: auto;
+}
+
+/*
+1. Correct the odd appearance in Chrome and Safari.
+2. Correct the outline style in Safari.
+*/
+
+[type='search'] {
+  -webkit-appearance: textfield;
+  /* 1 */
+  outline-offset: -2px;
+  /* 2 */
+}
+
+/*
+Remove the inner padding in Chrome and Safari on macOS.
+*/
+
+::-webkit-search-decoration {
+  -webkit-appearance: none;
+}
+
+/*
+1. Correct the inability to style clickable types in iOS and Safari.
+2. Change font properties to `inherit` in Safari.
+*/
+
+::-webkit-file-upload-button {
+  -webkit-appearance: button;
+  /* 1 */
+  font: inherit;
+  /* 2 */
+}
+
+/*
+Add the correct display in Chrome and Safari.
+*/
+
+summary {
+  display: list-item;
+}
+
+/*
+Removes the default spacing and border for appropriate elements.
+*/
+
+blockquote,
+dl,
+dd,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+hr,
+figure,
+p,
+pre {
+  margin: 0;
+}
+
+fieldset {
+  margin: 0;
+  padding: 0;
+}
+
+legend {
+  padding: 0;
+}
+
+ol,
+ul,
+menu {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+/*
+Prevent resizing textareas horizontally by default.
+*/
+
+textarea {
+  resize: vertical;
+}
+
+/*
+1. Reset the default placeholder opacity in Firefox. (https://github.com/tailwindlabs/tailwindcss/issues/3300)
+2. Set the default placeholder color to the user's configured gray 400 color.
+*/
+
+input::-moz-placeholder, textarea::-moz-placeholder {
+  opacity: 1;
+  /* 1 */
+  color: #9ca3af;
+  /* 2 */
+}
+
+input:-ms-input-placeholder, textarea:-ms-input-placeholder {
+  opacity: 1;
+  /* 1 */
+  color: #9ca3af;
+  /* 2 */
+}
+
+input::placeholder,
+textarea::placeholder {
+  opacity: 1;
+  /* 1 */
+  color: #9ca3af;
+  /* 2 */
+}
+
+/*
+Set the default cursor for buttons.
+*/
+
+button,
+[role="button"] {
+  cursor: pointer;
+}
+
+/*
+Make sure disabled buttons don't get the pointer cursor.
+*/
+
+:disabled {
+  cursor: default;
+}
+
+/*
+1. Make replaced elements `display: block` by default. (https://github.com/mozdevs/cssremedy/issues/14)
+2. Add `vertical-align: middle` to align replaced elements more sensibly by default. (https://github.com/jensimmons/cssremedy/issues/14#issuecomment-634934210)
+   This can trigger a poorly considered lint error in some tools but is included by design.
+*/
+
+img,
+svg,
+video,
+canvas,
+audio,
+iframe,
+embed,
+object {
+  display: block;
+  /* 1 */
+  vertical-align: middle;
+  /* 2 */
+}
+
+/*
+Constrain images and videos to the parent width and preserve their intrinsic aspect ratio. (https://github.com/mozdevs/cssremedy/issues/14)
+*/
+
+img,
+video {
+  max-width: 100%;
+  height: auto;
+}
+
+*, ::before, ::after {
+  --tw-border-spacing-x: 0;
+  --tw-border-spacing-y: 0;
+  --tw-translate-x: 0;
+  --tw-translate-y: 0;
+  --tw-rotate: 0;
+  --tw-skew-x: 0;
+  --tw-skew-y: 0;
+  --tw-scale-x: 1;
+  --tw-scale-y: 1;
+  --tw-pan-x:  ;
+  --tw-pan-y:  ;
+  --tw-pinch-zoom:  ;
+  --tw-scroll-snap-strictness: proximity;
+  --tw-ordinal:  ;
+  --tw-slashed-zero:  ;
+  --tw-numeric-figure:  ;
+  --tw-numeric-spacing:  ;
+  --tw-numeric-fraction:  ;
+  --tw-ring-inset:  ;
+  --tw-ring-offset-width: 0px;
+  --tw-ring-offset-color: #fff;
+  --tw-ring-color: rgb(59 130 246 / 0.5);
+  --tw-ring-offset-shadow: 0 0 #0000;
+  --tw-ring-shadow: 0 0 #0000;
+  --tw-shadow: 0 0 #0000;
+  --tw-shadow-colored: 0 0 #0000;
+  --tw-blur:  ;
+  --tw-brightness:  ;
+  --tw-contrast:  ;
+  --tw-grayscale:  ;
+  --tw-hue-rotate:  ;
+  --tw-invert:  ;
+  --tw-saturate:  ;
+  --tw-sepia:  ;
+  --tw-drop-shadow:  ;
+  --tw-backdrop-blur:  ;
+  --tw-backdrop-brightness:  ;
+  --tw-backdrop-contrast:  ;
+  --tw-backdrop-grayscale:  ;
+  --tw-backdrop-hue-rotate:  ;
+  --tw-backdrop-invert:  ;
+  --tw-backdrop-opacity:  ;
+  --tw-backdrop-saturate:  ;
+  --tw-backdrop-sepia:  ;
+}
+
+::-webkit-backdrop {
+  --tw-border-spacing-x: 0;
+  --tw-border-spacing-y: 0;
+  --tw-translate-x: 0;
+  --tw-translate-y: 0;
+  --tw-rotate: 0;
+  --tw-skew-x: 0;
+  --tw-skew-y: 0;
+  --tw-scale-x: 1;
+  --tw-scale-y: 1;
+  --tw-pan-x:  ;
+  --tw-pan-y:  ;
+  --tw-pinch-zoom:  ;
+  --tw-scroll-snap-strictness: proximity;
+  --tw-ordinal:  ;
+  --tw-slashed-zero:  ;
+  --tw-numeric-figure:  ;
+  --tw-numeric-spacing:  ;
+  --tw-numeric-fraction:  ;
+  --tw-ring-inset:  ;
+  --tw-ring-offset-width: 0px;
+  --tw-ring-offset-color: #fff;
+  --tw-ring-color: rgb(59 130 246 / 0.5);
+  --tw-ring-offset-shadow: 0 0 #0000;
+  --tw-ring-shadow: 0 0 #0000;
+  --tw-shadow: 0 0 #0000;
+  --tw-shadow-colored: 0 0 #0000;
+  --tw-blur:  ;
+  --tw-brightness:  ;
+  --tw-contrast:  ;
+  --tw-grayscale:  ;
+  --tw-hue-rotate:  ;
+  --tw-invert:  ;
+  --tw-saturate:  ;
+  --tw-sepia:  ;
+  --tw-drop-shadow:  ;
+  --tw-backdrop-blur:  ;
+  --tw-backdrop-brightness:  ;
+  --tw-backdrop-contrast:  ;
+  --tw-backdrop-grayscale:  ;
+  --tw-backdrop-hue-rotate:  ;
+  --tw-backdrop-invert:  ;
+  --tw-backdrop-opacity:  ;
+  --tw-backdrop-saturate:  ;
+  --tw-backdrop-sepia:  ;
+}
+
+::backdrop {
+  --tw-border-spacing-x: 0;
+  --tw-border-spacing-y: 0;
+  --tw-translate-x: 0;
+  --tw-translate-y: 0;
+  --tw-rotate: 0;
+  --tw-skew-x: 0;
+  --tw-skew-y: 0;
+  --tw-scale-x: 1;
+  --tw-scale-y: 1;
+  --tw-pan-x:  ;
+  --tw-pan-y:  ;
+  --tw-pinch-zoom:  ;
+  --tw-scroll-snap-strictness: proximity;
+  --tw-ordinal:  ;
+  --tw-slashed-zero:  ;
+  --tw-numeric-figure:  ;
+  --tw-numeric-spacing:  ;
+  --tw-numeric-fraction:  ;
+  --tw-ring-inset:  ;
+  --tw-ring-offset-width: 0px;
+  --tw-ring-offset-color: #fff;
+  --tw-ring-color: rgb(59 130 246 / 0.5);
+  --tw-ring-offset-shadow: 0 0 #0000;
+  --tw-ring-shadow: 0 0 #0000;
+  --tw-shadow: 0 0 #0000;
+  --tw-shadow-colored: 0 0 #0000;
+  --tw-blur:  ;
+  --tw-brightness:  ;
+  --tw-contrast:  ;
+  --tw-grayscale:  ;
+  --tw-hue-rotate:  ;
+  --tw-invert:  ;
+  --tw-saturate:  ;
+  --tw-sepia:  ;
+  --tw-drop-shadow:  ;
+  --tw-backdrop-blur:  ;
+  --tw-backdrop-brightness:  ;
+  --tw-backdrop-contrast:  ;
+  --tw-backdrop-grayscale:  ;
+  --tw-backdrop-hue-rotate:  ;
+  --tw-backdrop-invert:  ;
+  --tw-backdrop-opacity:  ;
+  --tw-backdrop-saturate:  ;
+  --tw-backdrop-sepia:  ;
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border-width: 0;
+}
+
+.fixed {
+  position: fixed;
+}
+
+.absolute {
+  position: absolute;
+}
+
+.relative {
+  position: relative;
+}
+
+.inset-0 {
+  top: 0px;
+  right: 0px;
+  bottom: 0px;
+  left: 0px;
+}
+
+.z-10 {
+  z-index: 10;
+}
+
+.mx-auto {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.mt-10 {
+  margin-top: 2.5rem;
+}
+
+.mt-1 {
+  margin-top: 0.25rem;
+}
+
+.mt-8 {
+  margin-top: 2rem;
+}
+
+.mt-2 {
+  margin-top: 0.5rem;
+}
+
+.mt-5 {
+  margin-top: 1.25rem;
+}
+
+.mt-3 {
+  margin-top: 0.75rem;
+}
+
+.block {
+  display: block;
+}
+
+.inline {
+  display: inline;
+}
+
+.flex {
+  display: flex;
+}
+
+.inline-flex {
+  display: inline-flex;
+}
+
+.table {
+  display: table;
+}
+
+.grid {
+  display: grid;
+}
+
+.hidden {
+  display: none;
+}
+
+.h-screen {
+  height: 100vh;
+}
+
+.h-16 {
+  height: 4rem;
+}
+
+.h-10 {
+  height: 2.5rem;
+}
+
+.h-8 {
+  height: 2rem;
+}
+
+.h-6 {
+  height: 1.5rem;
+}
+
+.h-5 {
+  height: 1.25rem;
+}
+
+.h-4 {
+  height: 1rem;
+}
+
+.h-12 {
+  height: 3rem;
+}
+
+.min-h-full {
+  min-height: 100%;
+}
+
+.w-96 {
+  width: 24rem;
+}
+
+.w-full {
+  width: 100%;
+}
+
+.w-6 {
+  width: 1.5rem;
+}
+
+.w-5 {
+  width: 1.25rem;
+}
+
+.w-4 {
+  width: 1rem;
+}
+
+.w-12 {
+  width: 3rem;
+}
+
+.min-w-0 {
+  min-width: 0px;
+}
+
+.flex-1 {
+  flex: 1 1 0%;
+}
+
+.flex-shrink-0 {
+  flex-shrink: 0;
+}
+
+.transform {
+  transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
+}
+
+.flex-col {
+  flex-direction: column;
+}
+
+.flex-wrap {
+  flex-wrap: wrap;
+}
+
+.items-end {
+  align-items: flex-end;
+}
+
+.items-center {
+  align-items: center;
+}
+
+.justify-center {
+  justify-content: center;
+}
+
+.justify-between {
+  justify-content: space-between;
+}
+
+.space-x-4 > :not([hidden]) ~ :not([hidden]) {
+  --tw-space-x-reverse: 0;
+  margin-right: calc(1rem * var(--tw-space-x-reverse));
+  margin-left: calc(1rem * calc(1 - var(--tw-space-x-reverse)));
+}
+
+.space-y-1 > :not([hidden]) ~ :not([hidden]) {
+  --tw-space-y-reverse: 0;
+  margin-top: calc(0.25rem * calc(1 - var(--tw-space-y-reverse)));
+  margin-bottom: calc(0.25rem * var(--tw-space-y-reverse));
+}
+
+.space-y-4 > :not([hidden]) ~ :not([hidden]) {
+  --tw-space-y-reverse: 0;
+  margin-top: calc(1rem * calc(1 - var(--tw-space-y-reverse)));
+  margin-bottom: calc(1rem * var(--tw-space-y-reverse));
+}
+
+.space-x-2 > :not([hidden]) ~ :not([hidden]) {
+  --tw-space-x-reverse: 0;
+  margin-right: calc(0.5rem * var(--tw-space-x-reverse));
+  margin-left: calc(0.5rem * calc(1 - var(--tw-space-x-reverse)));
+}
+
+.overflow-hidden {
+  overflow: hidden;
+}
+
+.overflow-y-auto {
+  overflow-y: auto;
+}
+
+.rounded-md {
+  border-radius: 0.375rem;
+}
+
+.rounded-lg {
+  border-radius: 0.5rem;
+}
+
+.rounded-full {
+  border-radius: 9999px;
+}
+
+.border {
+  border-width: 1px;
+}
+
+.border-gray-300 {
+  --tw-border-opacity: 1;
+  border-color: rgb(209 213 219 / var(--tw-border-opacity));
+}
+
+.border-gray-800 {
+  --tw-border-opacity: 1;
+  border-color: rgb(31 41 55 / var(--tw-border-opacity));
+}
+
+.border-transparent {
+  border-color: transparent;
+}
+
+.bg-gray-700 {
+  --tw-bg-opacity: 1;
+  background-color: rgb(55 65 81 / var(--tw-bg-opacity));
+}
+
+.bg-gray-800 {
+  --tw-bg-opacity: 1;
+  background-color: rgb(31 41 55 / var(--tw-bg-opacity));
+}
+
+.bg-blue-600 {
+  --tw-bg-opacity: 1;
+  background-color: rgb(37 99 235 / var(--tw-bg-opacity));
+}
+
+.bg-white {
+  --tw-bg-opacity: 1;
+  background-color: rgb(255 255 255 / var(--tw-bg-opacity));
+}
+
+.bg-gray-500 {
+  --tw-bg-opacity: 1;
+  background-color: rgb(107 114 128 / var(--tw-bg-opacity));
+}
+
+.bg-slate-200 {
+  --tw-bg-opacity: 1;
+  background-color: rgb(241 245 249 / var(--tw-bg-opacity));
+}
+
+.bg-blue-100 {
+  --tw-bg-opacity: 1;
+  background-color: rgb(219 234 254 / var(--tw-bg-opacity));
+}
+
+.bg-gray-50 {
+  --tw-bg-opacity: 1;
+  background-color: rgb(249 250 251 / var(--tw-bg-opacity));
+}
+
+.bg-opacity-75 {
+  --tw-bg-opacity: 0.75;
+}
+
+.p-1 {
+  padding: 0.25rem;
+}
+
+.p-2 {
+  padding: 0.5rem;
+}
+
+.p-4 {
+  padding: 1rem;
+}
+
+.px-8 {
+  padding-left: 2rem;
+  padding-right: 2rem;
+}
+
+.px-4 {
+  padding-left: 1rem;
+  padding-right: 1rem;
+}
+
+.px-3 {
+  padding-left: 0.75rem;
+  padding-right: 0.75rem;
+}
+
+.py-2 {
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+}
+
+.px-2 {
+  padding-left: 0.5rem;
+  padding-right: 0.5rem;
+}
+
+.py-4 {
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+}
+
+.py-1 {
+  padding-top: 0.25rem;
+  padding-bottom: 0.25rem;
+}
+
+.py-3 {
+  padding-top: 0.75rem;
+  padding-bottom: 0.75rem;
+}
+
+.pt-2 {
+  padding-top: 0.5rem;
+}
+
+.pt-4 {
+  padding-top: 1rem;
+}
+
+.pb-0 {
+  padding-bottom: 0;
+}
+
+.pb-1 {
+  padding-bottom: 0.25rem;
+}
+
+.pb-3 {
+  padding-bottom: 0.75rem;
+}
+
+.pt-5 {
+  padding-top: 1.25rem;
+}
+
+.pb-4 {
+  padding-bottom: 1rem;
+}
+
+.text-left {
+  text-align: left;
+}
+
+.text-center {
+  text-align: center;
+}
+
+.text-2xl {
+  font-size: 1.5rem;
+  line-height: 2rem;
+}
+
+.text-sm {
+  font-size: 0.875rem;
+  line-height: 1.25rem;
+}
+
+.text-xl {
+  font-size: 1.25rem;
+  line-height: 1.75rem;
+}
+
+.text-base {
+  font-size: 1rem;
+  line-height: 1.5rem;
+}
+
+.text-lg {
+  font-size: 1.125rem;
+  line-height: 1.75rem;
+}
+
+.font-medium {
+  font-weight: 500;
+}
+
+.font-bold {
+  font-weight: 700;
+}
+
+.capitalize {
+  text-transform: capitalize;
+}
+
+.leading-7 {
+  line-height: 1.75rem;
+}
+
+.leading-6 {
+  line-height: 1.5rem;
+}
+
+.text-white {
+  --tw-text-opacity: 1;
+  color: rgb(255 255 255 / var(--tw-text-opacity));
+}
+
+.text-gray-100 {
+  --tw-text-opacity: 1;
+  color: rgb(243 244 246 / var(--tw-text-opacity));
+}
+
+.text-gray-900 {
+  --tw-text-opacity: 1;
+  color: rgb(17 24 39 / var(--tw-text-opacity));
+}
+
+.text-gray-500 {
+  --tw-text-opacity: 1;
+  color: rgb(107 114 128 / var(--tw-text-opacity));
+}
+
+.text-black {
+  --tw-text-opacity: 1;
+  color: rgb(0 0 0 / var(--tw-text-opacity));
+}
+
+.text-blue-600 {
+  --tw-text-opacity: 1;
+  color: rgb(37 99 235 / var(--tw-text-opacity));
+}
+
+.text-gray-700 {
+  --tw-text-opacity: 1;
+  color: rgb(55 65 81 / var(--tw-text-opacity));
+}
+
+.shadow-sm {
+  --tw-shadow: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+  --tw-shadow-colored: 0 1px 2px 0 var(--tw-shadow-color);
+  box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
+}
+
+.shadow-xl {
+  --tw-shadow: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
+  --tw-shadow-colored: 0 20px 25px -5px var(--tw-shadow-color), 0 8px 10px -6px var(--tw-shadow-color);
+  box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
+}
+
+.transition-opacity {
+  transition-property: opacity;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-duration: 150ms;
+}
+
+.transition-all {
+  transition-property: all;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-duration: 150ms;
+}
+
+.hover\:bg-blue-800:hover {
+  --tw-bg-opacity: 1;
+  background-color: rgb(30 64 175 / var(--tw-bg-opacity));
+}
+
+.hover\:bg-gray-100:hover {
+  --tw-bg-opacity: 1;
+  background-color: rgb(243 244 246 / var(--tw-bg-opacity));
+}
+
+.hover\:bg-blue-700:hover {
+  --tw-bg-opacity: 1;
+  background-color: rgb(29 78 216 / var(--tw-bg-opacity));
+}
+
+.hover\:bg-gray-50:hover {
+  --tw-bg-opacity: 1;
+  background-color: rgb(249 250 251 / var(--tw-bg-opacity));
+}
+
+.hover\:text-white:hover {
+  --tw-text-opacity: 1;
+  color: rgb(255 255 255 / var(--tw-text-opacity));
+}
+
+.focus\:border-blue-500:focus {
+  --tw-border-opacity: 1;
+  border-color: rgb(59 130 246 / var(--tw-border-opacity));
+}
+
+.focus\:outline-none:focus {
+  outline: 2px solid transparent;
+  outline-offset: 2px;
+}
+
+.focus\:ring-2:focus {
+  --tw-ring-offset-shadow: var(--tw-ring-inset) 0 0 0 var(--tw-ring-offset-width) var(--tw-ring-offset-color);
+  --tw-ring-shadow: var(--tw-ring-inset) 0 0 0 calc(2px + var(--tw-ring-offset-width)) var(--tw-ring-color);
+  box-shadow: var(--tw-ring-offset-shadow), var(--tw-ring-shadow), var(--tw-shadow, 0 0 #0000);
+}
+
+.focus\:ring-inset:focus {
+  --tw-ring-inset: inset;
+}
+
+.focus\:ring-blue-500:focus {
+  --tw-ring-opacity: 1;
+  --tw-ring-color: rgb(59 130 246 / var(--tw-ring-opacity));
+}
+
+.focus\:ring-white:focus {
+  --tw-ring-opacity: 1;
+  --tw-ring-color: rgb(255 255 255 / var(--tw-ring-opacity));
+}
+
+.focus\:ring-gray-500:focus {
+  --tw-ring-opacity: 1;
+  --tw-ring-color: rgb(107 114 128 / var(--tw-ring-opacity));
+}
+
+.focus\:ring-offset-2:focus {
+  --tw-ring-offset-width: 2px;
+}
+
+@media (min-width: 640px) {
+  .sm\:my-8 {
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+  }
+
+  .sm\:mx-0 {
+    margin-left: 0px;
+    margin-right: 0px;
+  }
+
+  .sm\:mt-0 {
+    margin-top: 0px;
+  }
+
+  .sm\:ml-3 {
+    margin-left: 0.75rem;
+  }
+
+  .sm\:ml-4 {
+    margin-left: 1rem;
+  }
+
+  .sm\:block {
+    display: block;
+  }
+
+  .sm\:flex {
+    display: flex;
+  }
+
+  .sm\:hidden {
+    display: none;
+  }
+
+  .sm\:h-10 {
+    height: 2.5rem;
+  }
+
+  .sm\:w-full {
+    width: 100%;
+  }
+
+  .sm\:w-10 {
+    width: 2.5rem;
+  }
+
+  .sm\:w-auto {
+    width: auto;
+  }
+
+  .sm\:max-w-lg {
+    max-width: 32rem;
+  }
+
+  .sm\:flex-row-reverse {
+    flex-direction: row-reverse;
+  }
+
+  .sm\:items-start {
+    align-items: flex-start;
+  }
+
+  .sm\:items-center {
+    align-items: center;
+  }
+
+  .sm\:items-stretch {
+    align-items: stretch;
+  }
+
+  .sm\:justify-start {
+    justify-content: flex-start;
+  }
+
+  .sm\:space-x-6 > :not([hidden]) ~ :not([hidden]) {
+    --tw-space-x-reverse: 0;
+    margin-right: calc(1.5rem * var(--tw-space-x-reverse));
+    margin-left: calc(1.5rem * calc(1 - var(--tw-space-x-reverse)));
+  }
+
+  .sm\:truncate {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  .sm\:p-0 {
+    padding: 0px;
+  }
+
+  .sm\:p-6 {
+    padding: 1.5rem;
+  }
+
+  .sm\:px-6 {
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+  }
+
+  .sm\:pb-4 {
+    padding-bottom: 1rem;
+  }
+
+  .sm\:text-left {
+    text-align: left;
+  }
+
+  .sm\:text-sm {
+    font-size: 0.875rem;
+    line-height: 1.25rem;
+  }
+
+  .sm\:text-3xl {
+    font-size: 1.875rem;
+    line-height: 2.25rem;
+  }
+
+  .sm\:mr-6 {
+    margin-right: 1.5rem; /* 24px */
+  }
+}
+
+@media (min-width: 768px) {
+  .md\:inline {
+    display: inline;
+  }
+
+  .md\:flex {
+    display: flex;
+  }
+
+  .md\:hidden {
+    display: none;
+  }
+
+  .md\:justify-start {
+    justify-content: flex-start;
+  }
+
+  .md\:text-left {
+    text-align: left;
+  }
+
+  .md\:block {
+    display: block;
+  }
+
+  .md\:inline-block {
+    display: inline-block;
+  }
+}
+
+@media (min-width: 1024px) {
+  .lg\:mt-0 {
+    margin-top: 0px;
+  }
+
+  .lg\:ml-4 {
+    margin-left: 1rem;
+  }
+
+  .lg\:flex {
+    display: flex;
+  }
+
+  .lg\:items-center {
+    align-items: center;
+  }
+
+  .lg\:justify-between {
+    justify-content: space-between;
+  }
+
+  .lg\:inline {
+    display: inline;
+  }
+
+  .lg\:hidden {
+    display: none;
+  }
+
+  .lg\:justify-start {
+    justify-content: flex-start;
+  }
+
+  .lg\:text-left {
+    text-align: left;
+  }
+
+  .lg\:block {
+    display:block;
+  }
+}
+
+.overflow-scroll {
+  overflow: scroll;
+}
+
+.absolute {
+  position: absolute;
+}
+
+.px-10 {
+  padding-left: 2.5rem; /* 40px */
+  padding-right: 2.5rem; /* 40px */
+}
+
+.py-10 {
+  padding-top: 2.5rem; /* 40px */
+  padding-bottom: 2.5rem; /* 40px */
+}
+
+.mb-4 {
+  margin-bottom: 1rem; /* 16px */
+}
+
+.mt-4 {
+  margin-top: 1rem; /* 16px */
+}
+
+.mr-6 {
+  margin-right: 1.5rem; /* 24px */
+}
+
+.mr-4 {
+  margin-right: 1rem; /* 24px */
+}
+
+.rounded {
+  border-radius: 0.25rem; /* 4px */
+}
+
+
+            /*----------------------------------------*/
+/***** Stylesheet for the hover index *****/
+/*----------------------------------------*/
+
+/* Place rectangles in a grid */
+.grid {
+  position: relative; /* each rectangle is dependant of others */
+  margin: 0 auto;
+  padding: 1em 0 4em; /* padding top horizontal bottom */
+  display: grid; /* type of boxes generated */
+  max-width: 1000px;
+  list-style: none; /* no item */
+  text-align: center;
+  column-gap: 2em; /* space between columns */
+}
+
+/* Figure inside grid */
+.grid figure {
+  position: relative;
+  float: left;
+  overflow: hidden; /* overflow not taken into account */
+  margin: 10px 1%;
+  width: 100%; /* 100% of the column */
+  background: #3085a3;
+  text-align: center;
+  cursor: pointer; /* change shape cursor */
+  border-radius: 30px; /* rounded corners */
+}
+
+/* Each figure contains an img */
+.grid figure img {
+  position: relative;
+  display: block;
+  max-height: 100%;
+  max-width: 100%;
+  opacity: 1; /* over a dummy image */
+}
+
+/* Style caption (title of benchmarks) */
+.grid figure figcaption {
+  padding: 0.1em; /* add space */
+  color: #fff; /* writing color */
+  text-transform: uppercase; /* title in uppercase */
+  font-size: 1.25em;
+}
+
+/* Small sized screens */
+@media (min-width: 600px) {
+  .grid {
+    grid-template-columns: repeat(2, 1fr);
+  } /* split in 2 columns */
+}
+
+/* Larger sized screens */
+@media (min-width: 900px) {
+  .grid {
+    grid-template-columns: repeat(3, 1fr);
+  } /* split in 3 columns */
+}
+
+/* Position and style of <a> elements (the View more) */
+.grid figure figcaption,
+.grid figure figcaption > a {
+  position: absolute;
+  top: 0em; /* no space offset top */
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+/* only to figcaption <a> tag */
+.grid figure figcaption > a {
+  z-index: 1000; /* top level */
+  text-indent: 0%;
+  white-space: nowrap;
+  font-size: 0; /* do not display the View more */
+  opacity: 1;
+}
+
+/* h2: Problem name (LASSO, ...) */
+.grid figure h2 {
+  word-spacing: 0em;
+  font-weight: 300;
+}
+
+.grid figure h2 span {
+  font-weight: 800;
+}
+
+.grid figure h2,
+.grid figure p {
+  margin: 0;
+}
+
+/* p: number of files */
+.grid figure p {
+  letter-spacing: 1px;
+  font-size: 70%;
+}
+
+/* Default color */
+figure.effect-ruby {
+  background-color: #2c3e50;
+}
+
+/* Color when hovering */
+figure.effect-ruby:hover {
+  background-color: DodgerBlue;
+}
+
+/* Define transformation */
+figure.effect-ruby img {
+  opacity: 0;
+  transition: opacity 0.35s, transform 0.35s; /* transition time */
+  transform: scale(1.15); /* size transformation -> bigger */
+}
+
+/* transformation with hovering */
+figure.effect-ruby:hover img {
+  opacity: 0;
+  transform: scale(1); /* size -> smaller */
+}
+
+/* Apply effect to problem name */
+figure.effect-ruby h2 {
+  margin-top: 0;
+  transition: transform 0.35s; /* transition time */
+  transform: translate3d(0, calc((150px - 100%)/2), 0);
+  font-size: 1.25em; /* default font */
+}
+
+figure.effect-ruby p {
+  margin: 2em -1em 2em -1em;
+  padding: 1em 0em 1em 0em;
+  border: 1px solid #fff; /* create sort of white frame */
+  opacity: 0;
+  transition: opacity 0.35s, transform 0.35s;
+  transform: translate3d(0, 20px, 0) scale(1.1); /* size transform */
+}
+
+/* Transform title on hover */
+figure.effect-ruby:hover h2 {
+  -webkit-transform: translate3d(0, 0, 0);
+  transform: translate3d(0px, 10px, 0) scale(0.8); /* smaller */
+  margin-top: 0em; /* move up */
+}
+
+figure.effect-ruby:hover p {
+  opacity: 1;
+  transform: translate3d(0, 0, 0) scale(1.2); /* placement in box */
+}
+
+/* Button for inside the table with system informations */
+.buttoncent {
+  border: none;
+  background-color: transparent;
+  outline: none;
+  text-align: center;
+}
+
+/* button for inside text
+ in benchmark page above graph for system informations */
+.buttonleft {
+  border: none;
+  background-color: transparent;
+  outline: none;
+  text-align: center;
+  margin-left: 1px; /* add margin */
+}
+
+
+/* switch slider with an adaptable height.
+Change switch-height and switch-padding, and all the dimensions are adjusted.
+See https://stackoverflow.com/questions/70590125/how-to-change-the-size-of-a-css-toggle-switch */
+* {
+  --switch-height: 20px;
+  --switch-padding: 2px;
+  --switch-width: calc((var(--switch-height) * 2) - var(--switch-padding));
+  --slider-height: calc(var(--switch-height) - var(--switch-padding));
+  --slider-on: calc(var(--switch-height) - var(--switch-padding));
+}
+
+.switch {
+  position: relative;
+  display: inline-block;
+  width: var(--switch-width);
+  height: var(--switch-height);
+}
+
+.switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ccc;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+.slider:before {
+  content: "";
+  position: absolute;
+  height: var(--slider-height);
+  width: var(--slider-height);
+  left: calc(var(--switch-padding) / 2);
+  bottom: calc(var(--switch-padding) / 2);
+  background-color: white;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+input:checked+.slider {
+  background-color: #2196F3;
+}
+
+input:focus+.slider {
+  box-shadow: 0 0 1px #2196F3;
+}
+
+input:checked+.slider:before {
+  -webkit-transform: translateX(var(--slider-on));
+  -ms-transform: translateX(var(--slider-on));
+  transform: translateX(var(--slider-on));
+}
+
+.slider.round {
+  border-radius: var(--slider-height);
+}
+
+.slider.round:before {
+  border-radius: 50%;
+}
+
+/*----------------------------------------*/
+/***** Brand text animated *****/
+/*----------------------------------------*/
+
+
+.ml11 .text-wrapper {
+  position: relative;
+  display: inline-block;
+  padding-top: 0.1em;
+  padding-right: 0.05em;
+  padding-bottom: 0.15em;
+}
+
+.ml11 .line {
+  opacity: 0;
+  position: absolute;
+  left: 0;
+  height: 100%;
+  width: 3px;
+  background-color: #fff;
+  transform-origin: 0 50%;
+}
+
+.ml11 .line1 { 
+  top: 0; 
+  left: 0;
+}
+
+.ml11 .letter {
+  display: inline-block;
+  line-height: 1em;
+  font-family: 'Kanit', sans-serif;
+}
+
+/*----------------------------------------*/
+/***** Plot *****/
+/*----------------------------------------*/
+
+@media (min-width: 768px) {
+  #unique_plot {
+    flex: 1 1 0%;
+  }
+}
+
+@media (max-width: 767px) {
+  #unique_plot {
+    flex: initial;
+    flex-shrink: 0;
+  }
+}
+
+.js-plotly-plot .plotly .modebar {
+  transform: translateX(-30px);
+}
+
+/*----------------------------------------*/
+/***** Custom legend *****/
+/*----------------------------------------*/
+
+#plot_legend {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+
+#legend_title {
+  font-size: 1.2rem;
+  font-weight: bold;
+}
+
+#legend_help {
+  font-size: 0.75rem;
+  color: #475569;
+}
+
+.space-r-2 > * {
+  margin-right: 0.5rem;
+}
+
+        </style>
+    </head>
+    <body>
+        <!-- Two main columns container -->
+        <div class="flex">
+            <!-- Left column on big screen (plot selectors) -->
+            <div class="hidden lg:flex flex-col w-96 bg-gray-700">
+                <div class="h-screen">
+                    <div class="px-8 h-16 flex items-center bg-gray-800">
+                        <h1 class="ml11">
+                            <span class="text-wrapper">
+                                <span class="line line1"></span>
+                                <span id="brand" class="hidden letters text-2xl text-white">Benchopt</span>
+                            </span>
+                        </h1>
+                    </div>
+                    <div class="flex-1 flex flex-col">
+                        <div class="mt-10 px-8">
+                            <label for="dataset_selector" class="block text-sm font-medium text-white">Dataset:</label>
+                            <div class="mt-1 rounded-md shadow-sm">
+                                <select id="dataset_selector" class="focus:ring-blue-500 focus:border-blue-500 block w-full h-8 px-4 sm:text-sm border-gray-300 rounded-md" onchange="setState({dataset: this.value})">
+                                    <option value="Simulated[n_features=100,n_samples=200,normalize=True,with_ties=False]">Simulated[n_features=100,n_samples=200,normalize=True,with_ties=False]</option>
+                                    <option value="Simulated[n_features=300,n_samples=500,normalize=True,with_ties=False]">Simulated[n_features=300,n_samples=500,normalize=True,with_ties=False]</option>
+                                    <option value="Simulated[n_features=500,n_samples=1000,normalize=True,with_ties=False]">Simulated[n_features=500,n_samples=1000,normalize=True,with_ties=False]</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="mt-8 px-8">
+                            <label for="objective_selector" class="block text-sm font-medium text-white">Objective:</label>
+                            <div class="mt-1 rounded-md shadow-sm">
+                                <select id="objective_selector" class="focus:ring-blue-500 focus:border-blue-500 block w-full h-8 px-4 sm:text-sm border-gray-300 rounded-md" onchange="setState({objective: this.value})">
+                                    <option value="Cox Estimation[l1_ratio=1.0,reg=0.1]">Cox Estimation[l1_ratio=1.0,reg=0.1]</option>
+                                    <option value="Cox Estimation[l1_ratio=0.7,reg=0.1]">Cox Estimation[l1_ratio=0.7,reg=0.1]</option>
+                                    <option value="Cox Estimation[l1_ratio=1.0,reg=0.01]">Cox Estimation[l1_ratio=1.0,reg=0.01]</option>
+                                    <option value="Cox Estimation[l1_ratio=0.7,reg=0.01]">Cox Estimation[l1_ratio=0.7,reg=0.01]</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="mt-8 px-8">
+                            <label for="objective_column" class="block text-sm font-medium text-white">Objective column</label>
+                            <div class="mt-1 rounded-md shadow-sm">
+                                <select id="objective_column" class="focus:ring-blue-500 focus:border-blue-500 block w-full h-8 px-4 sm:text-sm border-gray-300 rounded-md" onchange="setState({objective_column: this.value})">
+                                    <option value="objective_value">objective_value</option>
+                                    <option value="objective_support_size">objective_support_size</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="mt-8 px-8">
+                            <label for="plot_kind" class="block text-sm font-medium text-white">Chart type</label>
+                            <div class="mt-1 rounded-md shadow-sm">
+                                <select id="plot_kind" class="focus:ring-blue-500 focus:border-blue-500 block w-full h-8 px-4 sm:text-sm border-gray-300 rounded-md" onchange="setState({plot_kind: this.value})">
+                                    <option value="objective_curve">objective_curve</option>
+                                    <option value="suboptimality_curve">suboptimality_curve</option>
+                                    <option value="relative_suboptimality_curve">relative_suboptimality_curve</option>
+                                    <option value="bar_chart">bar_chart</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div id="scale-form-group" class="mt-8 px-8">
+                            <label for="change_scaling" class="block text-sm font-medium text-white">Scale</label>
+                            <div class="mt-1 rounded-md shadow-sm">
+                                <select id="change_scaling" class="focus:ring-blue-500 focus:border-blue-500 block w-full h-8 px-4 sm:text-sm border-gray-300 rounded-md" onchange="setState({scale: this.value})">
+                                    <option value="semilog-y">semilog-y</option>
+                                    <option value="semilog-x">semilog-x</option>
+                                    <option value="loglog">loglog</option>
+                                    <option value="linear">linear</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div id="xaxis-type-form-group" class="mt-8 px-8">
+                            <label for="change_scaling" class="block text-sm font-medium text-white">X-axis</label>
+                            <div class="mt-1 rounded-md shadow-sm">
+                                <select id="change_xaxis_type" class="focus:ring-blue-500 focus:border-blue-500 block w-full h-8 px-4 sm:text-sm border-gray-300 rounded-md" onchange="setState({xaxis_type: this.value})">
+                                   <!-- options will be added dynamically -->
+                                </select>
+                            </div>
+                        </div>
+                        <div class="flex items-center justify-between mt-8 px-8">
+                            <div class="block text-sm font-medium text-white">Quantiles</div>
+                            <label class="block switch">
+                                <input id="change_shades" type="checkbox" checked onchange="setState({with_quantiles: this.checked})">
+                                <span class="slider round"></span>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Right column on big screen and main column on mobile -->
+            <div class="w-full flex flex-col overflow-scroll">
+                <!-- Main menu -->
+                <nav class="bg-blue-600">
+                    <div class="px-4">
+                        <div class="relative flex items-center justify-between h-16">
+                            <!-- mobile navbar -->
+                            <div class="absolute inset-0 flex items-center justify-between lg:hidden">
+                                <!-- Mobile menu brand text -->
+                                <span class="text-white text-xl">
+                                    Benchopt
+                                </span>
+                                <!-- Mobile menu button-->
+                                <button type="button" id="btn-main-menu" class="inline-flex items-center justify-center p-2 rounded-md text-white focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white" aria-controls="mobile-menu" aria-expanded="false">
+                                    <span class="sr-only">Open main menu</span>
+                                    <svg class="block h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" aria-hidden="true">
+                                        <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16" />
+                                    </svg>
+                                    <svg class="hidden h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" aria-hidden="true">
+                                        <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+                                    </svg>
+                                </button>
+                            </div>
+                            <!-- big screen navbar-->
+                            <div class="flex-1 flex items-center justify-center lg:items-stretch lg:justify-start">
+                                <div class="hidden lg:block">
+                                    <div class="flex space-x-4">
+                                        <a href="benchmark_cox.html" class="text-gray-100 hover:bg-blue-800 hover:text-white px-3 py-2 rounded-md text-sm font-medium" aria-current="page">Home</a>
+                                        <a href="https://benchopt.github.io" class="text-gray-100 hover:bg-blue-800 hover:text-white px-3 py-2 rounded-md text-sm font-medium" target="_blank">Website</a>
+                                        <a href="https://github.com/benchopt/benchopt" class="text-gray-100 hover:bg-blue-800 hover:text-white px-3 py-2 rounded-md text-sm font-medium" target="_blank">Github</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Mobile menu, show/hide based on menu state. -->
+                    <div class="hidden" id="mobile-menu">
+                        <div class="px-2 pt-2 pb-3 space-y-1">
+                            <a href="benchmark_cox.html" class="text-white block px-3 py-2 rounded-md text-base font-medium" aria-current="page">Home</a>
+                            <a href="https://benchopt.github.io" class="text-white block px-3 py-2 rounded-md text-base font-medium">Website</a>
+                            <a href="https://github.com/benchopt/benchopt" class="text-white block px-3 py-2 rounded-md text-base font-medium">Github</a>
+                            <a href="benchopt_run_2023-06-15_18h18m48.parquet" class="text-white block px-3 py-2 rounded-md text-base font-medium">Download data</a>
+                        </div>
+                    </div>
+                </nav>
+
+                <!-- Plot menu for mobiles -->
+                <nav class="lg:hidden bg-gray-700">
+                    <div class="px-4" id="btn-plot-config">
+                        <div class="relative flex items-center justify-between h-10">
+                            <div class="absolute inset-0 flex items-center justify-between lg:hidden">
+                                <!-- Mobile menu button-->
+                                <span class="flex items-center space-x-2 text-white">
+                                    <span>Change plot</span>
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                                        <path stroke-linecap="round" stroke-linejoin="round" d="M13 5l7 7-7 7M5 5l7 7-7 7" />
+                                    </svg>
+                                </span>
+                                <button type="button" class="inline-flex items-center justify-center p-2 rounded-md text-white focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white" aria-controls="mobile-menu" aria-expanded="false">
+                                    <span class="sr-only">Open main menu</span>
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                                        <path stroke-linecap="round" stroke-linejoin="round" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z" />
+                                        <path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                                    </svg>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Mobile menu, show/hide based on menu state. -->
+                    <div class="hidden" id="mobile-plot-form">
+                        <div class="px-2 pt-2 pb-3 space-y-4">
+                            <div class="px-8">
+                                <label for="dataset_selector" class="block text-sm font-medium text-white">Dataset:</label>
+                                <div class="mt-1 rounded-md shadow-sm">
+                                    <select id="dataset_selector" class="focus:ring-blue-500 focus:border-blue-500 block w-full h-8 px-4 sm:text-sm border-gray-300 rounded-md" onchange="setState({dataset: this.value})">
+                                        <option value="Simulated[n_features=100,n_samples=200,normalize=True,with_ties=False]">Simulated[n_features=100,n_samples=200,normalize=True,with_ties=False]</option>
+                                        <option value="Simulated[n_features=300,n_samples=500,normalize=True,with_ties=False]">Simulated[n_features=300,n_samples=500,normalize=True,with_ties=False]</option>
+                                        <option value="Simulated[n_features=500,n_samples=1000,normalize=True,with_ties=False]">Simulated[n_features=500,n_samples=1000,normalize=True,with_ties=False]</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="px-8">
+                                <label for="objective_selector" class="block text-sm font-medium text-white">Objective:</label>
+                                <div class="mt-1 rounded-md shadow-sm">
+                                    <select id="objective_selector" class="focus:ring-blue-500 focus:border-blue-500 block w-full h-8 px-4 sm:text-sm border-gray-300 rounded-md" onchange="setState({objective: this.value})">
+                                        <option value="Cox Estimation[l1_ratio=1.0,reg=0.1]">Cox Estimation[l1_ratio=1.0,reg=0.1]</option>
+                                        <option value="Cox Estimation[l1_ratio=0.7,reg=0.1]">Cox Estimation[l1_ratio=0.7,reg=0.1]</option>
+                                        <option value="Cox Estimation[l1_ratio=1.0,reg=0.01]">Cox Estimation[l1_ratio=1.0,reg=0.01]</option>
+                                        <option value="Cox Estimation[l1_ratio=0.7,reg=0.01]">Cox Estimation[l1_ratio=0.7,reg=0.01]</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="px-8">
+                                <label for="objective_column" class="block text-sm font-medium text-white">Objective column</label>
+                                <div class="mt-1 rounded-md shadow-sm">
+                                    <select id="objective_column" class="focus:ring-blue-500 focus:border-blue-500 block w-full h-8 px-4 sm:text-sm border-gray-300 rounded-md" onchange="setState({objective_column: this.value})">
+                                        <option value="objective_value">objective_value</option>
+                                        <option value="objective_support_size">objective_support_size</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="px-8">
+                                <label for="plot_kind" class="block text-sm font-medium text-white">Chart type</label>
+                                <div class="mt-1 rounded-md shadow-sm">
+                                    <select id="plot_kind" class="focus:ring-blue-500 focus:border-blue-500 block w-full h-8 px-4 sm:text-sm border-gray-300 rounded-md" onchange="setState({plot_kind: this.value})">
+                                        <option value="objective_curve">objective_curve</option>
+                                        <option value="suboptimality_curve">suboptimality_curve</option>
+                                        <option value="relative_suboptimality_curve">relative_suboptimality_curve</option>
+                                        <option value="bar_chart">bar_chart</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div id="scale-form-group" class="px-8">
+                                <label for="change_scaling" class="block text-sm font-medium text-white">Scale</label>
+                                <div class="mt-1 rounded-md shadow-sm">
+                                    <select id="change_scaling" class="focus:ring-blue-500 focus:border-blue-500 block w-full h-8 px-4 sm:text-sm border-gray-300 rounded-md" onchange="setState({scale: this.value})">
+                                        <option value="semilog-y">semilog-y</option>
+                                        <option value="semilog-x">semilog-x</option>
+                                        <option value="loglog">loglog</option>
+                                        <option value="linear">linear</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div id="xaxis-type-form-group" class="mt-8 px-8">
+                                <label for="change_scaling" class="block text-sm font-medium text-white">X-axis</label>
+                                <div class="mt-1 rounded-md shadow-sm">
+                                    <select id="change_xaxis_type_mobile" class="focus:ring-blue-500 focus:border-blue-500 block w-full h-8 px-4 sm:text-sm border-gray-300 rounded-md" onchange="setState({xaxis_type: this.value})">
+                                       <!-- options will be added dynamically -->
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="flex items-center justify-between mt-8 px-8">
+                                <div class="block text-sm font-medium text-white">Quantiles</div>
+                                <label class="block switch">
+                                    <input id="change_shades" type="checkbox" checked onchange="setState({with_quantiles: this.checked})">
+                                    <span class="slider round"></span>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                </nav>
+
+                <!-- Page heading -->
+                <div class="px-4 pt-4 pb-1 md:py-4 lg:flex lg:items-center lg:justify-between">
+                    <div class="flex-1 min-w-0">
+                        <h2 class="w-full text-center lg:text-left text-2xl font-bold leading-7 text-gray-900 sm:text-3xl sm:truncate">Result on cox benchmark</h2>
+                        <div class="mt-1 flex flex-wrap justify-center lg:justify-start sm:mt-0">
+                            <div class="mt-2 sm:mr-6 hidden md:flex items-center text-sm text-gray-500">
+                                <span class="font-bold"></span>CPU : 20
+                            </div>
+                            <div class="mt-2 sm:mr-6 hidden md:flex items-center text-sm text-gray-500">
+                                <span class="font-bold"></span>RAM (GB) : 31
+                            </div>
+                            <div class="mt-2 sm:mr-6 hidden md:flex items-center text-sm text-gray-500">
+                                <span class="font-bold"></span>CUDA : NVIDIA T600 Laptop GPU: cuda_11.7
+                            </div>
+                            <div class="mt-2">
+                                <button class="inline-flex items-center px-2 py-1 space-x-2 border border-gray-500 rounded-md shadow-sm text-sm font-medium text-gray-500 bg-white hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-500" onclick="document.getElementById('system-modal').style.display = 'block'">
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                                        <path stroke-linecap="round" stroke-linejoin="round" d="M12 9v3m0 0v3m0-3h3m-3 0H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z" />
+                                    </svg>
+                                    <span class="hidden md:inline-block text-sm">Show more</span>
+                                    <span class="md:hidden text-sm">Show system information</span>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="hidden lg:flex mt-5 lg:mt-0 lg:ml-4">
+                        <span>
+                            <a href="benchopt_run_2023-06-15_18h18m48.parquet" class="inline-flex items-center px-4 py-2 space-x-2 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
+                                </svg>
+                                <span class="hidden lg:inline">Download data</span>
+                            </a>
+                        </span>
+                    </div>
+                </div>
+
+                <!-- Plot -->
+                <div id="unique_plot"></div>
+                <div id="legend_container" class="py-10 bg-slate-200">
+                    <div id="legend_title" class="px-10 mb-4">
+                        Solvers <span id="legend_help">(Click on a solver to hide it or double click to hide all the others)</span>
+                    </div>
+                    <div id="plot_legend" class="px-10 space-r-2"></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- System information modal -->
+        <div id="system-modal" class="hidden relative z-10" aria-labelledby="modal-title" role="dialog" aria-modal="true">
+            <div class="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity"></div>
+            <div class="fixed z-10 inset-0 overflow-y-auto">
+                <div class="flex items-end sm:items-center justify-center min-h-full p-4 text-center sm:p-0">
+                    <div class="relative bg-white rounded-lg text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:max-w-lg sm:w-full">
+                        <div class="bg-white px-4 pt-5 pb-4 sm:p-6 sm:pb-4">
+                            <div class="sm:flex sm:items-start">
+                                <div class="mx-auto flex-shrink-0 flex items-center justify-center h-12 w-12 rounded-full bg-blue-100 sm:mx-0 sm:h-10 sm:w-10">
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-blue-600" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                                        <path stroke-linecap="round" stroke-linejoin="round" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                                    </svg>
+                                </div>
+                                <div class="mt-3 text-center sm:mt-0 sm:ml-4 sm:text-left">
+                                    <h3 class="text-lg leading-6 font-medium text-gray-900" id="modal-title">System information</h3>
+                                    <div class="mt-2">
+                                        <ul class="text-sm text-gray-500">
+                                            <li> <b>CPU</b>: 20 </li>
+                                            <li> <b>RAM (GB)</b>: 31 </li>
+                                            <li> <b>CUDA</b>: NVIDIA T600 Laptop GPU: cuda_11.7 </li>
+                                            <li> <b>platform</b>: Linux5.14.0-1059-oem-x86_64 </li>
+                                            <li> <b>processor</b>: 12th Gen Intel(R) Core(TM) i7-12700H </li>
+                                            <li> <b>nb threads</b>: 1 </li>
+                                            
+                                            <li> <b>numpy</b>: 1.24.3  </li>
+                                            
+                                            <li> <b>scipy</b>: 1.10.1 </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="bg-gray-50 px-4 py-3 sm:px-6 sm:flex sm:flex-row-reverse">
+                            <button type="button" class="mt-3 w-full inline-flex justify-center rounded-md border border-gray-300 shadow-sm px-4 py-2 bg-white text-base font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 sm:mt-0 sm:ml-3 sm:w-auto sm:text-sm" onclick="document.getElementById('system-modal').style.display = 'none'">Close</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <script src="https://cdn.plot.ly/plotly-2.12.1.min.js"></script>
+        <!-- Used for the brand animation -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/2.0.2/anime.min.js"></script>
+        <!-- Define the brand animation -->
+        <script>
+            var textWrapper = document.querySelector('.ml11 .letters');
+            textWrapper.innerHTML = textWrapper.textContent.replace(/([^\x00-\x80]|\w)/g, "<span class='letter'>$&</span>");
+
+            window.addEventListener('load', () => {
+                document.getElementById('brand').style.display = 'inline';
+
+                anime.timeline({loop: false})
+                    .add({
+                        targets: '.ml11 .line',
+                        scaleY: [0,1],
+                        opacity: [0.5,1],
+                        easing: "easeOutExpo",
+                        duration: 700
+                    })
+                    .add({
+                        targets: '.ml11 .line',
+                        translateX: [0, document.querySelector('.ml11 .letters').getBoundingClientRect().width + 10],
+                        easing: "easeOutExpo",
+                        duration: 700,
+                        delay: 100
+                    }).add({
+                        targets: '.ml11 .letter',
+                        opacity: [0,1],
+                        easing: "easeOutExpo",
+                        duration: 600,
+                        offset: '-=775',
+                        delay: (el, i) => 34 * (i+1)
+                    }).add({
+                        targets: '.ml11 .line',
+                        scaleY: [1,0],
+                        opacity: [1,0.5],
+                        easing: "easeOutExpo",
+                        duration: 700,
+                        translateX: [document.querySelector('.ml11 .letters').getBoundingClientRect().width + 10, document.querySelector('.ml11 .letters').getBoundingClientRect().width + 10],
+                    });
+            });
+        </script>
+        <!-- Manage plot -->
+        <script>
+            window.data = {"Simulated[n_features=100,n_samples=200,normalize=True,with_ties=False]": {"Cox Estimation[l1_ratio=1.0,reg=0.1]": {"objective_value": {"solvers": {"scikit-survival": {"scatter": {"x": [1.2716998753603548e-05, 0.002870535998226842, 0.004271034998964751, 0.004372338000393938, 0.005350886000087485, 0.00615851099792053, 0.0071210749993042555, 0.008194368001568364, 0.009150269997917349, 0.010488152998732403, 0.011681545001920313, 0.015174615000432823, 0.014326577002066188, 0.016237955998803955, 0.0175201729980472, 0.01708830899951863, 0.017495426000095904, 0.01620370499949786], "y": [2.4143608395617973, 2.244145483889737, 2.2122593486774855, 2.2049124528465214, 2.20480591763933, 2.2048038308325553, 2.1788041571726224, 2.1780190786862437, 2.1779928372612725, 2.1779900144010993, 2.1772074242983672, 2.1772033474091668, 2.177194997943755, 2.17719459127032, 2.177194445108565, 2.1771944451064043, 2.1771944451064043, 2.1771944451064043], "stop_val": [0, 50, 100, 150, 200, 250, 300, 350, 400, 450, 500, 550, 600, 650, 700, 750, 800, 850], "q1": [1.2716998753603548e-05, 0.002870535998226842, 0.004271034998964751, 0.004372338000393938, 0.005350886000087485, 0.00615851099792053, 0.0071210749993042555, 0.008194368001568364, 0.009150269997917349, 0.010488152998732403, 0.011681545001920313, 0.015174615000432823, 0.014326577002066188, 0.016237955998803955, 0.0175201729980472, 0.01708830899951863, 0.017495426000095904, 0.01620370499949786], "q9": [1.2716998753603548e-05, 0.002870535998226842, 0.004271034998964751, 0.004372338000393938, 0.005350886000087485, 0.00615851099792053, 0.0071210749993042555, 0.008194368001568364, 0.009150269997917349, 0.010488152998732403, 0.011681545001920313, 0.015174615000432823, 0.014326577002066188, 0.016237955998803955, 0.0175201729980472, 0.01708830899951863, 0.017495426000095904, 0.01620370499949786]}, "bar": {"y": 0.014326577002066188, "times": [0.014326577002066188], "text": ""}, "color": "rgba(31.0, 119.0, 180.0, 1.0)", "marker": 0, "stopping_strategy": "Iteration"}, "skglm[solver=Prox-Newton]": {"scatter": {"x": [2.358900019316934e-05, 0.0003818669974862132, 0.0005393009996623732, 0.0013379470001382288, 0.002180726998631144, 0.0034345660023973323, 0.007606069997564191, 0.011132497998914914, 0.013729759000852937, 0.013724125001317589], "y": [2.4143608395617973, 2.3411325138800394, 2.2718066085813815, 2.190580905165285, 2.1779218561556797, 2.177196650645964, 2.1771944454835572, 2.1771944451033645, 2.1771944451033605, 2.1771944451033605], "stop_val": [0, 1, 2, 3, 4, 6, 9, 13, 19, 28], "q1": [2.358900019316934e-05, 0.0003818669974862132, 0.0005393009996623732, 0.0013379470001382288, 0.002180726998631144, 0.0034345660023973323, 0.007606069997564191, 0.011132497998914914, 0.013729759000852937, 0.013724125001317589], "q9": [2.358900019316934e-05, 0.0003818669974862132, 0.0005393009996623732, 0.0013379470001382288, 0.002180726998631144, 0.0034345660023973323, 0.007606069997564191, 0.011132497998914914, 0.013729759000852937, 0.013724125001317589]}, "bar": {"y": 0.007606069997564191, "times": [0.007606069997564191], "text": ""}, "color": "rgba(255.0, 127.0, 14.0, 1.0)", "marker": 1, "stopping_strategy": "Iteration"}}, "transformers": {"c_star": 2.1771944450033605, "max_f_0": 2.3411325138800394}}, "objective_support_size": {"solvers": {"scikit-survival": {"scatter": {"x": [1.2716998753603548e-05, 0.002870535998226842, 0.004271034998964751, 0.004372338000393938, 0.005350886000087485, 0.00615851099792053, 0.0071210749993042555, 0.008194368001568364, 0.009150269997917349, 0.010488152998732403, 0.011681545001920313, 0.015174615000432823, 0.014326577002066188, 0.016237955998803955, 0.0175201729980472, 0.01708830899951863, 0.017495426000095904, 0.01620370499949786], "y": [0.0, 47.0, 50.0, 49.0, 50.0, 50.0, 62.0, 63.0, 63.0, 63.0, 70.0, 72.0, 73.0, 73.0, 74.0, 74.0, 74.0, 74.0], "stop_val": [0, 50, 100, 150, 200, 250, 300, 350, 400, 450, 500, 550, 600, 650, 700, 750, 800, 850], "q1": [1.2716998753603548e-05, 0.002870535998226842, 0.004271034998964751, 0.004372338000393938, 0.005350886000087485, 0.00615851099792053, 0.0071210749993042555, 0.008194368001568364, 0.009150269997917349, 0.010488152998732403, 0.011681545001920313, 0.015174615000432823, 0.014326577002066188, 0.016237955998803955, 0.0175201729980472, 0.01708830899951863, 0.017495426000095904, 0.01620370499949786], "q9": [1.2716998753603548e-05, 0.002870535998226842, 0.004271034998964751, 0.004372338000393938, 0.005350886000087485, 0.00615851099792053, 0.0071210749993042555, 0.008194368001568364, 0.009150269997917349, 0.010488152998732403, 0.011681545001920313, 0.015174615000432823, 0.014326577002066188, 0.016237955998803955, 0.0175201729980472, 0.01708830899951863, 0.017495426000095904, 0.01620370499949786]}, "bar": {"y": 1.2716998753603548e-05, "times": [1.2716998753603548e-05], "text": ""}, "color": "rgba(31.0, 119.0, 180.0, 1.0)", "marker": 0, "stopping_strategy": "Iteration"}, "skglm[solver=Prox-Newton]": {"scatter": {"x": [2.358900019316934e-05, 0.0003818669974862132, 0.0005393009996623732, 0.0013379470001382288, 0.002180726998631144, 0.0034345660023973323, 0.007606069997564191, 0.011132497998914914, 0.013729759000852937, 0.013724125001317589], "y": [0.0, 10.0, 30.0, 56.0, 73.0, 74.0, 74.0, 74.0, 74.0, 74.0], "stop_val": [0, 1, 2, 3, 4, 6, 9, 13, 19, 28], "q1": [2.358900019316934e-05, 0.0003818669974862132, 0.0005393009996623732, 0.0013379470001382288, 0.002180726998631144, 0.0034345660023973323, 0.007606069997564191, 0.011132497998914914, 0.013729759000852937, 0.013724125001317589], "q9": [2.358900019316934e-05, 0.0003818669974862132, 0.0005393009996623732, 0.0013379470001382288, 0.002180726998631144, 0.0034345660023973323, 0.007606069997564191, 0.011132497998914914, 0.013729759000852937, 0.013724125001317589]}, "bar": {"y": 2.358900019316934e-05, "times": [2.358900019316934e-05], "text": ""}, "color": "rgba(255.0, 127.0, 14.0, 1.0)", "marker": 1, "stopping_strategy": "Iteration"}}, "transformers": {"c_star": -1e-10, "max_f_0": 10.0}}}, "Cox Estimation[l1_ratio=0.7,reg=0.1]": {"objective_value": {"solvers": {"scikit-survival": {"scatter": {"x": [1.1341999197611585e-05, 0.0027429229994595516, 0.0033476999997219536, 0.004367137000372168, 0.006214100998477079, 0.006095829998230329, 0.00562104900018312, 0.005767029000708135, 0.009212097997078672, 0.010631493001710624, 0.01221640099902288, 0.0137583919968165, 0.015104578000318725, 0.015404727000714047, 0.015837169001315488, 0.016096318999188952, 0.015188080000370974], "y": [2.4143608395617973, 2.2466765377351114, 2.2108615808246, 2.209299455142579, 2.2092127798332157, 2.2092114701973165, 2.185574163789615, 2.1849655880093923, 2.1849474081544455, 2.1849458257219005, 2.1843298331714704, 2.18432279008106, 2.1843224400184287, 2.1843220439018367, 2.1843220438850994, 2.1843220438850994, 2.1843220438850994], "stop_val": [0, 50, 100, 150, 200, 250, 300, 350, 400, 450, 500, 550, 600, 650, 700, 750, 800], "q1": [1.1341999197611585e-05, 0.0027429229994595516, 0.0033476999997219536, 0.004367137000372168, 0.006214100998477079, 0.006095829998230329, 0.00562104900018312, 0.005767029000708135, 0.009212097997078672, 0.010631493001710624, 0.01221640099902288, 0.0137583919968165, 0.015104578000318725, 0.015404727000714047, 0.015837169001315488, 0.016096318999188952, 0.015188080000370974], "q9": [1.1341999197611585e-05, 0.0027429229994595516, 0.0033476999997219536, 0.004367137000372168, 0.006214100998477079, 0.006095829998230329, 0.00562104900018312, 0.005767029000708135, 0.009212097997078672, 0.010631493001710624, 0.01221640099902288, 0.0137583919968165, 0.015104578000318725, 0.015404727000714047, 0.015837169001315488, 0.016096318999188952, 0.015188080000370974]}, "bar": {"y": 0.0137583919968165, "times": [0.0137583919968165], "text": ""}, "color": "rgba(31.0, 119.0, 180.0, 1.0)", "marker": 0, "stopping_strategy": "Iteration"}, "skglm[solver=Prox-Newton]": {"scatter": {"x": [4.5292999857338145e-05, 0.00043744600043282844, 0.0009092239997698925, 0.0012954070007253904, 0.001268504998733988, 0.004230678001476917, 0.006320776003121864, 0.006238271998881828, 0.012120031999074854, 0.045636307000677334], "y": [2.4143608395617973, 2.3418852725498196, 2.2735679453819175, 2.196035579406927, 2.1848950868414185, 2.1843234174951647, 2.1843220440357687, 2.1843220438688737, 2.184322043868872, 2.184322043868872], "stop_val": [0, 1, 2, 3, 4, 6, 9, 13, 19, 28], "q1": [4.5292999857338145e-05, 0.00043744600043282844, 0.0009092239997698925, 0.0012954070007253904, 0.001268504998733988, 0.004230678001476917, 0.006320776003121864, 0.006238271998881828, 0.012120031999074854, 0.045636307000677334], "q9": [4.5292999857338145e-05, 0.00043744600043282844, 0.0009092239997698925, 0.0012954070007253904, 0.001268504998733988, 0.004230678001476917, 0.006320776003121864, 0.006238271998881828, 0.012120031999074854, 0.045636307000677334]}, "bar": {"y": 0.006320776003121864, "times": [0.006320776003121864], "text": ""}, "color": "rgba(255.0, 127.0, 14.0, 1.0)", "marker": 1, "stopping_strategy": "Iteration"}}, "transformers": {"c_star": 2.184322043768872, "max_f_0": 2.3418852725498196}}, "objective_support_size": {"solvers": {"scikit-survival": {"scatter": {"x": [1.1341999197611585e-05, 0.0027429229994595516, 0.0033476999997219536, 0.004367137000372168, 0.006214100998477079, 0.006095829998230329, 0.00562104900018312, 0.005767029000708135, 0.009212097997078672, 0.010631493001710624, 0.01221640099902288, 0.0137583919968165, 0.015104578000318725, 0.015404727000714047, 0.015837169001315488, 0.016096318999188952, 0.015188080000370974], "y": [0.0, 46.0, 49.0, 48.0, 50.0, 50.0, 63.0, 62.0, 62.0, 62.0, 71.0, 71.0, 71.0, 73.0, 73.0, 73.0, 73.0], "stop_val": [0, 50, 100, 150, 200, 250, 300, 350, 400, 450, 500, 550, 600, 650, 700, 750, 800], "q1": [1.1341999197611585e-05, 0.0027429229994595516, 0.0033476999997219536, 0.004367137000372168, 0.006214100998477079, 0.006095829998230329, 0.00562104900018312, 0.005767029000708135, 0.009212097997078672, 0.010631493001710624, 0.01221640099902288, 0.0137583919968165, 0.015104578000318725, 0.015404727000714047, 0.015837169001315488, 0.016096318999188952, 0.015188080000370974], "q9": [1.1341999197611585e-05, 0.0027429229994595516, 0.0033476999997219536, 0.004367137000372168, 0.006214100998477079, 0.006095829998230329, 0.00562104900018312, 0.005767029000708135, 0.009212097997078672, 0.010631493001710624, 0.01221640099902288, 0.0137583919968165, 0.015104578000318725, 0.015404727000714047, 0.015837169001315488, 0.016096318999188952, 0.015188080000370974]}, "bar": {"y": 1.1341999197611585e-05, "times": [1.1341999197611585e-05], "text": ""}, "color": "rgba(31.0, 119.0, 180.0, 1.0)", "marker": 0, "stopping_strategy": "Iteration"}, "skglm[solver=Prox-Newton]": {"scatter": {"x": [4.5292999857338145e-05, 0.00043744600043282844, 0.0009092239997698925, 0.0012954070007253904, 0.001268504998733988, 0.004230678001476917, 0.006320776003121864, 0.006238271998881828, 0.012120031999074854, 0.045636307000677334], "y": [0.0, 10.0, 30.0, 58.0, 73.0, 73.0, 73.0, 73.0, 73.0, 73.0], "stop_val": [0, 1, 2, 3, 4, 6, 9, 13, 19, 28], "q1": [4.5292999857338145e-05, 0.00043744600043282844, 0.0009092239997698925, 0.0012954070007253904, 0.001268504998733988, 0.004230678001476917, 0.006320776003121864, 0.006238271998881828, 0.012120031999074854, 0.045636307000677334], "q9": [4.5292999857338145e-05, 0.00043744600043282844, 0.0009092239997698925, 0.0012954070007253904, 0.001268504998733988, 0.004230678001476917, 0.006320776003121864, 0.006238271998881828, 0.012120031999074854, 0.045636307000677334]}, "bar": {"y": 4.5292999857338145e-05, "times": [4.5292999857338145e-05], "text": ""}, "color": "rgba(255.0, 127.0, 14.0, 1.0)", "marker": 1, "stopping_strategy": "Iteration"}}, "transformers": {"c_star": -1e-10, "max_f_0": 10.0}}}, "Cox Estimation[l1_ratio=1.0,reg=0.01]": {"objective_value": {"solvers": {"scikit-survival": {"scatter": {"x": [8.809998689685017e-06, 0.0035926030031987466, 0.0051198309993196744, 0.007209033999970416, 0.007904149002570193, 0.008421993999945698, 0.01090590300009353, 0.011851041999761946, 0.009282766000978881, 0.010951575997751206, 0.01683871199929854, 0.02349710699854768, 0.018498139001167146, 0.020437683000636753, 0.025361078001878923, 0.04763703199932934, 0.026653799999621697, 0.028054441001586383, 0.029411707000690512, 0.030935578997741686, 0.03177565499936463, 0.03157924699917203, 0.033528238000144484, 0.03642291500000283, 0.02444720100174891, 0.03533351700025378, 0.03668505099994945, 0.033604397998715285, 0.023371555002086097, 0.037694620001275325, 0.03895749699950102, 0.03813362100117956, 0.043918283001403324, 0.04196719399988069, 0.04409822900197469, 0.045217798000521725, 0.02860525600044639, 0.02860565700029838, 0.0316274249998969, 0.028803700999560533, 0.045889558001363184, 0.04516935200081207, 0.04928730099709355, 0.05030299099962576, 0.032396612001321046, 0.04960363799909828, 0.05230381900037173, 0.05518846199993277, 0.0334248800027126, 0.03484346299956087, 0.0601179580007738], "y": [2.4143608395617973, 2.1066432159685466, 2.091567526776197, 2.091667923422952, 2.007676405567938, 2.0081645059245243, 1.9812097678328813, 1.9811693438321245, 1.974475471444724, 1.9716470401873682, 1.9714026399965865, 1.9698225108523313, 1.968969232297921, 1.9689662176103262, 1.968483542120748, 1.9682030133005364, 1.9680382981437263, 1.9680355464018626, 1.9679343187551135, 1.9678722831672424, 1.9678339855729696, 1.9678101821664875, 1.9677953052550963, 1.9677859720240671, 1.9677801054107238, 1.9677746592145446, 1.9677726238010662, 1.967771139128363, 1.9677705139105843, 1.9677702414634681, 1.9677701195837443, 1.9677700819689932, 1.9677700715494635, 1.9563126080878253, 1.95591322199609, 1.9559189817416116, 1.9555441034002878, 1.9555436126818644, 1.95553656007006, 1.955533882765578, 1.9555317757884407, 1.9555312945132288, 1.9555308625245214, 1.9555306922075604, 1.9555306199182794, 1.955530584522094, 1.9555305734892152, 1.9555305699144163, 1.955530569794228, 1.955530569794228, 1.955530569794228], "stop_val": [0, 50, 100, 150, 200, 250, 300, 350, 400, 450, 500, 550, 600, 650, 700, 750, 800, 850, 900, 950, 1000, 1050, 1100, 1150, 1200, 1250, 1300, 1350, 1400, 1450, 1500, 1550, 1600, 1650, 1700, 1750, 1800, 1850, 1900, 1950, 2000, 2050, 2100, 2150, 2200, 2250, 2300, 2350, 2400, 2450, 2500], "q1": [8.809998689685017e-06, 0.0035926030031987466, 0.0051198309993196744, 0.007209033999970416, 0.007904149002570193, 0.008421993999945698, 0.01090590300009353, 0.011851041999761946, 0.009282766000978881, 0.010951575997751206, 0.01683871199929854, 0.02349710699854768, 0.018498139001167146, 0.020437683000636753, 0.025361078001878923, 0.04763703199932934, 0.026653799999621697, 0.028054441001586383, 0.029411707000690512, 0.030935578997741686, 0.03177565499936463, 0.03157924699917203, 0.033528238000144484, 0.03642291500000283, 0.02444720100174891, 0.03533351700025378, 0.03668505099994945, 0.033604397998715285, 0.023371555002086097, 0.037694620001275325, 0.03895749699950102, 0.03813362100117956, 0.043918283001403324, 0.04196719399988069, 0.04409822900197469, 0.045217798000521725, 0.02860525600044639, 0.02860565700029838, 0.0316274249998969, 0.028803700999560533, 0.045889558001363184, 0.04516935200081207, 0.04928730099709355, 0.05030299099962576, 0.032396612001321046, 0.04960363799909828, 0.05230381900037173, 0.05518846199993277, 0.0334248800027126, 0.03484346299956087, 0.0601179580007738], "q9": [8.809998689685017e-06, 0.0035926030031987466, 0.0051198309993196744, 0.007209033999970416, 0.007904149002570193, 0.008421993999945698, 0.01090590300009353, 0.011851041999761946, 0.009282766000978881, 0.010951575997751206, 0.01683871199929854, 0.02349710699854768, 0.018498139001167146, 0.020437683000636753, 0.025361078001878923, 0.04763703199932934, 0.026653799999621697, 0.028054441001586383, 0.029411707000690512, 0.030935578997741686, 0.03177565499936463, 0.03157924699917203, 0.033528238000144484, 0.03642291500000283, 0.02444720100174891, 0.03533351700025378, 0.03668505099994945, 0.033604397998715285, 0.023371555002086097, 0.037694620001275325, 0.03895749699950102, 0.03813362100117956, 0.043918283001403324, 0.04196719399988069, 0.04409822900197469, 0.045217798000521725, 0.02860525600044639, 0.02860565700029838, 0.0316274249998969, 0.028803700999560533, 0.045889558001363184, 0.04516935200081207, 0.04928730099709355, 0.05030299099962576, 0.032396612001321046, 0.04960363799909828, 0.05230381900037173, 0.05518846199993277, 0.0334248800027126, 0.03484346299956087, 0.0601179580007738]}, "bar": {"y": 0.04516935200081207, "times": [0.04516935200081207], "text": ""}, "color": "rgba(31.0, 119.0, 180.0, 1.0)", "marker": 0, "stopping_strategy": "Iteration"}, "skglm[solver=Prox-Newton]": {"scatter": {"x": [4.222999996272847e-05, 0.0004455920025066007, 0.0007855760013626423, 0.003680105997773353, 0.0030082420016697142, 0.008794182002020534, 0.018217532000562642, 0.03502482400290319, 0.08999269100240781, 0.06468920800034539, 0.05856953599868575], "y": [2.4143608395617973, 2.3208114960980213, 2.217806180931033, 2.051054287644734, 1.9718424122088078, 1.9556351756656292, 1.9555305980309714, 1.955530569691254, 1.9555305696907057, 1.9555305696907057, 1.9555305696907057], "stop_val": [0, 1, 2, 3, 4, 6, 9, 13, 19, 28, 50], "q1": [4.222999996272847e-05, 0.0004455920025066007, 0.0007855760013626423, 0.003680105997773353, 0.0030082420016697142, 0.008794182002020534, 0.018217532000562642, 0.03502482400290319, 0.08999269100240781, 0.06468920800034539, 0.05856953599868575], "q9": [4.222999996272847e-05, 0.0004455920025066007, 0.0007855760013626423, 0.003680105997773353, 0.0030082420016697142, 0.008794182002020534, 0.018217532000562642, 0.03502482400290319, 0.08999269100240781, 0.06468920800034539, 0.05856953599868575]}, "bar": {"y": 0.018217532000562642, "times": [0.018217532000562642], "text": ""}, "color": "rgba(255.0, 127.0, 14.0, 1.0)", "marker": 1, "stopping_strategy": "Iteration"}}, "transformers": {"c_star": 1.9555305695907057, "max_f_0": 2.3208114960980213}}, "objective_support_size": {"solvers": {"scikit-survival": {"scatter": {"x": [8.809998689685017e-06, 0.0035926030031987466, 0.0051198309993196744, 0.007209033999970416, 0.007904149002570193, 0.008421993999945698, 0.01090590300009353, 0.011851041999761946, 0.009282766000978881, 0.010951575997751206, 0.01683871199929854, 0.02349710699854768, 0.018498139001167146, 0.020437683000636753, 0.025361078001878923, 0.04763703199932934, 0.026653799999621697, 0.028054441001586383, 0.029411707000690512, 0.030935578997741686, 0.03177565499936463, 0.03157924699917203, 0.033528238000144484, 0.03642291500000283, 0.02444720100174891, 0.03533351700025378, 0.03668505099994945, 0.033604397998715285, 0.023371555002086097, 0.037694620001275325, 0.03895749699950102, 0.03813362100117956, 0.043918283001403324, 0.04196719399988069, 0.04409822900197469, 0.045217798000521725, 0.02860525600044639, 0.02860565700029838, 0.0316274249998969, 0.028803700999560533, 0.045889558001363184, 0.04516935200081207, 0.04928730099709355, 0.05030299099962576, 0.032396612001321046, 0.04960363799909828, 0.05230381900037173, 0.05518846199993277, 0.0334248800027126, 0.03484346299956087, 0.0601179580007738], "y": [0.0, 94.0, 97.0, 97.0, 93.0, 93.0, 94.0, 93.0, 95.0, 94.0, 95.0, 96.0, 96.0, 96.0, 96.0, 96.0, 96.0, 95.0, 95.0, 94.0, 94.0, 94.0, 94.0, 94.0, 94.0, 94.0, 94.0, 94.0, 94.0, 94.0, 94.0, 94.0, 94.0, 98.0, 98.0, 98.0, 99.0, 99.0, 99.0, 99.0, 99.0, 99.0, 99.0, 99.0, 99.0, 99.0, 99.0, 99.0, 99.0, 99.0, 99.0], "stop_val": [0, 50, 100, 150, 200, 250, 300, 350, 400, 450, 500, 550, 600, 650, 700, 750, 800, 850, 900, 950, 1000, 1050, 1100, 1150, 1200, 1250, 1300, 1350, 1400, 1450, 1500, 1550, 1600, 1650, 1700, 1750, 1800, 1850, 1900, 1950, 2000, 2050, 2100, 2150, 2200, 2250, 2300, 2350, 2400, 2450, 2500], "q1": [8.809998689685017e-06, 0.0035926030031987466, 0.0051198309993196744, 0.007209033999970416, 0.007904149002570193, 0.008421993999945698, 0.01090590300009353, 0.011851041999761946, 0.009282766000978881, 0.010951575997751206, 0.01683871199929854, 0.02349710699854768, 0.018498139001167146, 0.020437683000636753, 0.025361078001878923, 0.04763703199932934, 0.026653799999621697, 0.028054441001586383, 0.029411707000690512, 0.030935578997741686, 0.03177565499936463, 0.03157924699917203, 0.033528238000144484, 0.03642291500000283, 0.02444720100174891, 0.03533351700025378, 0.03668505099994945, 0.033604397998715285, 0.023371555002086097, 0.037694620001275325, 0.03895749699950102, 0.03813362100117956, 0.043918283001403324, 0.04196719399988069, 0.04409822900197469, 0.045217798000521725, 0.02860525600044639, 0.02860565700029838, 0.0316274249998969, 0.028803700999560533, 0.045889558001363184, 0.04516935200081207, 0.04928730099709355, 0.05030299099962576, 0.032396612001321046, 0.04960363799909828, 0.05230381900037173, 0.05518846199993277, 0.0334248800027126, 0.03484346299956087, 0.0601179580007738], "q9": [8.809998689685017e-06, 0.0035926030031987466, 0.0051198309993196744, 0.007209033999970416, 0.007904149002570193, 0.008421993999945698, 0.01090590300009353, 0.011851041999761946, 0.009282766000978881, 0.010951575997751206, 0.01683871199929854, 0.02349710699854768, 0.018498139001167146, 0.020437683000636753, 0.025361078001878923, 0.04763703199932934, 0.026653799999621697, 0.028054441001586383, 0.029411707000690512, 0.030935578997741686, 0.03177565499936463, 0.03157924699917203, 0.033528238000144484, 0.03642291500000283, 0.02444720100174891, 0.03533351700025378, 0.03668505099994945, 0.033604397998715285, 0.023371555002086097, 0.037694620001275325, 0.03895749699950102, 0.03813362100117956, 0.043918283001403324, 0.04196719399988069, 0.04409822900197469, 0.045217798000521725, 0.02860525600044639, 0.02860565700029838, 0.0316274249998969, 0.028803700999560533, 0.045889558001363184, 0.04516935200081207, 0.04928730099709355, 0.05030299099962576, 0.032396612001321046, 0.04960363799909828, 0.05230381900037173, 0.05518846199993277, 0.0334248800027126, 0.03484346299956087, 0.0601179580007738]}, "bar": {"y": 8.809998689685017e-06, "times": [8.809998689685017e-06], "text": ""}, "color": "rgba(31.0, 119.0, 180.0, 1.0)", "marker": 0, "stopping_strategy": "Iteration"}, "skglm[solver=Prox-Newton]": {"scatter": {"x": [4.222999996272847e-05, 0.0004455920025066007, 0.0007855760013626423, 0.003680105997773353, 0.0030082420016697142, 0.008794182002020534, 0.018217532000562642, 0.03502482400290319, 0.08999269100240781, 0.06468920800034539, 0.05856953599868575], "y": [0.0, 10.0, 30.0, 64.0, 99.0, 99.0, 99.0, 99.0, 99.0, 99.0, 99.0], "stop_val": [0, 1, 2, 3, 4, 6, 9, 13, 19, 28, 50], "q1": [4.222999996272847e-05, 0.0004455920025066007, 0.0007855760013626423, 0.003680105997773353, 0.0030082420016697142, 0.008794182002020534, 0.018217532000562642, 0.03502482400290319, 0.08999269100240781, 0.06468920800034539, 0.05856953599868575], "q9": [4.222999996272847e-05, 0.0004455920025066007, 0.0007855760013626423, 0.003680105997773353, 0.0030082420016697142, 0.008794182002020534, 0.018217532000562642, 0.03502482400290319, 0.08999269100240781, 0.06468920800034539, 0.05856953599868575]}, "bar": {"y": 4.222999996272847e-05, "times": [4.222999996272847e-05], "text": ""}, "color": "rgba(255.0, 127.0, 14.0, 1.0)", "marker": 1, "stopping_strategy": "Iteration"}}, "transformers": {"c_star": -1e-10, "max_f_0": 10.0}}}, "Cox Estimation[l1_ratio=0.7,reg=0.01]": {"objective_value": {"solvers": {"scikit-survival": {"scatter": {"x": [9.240000508725643e-06, 0.0038444279998657294, 0.004985827999917092, 0.0066172980004921556, 0.007842491002520546, 0.009331458000815473, 0.010349356998631265, 0.012429393998900196, 0.013373378998949192, 0.0372065420015133, 0.0162441470019985, 0.018324904998735292, 0.019795142998191295, 0.02030974900117144, 0.023636300000362098, 0.04567892600243795, 0.025772551001864485, 0.028662196000368567, 0.07031936299972585, 0.031864837001194246, 0.031264430999726756, 0.03389225400314899, 0.03349760400305968, 0.0371687410006416, 0.03340574200046831, 0.03468237800188945, 0.025412412996956846, 0.03424303500287351, 0.035313224001583876, 0.03894103299899143, 0.040175097001338145, 0.026376636000350118, 0.04286933200273779, 0.04084350899938727, 0.026996887998393504, 0.033310981998511124, 0.04202289400200243, 0.044544807002239395, 0.04631465100101195, 0.04666827100299997, 0.04465446200265433, 0.047206465002091136, 0.04957690199807985, 0.047022650000144495, 0.048740640999312745, 0.050949756001500646, 0.05238278699835064, 0.05158035700151231, 0.05286447300022701], "y": [2.4143608395617973, 2.107512825639209, 2.0927100532147365, 2.092793537878156, 2.0098614541486843, 2.010129942922424, 1.9842403471768677, 1.9842257114560469, 1.9776871357834795, 1.9747537389392562, 1.9747149979470444, 1.9732099921428603, 1.9724108321005918, 1.9719702466647944, 1.9717240256716164, 1.9717179365209923, 1.971571440102108, 1.9714846528930532, 1.971432635097084, 1.971401177554713, 1.9713819762378293, 1.9713701509221595, 1.9713628558177663, 1.9713583700967992, 1.971355610885613, 1.9713528758974166, 1.9713518944171475, 1.9713515456160213, 1.9713512458964182, 1.9713511704985176, 1.9713511405404887, 1.971351131602465, 1.9598000240640914, 1.9597790461884839, 1.9597824584262213, 1.9594302604657148, 1.9594301678737516, 1.9594237828035594, 1.9594203730882758, 1.9594197157707867, 1.9594191812834207, 1.959418991359486, 1.9594189191643785, 1.9594188846508782, 1.9594188750246786, 1.9594188732206057, 1.9594188732206057, 1.9594188732206057, 1.9594188732206057], "stop_val": [0, 50, 100, 150, 200, 250, 300, 350, 400, 450, 500, 550, 600, 650, 700, 750, 800, 850, 900, 950, 1000, 1050, 1100, 1150, 1200, 1250, 1300, 1350, 1400, 1450, 1500, 1550, 1600, 1650, 1700, 1750, 1800, 1850, 1900, 1950, 2000, 2050, 2100, 2150, 2200, 2250, 2300, 2350, 2400], "q1": [9.240000508725643e-06, 0.0038444279998657294, 0.004985827999917092, 0.0066172980004921556, 0.007842491002520546, 0.009331458000815473, 0.010349356998631265, 0.012429393998900196, 0.013373378998949192, 0.0372065420015133, 0.0162441470019985, 0.018324904998735292, 0.019795142998191295, 0.02030974900117144, 0.023636300000362098, 0.04567892600243795, 0.025772551001864485, 0.028662196000368567, 0.07031936299972585, 0.031864837001194246, 0.031264430999726756, 0.03389225400314899, 0.03349760400305968, 0.0371687410006416, 0.03340574200046831, 0.03468237800188945, 0.025412412996956846, 0.03424303500287351, 0.035313224001583876, 0.03894103299899143, 0.040175097001338145, 0.026376636000350118, 0.04286933200273779, 0.04084350899938727, 0.026996887998393504, 0.033310981998511124, 0.04202289400200243, 0.044544807002239395, 0.04631465100101195, 0.04666827100299997, 0.04465446200265433, 0.047206465002091136, 0.04957690199807985, 0.047022650000144495, 0.048740640999312745, 0.050949756001500646, 0.05238278699835064, 0.05158035700151231, 0.05286447300022701], "q9": [9.240000508725643e-06, 0.0038444279998657294, 0.004985827999917092, 0.0066172980004921556, 0.007842491002520546, 0.009331458000815473, 0.010349356998631265, 0.012429393998900196, 0.013373378998949192, 0.0372065420015133, 0.0162441470019985, 0.018324904998735292, 0.019795142998191295, 0.02030974900117144, 0.023636300000362098, 0.04567892600243795, 0.025772551001864485, 0.028662196000368567, 0.07031936299972585, 0.031864837001194246, 0.031264430999726756, 0.03389225400314899, 0.03349760400305968, 0.0371687410006416, 0.03340574200046831, 0.03468237800188945, 0.025412412996956846, 0.03424303500287351, 0.035313224001583876, 0.03894103299899143, 0.040175097001338145, 0.026376636000350118, 0.04286933200273779, 0.04084350899938727, 0.026996887998393504, 0.033310981998511124, 0.04202289400200243, 0.044544807002239395, 0.04631465100101195, 0.04666827100299997, 0.04465446200265433, 0.047206465002091136, 0.04957690199807985, 0.047022650000144495, 0.048740640999312745, 0.050949756001500646, 0.05238278699835064, 0.05158035700151231, 0.05286447300022701]}, "bar": {"y": 0.04666827100299997, "times": [0.04666827100299997], "text": ""}, "color": "rgba(31.0, 119.0, 180.0, 1.0)", "marker": 0, "stopping_strategy": "Iteration"}, "skglm[solver=Prox-Newton]": {"scatter": {"x": [4.365300264908001e-05, 0.0004931660005240701, 0.0004918220001854934, 0.0037926280019746628, 0.002959286000987049, 0.008488744002534077, 0.016399633001128677, 0.03100696399997105, 0.07812985399868921, 0.04754602600223734, 0.04307732100278372], "y": [2.4143608395617973, 2.3209095147747116, 2.218056071554587, 2.0522757054247016, 1.9746227910859495, 1.9594962858926361, 1.9594189150478463, 1.959418873132559, 1.9594188731305673, 1.9594188731305673, 1.9594188731305673], "stop_val": [0, 1, 2, 3, 4, 6, 9, 13, 19, 28, 50], "q1": [4.365300264908001e-05, 0.0004931660005240701, 0.0004918220001854934, 0.0037926280019746628, 0.002959286000987049, 0.008488744002534077, 0.016399633001128677, 0.03100696399997105, 0.07812985399868921, 0.04754602600223734, 0.04307732100278372], "q9": [4.365300264908001e-05, 0.0004931660005240701, 0.0004918220001854934, 0.0037926280019746628, 0.002959286000987049, 0.008488744002534077, 0.016399633001128677, 0.03100696399997105, 0.07812985399868921, 0.04754602600223734, 0.04307732100278372]}, "bar": {"y": 0.016399633001128677, "times": [0.016399633001128677], "text": ""}, "color": "rgba(255.0, 127.0, 14.0, 1.0)", "marker": 1, "stopping_strategy": "Iteration"}}, "transformers": {"c_star": 1.9594188730305673, "max_f_0": 2.3209095147747116}}, "objective_support_size": {"solvers": {"scikit-survival": {"scatter": {"x": [9.240000508725643e-06, 0.0038444279998657294, 0.004985827999917092, 0.0066172980004921556, 0.007842491002520546, 0.009331458000815473, 0.010349356998631265, 0.012429393998900196, 0.013373378998949192, 0.0372065420015133, 0.0162441470019985, 0.018324904998735292, 0.019795142998191295, 0.02030974900117144, 0.023636300000362098, 0.04567892600243795, 0.025772551001864485, 0.028662196000368567, 0.07031936299972585, 0.031864837001194246, 0.031264430999726756, 0.03389225400314899, 0.03349760400305968, 0.0371687410006416, 0.03340574200046831, 0.03468237800188945, 0.025412412996956846, 0.03424303500287351, 0.035313224001583876, 0.03894103299899143, 0.040175097001338145, 0.026376636000350118, 0.04286933200273779, 0.04084350899938727, 0.026996887998393504, 0.033310981998511124, 0.04202289400200243, 0.044544807002239395, 0.04631465100101195, 0.04666827100299997, 0.04465446200265433, 0.047206465002091136, 0.04957690199807985, 0.047022650000144495, 0.048740640999312745, 0.050949756001500646, 0.05238278699835064, 0.05158035700151231, 0.05286447300022701], "y": [0.0, 94.0, 97.0, 97.0, 93.0, 93.0, 95.0, 95.0, 95.0, 95.0, 95.0, 95.0, 95.0, 96.0, 96.0, 96.0, 96.0, 96.0, 96.0, 96.0, 96.0, 96.0, 96.0, 96.0, 96.0, 96.0, 96.0, 96.0, 96.0, 96.0, 96.0, 96.0, 97.0, 98.0, 98.0, 97.0, 97.0, 97.0, 97.0, 97.0, 97.0, 97.0, 97.0, 97.0, 97.0, 97.0, 97.0, 97.0, 97.0], "stop_val": [0, 50, 100, 150, 200, 250, 300, 350, 400, 450, 500, 550, 600, 650, 700, 750, 800, 850, 900, 950, 1000, 1050, 1100, 1150, 1200, 1250, 1300, 1350, 1400, 1450, 1500, 1550, 1600, 1650, 1700, 1750, 1800, 1850, 1900, 1950, 2000, 2050, 2100, 2150, 2200, 2250, 2300, 2350, 2400], "q1": [9.240000508725643e-06, 0.0038444279998657294, 0.004985827999917092, 0.0066172980004921556, 0.007842491002520546, 0.009331458000815473, 0.010349356998631265, 0.012429393998900196, 0.013373378998949192, 0.0372065420015133, 0.0162441470019985, 0.018324904998735292, 0.019795142998191295, 0.02030974900117144, 0.023636300000362098, 0.04567892600243795, 0.025772551001864485, 0.028662196000368567, 0.07031936299972585, 0.031864837001194246, 0.031264430999726756, 0.03389225400314899, 0.03349760400305968, 0.0371687410006416, 0.03340574200046831, 0.03468237800188945, 0.025412412996956846, 0.03424303500287351, 0.035313224001583876, 0.03894103299899143, 0.040175097001338145, 0.026376636000350118, 0.04286933200273779, 0.04084350899938727, 0.026996887998393504, 0.033310981998511124, 0.04202289400200243, 0.044544807002239395, 0.04631465100101195, 0.04666827100299997, 0.04465446200265433, 0.047206465002091136, 0.04957690199807985, 0.047022650000144495, 0.048740640999312745, 0.050949756001500646, 0.05238278699835064, 0.05158035700151231, 0.05286447300022701], "q9": [9.240000508725643e-06, 0.0038444279998657294, 0.004985827999917092, 0.0066172980004921556, 0.007842491002520546, 0.009331458000815473, 0.010349356998631265, 0.012429393998900196, 0.013373378998949192, 0.0372065420015133, 0.0162441470019985, 0.018324904998735292, 0.019795142998191295, 0.02030974900117144, 0.023636300000362098, 0.04567892600243795, 0.025772551001864485, 0.028662196000368567, 0.07031936299972585, 0.031864837001194246, 0.031264430999726756, 0.03389225400314899, 0.03349760400305968, 0.0371687410006416, 0.03340574200046831, 0.03468237800188945, 0.025412412996956846, 0.03424303500287351, 0.035313224001583876, 0.03894103299899143, 0.040175097001338145, 0.026376636000350118, 0.04286933200273779, 0.04084350899938727, 0.026996887998393504, 0.033310981998511124, 0.04202289400200243, 0.044544807002239395, 0.04631465100101195, 0.04666827100299997, 0.04465446200265433, 0.047206465002091136, 0.04957690199807985, 0.047022650000144495, 0.048740640999312745, 0.050949756001500646, 0.05238278699835064, 0.05158035700151231, 0.05286447300022701]}, "bar": {"y": 9.240000508725643e-06, "times": [9.240000508725643e-06], "text": ""}, "color": "rgba(31.0, 119.0, 180.0, 1.0)", "marker": 0, "stopping_strategy": "Iteration"}, "skglm[solver=Prox-Newton]": {"scatter": {"x": [4.365300264908001e-05, 0.0004931660005240701, 0.0004918220001854934, 0.0037926280019746628, 0.002959286000987049, 0.008488744002534077, 0.016399633001128677, 0.03100696399997105, 0.07812985399868921, 0.04754602600223734, 0.04307732100278372], "y": [0.0, 10.0, 30.0, 64.0, 99.0, 97.0, 97.0, 97.0, 97.0, 97.0, 97.0], "stop_val": [0, 1, 2, 3, 4, 6, 9, 13, 19, 28, 50], "q1": [4.365300264908001e-05, 0.0004931660005240701, 0.0004918220001854934, 0.0037926280019746628, 0.002959286000987049, 0.008488744002534077, 0.016399633001128677, 0.03100696399997105, 0.07812985399868921, 0.04754602600223734, 0.04307732100278372], "q9": [4.365300264908001e-05, 0.0004931660005240701, 0.0004918220001854934, 0.0037926280019746628, 0.002959286000987049, 0.008488744002534077, 0.016399633001128677, 0.03100696399997105, 0.07812985399868921, 0.04754602600223734, 0.04307732100278372]}, "bar": {"y": 4.365300264908001e-05, "times": [4.365300264908001e-05], "text": ""}, "color": "rgba(255.0, 127.0, 14.0, 1.0)", "marker": 1, "stopping_strategy": "Iteration"}}, "transformers": {"c_star": -1e-10, "max_f_0": 10.0}}}}, "Simulated[n_features=300,n_samples=500,normalize=True,with_ties=False]": {"Cox Estimation[l1_ratio=1.0,reg=0.1]": {"objective_value": {"solvers": {"scikit-survival": {"scatter": {"x": [1.3115997717250139e-05, 0.009577371998602757, 0.0311132919996453, 0.01936548100275104, 0.023386842000036268, 0.030404099001316354, 0.03601409000111744, 0.042419596000399906, 0.04975230899799499, 0.056828114997188095, 0.0621911390007881, 0.07041923599899746, 0.07713677200081293, 0.08686433700131602, 0.10218053399876226, 0.10234605000005104, 0.10666920700168703, 0.11422186400159262, 0.12866564399882918, 0.13447023800108582, 0.12723710700083757, 0.12234833800175693, 0.07373846900009084], "y": [2.62635222362762, 2.452583120620474, 2.4495324384066617, 2.4490004900112794, 2.448975502749133, 2.448974556050446, 2.4079663429563274, 2.4075692045374932, 2.4045751725303353, 2.404202116342171, 2.4040512741861466, 2.404038147201597, 2.4040321285878545, 2.404031321683476, 2.404031272041537, 2.402999038523958, 2.4029906180238116, 2.402990274286883, 2.4029894431657612, 2.4029894384606783, 2.4029894384606783, 2.4029894384606783, 2.4029894384606783], "stop_val": [0, 50, 100, 150, 200, 250, 300, 350, 400, 450, 500, 550, 600, 650, 700, 750, 800, 850, 900, 950, 1000, 1050, 1100], "q1": [1.3115997717250139e-05, 0.009577371998602757, 0.0311132919996453, 0.01936548100275104, 0.023386842000036268, 0.030404099001316354, 0.03601409000111744, 0.042419596000399906, 0.04975230899799499, 0.056828114997188095, 0.0621911390007881, 0.07041923599899746, 0.07713677200081293, 0.08686433700131602, 0.10218053399876226, 0.10234605000005104, 0.10666920700168703, 0.11422186400159262, 0.12866564399882918, 0.13447023800108582, 0.12723710700083757, 0.12234833800175693, 0.07373846900009084], "q9": [1.3115997717250139e-05, 0.009577371998602757, 0.0311132919996453, 0.01936548100275104, 0.023386842000036268, 0.030404099001316354, 0.03601409000111744, 0.042419596000399906, 0.04975230899799499, 0.056828114997188095, 0.0621911390007881, 0.07041923599899746, 0.07713677200081293, 0.08686433700131602, 0.10218053399876226, 0.10234605000005104, 0.10666920700168703, 0.11422186400159262, 0.12866564399882918, 0.13447023800108582, 0.12723710700083757, 0.12234833800175693, 0.07373846900009084]}, "bar": {"y": 0.11422186400159262, "times": [0.11422186400159262], "text": ""}, "color": "rgba(31.0, 119.0, 180.0, 1.0)", "marker": 0, "stopping_strategy": "Iteration"}, "skglm[solver=Prox-Newton]": {"scatter": {"x": [5.468000017572194e-05, 0.0005715150000469293, 0.0010765099978016224, 0.0019458509996184148, 0.003571667999494821, 0.010481550998520106, 0.024862925998604624, 0.04164718100219034, 0.0754153670022788, 0.041543929000908975, 0.058141481000347994], "y": [2.62635222362762, 2.5864541734779887, 2.546857258156575, 2.4922718484636337, 2.430036592588842, 2.403280604129516, 2.4029894828750877, 2.4029894384121344, 2.4029894384117263, 2.4029894384117263, 2.4029894384117263], "stop_val": [0, 1, 2, 3, 4, 6, 9, 13, 19, 28, 50], "q1": [5.468000017572194e-05, 0.0005715150000469293, 0.0010765099978016224, 0.0019458509996184148, 0.003571667999494821, 0.010481550998520106, 0.024862925998604624, 0.04164718100219034, 0.0754153670022788, 0.041543929000908975, 0.058141481000347994], "q9": [5.468000017572194e-05, 0.0005715150000469293, 0.0010765099978016224, 0.0019458509996184148, 0.003571667999494821, 0.010481550998520106, 0.024862925998604624, 0.04164718100219034, 0.0754153670022788, 0.041543929000908975, 0.058141481000347994]}, "bar": {"y": 0.024862925998604624, "times": [0.024862925998604624], "text": ""}, "color": "rgba(255.0, 127.0, 14.0, 1.0)", "marker": 1, "stopping_strategy": "Iteration"}}, "transformers": {"c_star": 2.4029894383117263, "max_f_0": 2.5864541734779887}}, "objective_support_size": {"solvers": {"scikit-survival": {"scatter": {"x": [1.3115997717250139e-05, 0.009577371998602757, 0.0311132919996453, 0.01936548100275104, 0.023386842000036268, 0.030404099001316354, 0.03601409000111744, 0.042419596000399906, 0.04975230899799499, 0.056828114997188095, 0.0621911390007881, 0.07041923599899746, 0.07713677200081293, 0.08686433700131602, 0.10218053399876226, 0.10234605000005104, 0.10666920700168703, 0.11422186400159262, 0.12866564399882918, 0.13447023800108582, 0.12723710700083757, 0.12234833800175693, 0.07373846900009084], "y": [0.0, 139.0, 139.0, 143.0, 142.0, 141.0, 197.0, 205.0, 209.0, 210.0, 210.0, 211.0, 211.0, 212.0, 212.0, 218.0, 220.0, 219.0, 222.0, 222.0, 222.0, 222.0, 222.0], "stop_val": [0, 50, 100, 150, 200, 250, 300, 350, 400, 450, 500, 550, 600, 650, 700, 750, 800, 850, 900, 950, 1000, 1050, 1100], "q1": [1.3115997717250139e-05, 0.009577371998602757, 0.0311132919996453, 0.01936548100275104, 0.023386842000036268, 0.030404099001316354, 0.03601409000111744, 0.042419596000399906, 0.04975230899799499, 0.056828114997188095, 0.0621911390007881, 0.07041923599899746, 0.07713677200081293, 0.08686433700131602, 0.10218053399876226, 0.10234605000005104, 0.10666920700168703, 0.11422186400159262, 0.12866564399882918, 0.13447023800108582, 0.12723710700083757, 0.12234833800175693, 0.07373846900009084], "q9": [1.3115997717250139e-05, 0.009577371998602757, 0.0311132919996453, 0.01936548100275104, 0.023386842000036268, 0.030404099001316354, 0.03601409000111744, 0.042419596000399906, 0.04975230899799499, 0.056828114997188095, 0.0621911390007881, 0.07041923599899746, 0.07713677200081293, 0.08686433700131602, 0.10218053399876226, 0.10234605000005104, 0.10666920700168703, 0.11422186400159262, 0.12866564399882918, 0.13447023800108582, 0.12723710700083757, 0.12234833800175693, 0.07373846900009084]}, "bar": {"y": 1.3115997717250139e-05, "times": [1.3115997717250139e-05], "text": ""}, "color": "rgba(31.0, 119.0, 180.0, 1.0)", "marker": 0, "stopping_strategy": "Iteration"}, "skglm[solver=Prox-Newton]": {"scatter": {"x": [5.468000017572194e-05, 0.0005715150000469293, 0.0010765099978016224, 0.0019458509996184148, 0.003571667999494821, 0.010481550998520106, 0.024862925998604624, 0.04164718100219034, 0.0754153670022788, 0.041543929000908975, 0.058141481000347994], "y": [0.0, 10.0, 30.0, 86.0, 170.0, 220.0, 222.0, 222.0, 222.0, 222.0, 222.0], "stop_val": [0, 1, 2, 3, 4, 6, 9, 13, 19, 28, 50], "q1": [5.468000017572194e-05, 0.0005715150000469293, 0.0010765099978016224, 0.0019458509996184148, 0.003571667999494821, 0.010481550998520106, 0.024862925998604624, 0.04164718100219034, 0.0754153670022788, 0.041543929000908975, 0.058141481000347994], "q9": [5.468000017572194e-05, 0.0005715150000469293, 0.0010765099978016224, 0.0019458509996184148, 0.003571667999494821, 0.010481550998520106, 0.024862925998604624, 0.04164718100219034, 0.0754153670022788, 0.041543929000908975, 0.058141481000347994]}, "bar": {"y": 5.468000017572194e-05, "times": [5.468000017572194e-05], "text": ""}, "color": "rgba(255.0, 127.0, 14.0, 1.0)", "marker": 1, "stopping_strategy": "Iteration"}}, "transformers": {"c_star": -1e-10, "max_f_0": 10.0}}}, "Cox Estimation[l1_ratio=0.7,reg=0.1]": {"objective_value": {"solvers": {"scikit-survival": {"scatter": {"x": [1.0496001777937636e-05, 0.010598442000627983, 0.014389152001967886, 0.022214791999431327, 0.019276022001577076, 0.02986037899972871, 0.03654203299811343, 0.0437899530006689, 0.05364060699866968, 0.05599101899861125, 0.06282794799699332, 0.0695686030012439, 0.07772571999885258, 0.08154054899932817, 0.09454802800246398, 0.11518424700261676, 0.1049532770011865, 0.11412216100143269, 0.11074945200016373, 0.12271088600027724], "y": [2.62635222362762, 2.4547179170858633, 2.4518259161844087, 2.4513419337084454, 2.451323477325121, 2.4133591454579424, 2.4122013863244987, 2.4096604355838314, 2.4093444254038614, 2.4092547186997777, 2.4092180580592233, 2.4092141747011113, 2.4092137169093664, 2.4083346650211697, 2.4083270072242424, 2.4083261046647966, 2.4083259886616797, 2.40832598820277, 2.40832598820277, 2.40832598820277], "stop_val": [0, 50, 100, 150, 200, 250, 300, 350, 400, 450, 500, 550, 600, 650, 700, 750, 800, 850, 900, 950], "q1": [1.0496001777937636e-05, 0.010598442000627983, 0.014389152001967886, 0.022214791999431327, 0.019276022001577076, 0.02986037899972871, 0.03654203299811343, 0.0437899530006689, 0.05364060699866968, 0.05599101899861125, 0.06282794799699332, 0.0695686030012439, 0.07772571999885258, 0.08154054899932817, 0.09454802800246398, 0.11518424700261676, 0.1049532770011865, 0.11412216100143269, 0.11074945200016373, 0.12271088600027724], "q9": [1.0496001777937636e-05, 0.010598442000627983, 0.014389152001967886, 0.022214791999431327, 0.019276022001577076, 0.02986037899972871, 0.03654203299811343, 0.0437899530006689, 0.05364060699866968, 0.05599101899861125, 0.06282794799699332, 0.0695686030012439, 0.07772571999885258, 0.08154054899932817, 0.09454802800246398, 0.11518424700261676, 0.1049532770011865, 0.11412216100143269, 0.11074945200016373, 0.12271088600027724]}, "bar": {"y": 0.11518424700261676, "times": [0.11518424700261676], "text": ""}, "color": "rgba(31.0, 119.0, 180.0, 1.0)", "marker": 0, "stopping_strategy": "Iteration"}, "skglm[solver=Prox-Newton]": {"scatter": {"x": [4.0719001844991e-05, 0.0006432820009649731, 0.0008235060013248585, 0.0017445280027459376, 0.0037267980005708523, 0.03808821200072998, 0.022549271998286713, 0.024022981997404713, 0.035235150000517024, 0.03742232899821829, 0.09212750200094888], "y": [2.62635222362762, 2.5867444298570406, 2.5474398727609735, 2.493338211810857, 2.4327674039567024, 2.408535368784885, 2.4083260046019674, 2.4083259881734773, 2.408325988173418, 2.408325988173418, 2.408325988173418], "stop_val": [0, 1, 2, 3, 4, 6, 9, 13, 19, 28, 50], "q1": [4.0719001844991e-05, 0.0006432820009649731, 0.0008235060013248585, 0.0017445280027459376, 0.0037267980005708523, 0.03808821200072998, 0.022549271998286713, 0.024022981997404713, 0.035235150000517024, 0.03742232899821829, 0.09212750200094888], "q9": [4.0719001844991e-05, 0.0006432820009649731, 0.0008235060013248585, 0.0017445280027459376, 0.0037267980005708523, 0.03808821200072998, 0.022549271998286713, 0.024022981997404713, 0.035235150000517024, 0.03742232899821829, 0.09212750200094888]}, "bar": {"y": 0.022549271998286713, "times": [0.022549271998286713], "text": ""}, "color": "rgba(255.0, 127.0, 14.0, 1.0)", "marker": 1, "stopping_strategy": "Iteration"}}, "transformers": {"c_star": 2.408325988073418, "max_f_0": 2.5867444298570406}}, "objective_support_size": {"solvers": {"scikit-survival": {"scatter": {"x": [1.0496001777937636e-05, 0.010598442000627983, 0.014389152001967886, 0.022214791999431327, 0.019276022001577076, 0.02986037899972871, 0.03654203299811343, 0.0437899530006689, 0.05364060699866968, 0.05599101899861125, 0.06282794799699332, 0.0695686030012439, 0.07772571999885258, 0.08154054899932817, 0.09454802800246398, 0.11518424700261676, 0.1049532770011865, 0.11412216100143269, 0.11074945200016373, 0.12271088600027724], "y": [0.0, 138.0, 140.0, 143.0, 143.0, 209.0, 205.0, 209.0, 210.0, 210.0, 211.0, 211.0, 211.0, 218.0, 218.0, 218.0, 219.0, 219.0, 219.0, 219.0], "stop_val": [0, 50, 100, 150, 200, 250, 300, 350, 400, 450, 500, 550, 600, 650, 700, 750, 800, 850, 900, 950], "q1": [1.0496001777937636e-05, 0.010598442000627983, 0.014389152001967886, 0.022214791999431327, 0.019276022001577076, 0.02986037899972871, 0.03654203299811343, 0.0437899530006689, 0.05364060699866968, 0.05599101899861125, 0.06282794799699332, 0.0695686030012439, 0.07772571999885258, 0.08154054899932817, 0.09454802800246398, 0.11518424700261676, 0.1049532770011865, 0.11412216100143269, 0.11074945200016373, 0.12271088600027724], "q9": [1.0496001777937636e-05, 0.010598442000627983, 0.014389152001967886, 0.022214791999431327, 0.019276022001577076, 0.02986037899972871, 0.03654203299811343, 0.0437899530006689, 0.05364060699866968, 0.05599101899861125, 0.06282794799699332, 0.0695686030012439, 0.07772571999885258, 0.08154054899932817, 0.09454802800246398, 0.11518424700261676, 0.1049532770011865, 0.11412216100143269, 0.11074945200016373, 0.12271088600027724]}, "bar": {"y": 1.0496001777937636e-05, "times": [1.0496001777937636e-05], "text": ""}, "color": "rgba(31.0, 119.0, 180.0, 1.0)", "marker": 0, "stopping_strategy": "Iteration"}, "skglm[solver=Prox-Newton]": {"scatter": {"x": [4.0719001844991e-05, 0.0006432820009649731, 0.0008235060013248585, 0.0017445280027459376, 0.0037267980005708523, 0.03808821200072998, 0.022549271998286713, 0.024022981997404713, 0.035235150000517024, 0.03742232899821829, 0.09212750200094888], "y": [0.0, 10.0, 30.0, 86.0, 171.0, 216.0, 219.0, 219.0, 219.0, 219.0, 219.0], "stop_val": [0, 1, 2, 3, 4, 6, 9, 13, 19, 28, 50], "q1": [4.0719001844991e-05, 0.0006432820009649731, 0.0008235060013248585, 0.0017445280027459376, 0.0037267980005708523, 0.03808821200072998, 0.022549271998286713, 0.024022981997404713, 0.035235150000517024, 0.03742232899821829, 0.09212750200094888], "q9": [4.0719001844991e-05, 0.0006432820009649731, 0.0008235060013248585, 0.0017445280027459376, 0.0037267980005708523, 0.03808821200072998, 0.022549271998286713, 0.024022981997404713, 0.035235150000517024, 0.03742232899821829, 0.09212750200094888]}, "bar": {"y": 4.0719001844991e-05, "times": [4.0719001844991e-05], "text": ""}, "color": "rgba(255.0, 127.0, 14.0, 1.0)", "marker": 1, "stopping_strategy": "Iteration"}}, "transformers": {"c_star": -1e-10, "max_f_0": 10.0}}}, "Cox Estimation[l1_ratio=1.0,reg=0.01]": {"objective_value": {"solvers": {"scikit-survival": {"scatter": {"x": [1.300300209550187e-05, 0.014414123001188273, 0.022572465997654945, 0.0304487129978952, 0.03756544800125994, 0.04303277199869626, 0.05963038499976392, 0.06449361999693792, 0.06768078499953845], "y": [2.62635222362762, 2.350495084798891, 2.3508783120062264, 2.341671138610537, 2.3416669799187266, 2.213838293046139, 2.2281677676252984, 2.230141149353241, 2.2305067228415805], "stop_val": [0, 50, 100, 150, 200, 250, 300, 350, 400], "q1": [1.300300209550187e-05, 0.014414123001188273, 0.022572465997654945, 0.0304487129978952, 0.03756544800125994, 0.04303277199869626, 0.05963038499976392, 0.06449361999693792, 0.06768078499953845], "q9": [1.300300209550187e-05, 0.014414123001188273, 0.022572465997654945, 0.0304487129978952, 0.03756544800125994, 0.04303277199869626, 0.05963038499976392, 0.06449361999693792, 0.06768078499953845]}, "bar": {"y": 0.7323864850004611, "times": NaN, "text": "Did not converge"}, "color": "rgba(31.0, 119.0, 180.0, 1.0)", "marker": 0, "stopping_strategy": "Iteration"}, "skglm[solver=Prox-Newton]": {"scatter": {"x": [5.378199784900062e-05, 0.0005485639994731173, 0.0009034899994730949, 0.0025380030019732658, 0.005531260998395737, 0.047258348000468686, 0.2120514499983983, 0.4642242929985514, 0.7323864850004611, 0.42913384400162613, 0.4122859689996403], "y": [2.62635222362762, 2.5765925290186225, 2.524393115341585, 2.43338230692521, 2.3186611176944, 2.1076727910604336, 2.1039109636572206, 2.103908148865759, 2.103908148770634, 2.103908148770634, 2.103908148770634], "stop_val": [0, 1, 2, 3, 4, 6, 9, 13, 19, 28, 50], "q1": [5.378199784900062e-05, 0.0005485639994731173, 0.0009034899994730949, 0.0025380030019732658, 0.005531260998395737, 0.047258348000468686, 0.2120514499983983, 0.4642242929985514, 0.7323864850004611, 0.42913384400162613, 0.4122859689996403], "q9": [5.378199784900062e-05, 0.0005485639994731173, 0.0009034899994730949, 0.0025380030019732658, 0.005531260998395737, 0.047258348000468686, 0.2120514499983983, 0.4642242929985514, 0.7323864850004611, 0.42913384400162613, 0.4122859689996403]}, "bar": {"y": 0.4642242929985514, "times": [0.4642242929985514], "text": ""}, "color": "rgba(255.0, 127.0, 14.0, 1.0)", "marker": 1, "stopping_strategy": "Iteration"}}, "transformers": {"c_star": 2.103908148670634, "max_f_0": 2.5765925290186225}}, "objective_support_size": {"solvers": {"scikit-survival": {"scatter": {"x": [1.300300209550187e-05, 0.014414123001188273, 0.022572465997654945, 0.0304487129978952, 0.03756544800125994, 0.04303277199869626, 0.05963038499976392, 0.06449361999693792, 0.06768078499953845], "y": [0.0, 274.0, 274.0, 278.0, 277.0, 280.0, 280.0, 279.0, 279.0], "stop_val": [0, 50, 100, 150, 200, 250, 300, 350, 400], "q1": [1.300300209550187e-05, 0.014414123001188273, 0.022572465997654945, 0.0304487129978952, 0.03756544800125994, 0.04303277199869626, 0.05963038499976392, 0.06449361999693792, 0.06768078499953845], "q9": [1.300300209550187e-05, 0.014414123001188273, 0.022572465997654945, 0.0304487129978952, 0.03756544800125994, 0.04303277199869626, 0.05963038499976392, 0.06449361999693792, 0.06768078499953845]}, "bar": {"y": 1.300300209550187e-05, "times": [1.300300209550187e-05], "text": ""}, "color": "rgba(31.0, 119.0, 180.0, 1.0)", "marker": 0, "stopping_strategy": "Iteration"}, "skglm[solver=Prox-Newton]": {"scatter": {"x": [5.378199784900062e-05, 0.0005485639994731173, 0.0009034899994730949, 0.0025380030019732658, 0.005531260998395737, 0.047258348000468686, 0.2120514499983983, 0.4642242929985514, 0.7323864850004611, 0.42913384400162613, 0.4122859689996403], "y": [0.0, 10.0, 30.0, 87.0, 236.0, 292.0, 289.0, 289.0, 289.0, 289.0, 289.0], "stop_val": [0, 1, 2, 3, 4, 6, 9, 13, 19, 28, 50], "q1": [5.378199784900062e-05, 0.0005485639994731173, 0.0009034899994730949, 0.0025380030019732658, 0.005531260998395737, 0.047258348000468686, 0.2120514499983983, 0.4642242929985514, 0.7323864850004611, 0.42913384400162613, 0.4122859689996403], "q9": [5.378199784900062e-05, 0.0005485639994731173, 0.0009034899994730949, 0.0025380030019732658, 0.005531260998395737, 0.047258348000468686, 0.2120514499983983, 0.4642242929985514, 0.7323864850004611, 0.42913384400162613, 0.4122859689996403]}, "bar": {"y": 5.378199784900062e-05, "times": [5.378199784900062e-05], "text": ""}, "color": "rgba(255.0, 127.0, 14.0, 1.0)", "marker": 1, "stopping_strategy": "Iteration"}}, "transformers": {"c_star": -1e-10, "max_f_0": 10.0}}}, "Cox Estimation[l1_ratio=0.7,reg=0.01]": {"objective_value": {"solvers": {"scikit-survival": {"scatter": {"x": [9.544997737975791e-06, 0.013882982002542121, 0.01616736800133367, 0.026481110999156954, 0.03920322900012252, 0.047956913000234636, 0.05673230600223178, 0.06806348399913986, 0.06984962199931033], "y": [2.62635222362762, 2.350223835369801, 2.350547717335618, 2.3413795544083196, 2.3413609885223314, 2.2151770543031732, 2.2248286250981666, 2.2259898423731452, 2.22616673376653], "stop_val": [0, 50, 100, 150, 200, 250, 300, 350, 400], "q1": [9.544997737975791e-06, 0.013882982002542121, 0.01616736800133367, 0.026481110999156954, 0.03920322900012252, 0.047956913000234636, 0.05673230600223178, 0.06806348399913986, 0.06984962199931033], "q9": [9.544997737975791e-06, 0.013882982002542121, 0.01616736800133367, 0.026481110999156954, 0.03920322900012252, 0.047956913000234636, 0.05673230600223178, 0.06806348399913986, 0.06984962199931033]}, "bar": {"y": 0.5693068189975747, "times": NaN, "text": "Did not converge"}, "color": "rgba(31.0, 119.0, 180.0, 1.0)", "marker": 0, "stopping_strategy": "Iteration"}, "skglm[solver=Prox-Newton]": {"scatter": {"x": [4.602900298777968e-05, 0.0008490969994454645, 0.001102138001442654, 0.0017880079976748675, 0.005019732998334803, 0.02049321899903589, 0.09381608100011363, 0.3301086219980789, 0.38503085800039116, 0.35334216599949286, 0.5693068189975747], "y": [2.62635222362762, 2.5766288897197933, 2.5244679552719647, 2.4335581316562886, 2.3191214134104414, 2.1146188165626536, 2.1113312862298828, 2.1113292558961785, 2.111329255809233, 2.111329255809233, 2.111329255809233], "stop_val": [0, 1, 2, 3, 4, 6, 9, 13, 19, 28, 50], "q1": [4.602900298777968e-05, 0.0008490969994454645, 0.001102138001442654, 0.0017880079976748675, 0.005019732998334803, 0.02049321899903589, 0.09381608100011363, 0.3301086219980789, 0.38503085800039116, 0.35334216599949286, 0.5693068189975747], "q9": [4.602900298777968e-05, 0.0008490969994454645, 0.001102138001442654, 0.0017880079976748675, 0.005019732998334803, 0.02049321899903589, 0.09381608100011363, 0.3301086219980789, 0.38503085800039116, 0.35334216599949286, 0.5693068189975747]}, "bar": {"y": 0.3301086219980789, "times": [0.3301086219980789], "text": ""}, "color": "rgba(255.0, 127.0, 14.0, 1.0)", "marker": 1, "stopping_strategy": "Iteration"}}, "transformers": {"c_star": 2.111329255709233, "max_f_0": 2.5766288897197933}}, "objective_support_size": {"solvers": {"scikit-survival": {"scatter": {"x": [9.544997737975791e-06, 0.013882982002542121, 0.01616736800133367, 0.026481110999156954, 0.03920322900012252, 0.047956913000234636, 0.05673230600223178, 0.06806348399913986, 0.06984962199931033], "y": [0.0, 273.0, 274.0, 277.0, 278.0, 280.0, 279.0, 278.0, 278.0], "stop_val": [0, 50, 100, 150, 200, 250, 300, 350, 400], "q1": [9.544997737975791e-06, 0.013882982002542121, 0.01616736800133367, 0.026481110999156954, 0.03920322900012252, 0.047956913000234636, 0.05673230600223178, 0.06806348399913986, 0.06984962199931033], "q9": [9.544997737975791e-06, 0.013882982002542121, 0.01616736800133367, 0.026481110999156954, 0.03920322900012252, 0.047956913000234636, 0.05673230600223178, 0.06806348399913986, 0.06984962199931033]}, "bar": {"y": 9.544997737975791e-06, "times": [9.544997737975791e-06], "text": ""}, "color": "rgba(31.0, 119.0, 180.0, 1.0)", "marker": 0, "stopping_strategy": "Iteration"}, "skglm[solver=Prox-Newton]": {"scatter": {"x": [4.602900298777968e-05, 0.0008490969994454645, 0.001102138001442654, 0.0017880079976748675, 0.005019732998334803, 0.02049321899903589, 0.09381608100011363, 0.3301086219980789, 0.38503085800039116, 0.35334216599949286, 0.5693068189975747], "y": [0.0, 10.0, 30.0, 87.0, 236.0, 290.0, 289.0, 289.0, 289.0, 289.0, 289.0], "stop_val": [0, 1, 2, 3, 4, 6, 9, 13, 19, 28, 50], "q1": [4.602900298777968e-05, 0.0008490969994454645, 0.001102138001442654, 0.0017880079976748675, 0.005019732998334803, 0.02049321899903589, 0.09381608100011363, 0.3301086219980789, 0.38503085800039116, 0.35334216599949286, 0.5693068189975747], "q9": [4.602900298777968e-05, 0.0008490969994454645, 0.001102138001442654, 0.0017880079976748675, 0.005019732998334803, 0.02049321899903589, 0.09381608100011363, 0.3301086219980789, 0.38503085800039116, 0.35334216599949286, 0.5693068189975747]}, "bar": {"y": 4.602900298777968e-05, "times": [4.602900298777968e-05], "text": ""}, "color": "rgba(255.0, 127.0, 14.0, 1.0)", "marker": 1, "stopping_strategy": "Iteration"}}, "transformers": {"c_star": -1e-10, "max_f_0": 10.0}}}}, "Simulated[n_features=500,n_samples=1000,normalize=True,with_ties=False]": {"Cox Estimation[l1_ratio=1.0,reg=0.1]": {"objective_value": {"solvers": {"scikit-survival": {"scatter": {"x": [1.1987001926172525e-05, 0.029398563998256577, 0.048731350998423295, 0.05703591400015284, 0.07335482399867033, 0.09118966599999112, 0.10870162699939101, 0.1273969270005182, 0.1716449619998457, 0.19790012600060436, 0.22010264599884977, 0.2417138819982938, 0.3022026439975889, 0.27977169499718, 0.3062468380012433, 0.3052016250003362], "y": [3.053450302881371, 2.899368635055129, 2.89751926230398, 2.8974733163686492, 2.8733609115802436, 2.873312521372327, 2.8722266382254804, 2.8722029929350263, 2.872202598217471, 2.870896206717062, 2.8708808226997737, 2.8708803193374526, 2.870873180547033, 2.8708731803780427, 2.8708731803780427, 2.8708731803780427], "stop_val": [0, 50, 100, 150, 200, 250, 300, 350, 400, 450, 500, 550, 600, 650, 700, 750], "q1": [1.1987001926172525e-05, 0.029398563998256577, 0.048731350998423295, 0.05703591400015284, 0.07335482399867033, 0.09118966599999112, 0.10870162699939101, 0.1273969270005182, 0.1716449619998457, 0.19790012600060436, 0.22010264599884977, 0.2417138819982938, 0.3022026439975889, 0.27977169499718, 0.3062468380012433, 0.3052016250003362], "q9": [1.1987001926172525e-05, 0.029398563998256577, 0.048731350998423295, 0.05703591400015284, 0.07335482399867033, 0.09118966599999112, 0.10870162699939101, 0.1273969270005182, 0.1716449619998457, 0.19790012600060436, 0.22010264599884977, 0.2417138819982938, 0.3022026439975889, 0.27977169499718, 0.3062468380012433, 0.3052016250003362]}, "bar": {"y": 0.3022026439975889, "times": [0.3022026439975889], "text": ""}, "color": "rgba(31.0, 119.0, 180.0, 1.0)", "marker": 0, "stopping_strategy": "Iteration"}, "skglm[solver=Prox-Newton]": {"scatter": {"x": [4.3672996980603784e-05, 0.0012730929993267637, 0.0023370669987343717, 0.0034323390027566347, 0.006077049001760315, 0.026245084998663515, 0.0662606149999192, 0.13504813100007595, 0.16564162900249357, 0.16093935200115084, 0.17330388999835122], "y": [3.053450302881371, 3.0295638912499827, 2.9984789056278918, 2.9569834937254127, 2.9103046732117246, 2.871124883694723, 2.870873241399453, 2.8708731803379144, 2.870873180337864, 2.870873180337864, 2.870873180337864], "stop_val": [0, 1, 2, 3, 4, 6, 9, 13, 19, 28, 50], "q1": [4.3672996980603784e-05, 0.0012730929993267637, 0.0023370669987343717, 0.0034323390027566347, 0.006077049001760315, 0.026245084998663515, 0.0662606149999192, 0.13504813100007595, 0.16564162900249357, 0.16093935200115084, 0.17330388999835122], "q9": [4.3672996980603784e-05, 0.0012730929993267637, 0.0023370669987343717, 0.0034323390027566347, 0.006077049001760315, 0.026245084998663515, 0.0662606149999192, 0.13504813100007595, 0.16564162900249357, 0.16093935200115084, 0.17330388999835122]}, "bar": {"y": 0.0662606149999192, "times": [0.0662606149999192], "text": ""}, "color": "rgba(255.0, 127.0, 14.0, 1.0)", "marker": 1, "stopping_strategy": "Iteration"}}, "transformers": {"c_star": 2.870873180237864, "max_f_0": 3.0295638912499827}}, "objective_support_size": {"solvers": {"scikit-survival": {"scatter": {"x": [1.1987001926172525e-05, 0.029398563998256577, 0.048731350998423295, 0.05703591400015284, 0.07335482399867033, 0.09118966599999112, 0.10870162699939101, 0.1273969270005182, 0.1716449619998457, 0.19790012600060436, 0.22010264599884977, 0.2417138819982938, 0.3022026439975889, 0.27977169499718, 0.3062468380012433, 0.3052016250003362], "y": [0.0, 233.0, 235.0, 235.0, 341.0, 343.0, 348.0, 345.0, 346.0, 367.0, 367.0, 367.0, 368.0, 368.0, 368.0, 368.0], "stop_val": [0, 50, 100, 150, 200, 250, 300, 350, 400, 450, 500, 550, 600, 650, 700, 750], "q1": [1.1987001926172525e-05, 0.029398563998256577, 0.048731350998423295, 0.05703591400015284, 0.07335482399867033, 0.09118966599999112, 0.10870162699939101, 0.1273969270005182, 0.1716449619998457, 0.19790012600060436, 0.22010264599884977, 0.2417138819982938, 0.3022026439975889, 0.27977169499718, 0.3062468380012433, 0.3052016250003362], "q9": [1.1987001926172525e-05, 0.029398563998256577, 0.048731350998423295, 0.05703591400015284, 0.07335482399867033, 0.09118966599999112, 0.10870162699939101, 0.1273969270005182, 0.1716449619998457, 0.19790012600060436, 0.22010264599884977, 0.2417138819982938, 0.3022026439975889, 0.27977169499718, 0.3062468380012433, 0.3052016250003362]}, "bar": {"y": 1.1987001926172525e-05, "times": [1.1987001926172525e-05], "text": ""}, "color": "rgba(31.0, 119.0, 180.0, 1.0)", "marker": 0, "stopping_strategy": "Iteration"}, "skglm[solver=Prox-Newton]": {"scatter": {"x": [4.3672996980603784e-05, 0.0012730929993267637, 0.0023370669987343717, 0.0034323390027566347, 0.006077049001760315, 0.026245084998663515, 0.0662606149999192, 0.13504813100007595, 0.16564162900249357, 0.16093935200115084, 0.17330388999835122], "y": [0.0, 10.0, 30.0, 88.0, 234.0, 372.0, 367.0, 368.0, 368.0, 368.0, 368.0], "stop_val": [0, 1, 2, 3, 4, 6, 9, 13, 19, 28, 50], "q1": [4.3672996980603784e-05, 0.0012730929993267637, 0.0023370669987343717, 0.0034323390027566347, 0.006077049001760315, 0.026245084998663515, 0.0662606149999192, 0.13504813100007595, 0.16564162900249357, 0.16093935200115084, 0.17330388999835122], "q9": [4.3672996980603784e-05, 0.0012730929993267637, 0.0023370669987343717, 0.0034323390027566347, 0.006077049001760315, 0.026245084998663515, 0.0662606149999192, 0.13504813100007595, 0.16564162900249357, 0.16093935200115084, 0.17330388999835122]}, "bar": {"y": 4.3672996980603784e-05, "times": [4.3672996980603784e-05], "text": ""}, "color": "rgba(255.0, 127.0, 14.0, 1.0)", "marker": 1, "stopping_strategy": "Iteration"}}, "transformers": {"c_star": -1e-10, "max_f_0": 10.0}}}, "Cox Estimation[l1_ratio=0.7,reg=0.1]": {"objective_value": {"solvers": {"scikit-survival": {"scatter": {"x": [1.2305001291679218e-05, 0.025278642002376728, 0.03937743899950874, 0.06092719500156818, 0.0757938290007587, 0.11792137700103922, 0.13929168400136405, 0.16187869300119928, 0.20024838800236466, 0.1992372280001291, 0.22503636500186985, 0.16388005899716518, 0.13300715500008664, 0.1371207369993499, 0.13753343200005475], "y": [3.053450302881371, 2.900806377037157, 2.899029881438273, 2.8989875730005985, 2.8756943854878236, 2.8747466556465953, 2.8746532283900694, 2.874648382183977, 2.8736123600160863, 2.8736014203021827, 2.8736011227120564, 2.8735939485725512, 2.8735939485725512, 2.8735939485725512, 2.8735939485725512], "stop_val": [0, 50, 100, 150, 200, 250, 300, 350, 400, 450, 500, 550, 600, 650, 700], "q1": [1.2305001291679218e-05, 0.025278642002376728, 0.03937743899950874, 0.06092719500156818, 0.0757938290007587, 0.11792137700103922, 0.13929168400136405, 0.16187869300119928, 0.20024838800236466, 0.1992372280001291, 0.22503636500186985, 0.16388005899716518, 0.13300715500008664, 0.1371207369993499, 0.13753343200005475], "q9": [1.2305001291679218e-05, 0.025278642002376728, 0.03937743899950874, 0.06092719500156818, 0.0757938290007587, 0.11792137700103922, 0.13929168400136405, 0.16187869300119928, 0.20024838800236466, 0.1992372280001291, 0.22503636500186985, 0.16388005899716518, 0.13300715500008664, 0.1371207369993499, 0.13753343200005475]}, "bar": {"y": 0.16388005899716518, "times": [0.16388005899716518], "text": ""}, "color": "rgba(31.0, 119.0, 180.0, 1.0)", "marker": 0, "stopping_strategy": "Iteration"}, "skglm[solver=Prox-Newton]": {"scatter": {"x": [4.4215998059371486e-05, 0.0009269510010199156, 0.0017258209991268814, 0.0032389169973612297, 0.005608531999314437, 0.013262210999528179, 0.04711368399875937, 0.10756316399783827, 0.07437357399976463, 0.12674312200033455, 0.1251801370017347], "y": [3.053450302881371, 3.0296963443524607, 2.9988202572428304, 2.957592772813331, 2.9113772162756013, 2.873815742660692, 2.873594096329072, 2.8735939485193684, 2.8735939485190833, 2.8735939485190833, 2.8735939485190833], "stop_val": [0, 1, 2, 3, 4, 6, 9, 13, 19, 28, 50], "q1": [4.4215998059371486e-05, 0.0009269510010199156, 0.0017258209991268814, 0.0032389169973612297, 0.005608531999314437, 0.013262210999528179, 0.04711368399875937, 0.10756316399783827, 0.07437357399976463, 0.12674312200033455, 0.1251801370017347], "q9": [4.4215998059371486e-05, 0.0009269510010199156, 0.0017258209991268814, 0.0032389169973612297, 0.005608531999314437, 0.013262210999528179, 0.04711368399875937, 0.10756316399783827, 0.07437357399976463, 0.12674312200033455, 0.1251801370017347]}, "bar": {"y": 0.04711368399875937, "times": [0.04711368399875937], "text": ""}, "color": "rgba(255.0, 127.0, 14.0, 1.0)", "marker": 1, "stopping_strategy": "Iteration"}}, "transformers": {"c_star": 2.8735939484190833, "max_f_0": 3.0296963443524607}}, "objective_support_size": {"solvers": {"scikit-survival": {"scatter": {"x": [1.2305001291679218e-05, 0.025278642002376728, 0.03937743899950874, 0.06092719500156818, 0.0757938290007587, 0.11792137700103922, 0.13929168400136405, 0.16187869300119928, 0.20024838800236466, 0.1992372280001291, 0.22503636500186985, 0.16388005899716518, 0.13300715500008664, 0.1371207369993499, 0.13753343200005475], "y": [0.0, 233.0, 237.0, 237.0, 343.0, 352.0, 351.0, 349.0, 372.0, 372.0, 372.0, 374.0, 374.0, 374.0, 374.0], "stop_val": [0, 50, 100, 150, 200, 250, 300, 350, 400, 450, 500, 550, 600, 650, 700], "q1": [1.2305001291679218e-05, 0.025278642002376728, 0.03937743899950874, 0.06092719500156818, 0.0757938290007587, 0.11792137700103922, 0.13929168400136405, 0.16187869300119928, 0.20024838800236466, 0.1992372280001291, 0.22503636500186985, 0.16388005899716518, 0.13300715500008664, 0.1371207369993499, 0.13753343200005475], "q9": [1.2305001291679218e-05, 0.025278642002376728, 0.03937743899950874, 0.06092719500156818, 0.0757938290007587, 0.11792137700103922, 0.13929168400136405, 0.16187869300119928, 0.20024838800236466, 0.1992372280001291, 0.22503636500186985, 0.16388005899716518, 0.13300715500008664, 0.1371207369993499, 0.13753343200005475]}, "bar": {"y": 1.2305001291679218e-05, "times": [1.2305001291679218e-05], "text": ""}, "color": "rgba(31.0, 119.0, 180.0, 1.0)", "marker": 0, "stopping_strategy": "Iteration"}, "skglm[solver=Prox-Newton]": {"scatter": {"x": [4.4215998059371486e-05, 0.0009269510010199156, 0.0017258209991268814, 0.0032389169973612297, 0.005608531999314437, 0.013262210999528179, 0.04711368399875937, 0.10756316399783827, 0.07437357399976463, 0.12674312200033455, 0.1251801370017347], "y": [0.0, 10.0, 30.0, 88.0, 234.0, 374.0, 374.0, 374.0, 374.0, 374.0, 374.0], "stop_val": [0, 1, 2, 3, 4, 6, 9, 13, 19, 28, 50], "q1": [4.4215998059371486e-05, 0.0009269510010199156, 0.0017258209991268814, 0.0032389169973612297, 0.005608531999314437, 0.013262210999528179, 0.04711368399875937, 0.10756316399783827, 0.07437357399976463, 0.12674312200033455, 0.1251801370017347], "q9": [4.4215998059371486e-05, 0.0009269510010199156, 0.0017258209991268814, 0.0032389169973612297, 0.005608531999314437, 0.013262210999528179, 0.04711368399875937, 0.10756316399783827, 0.07437357399976463, 0.12674312200033455, 0.1251801370017347]}, "bar": {"y": 4.4215998059371486e-05, "times": [4.4215998059371486e-05], "text": ""}, "color": "rgba(255.0, 127.0, 14.0, 1.0)", "marker": 1, "stopping_strategy": "Iteration"}}, "transformers": {"c_star": -1e-10, "max_f_0": 10.0}}}, "Cox Estimation[l1_ratio=1.0,reg=0.01]": {"objective_value": {"solvers": {"scikit-survival": {"scatter": {"x": [1.4429002476390451e-05, 0.04226502299934509, 0.07789150800090283, 0.12250444000164862, 0.12345517400171957, 0.1700736599996162, 0.15595015000144485, 0.1925143280022894, 0.1379124140003114, 0.24061245800112374, 0.2787401039968245, 0.3207359810003254, 0.2886050310007704, 0.2871598810015712, 0.31449498499932815, 0.19462810400000308, 0.3544910560012795, 0.3971854520023044, 0.4576230979982938, 0.45432534600331564, 0.4789392829989083, 0.485834225997678, 0.49728811900058645, 0.5320181530005357, 0.5455924950001645, 0.570748571997683, 0.6155477920001431, 0.6276140640002268, 0.6612284629991336, 0.6375382709993573, 0.6568898609984899, 0.682159979998687, 0.7030329440021887, 0.7269875669990142, 0.7489614639998763, 0.7693229359974794, 0.7934345550020225, 0.811260457001481, 0.8374522239973885, 0.864584818998992, 0.8570498129993211, 0.8546279299989692, 0.8898918359991512], "y": [3.053450302881371, 2.792119866294893, 2.792287573315786, 2.699388517528161, 2.6994219176660765, 2.6833127830151122, 2.680639568966463, 2.6806192334552987, 2.6795826739246538, 2.679111648068904, 2.6788824107879368, 2.678765211121883, 2.6787032221529055, 2.6786683755321943, 2.6786471968815304, 2.6786351720243116, 2.678628836513553, 2.6786253733409997, 2.6786223518449983, 2.6786213680055826, 2.678620984993242, 2.6786209014988716, 2.6624125767607154, 2.6618399683351868, 2.661848805848405, 2.6608732846840835, 2.660816334316833, 2.660794207207046, 2.6607832127542097, 2.660777252164142, 2.660772107048414, 2.6607707518960577, 2.6607696441778375, 2.660769176178952, 2.6607690478418595, 2.6607690165511584, 2.6606617527105363, 2.660661565219983, 2.6606611520013126, 2.6606611333943833, 2.6606611333943833, 2.6606611333943833, 2.6606611333943833], "stop_val": [0, 50, 100, 150, 200, 250, 300, 350, 400, 450, 500, 550, 600, 650, 700, 750, 800, 850, 900, 950, 1000, 1050, 1100, 1150, 1200, 1250, 1300, 1350, 1400, 1450, 1500, 1550, 1600, 1650, 1700, 1750, 1800, 1850, 1900, 1950, 2000, 2050, 2100], "q1": [1.4429002476390451e-05, 0.04226502299934509, 0.07789150800090283, 0.12250444000164862, 0.12345517400171957, 0.1700736599996162, 0.15595015000144485, 0.1925143280022894, 0.1379124140003114, 0.24061245800112374, 0.2787401039968245, 0.3207359810003254, 0.2886050310007704, 0.2871598810015712, 0.31449498499932815, 0.19462810400000308, 0.3544910560012795, 0.3971854520023044, 0.4576230979982938, 0.45432534600331564, 0.4789392829989083, 0.485834225997678, 0.49728811900058645, 0.5320181530005357, 0.5455924950001645, 0.570748571997683, 0.6155477920001431, 0.6276140640002268, 0.6612284629991336, 0.6375382709993573, 0.6568898609984899, 0.682159979998687, 0.7030329440021887, 0.7269875669990142, 0.7489614639998763, 0.7693229359974794, 0.7934345550020225, 0.811260457001481, 0.8374522239973885, 0.864584818998992, 0.8570498129993211, 0.8546279299989692, 0.8898918359991512], "q9": [1.4429002476390451e-05, 0.04226502299934509, 0.07789150800090283, 0.12250444000164862, 0.12345517400171957, 0.1700736599996162, 0.15595015000144485, 0.1925143280022894, 0.1379124140003114, 0.24061245800112374, 0.2787401039968245, 0.3207359810003254, 0.2886050310007704, 0.2871598810015712, 0.31449498499932815, 0.19462810400000308, 0.3544910560012795, 0.3971854520023044, 0.4576230979982938, 0.45432534600331564, 0.4789392829989083, 0.485834225997678, 0.49728811900058645, 0.5320181530005357, 0.5455924950001645, 0.570748571997683, 0.6155477920001431, 0.6276140640002268, 0.6612284629991336, 0.6375382709993573, 0.6568898609984899, 0.682159979998687, 0.7030329440021887, 0.7269875669990142, 0.7489614639998763, 0.7693229359974794, 0.7934345550020225, 0.811260457001481, 0.8374522239973885, 0.864584818998992, 0.8570498129993211, 0.8546279299989692, 0.8898918359991512]}, "bar": {"y": 0.7934345550020225, "times": [0.7934345550020225], "text": ""}, "color": "rgba(31.0, 119.0, 180.0, 1.0)", "marker": 0, "stopping_strategy": "Iteration"}, "skglm[solver=Prox-Newton]": {"scatter": {"x": [5.135099854669534e-05, 0.0008998550001706462, 0.0015551899996353313, 0.003560231998562813, 0.00817572000232758, 0.06831930900079897, 0.1428754869994009, 0.25158747699970263, 0.3685647139973298, 0.595021844997973, 0.321526673000335], "y": [3.053450302881371, 3.0235156488183743, 2.982504286804028, 2.9219366653174252, 2.8336575985661083, 2.6619226435541004, 2.6606616292114644, 2.6606611328853753, 2.660661132874741, 2.660661132874741, 2.660661132874741], "stop_val": [0, 1, 2, 3, 4, 6, 9, 13, 19, 28, 50], "q1": [5.135099854669534e-05, 0.0008998550001706462, 0.0015551899996353313, 0.003560231998562813, 0.00817572000232758, 0.06831930900079897, 0.1428754869994009, 0.25158747699970263, 0.3685647139973298, 0.595021844997973, 0.321526673000335], "q9": [5.135099854669534e-05, 0.0008998550001706462, 0.0015551899996353313, 0.003560231998562813, 0.00817572000232758, 0.06831930900079897, 0.1428754869994009, 0.25158747699970263, 0.3685647139973298, 0.595021844997973, 0.321526673000335]}, "bar": {"y": 0.1428754869994009, "times": [0.1428754869994009], "text": ""}, "color": "rgba(255.0, 127.0, 14.0, 1.0)", "marker": 1, "stopping_strategy": "Iteration"}}, "transformers": {"c_star": 2.660661132774741, "max_f_0": 3.0235156488183743}}, "objective_support_size": {"solvers": {"scikit-survival": {"scatter": {"x": [1.4429002476390451e-05, 0.04226502299934509, 0.07789150800090283, 0.12250444000164862, 0.12345517400171957, 0.1700736599996162, 0.15595015000144485, 0.1925143280022894, 0.1379124140003114, 0.24061245800112374, 0.2787401039968245, 0.3207359810003254, 0.2886050310007704, 0.2871598810015712, 0.31449498499932815, 0.19462810400000308, 0.3544910560012795, 0.3971854520023044, 0.4576230979982938, 0.45432534600331564, 0.4789392829989083, 0.485834225997678, 0.49728811900058645, 0.5320181530005357, 0.5455924950001645, 0.570748571997683, 0.6155477920001431, 0.6276140640002268, 0.6612284629991336, 0.6375382709993573, 0.6568898609984899, 0.682159979998687, 0.7030329440021887, 0.7269875669990142, 0.7489614639998763, 0.7693229359974794, 0.7934345550020225, 0.811260457001481, 0.8374522239973885, 0.864584818998992, 0.8570498129993211, 0.8546279299989692, 0.8898918359991512], "y": [0.0, 457.0, 457.0, 463.0, 463.0, 465.0, 468.0, 467.0, 468.0, 469.0, 469.0, 469.0, 470.0, 468.0, 468.0, 468.0, 467.0, 466.0, 466.0, 467.0, 467.0, 467.0, 484.0, 477.0, 479.0, 484.0, 482.0, 481.0, 482.0, 482.0, 482.0, 482.0, 480.0, 480.0, 480.0, 480.0, 481.0, 482.0, 481.0, 481.0, 481.0, 481.0, 481.0], "stop_val": [0, 50, 100, 150, 200, 250, 300, 350, 400, 450, 500, 550, 600, 650, 700, 750, 800, 850, 900, 950, 1000, 1050, 1100, 1150, 1200, 1250, 1300, 1350, 1400, 1450, 1500, 1550, 1600, 1650, 1700, 1750, 1800, 1850, 1900, 1950, 2000, 2050, 2100], "q1": [1.4429002476390451e-05, 0.04226502299934509, 0.07789150800090283, 0.12250444000164862, 0.12345517400171957, 0.1700736599996162, 0.15595015000144485, 0.1925143280022894, 0.1379124140003114, 0.24061245800112374, 0.2787401039968245, 0.3207359810003254, 0.2886050310007704, 0.2871598810015712, 0.31449498499932815, 0.19462810400000308, 0.3544910560012795, 0.3971854520023044, 0.4576230979982938, 0.45432534600331564, 0.4789392829989083, 0.485834225997678, 0.49728811900058645, 0.5320181530005357, 0.5455924950001645, 0.570748571997683, 0.6155477920001431, 0.6276140640002268, 0.6612284629991336, 0.6375382709993573, 0.6568898609984899, 0.682159979998687, 0.7030329440021887, 0.7269875669990142, 0.7489614639998763, 0.7693229359974794, 0.7934345550020225, 0.811260457001481, 0.8374522239973885, 0.864584818998992, 0.8570498129993211, 0.8546279299989692, 0.8898918359991512], "q9": [1.4429002476390451e-05, 0.04226502299934509, 0.07789150800090283, 0.12250444000164862, 0.12345517400171957, 0.1700736599996162, 0.15595015000144485, 0.1925143280022894, 0.1379124140003114, 0.24061245800112374, 0.2787401039968245, 0.3207359810003254, 0.2886050310007704, 0.2871598810015712, 0.31449498499932815, 0.19462810400000308, 0.3544910560012795, 0.3971854520023044, 0.4576230979982938, 0.45432534600331564, 0.4789392829989083, 0.485834225997678, 0.49728811900058645, 0.5320181530005357, 0.5455924950001645, 0.570748571997683, 0.6155477920001431, 0.6276140640002268, 0.6612284629991336, 0.6375382709993573, 0.6568898609984899, 0.682159979998687, 0.7030329440021887, 0.7269875669990142, 0.7489614639998763, 0.7693229359974794, 0.7934345550020225, 0.811260457001481, 0.8374522239973885, 0.864584818998992, 0.8570498129993211, 0.8546279299989692, 0.8898918359991512]}, "bar": {"y": 1.4429002476390451e-05, "times": [1.4429002476390451e-05], "text": ""}, "color": "rgba(31.0, 119.0, 180.0, 1.0)", "marker": 0, "stopping_strategy": "Iteration"}, "skglm[solver=Prox-Newton]": {"scatter": {"x": [5.135099854669534e-05, 0.0008998550001706462, 0.0015551899996353313, 0.003560231998562813, 0.00817572000232758, 0.06831930900079897, 0.1428754869994009, 0.25158747699970263, 0.3685647139973298, 0.595021844997973, 0.321526673000335], "y": [0.0, 10.0, 30.0, 89.0, 251.0, 480.0, 482.0, 481.0, 481.0, 481.0, 481.0], "stop_val": [0, 1, 2, 3, 4, 6, 9, 13, 19, 28, 50], "q1": [5.135099854669534e-05, 0.0008998550001706462, 0.0015551899996353313, 0.003560231998562813, 0.00817572000232758, 0.06831930900079897, 0.1428754869994009, 0.25158747699970263, 0.3685647139973298, 0.595021844997973, 0.321526673000335], "q9": [5.135099854669534e-05, 0.0008998550001706462, 0.0015551899996353313, 0.003560231998562813, 0.00817572000232758, 0.06831930900079897, 0.1428754869994009, 0.25158747699970263, 0.3685647139973298, 0.595021844997973, 0.321526673000335]}, "bar": {"y": 5.135099854669534e-05, "times": [5.135099854669534e-05], "text": ""}, "color": "rgba(255.0, 127.0, 14.0, 1.0)", "marker": 1, "stopping_strategy": "Iteration"}}, "transformers": {"c_star": -1e-10, "max_f_0": 10.0}}}, "Cox Estimation[l1_ratio=0.7,reg=0.01]": {"objective_value": {"solvers": {"scikit-survival": {"scatter": {"x": [1.660999987507239e-05, 0.0462313140014885, 0.041699272998812376, 0.05847734100098023, 0.0736214970020228, 0.08164922399737407, 0.09597876100087888, 0.2117854759999318, 0.13181681700007175, 0.26323091899757856, 0.2423901680012932, 0.24035285700301756, 0.26426415700188954, 0.286628688001656, 0.3049624790000962, 0.3533864090022689, 0.38463444800072466, 0.43973519599967403, 0.4667800070019439, 0.467952286999207, 0.4783606029996008, 0.47246974500012584, 0.5120937370011234, 0.5184821330003615, 0.5596698920016934, 0.5783817539995653, 0.6017665860017587, 0.6341509430021688, 0.6114535239976249, 0.635977683999954, 0.6558111839985941, 0.6781205799998133, 0.7055199269998411, 0.7230508799984818, 0.7481386680010473, 0.773836812000809, 0.7958740059984848, 0.8197110959990823, 0.8440663790024701, 0.8332226480015379, 0.8337409960004152, 0.8410458560028928], "y": [3.053450302881371, 2.7922645102804045, 2.792403972794933, 2.700302218668691, 2.6863209665708814, 2.6845930470846073, 2.6819522337734556, 2.680988727492504, 2.6809252969387227, 2.6804659378297226, 2.680243809800653, 2.680130657406321, 2.6800707699111084, 2.680038221976816, 2.680020270079308, 2.680010340118913, 2.680004831209439, 2.6800000931989714, 2.679998624282463, 2.6799980703024455, 2.6799978800881252, 2.6799978341934643, 2.663436223350382, 2.6634827580316, 2.6625701415445695, 2.6625654945932395, 2.6625117389943727, 2.6624915703864165, 2.6624765391649863, 2.662473310004642, 2.662470604306843, 2.662469649422902, 2.662469273983027, 2.6624691160266565, 2.662469088692184, 2.662366249319835, 2.662366103037427, 2.6623657323147096, 2.6623657189495336, 2.6623657189495336, 2.6623657189495336, 2.6623657189495336], "stop_val": [0, 50, 100, 150, 200, 250, 300, 350, 400, 450, 500, 550, 600, 650, 700, 750, 800, 850, 900, 950, 1000, 1050, 1100, 1150, 1200, 1250, 1300, 1350, 1400, 1450, 1500, 1550, 1600, 1650, 1700, 1750, 1800, 1850, 1900, 1950, 2000, 2050], "q1": [1.660999987507239e-05, 0.0462313140014885, 0.041699272998812376, 0.05847734100098023, 0.0736214970020228, 0.08164922399737407, 0.09597876100087888, 0.2117854759999318, 0.13181681700007175, 0.26323091899757856, 0.2423901680012932, 0.24035285700301756, 0.26426415700188954, 0.286628688001656, 0.3049624790000962, 0.3533864090022689, 0.38463444800072466, 0.43973519599967403, 0.4667800070019439, 0.467952286999207, 0.4783606029996008, 0.47246974500012584, 0.5120937370011234, 0.5184821330003615, 0.5596698920016934, 0.5783817539995653, 0.6017665860017587, 0.6341509430021688, 0.6114535239976249, 0.635977683999954, 0.6558111839985941, 0.6781205799998133, 0.7055199269998411, 0.7230508799984818, 0.7481386680010473, 0.773836812000809, 0.7958740059984848, 0.8197110959990823, 0.8440663790024701, 0.8332226480015379, 0.8337409960004152, 0.8410458560028928], "q9": [1.660999987507239e-05, 0.0462313140014885, 0.041699272998812376, 0.05847734100098023, 0.0736214970020228, 0.08164922399737407, 0.09597876100087888, 0.2117854759999318, 0.13181681700007175, 0.26323091899757856, 0.2423901680012932, 0.24035285700301756, 0.26426415700188954, 0.286628688001656, 0.3049624790000962, 0.3533864090022689, 0.38463444800072466, 0.43973519599967403, 0.4667800070019439, 0.467952286999207, 0.4783606029996008, 0.47246974500012584, 0.5120937370011234, 0.5184821330003615, 0.5596698920016934, 0.5783817539995653, 0.6017665860017587, 0.6341509430021688, 0.6114535239976249, 0.635977683999954, 0.6558111839985941, 0.6781205799998133, 0.7055199269998411, 0.7230508799984818, 0.7481386680010473, 0.773836812000809, 0.7958740059984848, 0.8197110959990823, 0.8440663790024701, 0.8332226480015379, 0.8337409960004152, 0.8410458560028928]}, "bar": {"y": 0.773836812000809, "times": [0.773836812000809], "text": ""}, "color": "rgba(31.0, 119.0, 180.0, 1.0)", "marker": 0, "stopping_strategy": "Iteration"}, "skglm[solver=Prox-Newton]": {"scatter": {"x": [4.6820001443848014e-05, 0.0008377260019187815, 0.002280237000377383, 0.011432749997766223, 0.007515770001191413, 0.06127699799981201, 0.1839305739995325, 0.39867323599901283, 0.5638843669985363, 0.5892731349995302, 0.5830468159983866], "y": [3.053450302881371, 3.023532360512313, 2.982548482896004, 2.922022232336626, 2.833841160354675, 2.6642738773231063, 2.6623666367545913, 2.6623657185615035, 2.662365718547693, 2.662365718547693, 2.662365718547693], "stop_val": [0, 1, 2, 3, 4, 6, 9, 13, 19, 28, 50], "q1": [4.6820001443848014e-05, 0.0008377260019187815, 0.002280237000377383, 0.011432749997766223, 0.007515770001191413, 0.06127699799981201, 0.1839305739995325, 0.39867323599901283, 0.5638843669985363, 0.5892731349995302, 0.5830468159983866], "q9": [4.6820001443848014e-05, 0.0008377260019187815, 0.002280237000377383, 0.011432749997766223, 0.007515770001191413, 0.06127699799981201, 0.1839305739995325, 0.39867323599901283, 0.5638843669985363, 0.5892731349995302, 0.5830468159983866]}, "bar": {"y": 0.1839305739995325, "times": [0.1839305739995325], "text": ""}, "color": "rgba(255.0, 127.0, 14.0, 1.0)", "marker": 1, "stopping_strategy": "Iteration"}}, "transformers": {"c_star": 2.662365718447693, "max_f_0": 3.023532360512313}}, "objective_support_size": {"solvers": {"scikit-survival": {"scatter": {"x": [1.660999987507239e-05, 0.0462313140014885, 0.041699272998812376, 0.05847734100098023, 0.0736214970020228, 0.08164922399737407, 0.09597876100087888, 0.2117854759999318, 0.13181681700007175, 0.26323091899757856, 0.2423901680012932, 0.24035285700301756, 0.26426415700188954, 0.286628688001656, 0.3049624790000962, 0.3533864090022689, 0.38463444800072466, 0.43973519599967403, 0.4667800070019439, 0.467952286999207, 0.4783606029996008, 0.47246974500012584, 0.5120937370011234, 0.5184821330003615, 0.5596698920016934, 0.5783817539995653, 0.6017665860017587, 0.6341509430021688, 0.6114535239976249, 0.635977683999954, 0.6558111839985941, 0.6781205799998133, 0.7055199269998411, 0.7230508799984818, 0.7481386680010473, 0.773836812000809, 0.7958740059984848, 0.8197110959990823, 0.8440663790024701, 0.8332226480015379, 0.8337409960004152, 0.8410458560028928], "y": [0.0, 456.0, 456.0, 464.0, 476.0, 465.0, 468.0, 471.0, 469.0, 471.0, 471.0, 471.0, 470.0, 470.0, 469.0, 469.0, 469.0, 469.0, 469.0, 469.0, 469.0, 469.0, 480.0, 477.0, 485.0, 483.0, 483.0, 482.0, 483.0, 482.0, 482.0, 482.0, 482.0, 481.0, 481.0, 480.0, 482.0, 481.0, 481.0, 481.0, 481.0, 481.0], "stop_val": [0, 50, 100, 150, 200, 250, 300, 350, 400, 450, 500, 550, 600, 650, 700, 750, 800, 850, 900, 950, 1000, 1050, 1100, 1150, 1200, 1250, 1300, 1350, 1400, 1450, 1500, 1550, 1600, 1650, 1700, 1750, 1800, 1850, 1900, 1950, 2000, 2050], "q1": [1.660999987507239e-05, 0.0462313140014885, 0.041699272998812376, 0.05847734100098023, 0.0736214970020228, 0.08164922399737407, 0.09597876100087888, 0.2117854759999318, 0.13181681700007175, 0.26323091899757856, 0.2423901680012932, 0.24035285700301756, 0.26426415700188954, 0.286628688001656, 0.3049624790000962, 0.3533864090022689, 0.38463444800072466, 0.43973519599967403, 0.4667800070019439, 0.467952286999207, 0.4783606029996008, 0.47246974500012584, 0.5120937370011234, 0.5184821330003615, 0.5596698920016934, 0.5783817539995653, 0.6017665860017587, 0.6341509430021688, 0.6114535239976249, 0.635977683999954, 0.6558111839985941, 0.6781205799998133, 0.7055199269998411, 0.7230508799984818, 0.7481386680010473, 0.773836812000809, 0.7958740059984848, 0.8197110959990823, 0.8440663790024701, 0.8332226480015379, 0.8337409960004152, 0.8410458560028928], "q9": [1.660999987507239e-05, 0.0462313140014885, 0.041699272998812376, 0.05847734100098023, 0.0736214970020228, 0.08164922399737407, 0.09597876100087888, 0.2117854759999318, 0.13181681700007175, 0.26323091899757856, 0.2423901680012932, 0.24035285700301756, 0.26426415700188954, 0.286628688001656, 0.3049624790000962, 0.3533864090022689, 0.38463444800072466, 0.43973519599967403, 0.4667800070019439, 0.467952286999207, 0.4783606029996008, 0.47246974500012584, 0.5120937370011234, 0.5184821330003615, 0.5596698920016934, 0.5783817539995653, 0.6017665860017587, 0.6341509430021688, 0.6114535239976249, 0.635977683999954, 0.6558111839985941, 0.6781205799998133, 0.7055199269998411, 0.7230508799984818, 0.7481386680010473, 0.773836812000809, 0.7958740059984848, 0.8197110959990823, 0.8440663790024701, 0.8332226480015379, 0.8337409960004152, 0.8410458560028928]}, "bar": {"y": 1.660999987507239e-05, "times": [1.660999987507239e-05], "text": ""}, "color": "rgba(31.0, 119.0, 180.0, 1.0)", "marker": 0, "stopping_strategy": "Iteration"}, "skglm[solver=Prox-Newton]": {"scatter": {"x": [4.6820001443848014e-05, 0.0008377260019187815, 0.002280237000377383, 0.011432749997766223, 0.007515770001191413, 0.06127699799981201, 0.1839305739995325, 0.39867323599901283, 0.5638843669985363, 0.5892731349995302, 0.5830468159983866], "y": [0.0, 10.0, 30.0, 89.0, 251.0, 485.0, 481.0, 481.0, 481.0, 481.0, 481.0], "stop_val": [0, 1, 2, 3, 4, 6, 9, 13, 19, 28, 50], "q1": [4.6820001443848014e-05, 0.0008377260019187815, 0.002280237000377383, 0.011432749997766223, 0.007515770001191413, 0.06127699799981201, 0.1839305739995325, 0.39867323599901283, 0.5638843669985363, 0.5892731349995302, 0.5830468159983866], "q9": [4.6820001443848014e-05, 0.0008377260019187815, 0.002280237000377383, 0.011432749997766223, 0.007515770001191413, 0.06127699799981201, 0.1839305739995325, 0.39867323599901283, 0.5638843669985363, 0.5892731349995302, 0.5830468159983866]}, "bar": {"y": 4.6820001443848014e-05, "times": [4.6820001443848014e-05], "text": ""}, "color": "rgba(255.0, 127.0, 14.0, 1.0)", "marker": 1, "stopping_strategy": "Iteration"}}, "transformers": {"c_star": -1e-10, "max_f_0": 10.0}}}}};
+
+            window.addEventListener("load", () => {
+                // Initialize plot state
+                setState({
+                    'dataset': document.getElementById('dataset_selector').value,
+                    'objective': document.getElementById('objective_selector').value,
+                    'objective_column': document.getElementById('objective_column').value,
+                    'plot_kind': document.getElementById('plot_kind').value,
+                    'scale': document.getElementById('change_scaling').value,
+                    'with_quantiles': document.getElementById('change_shades').checked,
+                    'xaxis_type':  document.getElementById('change_xaxis_type').value || "Time",
+                    'hidden_solvers': []
+                });
+            });
+        </script>
+        <script type="text/javascript">
+            /**
+ * Round with precision control
+ * https://github.com/plotly/d3/blob/6bb40cd42f6479be84efda3e50c8444b50d5905d/d3.js#L2189
+ */
+const d3round = (x, n) => {
+    return n ? Math.round(x * (n = Math.pow(10, n))) / n : Math.round(x);
+};
+
+/**
+ * Container of function that create path for SVG plot marker
+ * https://github.com/plotly/plotly.js/blob/b2df3710d7877ff5b4f85256015a88c8ea8fbe1d/src/components/drawing/symbol_defs.js#L13
+ */
+const SYMBOLDEFS = {
+    circle: {
+        n: 0,
+        f: r => {
+            var rs = d3round(r, 2);
+            return 'M' + rs + ',0A' + rs + ',' + rs + ' 0 1,1 0,-' + rs +
+                'A' + rs + ',' + rs + ' 0 0,1 ' + rs + ',0Z';
+        }
+    },
+    square: {
+        n: 1,
+        f: r => {
+            var rs = d3round(r, 2);
+            return 'M' + rs + ',' + rs + 'H-' + rs + 'V-' + rs + 'H' + rs + 'Z';
+        }
+    },
+    diamond: {
+        n: 2,
+        f: r => {
+            var rd = d3round(r * 1.3, 2);
+            return 'M' + rd + ',0L0,' + rd + 'L-' + rd + ',0L0,-' + rd + 'Z';
+        }
+    },
+    cross: {
+        n: 3,
+        f: r => {
+            var rc = d3round(r * 0.4, 2);
+            var rc2 = d3round(r * 1.2, 2);
+            return 'M' + rc2 + ',' + rc + 'H' + rc + 'V' + rc2 + 'H-' + rc +
+                'V' + rc + 'H-' + rc2 + 'V-' + rc + 'H-' + rc + 'V-' + rc2 +
+                'H' + rc + 'V-' + rc + 'H' + rc2 + 'Z';
+        }
+    },
+    x: {
+        n: 4,
+        f: r => {
+            var rx = d3round(r * 0.8 / Math.sqrt(2), 2);
+            var ne = 'l' + rx + ',' + rx;
+            var se = 'l' + rx + ',-' + rx;
+            var sw = 'l-' + rx + ',-' + rx;
+            var nw = 'l-' + rx + ',' + rx;
+            return 'M0,' + rx + ne + se + sw + se + sw + nw + sw + nw + ne + nw + ne + 'Z';
+        }
+    },
+    'triangle-up': {
+        n: 5,
+        f: r => {
+            var rt = d3round(r * 2 / Math.sqrt(3), 2);
+            var r2 = d3round(r / 2, 2);
+            var rs = d3round(r, 2);
+            return 'M-' + rt + ',' + r2 + 'H' + rt + 'L0,-' + rs + 'Z';
+        }
+    },
+    'triangle-down': {
+        n: 6,
+        f: r => {
+            var rt = d3round(r * 2 / Math.sqrt(3), 2);
+            var r2 = d3round(r / 2, 2);
+            var rs = d3round(r, 2);
+            return 'M-' + rt + ',-' + r2 + 'H' + rt + 'L0,' + rs + 'Z';
+        }
+    },
+    'triangle-left': {
+        n: 7,
+        f: r => {
+            var rt = d3round(r * 2 / Math.sqrt(3), 2);
+            var r2 = d3round(r / 2, 2);
+            var rs = d3round(r, 2);
+            return 'M' + r2 + ',-' + rt + 'V' + rt + 'L-' + rs + ',0Z';
+        }
+    },
+    'triangle-right': {
+        n: 8,
+        f: r => {
+            var rt = d3round(r * 2 / Math.sqrt(3), 2);
+            var r2 = d3round(r / 2, 2);
+            var rs = d3round(r, 2);
+            return 'M-' + r2 + ',-' + rt + 'V' + rt + 'L' + rs + ',0Z';
+        }
+    },
+    'triangle-ne': {
+        n: 9,
+        f: r => {
+            var r1 = d3round(r * 0.6, 2);
+            var r2 = d3round(r * 1.2, 2);
+            return 'M-' + r2 + ',-' + r1 + 'H' + r1 + 'V' + r2 + 'Z';
+        }
+    },
+    'triangle-se': {
+        n: 10,
+        f: r => {
+            var r1 = d3round(r * 0.6, 2);
+            var r2 = d3round(r * 1.2, 2);
+            return 'M' + r1 + ',-' + r2 + 'V' + r1 + 'H-' + r2 + 'Z';
+        }
+    },
+    'triangle-sw': {
+        n: 11,
+        f: r => {
+            var r1 = d3round(r * 0.6, 2);
+            var r2 = d3round(r * 1.2, 2);
+            return 'M' + r2 + ',' + r1 + 'H-' + r1 + 'V-' + r2 + 'Z';
+        }
+    },
+    'triangle-nw': {
+        n: 12,
+        f: r => {
+            var r1 = d3round(r * 0.6, 2);
+            var r2 = d3round(r * 1.2, 2);
+            return 'M-' + r1 + ',' + r2 + 'V-' + r1 + 'H' + r2 + 'Z';
+        }
+    },
+    pentagon: {
+        n: 13,
+        f: r => {
+            var x1 = d3round(r * 0.951, 2);
+            var x2 = d3round(r * 0.588, 2);
+            var y0 = d3round(-r, 2);
+            var y1 = d3round(r * -0.309, 2);
+            var y2 = d3round(r * 0.809, 2);
+            return 'M' + x1 + ',' + y1 + 'L' + x2 + ',' + y2 + 'H-' + x2 +
+                'L-' + x1 + ',' + y1 + 'L0,' + y0 + 'Z';
+        }
+    },
+    hexagon: {
+        n: 14,
+        f: r => {
+            var y0 = d3round(r, 2);
+            var y1 = d3round(r / 2, 2);
+            var x = d3round(r * Math.sqrt(3) / 2, 2);
+            return 'M' + x + ',-' + y1 + 'V' + y1 + 'L0,' + y0 +
+                'L-' + x + ',' + y1 + 'V-' + y1 + 'L0,-' + y0 + 'Z';
+        }
+    },
+    hexagon2: {
+        n: 15,
+        f: r => {
+            var x0 = d3round(r, 2);
+            var x1 = d3round(r / 2, 2);
+            var y = d3round(r * Math.sqrt(3) / 2, 2);
+            return 'M-' + x1 + ',' + y + 'H' + x1 + 'L' + x0 +
+                ',0L' + x1 + ',-' + y + 'H-' + x1 + 'L-' + x0 + ',0Z';
+        }
+    },
+    octagon: {
+        n: 16,
+        f: r => {
+            var a = d3round(r * 0.924, 2);
+            var b = d3round(r * 0.383, 2);
+            return 'M-' + b + ',-' + a + 'H' + b + 'L' + a + ',-' + b + 'V' + b +
+                'L' + b + ',' + a + 'H-' + b + 'L-' + a + ',' + b + 'V-' + b + 'Z';
+        }
+    },
+    star: {
+        n: 17,
+        f: r => {
+            var rs = r * 1.4;
+            var x1 = d3round(rs * 0.225, 2);
+            var x2 = d3round(rs * 0.951, 2);
+            var x3 = d3round(rs * 0.363, 2);
+            var x4 = d3round(rs * 0.588, 2);
+            var y0 = d3round(-rs, 2);
+            var y1 = d3round(rs * -0.309, 2);
+            var y3 = d3round(rs * 0.118, 2);
+            var y4 = d3round(rs * 0.809, 2);
+            var y5 = d3round(rs * 0.382, 2);
+            return 'M' + x1 + ',' + y1 + 'H' + x2 + 'L' + x3 + ',' + y3 +
+                'L' + x4 + ',' + y4 + 'L0,' + y5 + 'L-' + x4 + ',' + y4 +
+                'L-' + x3 + ',' + y3 + 'L-' + x2 + ',' + y1 + 'H-' + x1 +
+                'L0,' + y0 + 'Z';
+        }
+    },
+    hexagram: {
+        n: 18,
+        f: r => {
+            var y = d3round(r * 0.66, 2);
+            var x1 = d3round(r * 0.38, 2);
+            var x2 = d3round(r * 0.76, 2);
+            return 'M-' + x2 + ',0l-' + x1 + ',-' + y + 'h' + x2 +
+                'l' + x1 + ',-' + y + 'l' + x1 + ',' + y + 'h' + x2 +
+                'l-' + x1 + ',' + y + 'l' + x1 + ',' + y + 'h-' + x2 +
+                'l-' + x1 + ',' + y + 'l-' + x1 + ',-' + y + 'h-' + x2 + 'Z';
+        }
+    },
+    'star-triangle-up': {
+        n: 19,
+        f: r => {
+            var x = d3round(r * Math.sqrt(3) * 0.8, 2);
+            var y1 = d3round(r * 0.8, 2);
+            var y2 = d3round(r * 1.6, 2);
+            var rc = d3round(r * 4, 2);
+            var aPart = 'A ' + rc + ',' + rc + ' 0 0 1 ';
+            return 'M-' + x + ',' + y1 + aPart + x + ',' + y1 +
+                aPart + '0,-' + y2 + aPart + '-' + x + ',' + y1 + 'Z';
+        }
+    },
+    'star-triangle-down': {
+        n: 20,
+        f: r => {
+            var x = d3round(r * Math.sqrt(3) * 0.8, 2);
+            var y1 = d3round(r * 0.8, 2);
+            var y2 = d3round(r * 1.6, 2);
+            var rc = d3round(r * 4, 2);
+            var aPart = 'A ' + rc + ',' + rc + ' 0 0 1 ';
+            return 'M' + x + ',-' + y1 + aPart + '-' + x + ',-' + y1 +
+                aPart + '0,' + y2 + aPart + x + ',-' + y1 + 'Z';
+        }
+    },
+    'star-square': {
+        n: 21,
+        f: r => {
+            var rp = d3round(r * 1.1, 2);
+            var rc = d3round(r * 2, 2);
+            var aPart = 'A ' + rc + ',' + rc + ' 0 0 1 ';
+            return 'M-' + rp + ',-' + rp + aPart + '-' + rp + ',' + rp +
+                aPart + rp + ',' + rp + aPart + rp + ',-' + rp +
+                aPart + '-' + rp + ',-' + rp + 'Z';
+        }
+    },
+    'star-diamond': {
+        n: 22,
+        f: r => {
+            var rp = d3round(r * 1.4, 2);
+            var rc = d3round(r * 1.9, 2);
+            var aPart = 'A ' + rc + ',' + rc + ' 0 0 1 ';
+            return 'M-' + rp + ',0' + aPart + '0,' + rp +
+                aPart + rp + ',0' + aPart + '0,-' + rp +
+                aPart + '-' + rp + ',0' + 'Z';
+        }
+    },
+    'diamond-tall': {
+        n: 23,
+        f: r => {
+            var x = d3round(r * 0.7, 2);
+            var y = d3round(r * 1.4, 2);
+            return 'M0,' + y + 'L' + x + ',0L0,-' + y + 'L-' + x + ',0Z';
+        }
+    },
+    'diamond-wide': {
+        n: 24,
+        f: r => {
+            var x = d3round(r * 1.4, 2);
+            var y = d3round(r * 0.7, 2);
+            return 'M0,' + y + 'L' + x + ',0L0,-' + y + 'L-' + x + ',0Z';
+        }
+    },
+    hourglass: {
+        n: 25,
+        f: r => {
+            var rs = d3round(r, 2);
+            return 'M' + rs + ',' + rs + 'H-' + rs + 'L' + rs + ',-' + rs + 'H-' + rs + 'Z';
+        },
+        noDot: true
+    },
+    bowtie: {
+        n: 26,
+        f: r => {
+            var rs = d3round(r, 2);
+            return 'M' + rs + ',' + rs + 'V-' + rs + 'L-' + rs + ',' + rs + 'V-' + rs + 'Z';
+        },
+        noDot: true
+    },
+    'circle-cross': {
+        n: 27,
+        f: r => {
+            var rs = d3round(r, 2);
+            return 'M0,' + rs + 'V-' + rs + 'M' + rs + ',0H-' + rs +
+                'M' + rs + ',0A' + rs + ',' + rs + ' 0 1,1 0,-' + rs +
+                'A' + rs + ',' + rs + ' 0 0,1 ' + rs + ',0Z';
+        },
+        needLine: true,
+        noDot: true
+    },
+    'circle-x': {
+        n: 28,
+        f: r => {
+            var rs = d3round(r, 2);
+            var rc = d3round(r / Math.sqrt(2), 2);
+            return 'M' + rc + ',' + rc + 'L-' + rc + ',-' + rc +
+                'M' + rc + ',-' + rc + 'L-' + rc + ',' + rc +
+                'M' + rs + ',0A' + rs + ',' + rs + ' 0 1,1 0,-' + rs +
+                'A' + rs + ',' + rs + ' 0 0,1 ' + rs + ',0Z';
+        },
+        needLine: true,
+        noDot: true
+    },
+    'square-cross': {
+        n: 29,
+        f: r => {
+            var rs = d3round(r, 2);
+            return 'M0,' + rs + 'V-' + rs + 'M' + rs + ',0H-' + rs +
+                'M' + rs + ',' + rs + 'H-' + rs + 'V-' + rs + 'H' + rs + 'Z';
+        },
+        needLine: true,
+        noDot: true
+    },
+    'square-x': {
+        n: 30,
+        f: r => {
+            var rs = d3round(r, 2);
+            return 'M' + rs + ',' + rs + 'L-' + rs + ',-' + rs +
+                'M' + rs + ',-' + rs + 'L-' + rs + ',' + rs +
+                'M' + rs + ',' + rs + 'H-' + rs + 'V-' + rs + 'H' + rs + 'Z';
+        },
+        needLine: true,
+        noDot: true
+    },
+    'diamond-cross': {
+        n: 31,
+        f: r => {
+            var rd = d3round(r * 1.3, 2);
+            return 'M' + rd + ',0L0,' + rd + 'L-' + rd + ',0L0,-' + rd + 'Z' +
+                'M0,-' + rd + 'V' + rd + 'M-' + rd + ',0H' + rd;
+        },
+        needLine: true,
+        noDot: true
+    },
+    'diamond-x': {
+        n: 32,
+        f: r => {
+            var rd = d3round(r * 1.3, 2);
+            var r2 = d3round(r * 0.65, 2);
+            return 'M' + rd + ',0L0,' + rd + 'L-' + rd + ',0L0,-' + rd + 'Z' +
+                'M-' + r2 + ',-' + r2 + 'L' + r2 + ',' + r2 +
+                'M-' + r2 + ',' + r2 + 'L' + r2 + ',-' + r2;
+        },
+        needLine: true,
+        noDot: true
+    },
+    'cross-thin': {
+        n: 33,
+        f: r => {
+            var rc = d3round(r * 1.4, 2);
+            return 'M0,' + rc + 'V-' + rc + 'M' + rc + ',0H-' + rc;
+        },
+        needLine: true,
+        noDot: true,
+        noFill: true
+    },
+    'x-thin': {
+        n: 34,
+        f: r => {
+            var rx = d3round(r, 2);
+            return 'M' + rx + ',' + rx + 'L-' + rx + ',-' + rx +
+                'M' + rx + ',-' + rx + 'L-' + rx + ',' + rx;
+        },
+        needLine: true,
+        noDot: true,
+        noFill: true
+    },
+    asterisk: {
+        n: 35,
+        f: r => {
+            var rc = d3round(r * 1.2, 2);
+            var rs = d3round(r * 0.85, 2);
+            return 'M0,' + rc + 'V-' + rc + 'M' + rc + ',0H-' + rc +
+                'M' + rs + ',' + rs + 'L-' + rs + ',-' + rs +
+                'M' + rs + ',-' + rs + 'L-' + rs + ',' + rs;
+        },
+        needLine: true,
+        noDot: true,
+        noFill: true
+    },
+    hash: {
+        n: 36,
+        f: r => {
+            var r1 = d3round(r / 2, 2);
+            var r2 = d3round(r, 2);
+            return 'M' + r1 + ',' + r2 + 'V-' + r2 +
+                'm-' + r2 + ',0V' + r2 +
+                'M' + r2 + ',' + r1 + 'H-' + r2 +
+                'm0,-' + r2 + 'H' + r2;
+        },
+        needLine: true,
+        noFill: true
+    },
+    'y-up': {
+        n: 37,
+        f: r => {
+            var x = d3round(r * 1.2, 2);
+            var y0 = d3round(r * 1.6, 2);
+            var y1 = d3round(r * 0.8, 2);
+            return 'M-' + x + ',' + y1 + 'L0,0M' + x + ',' + y1 + 'L0,0M0,-' + y0 + 'L0,0';
+        },
+        needLine: true,
+        noDot: true,
+        noFill: true
+    },
+    'y-down': {
+        n: 38,
+        f: r => {
+            var x = d3round(r * 1.2, 2);
+            var y0 = d3round(r * 1.6, 2);
+            var y1 = d3round(r * 0.8, 2);
+            return 'M-' + x + ',-' + y1 + 'L0,0M' + x + ',-' + y1 + 'L0,0M0,' + y0 + 'L0,0';
+        },
+        needLine: true,
+        noDot: true,
+        noFill: true
+    },
+    'y-left': {
+        n: 39,
+        f: r => {
+            var y = d3round(r * 1.2, 2);
+            var x0 = d3round(r * 1.6, 2);
+            var x1 = d3round(r * 0.8, 2);
+            return 'M' + x1 + ',' + y + 'L0,0M' + x1 + ',-' + y + 'L0,0M-' + x0 + ',0L0,0';
+        },
+        needLine: true,
+        noDot: true,
+        noFill: true
+    },
+    'y-right': {
+        n: 40,
+        f: r => {
+            var y = d3round(r * 1.2, 2);
+            var x0 = d3round(r * 1.6, 2);
+            var x1 = d3round(r * 0.8, 2);
+            return 'M-' + x1 + ',' + y + 'L0,0M-' + x1 + ',-' + y + 'L0,0M' + x0 + ',0L0,0';
+        },
+        needLine: true,
+        noDot: true,
+        noFill: true
+    },
+    'line-ew': {
+        n: 41,
+        f: r => {
+            var rc = d3round(r * 1.4, 2);
+            return 'M' + rc + ',0H-' + rc;
+        },
+        needLine: true,
+        noDot: true,
+        noFill: true
+    },
+    'line-ns': {
+        n: 42,
+        f: r => {
+            var rc = d3round(r * 1.4, 2);
+            return 'M0,' + rc + 'V-' + rc;
+        },
+        needLine: true,
+        noDot: true,
+        noFill: true
+    },
+    'line-ne': {
+        n: 43,
+        f: r => {
+            var rx = d3round(r, 2);
+            return 'M' + rx + ',-' + rx + 'L-' + rx + ',' + rx;
+        },
+        needLine: true,
+        noDot: true,
+        noFill: true
+    },
+    'line-nw': {
+        n: 44,
+        f: r => {
+            var rx = d3round(r, 2);
+            return 'M' + rx + ',' + rx + 'L-' + rx + ',-' + rx;
+        },
+        needLine: true,
+        noDot: true,
+        noFill: true
+    },
+    'arrow-up': {
+        n: 45,
+        f: r => {
+            var rx = d3round(r, 2);
+            var ry = d3round(r * 2, 2);
+            return 'M0,0L-' + rx + ',' + ry + 'H' + rx + 'Z';
+        },
+        noDot: true
+    },
+    'arrow-down': {
+        n: 46,
+        f: r => {
+            var rx = d3round(r, 2);
+            var ry = d3round(r * 2, 2);
+            return 'M0,0L-' + rx + ',-' + ry + 'H' + rx + 'Z';
+        },
+        noDot: true
+    },
+    'arrow-left': {
+        n: 47,
+        f: r => {
+            var rx = d3round(r * 2, 2);
+            var ry = d3round(r, 2);
+            return 'M0,0L' + rx + ',-' + ry + 'V' + ry + 'Z';
+        },
+        noDot: true
+    },
+    'arrow-right': {
+        n: 48,
+        f: r => {
+            var rx = d3round(r * 2, 2);
+            var ry = d3round(r, 2);
+            return 'M0,0L-' + rx + ',-' + ry + 'V' + ry + 'Z';
+        },
+        noDot: true
+    },
+    'arrow-bar-up': {
+        n: 49,
+        f: r => {
+            var rx = d3round(r, 2);
+            var ry = d3round(r * 2, 2);
+            return 'M-' + rx + ',0H' + rx + 'M0,0L-' + rx + ',' + ry + 'H' + rx + 'Z';
+        },
+        needLine: true,
+        noDot: true
+    },
+    'arrow-bar-down': {
+        n: 50,
+        f: r => {
+            var rx = d3round(r, 2);
+            var ry = d3round(r * 2, 2);
+            return 'M-' + rx + ',0H' + rx + 'M0,0L-' + rx + ',-' + ry + 'H' + rx + 'Z';
+        },
+        needLine: true,
+        noDot: true
+    },
+    'arrow-bar-left': {
+        n: 51,
+        f: r => {
+            var rx = d3round(r * 2, 2);
+            var ry = d3round(r, 2);
+            return 'M0,-' + ry + 'V' + ry + 'M0,0L' + rx + ',-' + ry + 'V' + ry + 'Z';
+        },
+        needLine: true,
+        noDot: true
+    },
+    'arrow-bar-right': {
+        n: 52,
+        f: r => {
+            var rx = d3round(r * 2, 2);
+            var ry = d3round(r, 2);
+            return 'M0,-' + ry + 'V' + ry + 'M0,0L-' + rx + ',-' + ry + 'V' + ry + 'Z';
+        },
+        needLine: true,
+        noDot: true
+    }
+};
+
+const DOTPATH = 'M0,0.5L0.5,0L0,-0.5L-0.5,0Z';
+
+const drawing = {
+    symbolFuncs: [],
+};
+
+/**
+ * Create arrays of symbol functions.
+ * https://plotly.com/javascript/reference/scatter/#scatter-marker-symbol
+ */
+Object.keys(SYMBOLDEFS).forEach(function(k) {
+    var symDef = SYMBOLDEFS[k];
+    var n = symDef.n;
+    drawing.symbolFuncs[n] = symDef.f;
+});
+
+/**
+ * Returns a <path></path> element that have to be placed in a <svg></svg> element.
+ * 
+ * @param {int} symbolNumber
+ * @param {String} color
+ * @return {Element}
+ */
+const createPathElement = (symbolNumber, color) => {
+    const path = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+    // d is the shape of the symbol.
+    path.setAttribute('d', createPathString(symbolNumber, 5));
+    // Translation must be the half of the svg size to have the symbol centered.
+    path.setAttribute('transform', 'translate(15, 15)');
+
+    // If svg is type "open" or "open-dot" : https://plotly.com/javascript/reference/scatter/#scatter-marker-symbol
+    if ((100 <= symbolNumber && symbolNumber < 200) || 300 <= symbolNumber) {
+        path.setAttribute('stroke', color);
+        path.setAttribute('stroke-width', 0.5);
+        path.setAttribute('stroke-opacity', 1);
+        path.setAttribute('fill', 'white');
+    }
+
+    // If svg is type "normal" or "dot" : https://plotly.com/javascript/reference/scatter/#scatter-marker-symbol
+    if (symbolNumber < 100 || (200 <= symbolNumber && symbolNumber < 300)) {
+        path.setAttribute('fill-opacity', 1);
+        path.setAttribute('fill', color);
+    }
+
+    // If svg is type "dot" : https://plotly.com/javascript/reference/scatter/#scatter-marker-symbol
+    if (200 <= symbolNumber && symbolNumber < 300) {
+        path.setAttribute('stroke', 'black');
+        path.setAttribute('stroke-width', 0.5);
+        path.setAttribute('stroke-opacity', 1);
+    }
+    
+    return path;
+}
+
+/**
+ * Returns the string corresponding of the symbol shape requested by symbolNumber.
+ * 
+ * @param {int} symbolNumber
+ * @param {int} r size of the symbol (currently, we request a 5)
+ * @returns {String} this string must be placed in the "d" attribute of <path></path> SVG element.
+ */
+function createPathString(symbolNumber, r) {
+    var base = symbolNumber % 100;
+    return drawing.symbolFuncs[base](r) + (symbolNumber >= 200 ? DOTPATH : '');
+}
+
+            const NON_CONVERGENT_COLOR = 'rgba(0.8627, 0.8627, 0.8627)'
+
+/*
+ * ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+ * STATE MANAGEMENT
+ *
+ * The state represent the plot state. It's an object
+ * that is stored into the window.state variable.
+ *
+ * Do not manually update window.state,
+ * instead, foreach state modification,
+ * you shoud call the setState() function
+ * to keep the plot in sync with its state.
+ *
+ * The state contains the following keys :
+ *   - dataset (string),
+ *   - objective (string),
+ *   - objective_column (string),
+ *   - plot_kind (string),
+ *   - scale (string)
+ *   - with_quantiles (boolean)
+ *   - hidden_solvers (array)
+ * ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+ */
+
+/**
+ * Update the state and create/update the plot
+ * using the new state.
+ *
+ * @param {Object} partialState
+ */
+const setState = (partialState) => {
+  window.state = {...state(), ...partialState};
+  displayScatterElements(!isBarChart());
+
+  // TODO: `listIdXaxisSelection` to be removed after 
+  // implementing responsiveness through breakpoints 
+  // and removing content duplication between big screen and mobile
+  let listIdXaxisSelection = ["change_xaxis_type", "change_xaxis_type_mobile"];
+  listIdXaxisSelection.forEach(idXaxisSelection => updateXaxis(idXaxisSelection))
+
+  makePlot();
+  makeLegend();
+}
+
+/**
+ * Retrieve the state object from window.state
+ *
+ * @returns Object
+ */
+const state = () => window.state;
+
+/*
+ * ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+ * PLOT MANAGEMENT
+ *
+ * Retrieve formatted data for PlotlyJS using state
+ * and create/update the plot.
+ * ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+ */
+
+/**
+ * Create/Update the plot.
+ */
+const makePlot = () => {
+  const div = document.getElementById('unique_plot');
+  const data = isBarChart() ? getBarData() : getScatterCurves();
+  const layout = isBarChart() ? getBarChartLayout() : getScatterChartLayout();
+
+  Plotly.react(div, data, layout);
+};
+
+/**
+ * Gives the data formatted for plotlyJS bar chart.
+ *
+ * @returns {array}
+ */
+const getBarData = () => {
+  if (!isAvailable()) return [{type:'bar'}];
+
+  const {x, y, colors, texts} = barDataToArrays()
+
+  // Add bars
+  const barData = [{
+    type: 'bar',
+    x: x,
+    y: y,
+    marker: {
+      color: colors,
+    },
+    text: texts,
+    textposition: 'inside',
+    insidetextanchor: 'middle',
+    textangle: '-90',
+  }];
+
+  x.forEach(solver => {
+    // Add times for each convergent solver
+    // Check if text is not 'Did not converge'
+    if (data(solver).bar.text === '') {
+      let nbTimes = data(solver).bar.times.length
+
+      barData.push({
+        type: 'scatter',
+        x: new Array(nbTimes).fill(solver),
+        y: data(solver).bar.times,
+        marker: {
+          color: 'black',
+          symbol: 'line-ew-open'
+        },
+        line: {
+          width: 0
+        },
+      });
+    }
+  });
+
+  return barData;
+};
+
+/**
+ * Gives the data formatted for plotlyJS scatter chart.
+ *
+ * @returns {array}
+ */
+const getScatterCurves = () => {
+  // create a list of object to plot in plotly
+  const curves = [];
+
+  // For each solver, add the median curve with proper style and visibility.
+  let xaxisType = state().xaxis_type;
+
+  getSolvers().forEach(solver => {
+    solverStoppingStrategy = data(solver)['stopping_strategy'];
+
+    // plot only solvers that were stopped using xaxis type
+    // plot all solver if xaxis type is `time`
+    if(xaxisType !== "Time" && solverStoppingStrategy !== xaxisType) {
+      return
+    }
+
+    ScatterXaxisProperty = xaxisType === "Time" ? 'x' : 'stop_val';
+
+    curves.push({
+      type: 'scatter',
+      name: solver,
+      mode: 'lines+markers',
+      line: {
+        color: data(solver).color,
+      },
+      marker: {
+        symbol: data(solver).marker,
+        size: 10,
+      },
+      legendgroup: solver,
+      hovertemplate: solver + ' <br> (%{x:.1e},%{y:.1e}) <extra></extra>',
+      visible: isVisible(solver) ? true : 'legendonly',
+      x: data(solver).scatter[ScatterXaxisProperty],
+      y: useTransformer(data(solver).scatter.y, 'y', data().transformers),
+    });
+
+    // skip plotting quantiles if xaxis is not time
+    // as stop_val are predefined and hence deterministic 
+    if(xaxisType !== "Time") {
+      return
+    }
+
+    if (state().with_quantiles) {
+      // Add shaded area for each solver, with proper style and visibility.
+  
+      curves.push({
+        type: 'scatter',
+        mode: 'lines',
+        showlegend: false,
+        line: {
+          width: 0,
+          color: data(solver).color,
+        },
+        legendgroup: solver,
+        hovertemplate: '(%{x:.1e},%{y:.1e}) <extra></extra>',
+        visible: isVisible(solver) ? true : 'legendonly',
+        x: data(solver).scatter['q1'],
+        y: useTransformer(data(solver).scatter.y, 'y', data().transformers),
+      }, {
+        type: 'scatter',
+        mode: 'lines',
+        showlegend: false,
+        fill: 'tonextx',
+        line: {
+          width: 0,
+          color: data(solver).color,
+        },
+        legendgroup: solver,
+        hovertemplate: '(%{x:.1e},%{y:.1e}) <extra></extra>',
+        visible: isVisible(solver) ? true : 'legendonly',
+        x: data(solver).scatter['q9'],
+        y: useTransformer(data(solver).scatter.y, 'y', data().transformers),
+      });
+    }
+  });
+
+  return curves;
+};
+
+/*
+ * ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+ * DATA TRANSFORMERS
+ *
+ * Transformers are used to modify data
+ * on the fly.
+ *
+ * WARNING : If you add a new transformer function,
+ * don't forget to register it in the object : window.tranformers,
+ * at the end of this section.
+ * ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+ */
+
+/**
+ * Select the right transformer according to the state.
+ * If the requested transformer does not exists,
+ * it returns raw data.
+ *
+ * @param {Object} data
+ * @param {String} solver
+ * @param {String} axis it could be x, y, q1, q9
+ * @returns {array}
+ */
+const useTransformer = (data, axis, options) => {
+  try {
+    let transformer = 'transformer_' + axis + '_' + state().plot_kind;
+    return window.transformers[transformer](data, options);
+  } catch(error) {
+    return data;
+  }
+};
+
+/**
+ * Transform data on the y axis for subotimality curve.
+ *
+ * @param {Object} data
+ * @param {String} solver
+ * @returns {array}
+ */
+const transformer_y_suboptimality_curve = (y, options) => {
+  // Retrieve c_star value
+  const c_star = options.c_star;
+
+  // Compute suboptimality for each data
+  return y.map(value => value - c_star);
+};
+
+/**
+ * Transform data ont the y axis for relative suboptimality curve.
+ *
+ * @param {Object} data
+ * @param {String} solver
+ * @returns {array}
+ */
+const transformer_y_relative_suboptimality_curve = (y, options) => {
+  // Retrieve transformer values
+  const c_star = options.c_star;
+  const max_f_0 = options.max_f_0;
+
+  // Compute relative suboptimality for each data
+  return y.map(value => (value - c_star) / (max_f_0 - c_star));
+};
+
+/**
+ * Store all the transformer functions to be callable
+ * by the useTransformer function.
+ */
+window.transformers = {
+  transformer_y_suboptimality_curve,
+  transformer_y_relative_suboptimality_curve,
+};
+
+/*
+ * ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+ * TOOLS
+ *
+ * Various functions to simplify life.
+ * ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+ */
+
+const data = (solver = null) => {
+  return solver ?
+    window.data[state().dataset][state().objective][state().objective_column].solvers[solver]:
+    window.data[state().dataset][state().objective][state().objective_column]
+}
+
+const getSolvers = () => Object.keys(data().solvers);
+
+const isBarChart = () => state().plot_kind === 'bar_chart';
+
+const isVisible = solver => !state().hidden_solvers.includes(solver);
+
+const isSolverAvailable = solver => data(solver).scatter.y.filter(value => !isNaN(value)).length > 0;
+
+const isSmallScreen = () => window.screen.availHeight < 900;
+
+/**
+ * Check for each solver
+ * if data is available
+ *
+ * @returns {Boolean}
+ */
+const isAvailable = () => {
+  let isNotAvailable = true;
+
+  getSolvers().forEach(solver => {
+    if (isSolverAvailable(solver)) {
+      isNotAvailable = false;
+    }
+  });
+
+  return !isNotAvailable;
+}
+
+const displayScatterElements = shouldBeVisible => {
+  if (shouldBeVisible) {
+    document.getElementById('change_scaling').style.display = 'inline-block';
+    document.getElementById('legend_container').style.display = 'block';
+    document.getElementById('plot_legend').style.display = 'flex';
+  } else {
+    document.getElementById('change_scaling').style.display = 'none';
+    document.getElementById('legend_container').style.display = 'none';
+    document.getElementById('plot_legend').style.display = 'none';
+  }
+};
+
+const barDataToArrays = () => {
+  const colors = [], texts = [], x = [], y = [];
+
+  getSolvers().forEach(solver => {
+    x.push(solver);
+    y.push(data(solver).bar.y);
+    colors.push(data(solver).bar.text === '' ? data(solver).color : NON_CONVERGENT_COLOR);
+    texts.push(data(solver).bar.text);
+  });
+
+  return {x, y, colors, texts}
+}
+
+const getScale = () => {
+  switch (state().scale) {
+    case 'loglog':
+      return {
+        xaxis: 'log',
+        yaxis: 'log',
+      };
+    case "semilog-y":
+      return {
+        xaxis: 'linear',
+        yaxis: 'log',
+      };
+    case "semilog-x":
+      return {
+        xaxis: 'log',
+        yaxis: 'linear',
+      };
+    case "linear":
+      return {
+        xaxis: 'linear',
+        yaxis: 'linear',
+      };
+    default:
+      console.error('Unknown scale value : ' + state().scale);
+  }
+}
+
+const getScatterChartLayout = () => {
+  let xaxisType = state().xaxis_type;
+
+  const layout = {
+    autosize: !isSmallScreen(),
+    modebar: {
+      orientation: 'v',
+    },
+    height: 700,
+    showlegend: false,
+    legend: {
+      title: {
+        text: 'Solvers',
+      },
+      orientation: 'h',
+      xanchor: 'center',
+      yanchor: 'top',
+      y: -.2,
+      x: .5
+    },
+    xaxis: {
+      type: getScale().xaxis,
+      title: xaxisType === "Time" ? "Time [sec]": xaxisType,
+      tickformat:  ["Time", "Tolerance"].includes(xaxisType) ? '.1e': '',
+      tickangle: -45,
+      gridcolor: '#ffffff',
+      zeroline : false,
+    },
+    yaxis: {
+      type: getScale().yaxis,
+      title: getYLabel(),
+      tickformat: '.1e',
+      gridcolor: '#ffffff',
+      zeroline : false,
+    },
+    title: `${state().objective}<br />Data: ${state().dataset}`,
+    plot_bgcolor: '#e5ecf6',
+  };
+
+  if (isSmallScreen()) {
+    layout.width = 900;
+    layout.height = window.screen.availHeight - 200;
+    layout.dragmode = false;
+  }
+
+  if (!isAvailable()) {
+    layout.annotations = [{
+      xref: 'paper',
+      yref: 'paper',
+      x: 0.5,
+      y: 0.5,
+      text: 'Not available',
+      showarrow: false,
+      font: {
+        color: 'black',
+        size: 32,
+      }
+    }];
+  };
+
+  return layout;
+};
+
+const getBarChartLayout = () => {
+
+  const layout = {
+    autosize: !isSmallScreen(),
+    modebar: {
+      orientation: 'v',
+    },
+    yaxis: {
+      type: 'log',
+      title: 'Time [sec]',
+      tickformat: '.1e',
+      gridcolor: '#ffffff',
+    },
+    xaxis: {
+      tickangle: -60,
+      ticktext: getSolvers(),
+    },
+    showlegend: false,
+    title: `${state().objective}<br />Data: ${state().dataset}`,
+    plot_bgcolor: '#e5ecf6',
+  };
+
+  if (isSmallScreen()) {
+    layout.width = 900;
+    layout.height = window.screen.availHeight - 200;
+    layout.dragmode = false;
+  }
+
+  if (!isAvailable()) {
+    layout.annotations = [{
+      xref: 'paper',
+      yref: 'paper',
+      x: 0.5,
+      y: 0.5,
+      text: 'Not available',
+      showarrow: false,
+      font: {
+        color: 'black',
+        size: 32,
+      }
+    }];
+  };
+
+  return layout;
+};
+
+const getYLabel = () => {
+  switch(state().plot_kind) {
+    case 'objective_curve':
+      return 'F(x)';
+    case 'suboptimality_curve':
+      return 'F(x) - F(x*)';
+    case 'relative_suboptimality_curve':
+      return 'F(x) - F(x*) / F(x0) - F(x*)'
+    case 'bar_chart':
+      return 'Time [sec]';
+    default:
+      return 'unknown';
+  };
+};
+
+/*
+ * ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+ * MANAGE HIDDEN SOLVERS
+ *
+ * Functions to hide/display and memorize solvers which were clicked
+ * by user on the legend of the plot.
+ * ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+ */
+const getSolverFromEvent = event => {
+  const target = event.currentTarget;
+
+  for (let i = 0; i < target.children.length; i++) {
+    if (target.children[i].className == 'solver') {
+      return target.children[i].firstChild.nodeValue;
+    }
+  }
+
+  return null;
+};
+
+const purgeHiddenSolvers = () => setState({hidden_solvers: []});
+
+const hideAllSolversExcept = solver => {setState({hidden_solvers: getSolvers().filter(elmt => elmt !== solver)})};
+
+const hideSolver = solver => isVisible(solver) ? setState({hidden_solvers: [...state().hidden_solvers, solver]}) : null;
+
+const showSolver = solver => setState({hidden_solvers: state().hidden_solvers.filter(hidden => hidden !== solver)});
+
+/**
+ * Add or remove solver name from the list of hidden solvers.
+ *
+ * @param {String} solver
+ * @returns {void}
+ */
+const handleSolverClick = solver => {
+  if (!isVisible(solver)) {
+    showSolver(solver);
+
+    return;
+  }
+
+  hideSolver(solver);
+};
+
+const handleSolverDoubleClick = solver => {
+  // If all solvers except one are hidden, so double click should show all solvers
+  if (state().hidden_solvers.length === getSolvers().length - 1) {
+    purgeHiddenSolvers();
+
+    return;
+  }
+
+  hideAllSolversExcept(solver);
+};
+
+/**
+ * ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+ * MANAGE PLOT LEGEND
+ *
+ * We don't use the plotly legend to keep control
+ * on the size of the plot.
+ * ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+ */
+
+/**
+ * Creates the legend at the bottom of the plot.
+ */
+const makeLegend = () => {
+  const legend = document.getElementById('plot_legend');
+
+  legend.innerHTML = '';
+
+  Object.keys(data().solvers).forEach(solver => {
+    const color = data().solvers[solver].color;
+    const symbolNumber = data().solvers[solver].marker;
+
+    legend.appendChild(createLegendItem(solver, color, symbolNumber));
+  });
+}
+
+/**
+ * Creates a legend item which contains the solver name,
+ * the solver marker as an SVG and an horizontal bar with
+ * the solver color.
+ *
+ * @param {String} solver
+ * @param {String} color
+ * @param {int} symbolNumber
+ * @retuns {HTMLElement}
+ */
+const createLegendItem = (solver, color, symbolNumber) => {
+  // Create item container
+  const item = document.createElement('div');
+  item.style.display = 'flex';
+  item.style.flexDirection = 'row';
+  item.style.alignItems = 'center';
+  item.style.position = 'relative';
+  item.style.cursor = 'pointer';
+  item.className = 'bg-white py-1 px-4 shadow-sm mt-2 rounded'
+
+  if (!isVisible(solver)) {
+    item.style.opacity = 0.5;
+  }
+
+  // Click on a solver in the legend
+  item.addEventListener('click', event => {
+    solver = getSolverFromEvent(event);
+
+    if (!getSolvers().includes(solver)) {
+      console.error('An invalid solver has been handled during the click event.');
+
+      return;
+    }
+
+    // In javascript we must simulate double click.
+    // So first click is handled and kept in memory (window.clickedSolver)
+    // during 500ms, if nothing else happen timeout will execute
+    // single click function. However, if an other click happen during this
+    // 500ms, it clears the timeout and execute the double click function.
+    if (!window.clickedSolver) {
+      window.clickedSolver = solver;
+
+      // Timeout will execute single click function after 500ms
+      window.clickedTimeout = setTimeout(() => {
+        window.clickedSolver = null;
+
+        handleSolverClick(solver);
+      }, 500);
+    } else if (window.clickedSolver === solver) {
+      clearTimeout(window.clickedTimeout);
+      window.clickedSolver = null;
+      handleSolverDoubleClick(solver);
+    }
+  });
+
+  // Create the HTML text node for the solver name in the legend
+  const textContainer = document.createElement('div');
+  textContainer.style.marginLeft = '0.5rem';
+  textContainer.className = 'solver';
+  textContainer.appendChild(document.createTextNode(solver));
+
+  // Create the horizontal bar in the legend to represent the curve
+  const hBar = document.createElement('div');
+  hBar.style.height = '2px';
+  hBar.style.width = '30px';
+  hBar.style.backgroundColor = color;
+  hBar.style.position = 'absolute';
+  hBar.style.left = '1em';
+  hBar.style.zIndex = 10;
+
+  // Append elements to the legend item
+  item.appendChild(createSymbol(symbolNumber, color));
+  item.appendChild(hBar);
+  item.appendChild(textContainer);
+
+  return item;
+}
+
+
+function updateXaxis(idXaxisTypeSelection) {
+  let selection = document.getElementById(idXaxisTypeSelection);
+  selection.innerHTML = "";
+
+  let xaxisType = state()["xaxis_type"];
+  let options = new Set(['Time']);
+
+  // get solvers run for selected (dataset, objective, objective colum)
+  // and select their unique stopping strategies
+  let solvers = data()['solvers'];
+  Object.values(solvers).forEach(solver => options.add(solver['stopping_strategy']));
+
+  // create xaxis type options
+  options.forEach(option => {
+    element = document.createElement('option');
+    element.setAttribute('value', option);
+    element.innerText = option;
+
+    selection.append(element);
+  });
+
+  // set selected value
+  selection.value = options.has(xaxisType) ? xaxisType : "Time";
+}
+
+/**
+ * Create the same svg symbol as plotly.
+ * Returns an <svg> HTML Element
+ *
+ * @param {int} symbolNumber
+ * @param {String} color
+ * @returns {HTMLElement}
+ */
+const createSymbol = (symbolNumber, color) => {
+  const svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+
+  svg.setAttribute('width', 30);
+  svg.setAttribute('height', 30);
+  svg.style.zIndex = 20;
+
+  // createPathElement() come from the local file symbols.js
+  svg.appendChild(createPathElement(symbolNumber, color));
+
+  return svg;
+}
+
+/**
+ * ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+ * EVENT REGISTRATIONS
+ *
+ * Some events are also registered in result.html.
+ * ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+ */
+
+document.getElementById('btn-plot-config').addEventListener('click', () => {
+  const elmt = document.getElementById('mobile-plot-form');
+
+  if (elmt.style.display === 'block') {
+      elmt.style.display = 'none';
+
+      return;
+  }
+
+  elmt.style.display = 'block';
+});
+
+document.getElementById('btn-main-menu').addEventListener('click', () => {
+  const elmt = document.getElementById('mobile-menu');
+
+  if (elmt.style.display === 'block') {
+      elmt.style.display = 'none';
+
+      return;
+  }
+
+  elmt.style.display = 'block';
+});
+
+        </script>
+    </body>
+</html>
